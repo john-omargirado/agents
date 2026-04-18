@@ -1,0 +1,21 @@
+Date,Price,SIV_Signal,SIV_Log,Sentiment,Articles,Tech_Decision,TTS_Score,TTS_Explanation,TTS_Reasoning,Final_Verdict,Market_Result,Alignment
+02/01/2018,109.452,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,36,HOLD,0.0,,{},BUY,BULLISH,correct
+02/02/2018,110.03,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,39,HOLD,0.0,,{},BUY,BEARISH,incorrect
+02/05/2018,109.13,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,18,HOLD,0.0,,{},SELL,BEARISH,correct
+02/06/2018,109.699,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,15,HOLD,0.0,,{},BUY,BEARISH,incorrect
+02/07/2018,109.372,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,9,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/08/2018,108.745,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,11,HOLD,0.0,,{},SELL,BEARISH,correct
+02/09/2018,108.777,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,3,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/12/2018,108.717,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,4,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/13/2018,107.828,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,7,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/14/2018,106.971,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,12,HOLD,0.0,,{},BUY,BEARISH,incorrect
+02/15/2018,106.15,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,6,HOLD,0.0,,{},HOLD,BULLISH,neutral
+02/16/2018,106.126,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,19,HOLD,0.0,,{},BUY,BULLISH,correct
+02/19/2018,106.605,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,10,HOLD,0.0,,{},BUY,BULLISH,correct
+02/20/2018,107.316,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,14,HOLD,0.0,,{},SELL,BEARISH,correct
+02/21/2018,107.748,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,16,HOLD,0.0,,{},BUY,BEARISH,incorrect
+02/22/2018,106.723,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,23,HOLD,0.0,,{},SELL,BULLISH,incorrect
+02/23/2018,106.796,COHERENT,data integrity passed | conflict=NONE | severity=0,neutral,19,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/26/2018,107.003,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bearish,8,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/27/2018,107.348,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,8,HOLD,0.0,,{},HOLD,BEARISH,neutral
+02/28/2018,106.654,PARTIAL,data integrity passed | conflict=SENTIMENT_LEAD | severity=1,bullish,24,HOLD,0.0,,{},BUY,BEARISH,incorrect

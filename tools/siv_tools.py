@@ -1,13 +1,10 @@
 def check_data_integrity(state):
     tts_data = state.get("tts_output", {})
-    indicators = tts_data.get("indicators", {})
-
-    tts_price = indicators.get("price")
+    tts_price = tts_data.get("price")              # price is now top-level
     actual_price = state.get("price")
 
     issues = []
 
-    # --- Presence checks ---
     if tts_price is None:
         issues.append("missing_tts_price")
     if actual_price is None:
@@ -21,39 +18,25 @@ def check_data_integrity(state):
         }
 
     try:
-        tts_price = float(tts_price)
+        tts_price    = float(tts_price)
         actual_price = float(actual_price)
 
-        # --- Sanity checks ---
         if actual_price <= 0:
-            return {
-                "pass": False,
-                "deviation": 1.0,
-                "issues": ["invalid_actual_price"]
-            }
+            return {"pass": False, "deviation": 1.0, "issues": ["invalid_actual_price"]}
 
         if tts_price <= 0:
-            return {
-                "pass": False,
-                "deviation": 1.0,
-                "issues": ["invalid_tts_price"]
-            }
+            return {"pass": False, "deviation": 1.0, "issues": ["invalid_tts_price"]}
 
-        # --- Deviation check ---
         deviation = abs(tts_price - actual_price) / actual_price
 
         return {
-            "pass": deviation < 0.0015,  # 0.15%
+            "pass": deviation < 0.0015,
             "deviation": deviation,
             "issues": [] if deviation < 0.0015 else ["price_mismatch"]
         }
 
     except Exception:
-        return {
-            "pass": False,
-            "deviation": 1.0,
-            "issues": ["type_conversion_error"]
-        }
+        return {"pass": False, "deviation": 1.0, "issues": ["type_conversion_error"]}
 
 def calculate_technical_conflict(tts_decision, ce_sentiment):
     decision = str(tts_decision).upper()

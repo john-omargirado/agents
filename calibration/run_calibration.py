@@ -87,15 +87,49 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             "currency_pair": target_pair,
             "price": current_price,
             "calibration_threshold": CURRENT_TEST_THRESHOLD,
-            "ce_output": {},
-            "tts_output": {},
-            "siv_output": {},
+            # typed empty defaults matching contracts
+            "ce_output": {
+                "sentiment": "NEUTRAL",
+                "raw_vibe": "NEUTRAL",
+                "mean_score": 0.0,
+                "sentiment_score": 0.0,
+                "article_count": 0,
+                "confidence": "LOW",
+                "error": None
+            },
+            "tts_output": {
+                "decision": "HOLD",
+                "total_score": 0.0,
+                "ema_trend": "SIDEWAYS",
+                "ema_score": 0.0,
+                "rsi_value": 50.0,
+                "rsi_score": 0.0,
+                "bb_signal": "STABLE",
+                "bb_score": 0.0,
+                "breakout_score": 0.0,
+                "price": 0.0,
+                "ema_200_confidence": 0.0,
+                "ema_200_reliable": False,
+                "data_stale": False,
+                "rows_available": 0,
+                "tts_insufficient": True,
+                "error": None
+            },
+            "siv_output": {
+                "signal": "INCOHERENT",
+                "conflict_type": "UNCLEAR",
+                "price_deviation": 0.0,
+                "issues": [],
+                "tts_insufficient": True,
+                "data_quality_ok": False,
+                "explanation": "Not yet run"
+            },
             "verdict": "HOLD",
             "verdict_reasoning": "",
             "weighted_score": 0.0,
             "risk_multiplier": 0.0,
-            "retry_count": 0,    # FIX: must be initialized so verdict_agent can read and increment it
-            "action": "NONE",    # FIX: must be initialized so route_after_verdict doesn't get None
+            "retry_count": 0,
+            "action": "NONE",
             "debug_log": [f"Calibration Start: {current_date}"]
         }
 

@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import pandas as pd
 import os
+import csv
 
 # Ensure project root is in path for internal imports
 current_dir = Path(__file__).resolve().parent
@@ -145,16 +146,45 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     active_trades = report_df[report_df["Final_Verdict"] != "HOLD"]
     accuracy = (active_trades["Alignment"] == "correct").mean() if not active_trades.empty else 0
 
+    buy_trades = report_df[report_df["Final_Verdict"] == "BUY"]
+    buy_accuracy = (buy_trades["Alignment"] == "correct").mean() if not buy_trades.empty else 0
+
+    sell_trades = report_df[report_df["Final_Verdict"] == "SELL"]
+    sell_accuracy = (sell_trades["Alignment"] == "correct").mean() if not sell_trades.empty else 0
+
+    combined_bs_trades = report_df[report_df["Final_Verdict"].isin(["BUY", "SELL"])]
+    combined_bs_accuracy = (
+        (combined_bs_trades["Alignment"] == "correct").mean()
+        if not combined_bs_trades.empty else 0
+    )
+
+    # Append summary metrics section to the same CSV file.
+    with open(report_output_path, "a", newline="") as summary_file:
+        writer = csv.writer(summary_file)
+        writer.writerow([])
+        writer.writerow(["SUMMARY_METRIC", "VALUE"])
+        writer.writerow(["Total Active Trades", len(active_trades)])
+        writer.writerow(["Overall Active Accuracy", f"{accuracy:.2%}"])
+        writer.writerow(["BUY Trades", len(buy_trades)])
+        writer.writerow(["BUY Accuracy", f"{buy_accuracy:.2%}"])
+        writer.writerow(["SELL Trades", len(sell_trades)])
+        writer.writerow(["SELL Accuracy", f"{sell_accuracy:.2%}"])
+        writer.writerow(["BUY+SELL Combined Trades", len(combined_bs_trades)])
+        writer.writerow(["BUY+SELL Combined Accuracy", f"{combined_bs_accuracy:.2%}"])
+
     print("\n" + "=" * 40)
     print(f"CALIBRATION COMPLETE: {target_pair}")
     print(f"Report Saved: {report_output_path}")
     print(f"Total Active Trades: {len(active_trades)}")
     print(f"Accuracy: {accuracy:.2%}")
+    print(f"BUY Trades: {len(buy_trades)} | BUY Accuracy: {buy_accuracy:.2%}")
+    print(f"SELL Trades: {len(sell_trades)} | SELL Accuracy: {sell_accuracy:.2%}")
+    print(f"BUY+SELL Combined Trades: {len(combined_bs_trades)} | BUY+SELL Combined Accuracy: {combined_bs_accuracy:.2%}")
     print("=" * 40)
 
 if __name__ == "__main__":
     run_calibration(
         target_pair="USDJPY",
-        target_months=[4], # Starting with January for a quick test
+        target_months=[8,9,10,], # Starting with January for a quick test
         target_year=2018
     )

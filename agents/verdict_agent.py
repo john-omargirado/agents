@@ -104,19 +104,44 @@ def verdict_agent(state):
     tts_score = float(tts_output.get("total_score", 0))
     article_count = int(ce_output.get("articles_analyzed", 0))
 
+    # Weighted verdict influence: CE 60%, TTS 40%
+    ce_signal_map = {
+        "BULLISH": 1.0,
+        "BEARISH": -1.0,
+        "NEUTRAL": 0.0
+    }
+    tts_direction_map = {
+        "BUY": 1.0,
+        "SELL": -1.0,
+        "HOLD": 0.0
+    }
+
+    ce_signal = ce_signal_map.get(ce_sentiment, 0.0)
+    tts_direction = tts_direction_map.get(tts_decision, 0.0)
+    tts_signal = tts_direction * max(0.0, min(abs(tts_score), 1.0))
+
+    weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
+
+    if weighted_score > 0.15:
+        weighted_decision = "BUY"
+    elif weighted_score < -0.15:
+        weighted_decision = "SELL"
+    else:
+        weighted_decision = "HOLD"
+
     # =========================
     # EARLY SAFETY GUARD
     # =========================
-    if abs(tts_score) < 0.20:
+    if abs(weighted_score) < 0.15:
         print("\n================ VERDICT RESULT ================")
         print("Decision: HOLD")
-        print("Risk: 0.20")
-        print("Reasoning: Weak technical signal (low confidence score)")
+        print("Risk: 0.15")
+        print("Reasoning: Weak combined CE/TTS signal (60/40 weighting)")
         print("===============================================\n")
 
         return {
             "verdict": "HOLD",
-            "verdict_reasoning": "Weak technical signal (low confidence score)",
+            "verdict_reasoning": "Weak combined CE/TTS signal (60/40 weighting)",
             "risk_multiplier": 0.2,
             "action": "NONE"
         }
@@ -141,10 +166,13 @@ TTS_SCORE: {tts_score}
 CE_SENTIMENT: {ce_sentiment}
 ARTICLE_COUNT: {article_count}
 SIV_STATUS: {siv_signal}
+CE_WEIGHT: 0.6
+TTS_WEIGHT: 0.4
+WEIGHTED_SCORE: {weighted_score}
+WEIGHTED_DECISION: {weighted_decision}
 
 Return:
 REASONING: short explanation
-DECISION: BUY or SELL or HOLD
 RISK_MULTIPLIER: 0.0 to 1.0
 """
 
@@ -154,7 +182,7 @@ RISK_MULTIPLIER: 0.0 to 1.0
     # =========================
     # PARSING
     # =========================
-    decision, reasoning = extract_llm_fields(res_text)
+    _, reasoning = extract_llm_fields(res_text)
 
     risk_match = re.search(
         r"RISK_MULTIPLIER:\s*([0-9]*\.?[0-9]+)",
@@ -171,7 +199,8 @@ RISK_MULTIPLIER: 0.0 to 1.0
     # DEBUG OUTPUT
     # =========================
     print("\n================ VERDICT RESULT ================")
-    print(f"Decision: {decision}")
+    print(f"Decision: {weighted_decision}")
+    print(f"Weighted Score: {weighted_score:.2f} (CE 60% / TTS 40%)")
     print(f"Risk: {risk:.2f}")
     print(f"Reasoning: {reasoning}")
     print("===============================================\n")
@@ -180,7 +209,7 @@ RISK_MULTIPLIER: 0.0 to 1.0
     # FINAL OUTPUT
     # =========================
     return {
-        "verdict": decision if decision in {"BUY", "SELL", "HOLD"} else "HOLD",
+        "verdict": weighted_decision,
         "verdict_reasoning": build_reason(
             mode="AGENTIC_SYNTHESIS",
             tts_decision=tts_decision,

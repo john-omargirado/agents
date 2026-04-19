@@ -113,10 +113,10 @@ def tts_agent(state: TradingState):
         # ✅ WEIGHTED FUSION (balanced)
         # =========================
         weights = {
-            "ema": 0.25,
-            "rsi": 0.25,
-            "bb": 0.25,
-            "breakout": 0.25
+            "ema": 0.30,
+            "rsi": 0.30,
+            "bb": 0.20,
+            "breakout": 0.20
         }
 
         total_score = (

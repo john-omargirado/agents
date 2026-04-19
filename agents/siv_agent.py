@@ -43,7 +43,10 @@ def siv_agent(state):
         signal = "INCOHERENT"
 
     # 3. LLM EXPLANATION LAYER
-    prompt = f"""
+    use_llm = state.get("use_siv_llm", False)
+
+    if use_llm:
+        prompt = f"""
         You are the Signal Integrity Verifier. 
 
         Your deterministic audit has resulted in a signal of: {signal}
@@ -56,12 +59,23 @@ def siv_agent(state):
         - CE Sentiment: {ce_output.get('overall_sentiment')}
         - Articles Analyzed: {ce_output.get('articles_analyzed', 0)}
 
-        Task: Explain why the signal is {signal} based on the alignment (or lack thereof) between Technicals (TTS) and Sentiment (CE).
-        Output: 2 to 3 concise, professional sentences. No filler.
+        Task: Explain why the signal is {signal}.
+        Output: 2–3 concise sentences.
         """
 
-    response = llm.invoke(prompt)
-    explanation = getattr(response, "content", str(response)).strip()
+        response = llm.invoke(prompt)
+        explanation = getattr(response, "content", str(response)).strip()
+
+    else:
+        # ✅ deterministic fallback
+        if signal == "INCOHERENT":
+            explanation = "Data integrity issues or missing alignment detected."
+        elif signal == "PARTIAL":
+            explanation = f"Partial alignment due to {conflict_type.lower()}."
+        elif signal == "COHERENT":
+            explanation = "Technical and sentiment signals are aligned."
+        else:
+            explanation = "Unclear signal state."
 
     print(f"\n[SIV OUTPUT] Signal: {signal}")
     print(f"[SIV EXPLANATION] {explanation}\n")

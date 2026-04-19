@@ -1,5 +1,6 @@
 from state.trading_state import TradingState
 from tools.ce_tools import get_news_sentiment
+from llm.ollama_client import ce_llm as llm
 
 
 def ce_agent(state: TradingState):
@@ -34,6 +35,7 @@ def ce_agent(state: TradingState):
         state["debug_log"].append(f"CE agent: Empty sentiment result for {target_date}")
         return {"ce_output": safe_default}
 
+
     # =========================
     # NORMALIZATION LAYER
     # =========================
@@ -46,6 +48,47 @@ def ce_agent(state: TradingState):
         "titles": sentiment_data.get("titles", []),
         "fake_mode": sentiment_data.get("fake_mode", False)
     }
+
+    # =========================
+    # SENTIMENT REASONING LAYER
+    # =========================
+    mean_score = normalized["mean_score"]
+    article_count = normalized["articles_analyzed"]
+    sentiment = normalized["overall_sentiment"]
+
+    # strength classification
+    if abs(mean_score) >= 0.5:
+        strength = "strong"
+    elif abs(mean_score) >= 0.2:
+        strength = "moderate"
+    else:
+        strength = "weak"
+
+    # volume classification
+    if article_count >= 20:
+        volume = "high"
+    elif article_count >= 10:
+        volume = "moderate"
+    else:
+        volume = "low"
+
+    # consistency check (optional but useful)
+    raw_vibe = normalized["raw_vibe"]
+    if sentiment == raw_vibe:
+        alignment = "aligned"
+    else:
+        alignment = "mixed"
+
+    # final explanation
+    sentiment_reasoning = (
+        f"{strength} {sentiment} sentiment "
+        f"based on {article_count} articles "
+        f"(volume={volume}, alignment={alignment}, mean_score={mean_score:.2f})"
+    )
+
+    normalized["reasoning"] = sentiment_reasoning
+
+    
 
     state["debug_log"].append(
         f"CE: {normalized['articles_analyzed']} articles | "

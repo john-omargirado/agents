@@ -103,6 +103,14 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             final_output = app.invoke(initial_state)
 
             ce_data = final_output.get("ce_output", {})
+            ce_reasoning = ce_data.get("reasoning")
+
+            if isinstance(ce_reasoning, dict):
+                ce_reasoning_text = ", ".join(f"{k}:{v}" for k, v in ce_reasoning.items())
+            elif isinstance(ce_reasoning, str):
+                ce_reasoning_text = ce_reasoning
+            else:
+                ce_reasoning_text = ""
             tts_data = final_output.get("tts_output", {})
             siv_data = final_output.get("siv_output", {})
             
@@ -122,12 +130,16 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             results.append({
                 "Date": current_date,
                 "Price": current_price,
-                "SIV_Signal": siv_data.get("integrity_signal", "N/A"),
-                "SIV_Audit": siv_data.get("explanation", "").replace("\n", " "),
+                # CE
                 "Sentiment": ce_data.get("overall_sentiment", "N/A"),
                 "Articles": ce_data.get("articles_analyzed", 0),
+                "CE_Reasoning": ce_reasoning_text,
+                # TTS
                 "Tech_Decision": tts_data.get("decision", "HOLD"),
                 "Tech_Thought": tts_data.get("reasoning", ""),
+                # SIV
+                "SIV_Signal": siv_data.get("integrity_signal", "N/A"),
+                # Verdict
                 "Final_Verdict": verdict,
                 "Risk_Multiplier": risk_multiplier,
                 "Verdict_Reasoning": verdict_reasoning,

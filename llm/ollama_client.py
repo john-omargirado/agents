@@ -2,6 +2,12 @@
 
 from langchain_ollama import ChatOllama
 
+ce_llm = ChatOllama(
+    model="llama3.2:3b",
+    temperature=0,
+    num_ctx=4096
+)
+
 tts_llm = ChatOllama(
     model="llama3.2:3b",
     temperature=0,

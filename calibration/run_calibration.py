@@ -92,6 +92,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             "siv_output": {},
             "verdict": "HOLD",
             "verdict_reasoning": "",
+            "weighted_score": 0.0,
             "risk_multiplier": 0.0,
             "retry_count": 0,    # FIX: must be initialized so verdict_agent can read and increment it
             "action": "NONE",    # FIX: must be initialized so route_after_verdict doesn't get None
@@ -102,21 +103,14 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             print(f"Processing: {current_date} | Reality: {market_label}")
             final_output = app.invoke(initial_state)
 
-            ce_data = final_output.get("ce_output", {})
-            ce_reasoning = ce_data.get("reasoning")
-
-            if isinstance(ce_reasoning, dict):
-                ce_reasoning_text = ", ".join(f"{k}:{v}" for k, v in ce_reasoning.items())
-            elif isinstance(ce_reasoning, str):
-                ce_reasoning_text = ce_reasoning
-            else:
-                ce_reasoning_text = ""
+            ce_data  = final_output.get("ce_output", {})
             tts_data = final_output.get("tts_output", {})
             siv_data = final_output.get("siv_output", {})
-            
-            verdict = final_output.get("verdict", "HOLD").upper()
+
+            verdict           = final_output.get("verdict", "HOLD").upper()
             verdict_reasoning = final_output.get("verdict_reasoning", "")
-            risk_multiplier = final_output.get("risk_multiplier", 0.0)
+            weighted_score    = final_output.get("weighted_score", 0.0)
+            risk_multiplier   = final_output.get("risk_multiplier", 0.0)
 
             # --- ALIGNMENT CALCULATION ---
             alignment = "neutral"
@@ -131,20 +125,26 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "Date": current_date,
                 "Price": current_price,
                 # CE
-                "Sentiment": ce_data.get("overall_sentiment", "N/A"),
-                "Articles": ce_data.get("articles_analyzed", 0),
-                "CE_Reasoning": ce_reasoning_text,
+                "Sentiment":     ce_data.get("sentiment", "N/A"),
+                "CE_Confidence": ce_data.get("confidence", "N/A"),
+                "Articles":      ce_data.get("article_count", 0),
                 # TTS
-                "Tech_Decision": tts_data.get("decision", "HOLD"),
-                "Tech_Thought": tts_data.get("reasoning", ""),
+                "Tech_Decision":    tts_data.get("decision", "HOLD"),
+                "Tech_Score":       tts_data.get("total_score", 0.0),
+                "EMA_Trend":        tts_data.get("ema_trend", "N/A"),
+                "RSI":              tts_data.get("rsi_value", 0.0),
+                "EMA200_Reliable":  tts_data.get("ema_200_reliable", False),
+                "TTS_Insufficient": tts_data.get("tts_insufficient", False),
                 # SIV
-                "SIV_Signal": siv_data.get("integrity_signal", "N/A"),
+                "SIV_Signal":   siv_data.get("signal", "N/A"),
+                "SIV_Conflict": siv_data.get("conflict_type", "N/A"),
                 # Verdict
-                "Final_Verdict": verdict,
-                "Risk_Multiplier": risk_multiplier,
+                "Final_Verdict":    verdict,
+                "Weighted_Score":   weighted_score,
+                "Risk_Multiplier":  risk_multiplier,
                 "Verdict_Reasoning": verdict_reasoning,
-                "Market_Reality": market_label,
-                "Alignment": alignment
+                "Market_Reality":   market_label,
+                "Alignment":        alignment
             })
 
         except Exception as e:

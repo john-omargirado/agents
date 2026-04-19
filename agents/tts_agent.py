@@ -9,7 +9,6 @@ from pathlib import Path
 import json
 import numpy as np
 import pandas as pd
-from llm.ollama_client import tts_llm as llm
 from state.trading_state import TradingState
 from tools.tts_tools import calculate_technical_indicators
 
@@ -48,16 +47,16 @@ def tts_agent(state: TradingState):
             raise ValueError(f"No technical data for {target_date}")
 
         # ✅ Extract and propagate data quality
-        data_quality = tech.get("data_quality", {})
         tts_insufficient = (
-            not data_quality.get("ema_200_reliable", True) or
-            data_quality.get("data_stale", False)
+            not tech.get("ema_200_reliable", True) or
+            tech.get("data_stale", False) or
+            tech.get("ema_200_confidence", 1.0) < 0.5
         )
 
         state["debug_log"].append(
-            f"TTS data quality: {data_quality['rows_available']} rows, "
-            f"EMA200 confidence={data_quality['ema_200_confidence']:.2f}, "
-            f"stale={data_quality['data_stale']}"
+            f"TTS data quality: {tech['rows_available']} rows, "
+            f"EMA200 confidence={tech['ema_200_confidence']:.2f}, "
+            f"stale={tech['data_stale']}"
         )
 
         # =========================
@@ -149,68 +148,25 @@ def tts_agent(state: TradingState):
         else:
             decision = "HOLD"
 
-        reasoning = {
-            "components": {
-                "ema": {
-                    "trend": tech["trend"],
-                    "strength": round(ema_strength, 4),
-                    "score": round(ema_score, 4)
-                },
-                "rsi": {
-                    "value": round(rsi, 2),
-                    "score": round(rsi_score, 4)
-                },
-                "bollinger": {
-                    "signal": tech["bb_signal"],
-                    "strength": round(tech["bb_strength"], 4),
-                    "score": round(bb_score, 4)
-                },
-                "breakout": {
-                    "recent_high": round(float(recent_high), 5),
-                    "recent_low": round(float(recent_low), 5),
-                    "price": round(float(price), 5),
-                    "score": round(breakout_score, 4)
-                }
-            },
-            "weights": weights,
-            "total_score": round(total_score, 4),
-            "decision": decision
-            }
-
-        prompt = f"""
-            You are a trading explanation module.
-
-            Explain the decision using ONLY the provided indicator scores.
-
-            Decision: {decision}
-
-            EMA Trend: {tech["trend"]} (strength={ema_strength:.4f}, score={ema_score:.4f})
-            RSI Value: {rsi:.2f} (score={rsi_score:.4f})
-            Bollinger Signal: {tech["bb_signal"]} (strength={tech["bb_strength"]:.4f}, score={bb_score:.4f})
-            Breakout: price={price:.5f}, high={recent_high:.5f}, low={recent_low:.5f}, (score={breakout_score:.4f})
-
-            Total Score: {total_score:.4f}
-
-            Rules:
-            - Explain how each indicator contributed to the final score
-            - Focus on alignment or conflict between indicators
-            - Do NOT suggest alternative trades
-            - Do NOT question the decision
-            - Keep it factual and mechanical
-
-            Output:
-            Maximum 4 sentences, concise, no filler.
-        """
-
-        response = llm.invoke(prompt)
 
         return {
             "tts_output": {
                 "decision": decision,
-                "total_score": round(float(total_score), 4),  # FIX: explicit float cast
-                "reasoning": _sanitize(reasoning),            # FIX: strip np.float64 from dict
-                "explanation": response.content,
-                "indicators": _sanitize(tech)                 # FIX: strip np.float64 from indicators
+                "total_score": round(float(total_score), 4),
+                "ema_trend": tech["trend"],
+                "ema_score": round(float(ema_score), 4),
+                "rsi_value": round(float(rsi), 2),
+                "rsi_score": round(float(rsi_score), 4),
+                "bb_signal": tech["bb_signal"],
+                "bb_score": round(float(bb_score), 4),
+                "breakout_score": round(float(breakout_score), 4),
+                "price": round(float(price), 5),
+                "ema_200_confidence": float(tech.get("ema_200_confidence", 1.0)),
+                "ema_200_reliable": bool(tech.get("ema_200_reliable", True)),
+                "data_stale": bool(tech.get("data_stale", False)),
+                "rows_available": int(tech.get("rows_available", 0)),
+                "tts_insufficient": tts_insufficient,
+                "error": None
             }
         }
 
@@ -219,6 +175,20 @@ def tts_agent(state: TradingState):
         return {
             "tts_output": {
                 "decision": "HOLD",
+                "total_score": 0.0,
+                "ema_trend": "SIDEWAYS",
+                "ema_score": 0.0,
+                "rsi_value": 50.0,
+                "rsi_score": 0.0,
+                "bb_signal": "STABLE",
+                "bb_score": 0.0,
+                "breakout_score": 0.0,
+                "price": 0.0,
+                "ema_200_confidence": 0.0,
+                "ema_200_reliable": False,
+                "data_stale": False,
+                "rows_available": 0,
+                "tts_insufficient": True,
                 "error": str(e)
             }
         }

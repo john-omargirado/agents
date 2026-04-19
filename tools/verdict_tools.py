@@ -25,64 +25,6 @@ def normalize_signal(value, default="HOLD"):
 
     return default
 
-def normalize_sentiment(value):
-    if value is None:
-        return "NEUTRAL"
-
-    value = str(value).strip().upper()
-
-    if value == "BULLISH":
-        return "BULLISH"
-    if value == "BEARISH":
-        return "BEARISH"
-    if value == "NEUTRAL":
-        return "NEUTRAL"
-
-    if "BULL" in value or "POSITIVE" in value:
-        return "BULLISH"
-    if "BEAR" in value or "NEGATIVE" in value:
-        return "BEARISH"
-
-    return "NEUTRAL"
-
-
-def extract_llm_fields(text):
-    decision = None
-    reasoning = None
-
-    if not text:
-        return "HOLD", "No output from LLM"
-
-    text = str(text)
-
-    # --- DECISION (strict) ---
-    decision_match = re.search(
-        r"DECISION:\s*(BUY|SELL|HOLD)",
-        text,
-        re.IGNORECASE
-    )
-
-    if decision_match:
-        decision = decision_match.group(1).upper()
-
-    # --- REASONING (non-greedy, stops before next field) ---
-    reasoning_match = re.search(
-        r"REASONING:\s*(.*?)(?:\n[A-Z_]+:|\Z)",
-        text,
-        re.IGNORECASE | re.DOTALL
-    )
-
-    if reasoning_match:
-        reasoning = reasoning_match.group(1).strip()
-
-    # --- Fallbacks ---
-    if not decision:
-        decision = normalize_signal(text)
-
-    if not reasoning:
-        reasoning = "No clear reasoning provided"
-
-    return decision, reasoning
 
 
 def build_reason(

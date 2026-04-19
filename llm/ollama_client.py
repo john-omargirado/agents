@@ -2,27 +2,9 @@
 
 from langchain_ollama import ChatOllama
 
-ce_llm = ChatOllama(
-    model="llama3.2:3b",
-    temperature=0,
-    num_ctx=4096
-)
-
-tts_llm = ChatOllama(
-    model="llama3.2:3b",
-    temperature=0,
-    num_ctx=4096
-)
-
-siv_llm = ChatOllama(
-    model="llama3.2:3b",
-    temperature=0,
-    num_ctx=4096
-)
-
 verdict_llm = ChatOllama(
-    model="llama3.2:3b",
+    model="qwen2.5:7b",
     temperature=0,
-    num_ctx=4096
-
+    num_ctx=2048,       # verdict prompt is short, 2048 is sufficient
+    format="json"       # forces Ollama to constrain output to valid JSON
 )

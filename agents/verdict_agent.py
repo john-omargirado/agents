@@ -1,240 +1,151 @@
 import sys
 from pathlib import Path
+import json
+import re
 
 project_root = Path(__file__).resolve().parents[1]
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from tools.verdict_tools import (
-    normalize_signal,
-    normalize_sentiment,
-    extract_llm_fields,
-    build_reason
-)
 from llm.ollama_client import verdict_llm as llm
-import re
-
 
 
 def verdict_agent(state):
-    state["debug_log"].append("VERDICT agent: starting Agentic Synthesis")
+    state["debug_log"].append("VERDICT agent: starting")
 
-    # =========================
-    # OPTIONAL FAKE MODE
-    # =========================
-    fake_mode = state.get("verdict_fake_mode", False)
-
-    if fake_mode:
-        state["tts_output"] = {
-            "decision": "BUY",
-            "total_score": 0.78,
-            "reasoning": {
-                "ema_vote": 1,
-                "rsi_vote": 1,
-                "bb_vote": 1,
-                "breakout_vote": 1
-            },
-            "explanation": (
-                "All major indicators are aligned bullish. "
-                "EMA confirms trend continuation. RSI is healthy. "
-                "Bollinger Bands show expansion supporting upward move."
-            )
-        }
-
-        state["ce_output"] = {
-            "overall_sentiment": "BULLISH",
-            "articles_analyzed": 12,
-            "mean_score": 0.73,
-            "reasoning": {
-                "headline_bias": "positive",
-                "keyword_strength": "strong bullish terms",
-                "volume": "high coverage"
-            }
-        }
-
-        state["siv_output"] = {
-            "integrity_signal": "COHERENT",
-            "conflict_type": "ALIGNED",
-            "tts_insufficient": False,
-            "explanation": (
-                "TTS and CE signals are aligned in bullish direction. "
-                "No data integrity issues detected. "
-                "Sufficient indicators and news volume support coherence."
-            )
-        }
-
-    # =========================
-    # LOAD STATE
-    # =========================
-    siv_output = state.get("siv_output", {})
-    siv_signal = siv_output.get("integrity_signal", "INCOHERENT")
-    tts_insufficient = siv_output.get("tts_insufficient", False)
-
-    tts_output = state.get("tts_output", {})
-    ce_output = state.get("ce_output", {})
+    tts = state.get("tts_output", {})
+    ce  = state.get("ce_output", {})
+    siv = state.get("siv_output", {})
 
     retry_count = state.get("retry_count", 0)
 
     # =========================
-    # HARD BLOCK (SIV FAILURE)
+    # HARD BLOCK
     # =========================
-    if siv_signal == "INCOHERENT":
+    if siv.get("signal") == "INCOHERENT":
         if retry_count >= 2:
             return {
                 "verdict": "HOLD",
+                "weighted_score": 0.0,
                 "verdict_reasoning": "Retry limit reached. System fallback HOLD.",
                 "risk_multiplier": 0.0,
                 "action": "NONE"
             }
-
         return {
             "verdict": "HOLD",
-            "verdict_reasoning": "SIV INCOHERENT → triggering retry cycle",
+            "weighted_score": 0.0,
+            "verdict_reasoning": "SIV INCOHERENT — triggering retry",
             "risk_multiplier": 0.0,
             "action": "RETRY_TTS_CE",
             "retry_count": retry_count + 1
         }
 
     # =========================
-    # NORMALIZATION
+    # WEIGHTED SCORE (deterministic)
     # =========================
-    tts_decision = normalize_signal(tts_output.get("decision"))
-    ce_sentiment = normalize_sentiment(ce_output.get("overall_sentiment"))
+    ce_map  = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
+    tts_map = {"BUY": 1.0, "SELL": -1.0, "HOLD": 0.0}
 
-    tts_score = float(tts_output.get("total_score", 0))
-    article_count = int(ce_output.get("articles_analyzed", 0))
-
-    # Weighted verdict influence: CE 60%, TTS 40%
-    ce_signal_map = {
-        "BULLISH": 1.0,
-        "BEARISH": -1.0,
-        "NEUTRAL": 0.0
-    }
-    tts_direction_map = {
-        "BUY": 1.0,
-        "SELL": -1.0,
-        "HOLD": 0.0
-    }
-
-    ce_signal = ce_signal_map.get(ce_sentiment, 0.0)
-    tts_direction = tts_direction_map.get(tts_decision, 0.0)
-    tts_signal = tts_direction * max(0.0, min(abs(tts_score), 1.0))
+    ce_signal   = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
+    tts_raw     = tts_map.get(tts.get("decision", "HOLD"), 0.0)
+    tts_signal  = tts_raw * max(0.0, min(abs(tts.get("total_score", 0.0)), 1.0))
 
     weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
 
-    if weighted_score > 0.15:
-        weighted_decision = "BUY"
-    elif weighted_score < -0.15:
-        weighted_decision = "SELL"
-    else:
-        weighted_decision = "HOLD"
+    if   weighted_score >  0.15: pre_decision = "BUY"
+    elif weighted_score < -0.15: pre_decision = "SELL"
+    else:                        pre_decision = "HOLD"
 
     # =========================
-    # EARLY SAFETY GUARD
+    # RISK PRE-SCALING (deterministic)
+    # =========================
+    base_risk = 1.0
+    if tts.get("tts_insufficient", False):        base_risk *= 0.5
+    if ce.get("article_count", 0) < 5:            base_risk *= 0.7
+    if ce.get("confidence") == "LOW":             base_risk *= 0.8
+    if siv.get("signal") == "PARTIAL":            base_risk *= 0.85
+
+    # =========================
+    # EARLY EXIT — weak signal
     # =========================
     if abs(weighted_score) < 0.15:
         print("\n================ VERDICT RESULT ================")
-        print("Decision: HOLD")
-        print("Risk: 0.15")
-        print("Reasoning: Weak combined CE/TTS signal (60/40 weighting)")
-        print("===============================================\n")
-
+        print("Decision: HOLD | Reason: Weak combined signal")
+        print("================================================\n")
         return {
             "verdict": "HOLD",
-            "verdict_reasoning": "Weak combined CE/TTS signal (60/40 weighting)",
+            "weighted_score": round(weighted_score, 4),
+            "verdict_reasoning": "Weak combined CE/TTS signal.",
             "risk_multiplier": 0.2,
             "action": "NONE"
         }
 
     # =========================
-    # RISK PRE-SCALING
+    # LLM CALL — risk + reasoning only
     # =========================
-    base_risk = 1.0
-    if tts_insufficient:
-        base_risk *= 0.5
-    if article_count < 5:
-        base_risk *= 0.7
+    prompt = f"""You are a forex trading risk assessor. All scores are -1.0 to +1.0.
 
-    # =========================
-    # LLM PROMPT
-    # =========================
-    prompt = f"""
-You are a trading decision engine.
+INPUTS:
+- tts_decision: {tts.get("decision")}
+- tts_score: {tts.get("total_score", 0):.3f}
+- tts_ema_trend: {tts.get("ema_trend")}
+- tts_ema_200_reliable: {tts.get("ema_200_reliable")}
+- tts_rsi: {tts.get("rsi_value", 50):.2f}
+- ce_sentiment: {ce.get("sentiment")}
+- ce_sentiment_score: {ce.get("sentiment_score", 0):.3f}
+- ce_confidence: {ce.get("confidence")}
+- ce_article_count: {ce.get("article_count", 0)}
+- siv_signal: {siv.get("signal")}
+- siv_conflict: {siv.get("conflict_type")}
+- weighted_score: {weighted_score:.3f}
+- pre_decision: {pre_decision}
 
-TTS_DECISION: {tts_decision}
-TTS_SCORE: {tts_score}
-CE_SENTIMENT: {ce_sentiment}
-ARTICLE_COUNT: {article_count}
-SIV_STATUS: {siv_signal}
-CE_WEIGHT: 0.6
-TTS_WEIGHT: 0.4
-WEIGHTED_SCORE: {weighted_score}
-WEIGHTED_DECISION: {weighted_decision}
+TASK: Assess conviction and risk for this trade.
 
-Return:
-REASONING: short explanation
-RISK_MULTIPLIER: 0.0 to 1.0
+RESPOND WITH ONLY VALID JSON — no markdown, no extra text:
+{{
+  "verdict": "{pre_decision}",
+  "risk_multiplier": <float 0.0-1.0>,
+  "reasoning": "<one sentence max 20 words>"
+}}
+
+Rules:
+- verdict MUST be exactly "{pre_decision}" — do not change it
+- risk_multiplier: 0.8-1.0 strong alignment, 0.5-0.7 moderate, 0.0-0.4 weak or conflicted
 """
 
     response = llm.invoke(prompt)
-    res_text = getattr(response, "content", str(response))
+    raw = getattr(response, "content", str(response)).strip()
 
     # =========================
-    # PARSING
+    # PARSE — with fallback
     # =========================
-    _, reasoning = extract_llm_fields(res_text)
+    try:
+        parsed    = json.loads(raw)
+        verdict   = pre_decision                # never trust LLM to change direction
+        risk      = float(parsed.get("risk_multiplier", 0.5))
+        reasoning = str(parsed.get("reasoning", ""))
+    except (json.JSONDecodeError, KeyError, ValueError):
+        verdict   = pre_decision
+        risk      = 0.5
+        reasoning = (
+            f"CE={ce.get('sentiment')} TTS={tts.get('decision')} "
+            f"score={weighted_score:.2f}"
+        )
 
-    risk_match = re.search(
-        r"RISK_MULTIPLIER:\s*([0-9]*\.?[0-9]+)",
-        res_text
-    )
+    risk = max(0.0, min(risk * base_risk, 1.0))
 
-    risk = float(risk_match.group(1)) if risk_match else 0.5
-
-    # clamp + scale
-    risk = max(0.0, min(risk, 1.0)) * base_risk
-    risk = max(0.0, min(risk, 1.0))
-
-    # =========================
-    # DEBUG OUTPUT
-    # =========================
     print("\n================ VERDICT RESULT ================")
-    print(f"Decision: {weighted_decision}")
+    print(f"Decision: {verdict}")
     print(f"Weighted Score: {weighted_score:.2f} (CE 60% / TTS 40%)")
     print(f"Risk: {risk:.2f}")
     print(f"Reasoning: {reasoning}")
-    print("===============================================\n")
+    print("================================================\n")
 
-    # =========================
-    # FINAL OUTPUT
-    # =========================
     return {
-        "verdict": weighted_decision,
-        "verdict_reasoning": build_reason(
-            mode="AGENTIC_SYNTHESIS",
-            tts_decision=tts_decision,
-            ce_sentiment=ce_sentiment,
-            article_count=article_count,
-            conflict=("MISMATCH" in siv_output.get("conflict_type", "")),
-            risk_multiplier=risk,
-            extra=reasoning
-        ),
-        "risk_multiplier": risk,
-        "action": "NONE",
-        "fake_mode": fake_mode
+        "verdict": verdict,
+        "weighted_score": round(weighted_score, 4),
+        "verdict_reasoning": reasoning,
+        "risk_multiplier": round(risk, 3),
+        "action": "NONE"
     }
-
-
-# =========================
-# STANDALONE TEST
-# =========================
-if __name__ == "__main__":
-    test_state = {
-        "debug_log": [],
-        "retry_count": 0
-    }
-
-    result = verdict_agent(test_state)
-
-    print("\n================ FINAL RESULT ================")
-    print(result)

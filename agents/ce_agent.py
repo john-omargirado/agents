@@ -1,6 +1,5 @@
 from state.trading_state import TradingState
 from tools.ce_tools import get_news_sentiment
-from llm.ollama_client import ce_llm as llm
 
 
 def ce_agent(state: TradingState):
@@ -15,13 +14,13 @@ def ce_agent(state: TradingState):
     # SAFE DEFAULT STRUCTURE
     # =========================
     safe_default = {
-        "overall_sentiment": "neutral",
-        "raw_vibe": "neutral",
+        "sentiment": "NEUTRAL",
+        "raw_vibe": "NEUTRAL",
         "mean_score": 0.0,
         "sentiment_score": 0.0,
-        "articles_analyzed": 0,
-        "titles": [],
-        "fake_mode": False
+        "article_count": 0,
+        "confidence": "LOW",
+        "error": None
     }
 
     # =========================
@@ -31,7 +30,7 @@ def ce_agent(state: TradingState):
         state["debug_log"].append(f"CE agent: No data for {target_date}")
         return {"ce_output": safe_default}
 
-    if sentiment_data.get("articles_analyzed", 0) == 0:
+    if sentiment_data.get("article_count", 0) == 0:
         state["debug_log"].append(f"CE agent: Empty sentiment result for {target_date}")
         return {"ce_output": safe_default}
 
@@ -39,60 +38,33 @@ def ce_agent(state: TradingState):
     # =========================
     # NORMALIZATION LAYER
     # =========================
+    mean_score    = float(sentiment_data.get("mean_score", 0.0))
+    article_count = int(sentiment_data.get("article_count", 0))
+
+    if article_count >= 20 and abs(mean_score) >= 0.5:
+        confidence = "HIGH"
+    elif article_count >= 10 or abs(mean_score) >= 0.2:
+        confidence = "MODERATE"
+    else:
+        confidence = "LOW"
+
     normalized = {
-        "overall_sentiment": str(sentiment_data.get("overall_sentiment", "neutral")).lower(),
-        "raw_vibe": str(sentiment_data.get("raw_vibe", "neutral")).lower(),
-        "mean_score": float(sentiment_data.get("mean_score", 0.0)),
+        "sentiment":       sentiment_data.get("sentiment", "NEUTRAL"),
+        "raw_vibe":        sentiment_data.get("raw_vibe", "NEUTRAL"),
+        "mean_score":      mean_score,
         "sentiment_score": float(sentiment_data.get("sentiment_score", 0.0)),
-        "articles_analyzed": int(sentiment_data.get("articles_analyzed", 0)),
-        "titles": sentiment_data.get("titles", []),
-        "fake_mode": sentiment_data.get("fake_mode", False)
+        "article_count":   article_count,
+        "confidence":      confidence,
+        "error":           None
     }
-
-    # =========================
-    # SENTIMENT REASONING LAYER
-    # =========================
-    mean_score = normalized["mean_score"]
-    article_count = normalized["articles_analyzed"]
-    sentiment = normalized["overall_sentiment"]
-
-    # strength classification
-    if abs(mean_score) >= 0.5:
-        strength = "strong"
-    elif abs(mean_score) >= 0.2:
-        strength = "moderate"
-    else:
-        strength = "weak"
-
-    # volume classification
-    if article_count >= 20:
-        volume = "high"
-    elif article_count >= 10:
-        volume = "moderate"
-    else:
-        volume = "low"
-
-    # consistency check (optional but useful)
-    raw_vibe = normalized["raw_vibe"]
-    if sentiment == raw_vibe:
-        alignment = "aligned"
-    else:
-        alignment = "mixed"
-
-    # final explanation
-    sentiment_reasoning = (
-        f"{strength} {sentiment} sentiment "
-        f"based on {article_count} articles "
-        f"(volume={volume}, alignment={alignment}, mean_score={mean_score:.2f})"
-    )
-
-    normalized["reasoning"] = sentiment_reasoning
+    
 
     
 
     state["debug_log"].append(
-        f"CE: {normalized['articles_analyzed']} articles | "
-        f"{normalized['overall_sentiment']} sentiment"
+        f"CE: {normalized['article_count']} articles | "
+        f"{normalized['sentiment']} sentiment | "
+        f"confidence={normalized['confidence']}"
     )
 
     return {"ce_output": normalized}

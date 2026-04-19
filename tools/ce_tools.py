@@ -109,12 +109,13 @@ def get_news_sentiment(target_date: str, pair: str):
 
     if n == 0:
         return {
-            "overall_sentiment": "neutral",
-            "raw_vibe": "neutral",
-            "mean_score": 0.0,
-            "articles_analyzed": 0,
-            "titles": rows
-        }
+        "sentiment": "NEUTRAL",
+        "raw_vibe": "NEUTRAL",
+        "mean_score": 0.0,
+        "sentiment_score": 0.0,
+        "article_count": 0,
+        "titles": []
+    }
 
     # =========================
     # STABLE SCORING
@@ -161,10 +162,10 @@ def get_news_sentiment(target_date: str, pair: str):
     # OUTPUT (BACKTEST STABLE)
     # =========================
     return {
-        "overall_sentiment": final,
-        "raw_vibe": raw_vibe,
-        "mean_score": round(float(mean_score), 4),
-        "sentiment_score": round(float(sentiment_score), 4),
-        "articles_analyzed": n,
-        "titles": rows
+    "sentiment": final.upper(),         # renamed + uppercased
+    "raw_vibe": raw_vibe.upper(),        # uppercased
+    "mean_score": round(float(mean_score), 4),
+    "sentiment_score": round(float(sentiment_score), 4),
+    "article_count": n,                  # renamed from articles_analyzed
+    "titles": rows
     }

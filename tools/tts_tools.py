@@ -83,27 +83,17 @@ def calculate_technical_indicators(full_df: pd.DataFrame, target_date: str):
         bb_signal   = "OVERSOLD"
         bb_strength = min(abs(lower_bb - last_close) / (band_width / 2 + 1e-9), 1.0)
 
-    return {
-        "price": round(last_close, 5),
-
-        # trend
-        "trend":          trend,
-        "trend_strength": round(trend_strength, 4),
-
-        # rsi
-        "rsi":          round(rsi, 2),
-        "rsi_strength": round(rsi_strength, 4),
-
-        # bollinger
-        "bb_signal":   bb_signal,
-        "bb_strength": round(bb_strength, 4),
-
-        # diagnostics
-        "ema_50":  round(ema_50,  5),
-        "ema_200": round(ema_200, 5),
-
-        # ✅ NEW: sufficiency metadata
-        "data_quality": {
+        return {
+            "price": round(last_close, 5),
+            "trend":          trend,
+            "trend_strength": round(trend_strength, 4),
+            "rsi":          round(rsi, 2),
+            "rsi_strength": round(rsi_strength, 4),
+            "bb_signal":   bb_signal,
+            "bb_strength": round(bb_strength, 4),
+            "ema_50":  round(ema_50,  5),
+            "ema_200": round(ema_200, 5),
+            # flattened — no longer nested under "data_quality"
             "rows_available":     row_count,
             "ema_200_confidence": round(ema_200_confidence, 3),
             "ema_200_reliable":   sufficient["ema_200_reliable"],
@@ -111,4 +101,4 @@ def calculate_technical_indicators(full_df: pd.DataFrame, target_date: str):
             "data_stale":         data_stale,
             "days_stale":         int(days_stale),
         }
-    }
+    

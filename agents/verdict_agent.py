@@ -15,6 +15,7 @@ from llm.ollama_client import verdict_llm as llm
 import re
 
 
+
 def verdict_agent(state):
     state["debug_log"].append("VERDICT agent: starting Agentic Synthesis")
 

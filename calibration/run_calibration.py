@@ -122,7 +122,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "Date": current_date,
                 "Price": current_price,
                 "SIV_Signal": siv_data.get("integrity_signal", "N/A"),
-                "SIV_Audit": siv_data.get("audit_report", "").replace("\n", " "),
+                "SIV_Audit": siv_data.get("explanation", "").replace("\n", " "),
                 "Sentiment": ce_data.get("overall_sentiment", "N/A"),
                 "Articles": ce_data.get("articles_analyzed", 0),
                 "Tech_Decision": tts_data.get("decision", "HOLD"),

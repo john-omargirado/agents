@@ -47,81 +47,149 @@ def tts_agent(state: TradingState):
         if not tech:
             raise ValueError(f"No technical data for {target_date}")
 
+        # =========================
+        # ✅ EMA (normalized, no constant bias)
+        # =========================
         ema_vote = 1 if tech["trend"] == "BULLISH" else -1 if tech["trend"] == "BEARISH" else 0
         ema_strength = tech["trend_strength"]
 
+        if ema_vote != 0:
+            ema_score = ema_vote * min(ema_strength, 1.0)
+        else:
+            ema_score = 0.0
+
+
+        # =========================
+        # ✅ RSI (continuous contribution)
+        # =========================
         rsi = tech["rsi"]
-        if rsi < 30:
-            rsi_vote = 1
-        elif rsi > 70:
-            rsi_vote = -1
-        else:
-            rsi_vote = 0
-        rsi_strength = tech["rsi_strength"]
 
+        if rsi > 50:
+            rsi_score = -(rsi - 50) / 50   # bearish pressure
+        else:
+            rsi_score = (50 - rsi) / 50    # bullish pressure
+
+        rsi_score = max(-1.0, min(rsi_score, 1.0))
+
+
+        # =========================
+        # ✅ Bollinger (still using your signal, but improved)
+        # =========================
         if tech["bb_signal"] == "OVERSOLD":
-            bb_vote = 1
+            bb_score = min(tech["bb_strength"], 1.0)
         elif tech["bb_signal"] == "OVERBOUGHT":
-            bb_vote = -1
+            bb_score = -min(tech["bb_strength"], 1.0)
         else:
-            bb_vote = 0
-        bb_strength = tech["bb_strength"]
+            bb_score = 0.0
 
-        breakout_vote = 1 if ema_vote == 1 and rsi > 50 else -1 if ema_vote == -1 and rsi < 50 else 0
 
-        ema_score = ema_vote * 0.35 * (1 + ema_strength)
-        rsi_score = rsi_vote * 0.25 * (1 + rsi_strength)
-        bb_score = bb_vote * 0.25 * (1 + bb_strength)
-        breakout_score = breakout_vote * 0.15
+        # =========================
+        # ✅ REAL Breakout (20-period range)
+        # =========================
+        recent_high = full_df["high"].tail(20).max()
+        recent_low = full_df["low"].tail(20).min()
+        price = tech["price"]
 
-        total_score = ema_score + rsi_score + bb_score + breakout_score
+        if price > recent_high:
+            breakout_score = 1.0
+        elif price < recent_low:
+            breakout_score = -1.0
+        else:
+            breakout_score = 0.0
 
-        if total_score >= 0.35:
+
+        # =========================
+        # ✅ WEIGHTED FUSION (balanced)
+        # =========================
+        weights = {
+            "ema": 0.25,
+            "rsi": 0.25,
+            "bb": 0.25,
+            "breakout": 0.25
+        }
+
+        total_score = (
+            weights["ema"] * ema_score +
+            weights["rsi"] * rsi_score +
+            weights["bb"] * bb_score +
+            weights["breakout"] * breakout_score
+        )
+
+        # =========================
+        # ✅ Conflict dampening (no directional bias)
+        # =========================
+        if ema_score * rsi_score < 0:
+            total_score *= 0.7
+
+
+        # =========================
+        # ✅ Clamp score (important for stability)
+        # =========================
+        total_score = max(-1.0, min(total_score, 1.0))
+
+
+        # =========================
+        # ✅ Decision (more responsive)
+        # =========================
+        if total_score > 0.15:
             decision = "BUY"
-        elif total_score <= -0.35:
+        elif total_score < -0.15:
             decision = "SELL"
         else:
             decision = "HOLD"
 
         reasoning = {
-            "ema_vote": ema_vote,
-            "ema_strength": ema_strength,
-            "rsi_vote": rsi_vote,
-            "rsi_strength": rsi_strength,
-            "bb_vote": bb_vote,
-            "bb_strength": bb_strength,
-            "breakout_vote": breakout_vote,
-            "scores": {
-                "ema_score": round(ema_score, 4),
-                "rsi_score": round(rsi_score, 4),
-                "bb_score": round(bb_score, 4),
-                "breakout_score": round(breakout_score, 4),
-                "total_score": round(total_score, 4)
+            "components": {
+                "ema": {
+                    "trend": tech["trend"],
+                    "strength": round(ema_strength, 4),
+                    "score": round(ema_score, 4)
+                },
+                "rsi": {
+                    "value": round(rsi, 2),
+                    "score": round(rsi_score, 4)
+                },
+                "bollinger": {
+                    "signal": tech["bb_signal"],
+                    "strength": round(tech["bb_strength"], 4),
+                    "score": round(bb_score, 4)
+                },
+                "breakout": {
+                    "recent_high": round(float(recent_high), 5),
+                    "recent_low": round(float(recent_low), 5),
+                    "price": round(float(price), 5),
+                    "score": round(breakout_score, 4)
+                }
+            },
+            "weights": weights,
+            "total_score": round(total_score, 4),
+            "decision": decision
             }
-        }
 
         prompt = f"""
-You are a trading explanation module.
+            You are a trading explanation module.
 
-Explain ONLY using the provided strategy votes and scores.
+            Explain the decision using ONLY the provided indicator scores.
 
-Decision: {decision}
+            Decision: {decision}
 
-EMA: {ema_vote} (score={ema_score:.4f})
-RSI: {rsi_vote} (score={rsi_score:.4f})
-BB: {bb_vote} (score={bb_score:.4f})
-Breakout: {breakout_vote} (score={breakout_score:.4f})
+            EMA Trend: {tech["trend"]} (strength={ema_strength:.4f}, score={ema_score:.4f})
+            RSI Value: {rsi:.2f} (score={rsi_score:.4f})
+            Bollinger Signal: {tech["bb_signal"]} (strength={tech["bb_strength"]:.4f}, score={bb_score:.4f})
+            Breakout: price={price:.5f}, high={recent_high:.5f}, low={recent_low:.5f}, (score={breakout_score:.4f})
 
-Total Score: {total_score:.4f}
+            Total Score: {total_score:.4f}
 
-Rules:
-- No alternative trades
-- No corrections
-- Only explain alignment of strategies
+            Rules:
+            - Explain how each indicator contributed to the final score
+            - Focus on alignment or conflict between indicators
+            - Do NOT suggest alternative trades
+            - Do NOT question the decision
+            - Keep it factual and mechanical
 
-Output:
-4 sentences max, concise, factual, no filler.
-"""
+            Output:
+            Maximum 4 sentences, concise, no filler.
+        """
 
         response = llm.invoke(prompt)
 

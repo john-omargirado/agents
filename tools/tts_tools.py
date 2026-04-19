@@ -37,10 +37,10 @@ def calculate_technical_indicators(full_df: pd.DataFrame, target_date: str):
     rsi = 100 - (100 / (1 + rs))
 
     rsi_strength = 0.0
-    if rsi > 70:
-        rsi_strength = (rsi - 70) / 30
-    elif rsi < 30:
-        rsi_strength = (30 - rsi) / 30
+    if rsi > 60:
+        rsi_strength = (rsi - 60) / 40
+    elif rsi < 40:
+        rsi_strength = (40 - rsi) / 40
 
     rsi_strength = min(max(rsi_strength, 0.0), 1.0)
 

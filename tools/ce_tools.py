@@ -41,7 +41,7 @@ def get_news_sentiment(target_date: str, pair: str):
     Deterministic, stable output format.
     """
 
-    repo_root = Path(__file__).resolve().parents[2]
+    repo_root = Path(__file__).resolve().parents[1]
     data_path = repo_root / "data" / "calibration" / "news"
 
     if not data_path.is_dir():

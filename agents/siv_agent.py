@@ -25,7 +25,7 @@ def siv_agent(state):
     if not integrity_result['pass'] or "missing_tts_price" in integrity_result['issues']:
         signal = "INCOHERENT"
     elif conflict_type == "DIRECTIONAL_MISMATCH":
-        signal = "INCOHERENT"
+        signal = "PARTIAL"
     elif conflict_type in ["TECHNICAL_ONLY", "SENTIMENT_ONLY", "UNCLEAR"]:
         signal = "PARTIAL"
     elif conflict_type in ["ALIGNED", "NO_SIGNAL"]:
@@ -36,21 +36,21 @@ def siv_agent(state):
     # 3. LLM EXPLANATION LAYER
     # The SLM no longer chooses the signal; it only explains the choice made by Python.
     prompt = f"""
-You are the Signal Integrity Verifier. 
+        You are the Signal Integrity Verifier. 
 
-Your deterministic audit has resulted in a signal of: {signal}
+        Your deterministic audit has resulted in a signal of: {signal}
 
-Audit Details:
-- Data Integrity Pass: {integrity_result['pass']}
-- Price Deviation: {integrity_result['deviation']:.5f}
-- Logic Conflict Type: {conflict_type}
-- TTS Decision: {tts_output.get('decision')}
-- CE Sentiment: {ce_output.get('overall_sentiment')}
-- Articles Analyzed: {ce_output.get('articles_analyzed', 0)}
+        Audit Details:
+        - Data Integrity Pass: {integrity_result['pass']}
+        - Price Deviation: {integrity_result['deviation']:.5f}
+        - Logic Conflict Type: {conflict_type}
+        - TTS Decision: {tts_output.get('decision')}
+        - CE Sentiment: {ce_output.get('overall_sentiment')}
+        - Articles Analyzed: {ce_output.get('articles_analyzed', 0)}
 
-Task: Explain why the signal is {signal} based on the alignment (or lack thereof) between Technicals (TTS) and Sentiment (CE).
-Output: 2 to 3 concise, professional sentences. No filler.
-"""
+        Task: Explain why the signal is {signal} based on the alignment (or lack thereof) between Technicals (TTS) and Sentiment (CE).
+        Output: 2 to 3 concise, professional sentences. No filler.
+        """
 
     response = llm.invoke(prompt)
     explanation = getattr(response, "content", str(response)).strip()

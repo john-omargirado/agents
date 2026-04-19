@@ -3,13 +3,13 @@
 from langchain_ollama import ChatOllama
 
 tts_llm = ChatOllama(
-    model="qwen3:4b",
+    model="llama3.2:3b",
     temperature=0,
     num_ctx=4096
 )
 
 siv_llm = ChatOllama(
-    model="qwen3:4b",
+    model="llama3.2:3b",
     temperature=0,
     num_ctx=4096
 )

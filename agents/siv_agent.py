@@ -20,6 +20,15 @@ def siv_agent(state):
         ce_output.get("overall_sentiment", "NEUTRAL")
     )
 
+    data_quality = tts_output.get("data_quality", {})
+
+    tts_insufficient = (
+        not bool(tts_output.get("indicators"))          # original: indicators missing entirely
+        or not data_quality.get("ema_200_reliable", True)  # NEW: EMA-200 unreliable
+        or data_quality.get("data_stale", False)            # NEW: data is stale
+        or data_quality.get("ema_200_confidence", 1.0) < 0.5  # NEW: less than 50% confidence
+    )
+
     # 2. RULE-BASED LOGIC (Deterministic Signal)
     # Define rules for the integrity signal
     if not integrity_result['pass'] or "missing_tts_price" in integrity_result['issues']:
@@ -34,7 +43,6 @@ def siv_agent(state):
         signal = "INCOHERENT"
 
     # 3. LLM EXPLANATION LAYER
-    # The SLM no longer chooses the signal; it only explains the choice made by Python.
     prompt = f"""
         You are the Signal Integrity Verifier. 
 
@@ -65,6 +73,9 @@ def siv_agent(state):
             "conflict_type": conflict_type,
             "deviation": integrity_result["deviation"],
             "issues": integrity_result.get("issues", []),
-            "tts_insufficient": not bool(tts_output.get("indicators"))
+            # ✅ REPLACED
+            "tts_insufficient": tts_insufficient,
+            # ✅ NEW: pass through so verdict can see detail
+            "tts_data_quality": data_quality,
         }
     }

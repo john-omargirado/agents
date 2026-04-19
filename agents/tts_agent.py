@@ -47,6 +47,19 @@ def tts_agent(state: TradingState):
         if not tech:
             raise ValueError(f"No technical data for {target_date}")
 
+        # ✅ Extract and propagate data quality
+        data_quality = tech.get("data_quality", {})
+        tts_insufficient = (
+            not data_quality.get("ema_200_reliable", True) or
+            data_quality.get("data_stale", False)
+        )
+
+        state["debug_log"].append(
+            f"TTS data quality: {data_quality['rows_available']} rows, "
+            f"EMA200 confidence={data_quality['ema_200_confidence']:.2f}, "
+            f"stale={data_quality['data_stale']}"
+        )
+
         # =========================
         # ✅ EMA (normalized, no constant bias)
         # =========================
@@ -64,12 +77,9 @@ def tts_agent(state: TradingState):
         # =========================
         rsi = tech["rsi"]
 
-        if rsi > 50:
-            rsi_score = -(rsi - 50) / 50   # bearish pressure
-        else:
-            rsi_score = (50 - rsi) / 50    # bullish pressure
-
+        rsi_score = (rsi - 50) / 50  # positive = bullish, negative = bearish
         rsi_score = max(-1.0, min(rsi_score, 1.0))
+
 
 
         # =========================
@@ -86,8 +96,9 @@ def tts_agent(state: TradingState):
         # =========================
         # ✅ REAL Breakout (20-period range)
         # =========================
-        recent_high = full_df["high"].tail(20).max()
-        recent_low = full_df["low"].tail(20).min()
+        filtered_df = full_df[full_df["timestamp"] <= pd.to_datetime(target_date)]
+        recent_high = filtered_df["high"].tail(20).max()
+        recent_low = filtered_df["low"].tail(20).min()
         price = tech["price"]
 
         if price > recent_high:

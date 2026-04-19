@@ -18,15 +18,15 @@ def calculate_technical_indicators(full_df: pd.DataFrame, target_date: str):
     # Sufficiency flags
     # =========================
     sufficient = {
-        "ema_50_reliable":  row_count >= 150,   # 3x span
-        "ema_200_reliable": row_count >= 400,   # 3x span (strict) or 200 (minimum)
+        "ema_50_reliable":  row_count >= 50,   # 3x span
+        "ema_200_reliable": row_count >= 200,   # 3x span (strict) or 200 (minimum)
         "rsi_reliable":     row_count >= 28,
         "bb_reliable":      row_count >= 40,
         "breakout_reliable": row_count >= 20,
     }
 
     # Warn in logs if EMA-200 is being run on thin data
-    ema_200_confidence = min(row_count / 400, 1.0)  # 0.0 → 1.0 scale
+    ema_200_confidence = min(row_count / 200, 1.0)  # 0.0 → 1.0 scale
 
     last_close = float(df['close'].iloc[-1])
 
@@ -83,22 +83,22 @@ def calculate_technical_indicators(full_df: pd.DataFrame, target_date: str):
         bb_signal   = "OVERSOLD"
         bb_strength = min(abs(lower_bb - last_close) / (band_width / 2 + 1e-9), 1.0)
 
-        return {
-            "price": round(last_close, 5),
-            "trend":          trend,
-            "trend_strength": round(trend_strength, 4),
-            "rsi":          round(rsi, 2),
-            "rsi_strength": round(rsi_strength, 4),
-            "bb_signal":   bb_signal,
-            "bb_strength": round(bb_strength, 4),
-            "ema_50":  round(ema_50,  5),
-            "ema_200": round(ema_200, 5),
-            # flattened — no longer nested under "data_quality"
-            "rows_available":     row_count,
-            "ema_200_confidence": round(ema_200_confidence, 3),
-            "ema_200_reliable":   sufficient["ema_200_reliable"],
-            "ema_50_reliable":    sufficient["ema_50_reliable"],
-            "data_stale":         data_stale,
-            "days_stale":         int(days_stale),
-        }
+    return {
+        "price": round(last_close, 5),
+        "trend":          trend,
+        "trend_strength": round(trend_strength, 4),
+        "rsi":          round(rsi, 2),
+        "rsi_strength": round(rsi_strength, 4),
+        "bb_signal":   bb_signal,
+        "bb_strength": round(bb_strength, 4),
+        "ema_50":  round(ema_50,  5),
+        "ema_200": round(ema_200, 5),
+        # flattened — no longer nested under "data_quality"
+        "rows_available":     row_count,
+        "ema_200_confidence": round(ema_200_confidence, 3),
+        "ema_200_reliable":   sufficient["ema_200_reliable"],
+        "ema_50_reliable":    sufficient["ema_50_reliable"],
+        "data_stale":         data_stale,
+        "days_stale":         int(days_stale),
+    }
     

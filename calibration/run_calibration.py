@@ -231,6 +231,6 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
 if __name__ == "__main__":
     run_calibration(
         target_pair="USDJPY",
-        target_months=[8,9,10,], # Starting with January for a quick test
+        target_months=[7,8,9], # Starting with January for a quick test
         target_year=2018
     )

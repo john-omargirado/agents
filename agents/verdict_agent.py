@@ -1,37 +1,96 @@
 import json
 import requests
+import re
 from utils.credentials import get_do_model_key
 
 URL = "https://inference.do-ai.run/v1/chat/completions"
 
 
-def call_qwen(payload):
+def call_qwen(prompt):
     key = get_do_model_key()
+
     headers = {"Content-Type": "application/json"}
     if key:
         headers["Authorization"] = f"Bearer {key}"
 
     data = {
-        "model": "alibaba-qwen3-32b",
+        "model": "deepseek-r1-distill-llama-70b",
         "messages": [
-            {"role": "user", "content": json.dumps(payload)}
+            {"role": "user", "content": prompt}
         ],
-        "max_tokens": 250
+        "max_tokens": 500,   # slightly higher for reasoning
+        "temperature": 0.2
     }
 
-    response = requests.post(URL, headers=headers, json=data)
-    return response.json()["choices"][0]["message"]["content"]
+    try:
+        response = requests.post(URL, headers=headers, json=data, timeout=30)
+    except Exception as e:
+        return f"ERROR: request_failed {e}"
+
+    if response.status_code != 200:
+        return f"ERROR: status_{response.status_code} {response.text[:300]}"
+
+    try:
+        result = response.json()
+    except Exception:
+        return f"ERROR: invalid_json {response.text[:300]}"
+
+    # 🔥 SAFE EXTRACTION
+    try:
+        choice = result["choices"][0]
+
+        if "message" in choice:
+            raw = choice["message"].get("content")
+        else:
+            raw = choice.get("text")
+
+        if raw is None:
+            return f"ERROR: empty_content {result}"
+
+        return str(raw)
+
+    except Exception:
+        return f"ERROR: malformed_response {result}"
+
+
+import re
+
+def parse_llm_output(raw):
+    if raw is None:
+        return "HOLD", "empty_llm_output"
+
+    if not isinstance(raw, str):
+        raw = str(raw)
+
+    text = raw.strip()
+
+    lines = text.splitlines()
+
+    # verdict = first valid line
+    verdict = "HOLD"
+    if lines:
+        first = lines[0].strip().upper()
+        if first in ["BUY", "SELL", "HOLD"]:
+            verdict = first
+
+    # reasoning = everything after
+    reasoning = "\n".join(lines[1:]).strip()
+
+    if not reasoning:
+        reasoning = text[:300]
+
+    return verdict, reasoning
 
 
 def verdict_agent(state):
-    state["debug_log"].append("VERDICT agent: starting")
+    state["debug_log"].append("VERDICT agent: LLM decision mode")
 
     tts = state.get("tts_output", {})
     ce  = state.get("ce_output", {})
     siv = state.get("siv_output", {})
 
     # =========================
-    # HARD BLOCK
+    # HARD BLOCK (still deterministic)
     # =========================
     if siv.get("signal") == "INCOHERENT":
         return {
@@ -57,67 +116,56 @@ def verdict_agent(state):
     weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
 
     # =========================
-    # DETERMINISTIC DECISION (FINAL AUTHORITY)
+    # LLM PROMPT (DECISION + REASONING)
     # =========================
-    if weighted_score > 0.15:
-        final_verdict = "BUY"
-    elif weighted_score < -0.15:
-        final_verdict = "SELL"
-    else:
-        final_verdict = "HOLD"
+    prompt = f"""
+You are a strict trading decision engine.
 
-    # =========================
-    # LLM CONTEXT PAYLOAD (FOR REASONING ONLY)
-    # =========================
-    payload = {
-        "task": "Explain trading decision based on multi-signal system",
+OUTPUT FORMAT (STRICT):
+First line: BUY or SELL or HOLD
+Second line: explanation
 
-        "decision_rule": {
-            "BUY": "> 0.15",
-            "SELL": "< -0.15",
-            "HOLD": "otherwise"
-        },
+RULES (MANDATORY):
+- BUY if weighted_score > 0.15
+- SELL if weighted_score < -0.15
+- HOLD otherwise
+- You MUST follow the rule exactly
 
-        "weighted_score": round(weighted_score, 4),
+REASONING REQUIREMENTS:
+- Mention weighted_score explicitly
+- Mention CE sentiment and TTS signal
+- Mention SIV signal
+- Explain alignment or conflict
+- Be specific, no vague statements
 
-        "tts": {
-            "decision": tts.get("decision"),
-            "score": tts.get("total_score"),
-            "ema_trend": tts.get("ema_trend"),
-            "rsi": tts.get("rsi_value"),
-            "bb_signal": tts.get("bb_signal"),
-            "breakout_score": tts.get("breakout_score"),
-            "insufficient": tts.get("tts_insufficient")
-        },
+INPUT:
 
-        "ce": {
-            "sentiment": ce.get("sentiment"),
-            "confidence": ce.get("confidence"),
-            "article_count": ce.get("article_count"),
-            "sentiment_score": ce.get("sentiment_score")
-        },
+weighted_score: {round(weighted_score, 4)}
 
-        "siv": {
-            "signal": siv.get("signal"),
-            "conflict_type": siv.get("conflict_type"),
-            "data_quality_ok": siv.get("data_quality_ok"),
-            "issues": siv.get("issues")
-        },
+TTS:
+decision: {tts.get("decision")}
+score: {tts.get("total_score")}
+ema_trend: {tts.get("ema_trend")}
+rsi: {tts.get("rsi_value")}
+bb_signal: {tts.get("bb_signal")}
 
-        "instruction": "Explain WHY this trade resulted in the final decision. Do NOT change the decision."
-    }
+CE:
+sentiment: {ce.get("sentiment")}
+confidence: {ce.get("confidence")}
+articles: {ce.get("article_count")}
 
-    raw = call_qwen(payload)
+SIV:
+signal: {siv.get("signal")}
+conflict: {siv.get("conflict_type")}
+data_quality: {siv.get("data_quality_ok")}
+"""
 
-    try:
-        parsed = json.loads(raw)
-        reasoning = parsed.get("reasoning", parsed.get("explanation", ""))
+    raw = call_qwen(prompt)
 
-    except Exception:
-        reasoning = "LLM failed to parse reasoning"
+    verdict, reasoning = parse_llm_output(raw)
 
     # =========================
-    # RISK (still optional LLM-free logic)
+    # RISK LOGIC (still deterministic)
     # =========================
     risk = 0.5
     if abs(weighted_score) > 0.5:
@@ -127,8 +175,11 @@ def verdict_agent(state):
     else:
         risk = 0.4
 
+    print(f"\n[VERDICT] {verdict}")
+    print(f"[REASONING] {reasoning}\n")
+
     return {
-        "verdict": final_verdict,
+        "verdict": verdict,
         "weighted_score": round(weighted_score, 4),
         "verdict_reasoning": reasoning,
         "risk_multiplier": round(risk, 3),

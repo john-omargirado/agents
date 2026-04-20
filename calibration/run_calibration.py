@@ -2,8 +2,8 @@ import sys
 from pathlib import Path
 import json
 import pandas as pd
+from typing import cast
 import os
-import csv
 
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
@@ -21,41 +21,50 @@ MARKET_MOVE_THRESHOLD = 0.0015
 HORIZON_DAYS = 5
 CURRENT_TEST_THRESHOLD = 0.20
 
-ALLOWED_MONTHS = set(range(1, 13))  # safety guard (1-12)
+ALLOWED_MONTHS = set(range(1, 13))
 
 
+# =========================
+# STATE NORMALIZER
+# =========================
+def normalize_initial_state(state: dict):
+    return {
+        **state,
+        "raw_article_count": 0,
+        "ce_output": state.get("ce_output") or {},
+        "tts_output": state.get("tts_output") or {},
+        "siv_output": state.get("siv_output") or {},
+        "debug_log": state.get("debug_log") or [],
+        "retry_count": state.get("retry_count", 0),
+        "action": state.get("action", "NONE"),
+    }
+
+
+# =========================
+# MAIN CALIBRATION
+# =========================
 def run_calibration(target_pair: str, target_months: list, target_year: int):
 
-    # =========================
-    # VALIDATE MONTH INPUT
-    # =========================
     if not target_months:
         raise ValueError("target_months cannot be empty")
 
     if not all(m in ALLOWED_MONTHS for m in target_months):
-        raise ValueError(f"Invalid month detected. Allowed range is 1-12. Got: {target_months}")
+        raise ValueError(f"Invalid month detected: {target_months}")
 
-    # =========================
-    # PATH SETUP
-    # =========================
     project_root = Path(__file__).resolve().parents[1]
     ohlcv_path = project_root / "data" / "calibration" / "forex_pair" / f"{target_pair}.json"
 
-    months_tag = "_".join([str(m) for m in target_months])
+    months_tag = "_".join(map(str, target_months))
 
     report_output_path = (
-        project_root
-        / "reports"
+        project_root / "reports"
         / f"calibration_{target_pair}_{target_year}_{months_tag}.csv"
     )
 
     os.makedirs(project_root / "reports", exist_ok=True)
 
-    # =========================
-    # LOAD DATA
-    # =========================
     if not ohlcv_path.exists():
-        print(f"Error: Could not find data at {ohlcv_path}")
+        print(f"Missing data: {ohlcv_path}")
         return
 
     with open(ohlcv_path, "r") as f:
@@ -64,27 +73,29 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     full_df = pd.DataFrame(master_data["data"])
     full_df.columns = [c.lower() for c in full_df.columns]
     full_df["timestamp"] = pd.to_datetime(full_df["timestamp"])
-    full_df = full_df.sort_values(by="timestamp").reset_index(drop=True)
+    full_df = full_df.sort_values("timestamp").reset_index(drop=True)
 
-    # =========================
-    # FILTER RANGE
-    # =========================
     mask = (
         (full_df["timestamp"].dt.year == target_year) &
         (full_df["timestamp"].dt.month.isin(target_months))
     )
 
-    calib_df = full_df[mask].copy()
+    calib_df = full_df[mask]
 
     if calib_df.empty:
-        print(f"No data found for months {target_months}/{target_year}")
+        print("No data found for selection")
         return
 
-    calib_indices = calib_df.index.tolist()
+    app = build_graph()
+    results = []
 
     # =========================
-    # EXPERIMENT METADATA
+    # ACCURACY TRACKING
     # =========================
+    buy_correct = buy_total = 0
+    sell_correct = sell_total = 0
+    hold_correct = hold_total = 0
+
     experiment_config = {
         "pair": target_pair,
         "year": target_year,
@@ -94,43 +105,32 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
         "test_threshold": CURRENT_TEST_THRESHOLD
     }
 
-    print(f"\n--- STARTING CALIBRATION ---")
-    print(f"PAIR: {target_pair}")
-    print(f"YEAR: {target_year}")
-    print(f"MONTHS: {target_months}")
-    print(f"CONFIG: {experiment_config}")
+    print("\n--- STARTING CALIBRATION ---")
 
-    # =========================
-    # GRAPH
-    # =========================
-    app = build_graph()
-    results = []
-
-    # =========================
-    # MAIN LOOP
-    # =========================
-    for idx in calib_indices:
+    for idx in calib_df.index:
 
         row = full_df.iloc[idx]
+
         current_date = row["timestamp"].strftime("%m/%d/%Y")
         current_price = float(row["close"])
 
         future_window = full_df.iloc[idx + 1: idx + 1 + HORIZON_DAYS]
+
         market_label = "NEUTRAL"
 
         if not future_window.empty:
-            max_high = pd.to_numeric(future_window["high"]).max()
-            min_low = pd.to_numeric(future_window["low"]).min()
+            max_high = future_window["high"].max()
+            min_low = future_window["low"].min()
 
             upside = (max_high - current_price) / current_price
             downside = (current_price - min_low) / current_price
 
             if upside > MARKET_MOVE_THRESHOLD and upside > downside:
                 market_label = "BULLISH"
-            elif downside > MARKET_MOVE_THRESHOLD and downside > upside:
+            elif downside > MARKET_MOVE_THRESHOLD:
                 market_label = "BEARISH"
 
-        initial_state: TradingState = {
+        initial_state = cast(TradingState, normalize_initial_state({
             "target_date": current_date,
             "currency_pair": target_pair,
             "price": current_price,
@@ -142,6 +142,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "mean_score": 0.0,
                 "sentiment_score": 0.0,
                 "article_count": 0,
+                "raw_article_count": 0,
                 "confidence": "LOW",
                 "error": None
             },
@@ -155,7 +156,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "bb_signal": "STABLE",
                 "bb_score": 0.0,
                 "breakout_score": 0.0,
-                "price": 0.0,
+                "price": current_price,
                 "ema_200_confidence": 0.0,
                 "ema_200_reliable": False,
                 "data_stale": False,
@@ -178,90 +179,100 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             "verdict_reasoning": "",
             "weighted_score": 0.0,
             "risk_multiplier": 0.0,
-            "retry_count": 0,
-            "action": "NONE",
-            "debug_log": [
-                f"Calibration Start: {current_date}",
-                f"Experiment Config: {experiment_config}"
-            ]
-        }
+        }))
 
         try:
-            print(f"Processing: {current_date} | Reality: {market_label}")
+            print(f"{current_date} | {market_label}")
 
             final_output = app.invoke(initial_state)
 
-            ce_data  = final_output.get("ce_output", {})
+            ce_data = final_output.get("ce_output", {})
             tts_data = final_output.get("tts_output", {})
             siv_data = final_output.get("siv_output", {})
 
-            verdict           = final_output.get("verdict", "HOLD").upper()
-            verdict_reasoning = final_output.get("verdict_reasoning", "")
-            weighted_score    = final_output.get("weighted_score", 0.0)
-            risk_multiplier   = final_output.get("risk_multiplier", 0.0)
+            verdict = final_output.get("verdict", "HOLD").upper()
+            weighted_score = final_output.get("weighted_score", 0.0)
 
-            alignment = "neutral"
+            # =========================
+            # ACCURACY LOGIC
+            # =========================
+            correct = False
 
             if verdict == "BUY":
-                alignment = "correct" if market_label == "BULLISH" else "incorrect"
+                buy_total += 1
+                correct = market_label == "BULLISH"
+                if correct:
+                    buy_correct += 1
+
             elif verdict == "SELL":
-                alignment = "correct" if market_label == "BEARISH" else "incorrect"
-            elif verdict == "HOLD":
-                alignment = "correct" if market_label == "NEUTRAL" else "incorrect"
+                sell_total += 1
+                correct = market_label == "BEARISH"
+                if correct:
+                    sell_correct += 1
+
+            else:
+                hold_total += 1
+                correct = market_label == "NEUTRAL"
+                if correct:
+                    hold_correct += 1
+
+            print(f"DEBUG: {current_date} | SIV={siv_data.get('signal')} | VERDICT={verdict} | SCORE={weighted_score}")
 
             results.append({
                 "Date": current_date,
                 "Price": current_price,
 
-                "Sentiment": ce_data.get("sentiment", "N/A"),
-                "CE_Confidence": ce_data.get("confidence", "N/A"),
+                "Sentiment": ce_data.get("sentiment"),
                 "Articles": ce_data.get("article_count", 0),
 
-                "Tech_Decision": tts_data.get("decision", "HOLD"),
                 "Tech_Score": tts_data.get("total_score", 0.0),
-
-                "SIV_Signal": siv_data.get("signal", "N/A"),
-
-                "Final_Verdict": verdict,
                 "Weighted_Score": weighted_score,
-                "Risk_Multiplier": risk_multiplier,
-                "Verdict_Reasoning": verdict_reasoning,
+
+                "SIV_Signal": siv_data.get("signal"),
+                "Final_Verdict": verdict,
 
                 "Market_Reality": market_label,
-                "Alignment": alignment,
+                "Correct": correct,
 
-                # IMPORTANT: experiment traceability
                 "Experiment_Config": str(experiment_config)
             })
 
         except Exception as e:
             print(f"Failed on {current_date}: {e}")
 
-    # =========================
-    # EXPORT
-    # =========================
-    report_df = pd.DataFrame(results)
-    report_df.to_csv(report_output_path, index=False)
+    df = pd.DataFrame(results)
+    df.to_csv(report_output_path, index=False)
 
-    print("\n==============================")
-    print(f"CALIBRATION COMPLETE: {target_pair}")
-    print(f"Months Used: {target_months}")
-    print(f"Saved: {report_output_path}")
-    print("==============================")
+    # =========================
+    # FINAL ACCURACY REPORT
+    # =========================
+    def acc(c, t):
+        return round((c / t) * 100, 2) if t else 0.0
+
+    print("\n================ TRADE ACCURACY ================")
+    print(f"BUY Accuracy  : {acc(buy_correct, buy_total)}% ({buy_correct}/{buy_total})")
+    print(f"SELL Accuracy : {acc(sell_correct, sell_total)}% ({sell_correct}/{sell_total})")
+    print(f"HOLD Accuracy : {acc(hold_correct, hold_total)}% ({hold_correct}/{hold_total})")
+
+    total_correct = buy_correct + sell_correct + hold_correct
+    total_trades = buy_total + sell_total + hold_total
+
+    print(f"OVERALL ACCURACY: {acc(total_correct, total_trades)}%")
+    print("=================================================\n")
+
+    print("CALIBRATION COMPLETE")
+    print(report_output_path)
 
 
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Run calibration for a currency pair")
-    parser.add_argument("pair", nargs="?", default="USDJPY", help="Currency pair code (e.g., USDJPY)")
-    parser.add_argument("-m", "--months", default="8,9,10", help="Comma-separated months (e.g., 8,9,10)")
-    parser.add_argument("-y", "--year", type=int, default=2018, help="Year for calibration")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("pair", nargs="?", default="USDJPY")
+    parser.add_argument("-m", "--months", default="8,9,10")
+    parser.add_argument("-y", "--year", type=int, default=2018)
 
     args = parser.parse_args()
-    try:
-        months = [int(x) for x in args.months.split(",") if x.strip()]
-    except Exception as e:
-        raise SystemExit(f"Invalid months format: {e}")
+    months = [int(x) for x in args.months.split(",")]
 
     run_calibration(args.pair.upper(), months, args.year)

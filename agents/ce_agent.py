@@ -19,6 +19,7 @@ def ce_agent(state: TradingState):
         "mean_score": 0.0,
         "sentiment_score": 0.0,
         "article_count": 0,
+        "raw_article_count": 0,
         "confidence": "LOW",
         "error": None
     }
@@ -34,12 +35,15 @@ def ce_agent(state: TradingState):
         state["debug_log"].append(f"CE agent: Empty sentiment result for {target_date}")
         return {"ce_output": safe_default}
 
-
     # =========================
     # NORMALIZATION LAYER
     # =========================
-    mean_score    = float(sentiment_data.get("mean_score", 0.0))
+    mean_score = float(sentiment_data.get("mean_score", 0.0))
+
     article_count = int(sentiment_data.get("article_count", 0))
+
+    # NEW: raw article count (source-level count, fallback safe)
+    raw_article_count = int(sentiment_data.get("raw_article_count", article_count))
 
     if article_count >= 20 and abs(mean_score) >= 0.5:
         confidence = "HIGH"
@@ -49,20 +53,21 @@ def ce_agent(state: TradingState):
         confidence = "LOW"
 
     normalized = {
-        "sentiment":       sentiment_data.get("sentiment", "NEUTRAL"),
-        "raw_vibe":        sentiment_data.get("raw_vibe", "NEUTRAL"),
-        "mean_score":      mean_score,
+        "sentiment": sentiment_data.get("sentiment", "NEUTRAL"),
+        "raw_vibe": sentiment_data.get("raw_vibe", "NEUTRAL"),
+        "mean_score": mean_score,
         "sentiment_score": float(sentiment_data.get("sentiment_score", 0.0)),
-        "article_count":   article_count,
-        "confidence":      confidence,
-        "error":           None
-    }
-    
 
-    
+        "article_count": article_count,
+        "raw_article_count": raw_article_count,
+
+        "confidence": confidence,
+        "error": None
+    }
 
     state["debug_log"].append(
-        f"CE: {normalized['article_count']} articles | "
+        f"CE: {normalized['article_count']} articles "
+        f"(raw={normalized['raw_article_count']}) | "
         f"{normalized['sentiment']} sentiment | "
         f"confidence={normalized['confidence']}"
     )

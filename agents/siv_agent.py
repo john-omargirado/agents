@@ -1,51 +1,81 @@
-import re
+import json
+import os
+import requests
 from tools.siv_tools import check_data_integrity, calculate_technical_conflict
+from utils.credentials import get_do_model_key
+
+URL = "https://inference.do-ai.run/v1/chat/completions"
+
+
+def call_qwen(payload):
+    key = get_do_model_key()
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+
+    data = {
+        "model": "alibaba-qwen3-32b",
+        "messages": [
+            {"role": "user", "content": json.dumps(payload)}
+        ],
+        "max_tokens": 200
+    }
+
+    response = requests.post(URL, headers=headers, json=data)
+
+    try:
+        result = response.json()
+    except Exception as e:
+        raise ValueError(f"Invalid JSON response: {response.text}") from e
+
+    # =========================
+    # SAFE EXTRACTION
+    # =========================
+    if "choices" in result:
+        try:
+            return result["choices"][0]["message"]["content"]
+        except Exception:
+            raise ValueError(f"Malformed choices response: {result}")
+
+    # fallback error handling
+    if "error" in result:
+        raise ValueError(f"LLM error: {result['error']}")
+
+    raise ValueError(f"Unknown response format: {result}")
+
 
 def siv_agent(state):
-    state["debug_log"].append("SIV agent: starting Deterministic Audit")
+    state["debug_log"].append("SIV agent: GPT mini integrity check")
 
     tts_output = state.get("tts_output", {})
     ce_output = state.get("ce_output", {})
-    
-    # 1. RUN TOOLS
+
     integrity_result = check_data_integrity({
         "tts_output": tts_output,
         "ce_output": ce_output,
-        "price": state.get("price") 
+        "price": state.get("price")
     })
 
     conflict_type = calculate_technical_conflict(
-            tts_output.get("decision", "HOLD"),
-            ce_output.get("sentiment", "NEUTRAL")
-        )
+        tts_output.get("decision", "HOLD"),
+        ce_output.get("sentiment", "NEUTRAL")
+    )
 
-    tts_insufficient = tts_output.get("tts_insufficient", False)
+    payload = {
+        "integrity": integrity_result,
+        "conflict": conflict_type,
+        "tts": tts_output,
+        "ce": ce_output
+    }
 
-    # 2. RULE-BASED LOGIC (Deterministic Signal)
-    # Define rules for the integrity signal
-    if not integrity_result['pass'] or "missing_tts_price" in integrity_result['issues']:
-        signal = "INCOHERENT"
-    elif conflict_type == "DIRECTIONAL_MISMATCH":
-        signal = "PARTIAL"
-    elif conflict_type in ["TECHNICAL_ONLY", "SENTIMENT_ONLY", "UNCLEAR"]:
-        signal = "PARTIAL"
-    elif conflict_type in ["ALIGNED", "NO_SIGNAL"]:
-        signal = "COHERENT"
-    else:
-        signal = "INCOHERENT"
+    raw = call_qwen(payload)
 
-    # 3. OUTPUT STRUCTURE
-    if signal == "INCOHERENT":
-        explanation = "Data integrity issues or missing alignment detected."
-    elif signal == "PARTIAL":
-        explanation = f"Partial alignment due to {conflict_type.lower()}."
-    elif signal == "COHERENT":
-        explanation = "Technical and sentiment signals are aligned."
-    else:
-        explanation = "Unclear signal state."
+    try:
+        llm = json.loads(raw)
+    except:
+        llm = {}
 
-    print(f"\n[SIV OUTPUT] Signal: {signal}")
-    print(f"[SIV EXPLANATION] {explanation}\n")
+    signal = llm.get("signal", "INCOHERENT")
 
     return {
         "siv_output": {
@@ -53,8 +83,8 @@ def siv_agent(state):
             "conflict_type": conflict_type,
             "price_deviation": integrity_result["deviation"],
             "issues": integrity_result.get("issues", []),
-            "tts_insufficient": tts_insufficient,
+            "tts_insufficient": tts_output.get("tts_insufficient", False),
             "data_quality_ok": integrity_result["pass"],
-            "explanation": explanation
+            "explanation": llm.get("explanation", "deterministic fallback")
         }
     }

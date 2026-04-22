@@ -17,13 +17,6 @@ URL = "https://inference.do-ai.run/v1/chat/completions"
 
 
 def call_gpt_mini(payload, state: Optional[TradingState] = None, candidate_models: Optional[List[str]] = None):
-    """Call DO LLM with fallback models and detailed debug logging.
-
-    - `state`: optional TradingState to append debug messages into `state['debug_log']`.
-    - `candidate_models`: ordered list of model ids to try. If not provided,
-      a sensible default list will be used.
-    Returns the LLM content string on success or raises ValueError on final failure.
-    """
     key = get_do_model_key()
     project_root = Path(__file__).resolve().parents[1]
 
@@ -71,7 +64,6 @@ def call_gpt_mini(payload, state: Optional[TradingState] = None, candidate_model
                 (dbg_path / f"tts_debug_{model}_{datetime.utcnow().isoformat()}.txt").write_text(body_text)
             continue
 
-        # Successful content
         if isinstance(result, dict) and "choices" in result:
             try:
                 content = result["choices"][0]["message"]["content"]
@@ -80,7 +72,9 @@ def call_gpt_mini(payload, state: Optional[TradingState] = None, candidate_model
                 if save_debug:
                     dbg_path = project_root / "logs"
                     dbg_path.mkdir(exist_ok=True)
-                    (dbg_path / f"tts_debug_success_{model}_{datetime.utcnow().isoformat()}.json").write_text(json.dumps({"model": model, "status": status, "request": payload, "response": result}, default=str))
+                    (dbg_path / f"tts_debug_success_{model}_{datetime.utcnow().isoformat()}.json").write_text(
+                        json.dumps({"model": model, "status": status, "request": payload, "response": result}, default=str)
+                    )
                 return content
             except Exception:
                 msg = f"Malformed choices structure from model {model}: {result}"
@@ -89,24 +83,61 @@ def call_gpt_mini(payload, state: Optional[TradingState] = None, candidate_model
                     state["debug_log"].append(msg)
                 continue
 
-        # If there's an error block from the API, record and try next model when applicable
         if isinstance(result, dict) and "error" in result:
             err = result["error"]
             msg = f"LLM error for model {model}: {err}"
             last_err = msg
             if state is not None:
                 state["debug_log"].append(msg)
-            # if it's clearly a model-availability or unauthorized error, continue to fallback
             continue
 
-        # Unknown format — save and continue
         msg = f"Unknown response format from model {model}: {result}"
         last_err = msg
         if state is not None:
             state["debug_log"].append(msg)
 
-    # all models exhausted
     raise ValueError(f"LLM error: {last_err}")
+
+
+def call_tts_explanation(tts_data: dict, state: Optional[TradingState] = None) -> str:
+    key = get_do_model_key()
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+
+    prompt = f"""
+You are a technical analysis explanation engine for the Traditional Trading Strategies (TTS) Agent.
+
+Explain briefly:
+- Why the EMA/RSI/BB/breakout signals produced this score
+- What the dominant signal was
+- Any conflicting indicators
+- Why the final decision is {tts_data.get('decision')}
+- Note EMA 200 confidence level and whether it affects reliability
+
+Be concise and factual. No structured format.
+
+INPUT:
+{json.dumps(tts_data)}
+"""
+    data = {
+        "model": "alibaba-qwen3-32b",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 1024,
+        "temperature": 0.2
+    }
+    try:
+        resp = requests.post(URL, headers=headers, json=data, timeout=30)
+        print(f"[TTS EXPLANATION HTTP] status={resp.status_code}")
+        result = resp.json()
+        message = result.get("choices", [{}])[0].get("message", {})
+        content = message.get("content") or message.get("reasoning_content")
+        return str(content).strip() if content else "explanation_unavailable"
+    except Exception as e:
+        print(f"[TTS EXPLANATION ERROR] {e}")
+        if state is not None:
+            state["debug_log"].append(f"TTS explanation failed: {e}")
+        return "explanation_unavailable"
 
 
 def tts_agent(state: TradingState):
@@ -131,9 +162,19 @@ def tts_agent(state: TradingState):
         if not tech:
             raise ValueError("No technical data")
 
-        tts_insufficient = (
-            not tech.get("ema_200_reliable", True)
-            or tech.get("data_stale", False)
+        # =========================
+        # FIX: only flag insufficient if data is stale
+        # ema_200_reliable being False just means low confidence,
+        # not that TTS cannot contribute — explanation covers this
+        # =========================
+        tts_insufficient = tech.get("data_stale", False)
+
+        state["debug_log"].append(
+            f"TTS: rows={tech.get('rows_available')} | "
+            f"ema_200_confidence={tech.get('ema_200_confidence')} | "
+            f"ema_200_reliable={tech.get('ema_200_reliable')} | "
+            f"data_stale={tech.get('data_stale')} | "
+            f"tts_insufficient={tts_insufficient}"
         )
 
         # =========================
@@ -204,8 +245,7 @@ def tts_agent(state: TradingState):
         try:
             parsed = json.loads(raw)
             decision = parsed.get("decision", "HOLD")
-
-        except:
+        except Exception:
             decision = "HOLD"
 
         # =========================
@@ -219,28 +259,37 @@ def tts_agent(state: TradingState):
         else:
             decision = "HOLD"
 
-        return {
-            "tts_output": {
-                "decision": decision,
-                "total_score": float(round(total_score, 4)),
-                "ema_trend": tech["trend"],
-                "ema_score": float(round(ema_score, 4)),
-                "rsi_value": float(round(rsi, 2)),
-                "rsi_score": float(round(rsi_score, 4)),
-                "bb_signal": tech["bb_signal"],
-                "bb_score": float(round(bb_score, 4)),
-                "breakout_score": float(round(breakout_score, 4)),
-                "price": float(round(price, 5)),
-                "ema_200_confidence": float(tech.get("ema_200_confidence", 1.0)),
-                "ema_200_reliable": bool(tech.get("ema_200_reliable", True)),
-                "data_stale": bool(tech.get("data_stale", False)),
-                "rows_available": int(tech.get("rows_available", 0)),
-                "tts_insufficient": bool(tts_insufficient),
-                "error": None
-            }
+        # =========================
+        # BUILD RESULT + EXPLANATION
+        # =========================
+
+        tts_result = {
+            "decision": decision,
+            "total_score": float(round(total_score, 4)),
+            "ema_trend": tech["trend"],
+            "ema_score": float(round(ema_score, 4)),
+            "rsi_value": float(round(rsi, 2)),
+            "rsi_score": float(round(rsi_score, 4)),
+            "bb_signal": tech["bb_signal"],
+            "bb_score": float(round(bb_score, 4)),
+            "breakout_score": float(round(breakout_score, 4)),
+            "price": float(round(price, 5)),
+            "ema_200_confidence": float(tech.get("ema_200_confidence", 1.0)),
+            "ema_200_reliable": bool(tech.get("ema_200_reliable", True)),
+            "data_stale": bool(tech.get("data_stale", False)),
+            "rows_available": int(tech.get("rows_available", 0)),
+            "tts_insufficient": bool(tts_insufficient),
+            "error": None,
+            "explanation": "pending"
         }
 
+        tts_result["explanation"] = call_tts_explanation(tts_result, state=state)
+        print(f"\n[TTS EXPLANATION]\n{tts_result['explanation']}")
+
+        return {"tts_output": tts_result}
+
     except Exception as e:
+        print(f"[TTS AGENT ERROR] {e}")
         return {
             "tts_output": {
                 "decision": "HOLD",
@@ -258,6 +307,7 @@ def tts_agent(state: TradingState):
                 "data_stale": False,
                 "rows_available": 0,
                 "tts_insufficient": True,
-                "error": str(e)
+                "error": str(e),
+                "explanation": "error_no_data"
             }
         }

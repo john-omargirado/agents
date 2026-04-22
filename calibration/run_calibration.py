@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import json
 import pandas as pd
-from typing import cast
+from typing import cast, Optional
 import os
 
 current_dir = Path(__file__).resolve().parent
@@ -43,7 +43,7 @@ def normalize_initial_state(state: dict):
 # =========================
 # MAIN CALIBRATION
 # =========================
-def run_calibration(target_pair: str, target_months: list, target_year: int):
+def run_calibration(target_pair: str, target_months: list, target_year: int, target_date: Optional[str] = None):  # NEW param
 
     if not target_months:
         raise ValueError("target_months cannot be empty")
@@ -54,12 +54,13 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     project_root = Path(__file__).resolve().parents[1]
     ohlcv_path = project_root / "data" / "calibration" / "forex_pair" / f"{target_pair}.json"
 
-    months_tag = "_".join(map(str, target_months))
-
-    report_output_path = (
-        project_root / "reports"
-        / f"calibration_{target_pair}_{target_year}_{months_tag}.csv"
-    )
+    # NEW: filename reflects single date vs range
+    if target_date:
+        date_tag = target_date.replace("/", "-")
+        report_output_path = project_root / "reports" / f"calibration_{target_pair}_{date_tag}.csv"
+    else:
+        months_tag = "_".join(map(str, target_months))
+        report_output_path = project_root / "reports" / f"calibration_{target_pair}_{target_year}_{months_tag}.csv"
 
     os.makedirs(project_root / "reports", exist_ok=True)
 
@@ -75,10 +76,15 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     full_df["timestamp"] = pd.to_datetime(full_df["timestamp"])
     full_df = full_df.sort_values("timestamp").reset_index(drop=True)
 
-    mask = (
-        (full_df["timestamp"].dt.year == target_year) &
-        (full_df["timestamp"].dt.month.isin(target_months))
-    )
+    # NEW: single-date branch
+    if target_date:
+        parsed = pd.to_datetime(target_date)
+        mask = full_df["timestamp"].dt.date == parsed.date()
+    else:
+        mask = (
+            (full_df["timestamp"].dt.year == target_year) &
+            (full_df["timestamp"].dt.month.isin(target_months))
+        )
 
     calib_df = full_df[mask]
 
@@ -144,7 +150,8 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "article_count": 0,
                 "raw_article_count": 0,
                 "confidence": "LOW",
-                "error": None
+                "error": None,
+                "explanation": "" ,
             },
 
             "tts_output": {
@@ -162,7 +169,8 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "data_stale": False,
                 "rows_available": 0,
                 "tts_insufficient": True,
-                "error": None
+                "error": None,
+                "explanation": "" ,
             },
 
             "siv_output": {
@@ -224,12 +232,19 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
 
                 "Sentiment": ce_data.get("sentiment"),
                 "Articles": ce_data.get("article_count", 0),
+                "CE_Explanation": ce_data.get("explanation", ""),      # NEW
 
                 "Tech_Score": tts_data.get("total_score", 0.0),
+                "TTS_Decision": tts_data.get("decision"),              # NEW
+                "TTS_Explanation": tts_data.get("explanation", ""),    # NEW
+
                 "Weighted_Score": weighted_score,
 
                 "SIV_Signal": siv_data.get("signal"),
+                "SIV_Explanation": siv_data.get("explanation", ""),    # NEW
+
                 "Final_Verdict": verdict,
+                "Verdict_Reasoning": final_output.get("verdict_reasoning", ""),  # NEW
 
                 "Market_Reality": market_label,
                 "Correct": correct,
@@ -271,8 +286,9 @@ if __name__ == "__main__":
     parser.add_argument("pair", nargs="?", default="USDJPY")
     parser.add_argument("-m", "--months", default="8,9,10")
     parser.add_argument("-y", "--year", type=int, default=2018)
+    parser.add_argument("-d", "--date", default=None, help="Single date e.g. 08/15/2018")  # NEW
 
     args = parser.parse_args()
     months = [int(x) for x in args.months.split(",")]
 
-    run_calibration(args.pair.upper(), months, args.year)
+    run_calibration(args.pair.upper(), months, args.year, target_date=args.date)  # NEW

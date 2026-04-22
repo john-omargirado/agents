@@ -17,6 +17,7 @@ class TTSOutput(TypedDict):
     rows_available: int
     tts_insufficient: bool
     error: Optional[str]
+    explanation: str   
 
 
 class CEOutput(TypedDict):
@@ -27,6 +28,7 @@ class CEOutput(TypedDict):
     article_count: int
     confidence: Literal["HIGH", "MODERATE", "LOW"]
     error: Optional[str]
+    explanation: str 
 
 
 class SIVOutput(TypedDict):

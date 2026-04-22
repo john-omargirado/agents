@@ -18,12 +18,16 @@ def call_llm(payload: Dict[str, Any]) -> str:
         headers["Authorization"] = f"Bearer {key}"
 
     prompt = f"""
-You are a financial system explanation engine.
+You are a financial system integrity explanation engine.
+
+Agent definitions:
+- CE (Comparative Economic Agent): analyzes macroeconomic news and sentiment from articles to produce a directional signal
+- TTS (Traditional Trading Strategies Agent): analyzes price action and technical indicators (EMA, RSI, Bollinger Bands, breakout) to produce a directional signal
 
 Do NOT output structured format.
 
 Explain briefly:
-- CE vs TTS alignment
+- CE (Comparative Economic Agent) vs TTS (Traditional Trading Strategies Agent) alignment
 - price mismatch if any
 - data quality issues
 - why signals conflict or align
@@ -37,19 +41,20 @@ INPUT:
     data = {
         "model": "alibaba-qwen3-32b",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 300,
+        "max_tokens": 1024,
         "temperature": 0.2
     }
 
     try:
         response = requests.post(URL, headers=headers, json=data, timeout=30)
+        print(f"[SIV EXPLANATION HTTP] status={response.status_code}")
 
         if response.status_code != 200:
+            print(f"[SIV EXPLANATION ERROR] HTTP {response.status_code}: {response.text[:200]}")
             return "LLM_ERROR"
 
         result = response.json()
 
-        # SAFE extraction
         choice = result.get("choices", [{}])[0]
         message = choice.get("message", {})
         content = message.get("content")
@@ -59,7 +64,8 @@ INPUT:
 
         return str(content).strip()
 
-    except Exception:
+    except Exception as e:
+        print(f"[SIV EXPLANATION ERROR] {e}")
         return "LLM_ERROR"
 
 
@@ -72,8 +78,6 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
 
     actual_price = payload.get("actual_price")
     tts_price = payload.get("tts_price")
-
-    issues = []
 
     # PRICE INTEGRITY (HIGHEST PRIORITY)
     if actual_price is None or tts_price is None:
@@ -117,7 +121,6 @@ def siv_agent(state):
     if not explanation or explanation in ["LLM_ERROR", "LLM_EMPTY"]:
         explanation = "fallback_explanation_used"
 
-    # extra safety (never allow None)
     explanation = str(explanation).strip()
     if not explanation:
         explanation = "fallback_explanation_used"
@@ -136,12 +139,10 @@ def siv_agent(state):
         "siv_output": {
             "signal": signal,
             "issues": issues,
-
             "ce_signal": llm_input.get("ce_signal"),
             "tts_signal": llm_input.get("tts_signal"),
             "actual_price": llm_input.get("actual_price"),
             "tts_price": llm_input.get("tts_price"),
-
             "explanation": explanation
         }
     }

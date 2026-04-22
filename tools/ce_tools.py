@@ -30,13 +30,11 @@ def _map_label(label: str, score: float) -> float:
 
 
 def get_news_sentiment(target_date: str, pair: str):
-
     repo_root = Path(__file__).resolve().parents[1]
     data_path = repo_root / "data" / "calibration" / "news"
 
     if not data_path.is_dir():
         return {
-            "sentiment": "NEUTRAL",
             "raw_vibe": "NEUTRAL",
             "mean_score": 0.0,
             "sentiment_score": 0.0,
@@ -69,14 +67,10 @@ def get_news_sentiment(target_date: str, pair: str):
                 except:
                     continue
 
-    # =========================
-    # RAW COUNT (IMPORTANT)
-    # =========================
     raw_article_count = len(raw_rows)
 
     if raw_article_count == 0:
         return {
-            "sentiment": "NEUTRAL",
             "raw_vibe": "NEUTRAL",
             "mean_score": 0.0,
             "sentiment_score": 0.0,
@@ -85,9 +79,6 @@ def get_news_sentiment(target_date: str, pair: str):
             "titles": []
         }
 
-    # =========================
-    # DEDUP FOR STABILITY
-    # =========================
     inference_rows = list(set(raw_rows))
 
     sentiments = []
@@ -112,7 +103,6 @@ def get_news_sentiment(target_date: str, pair: str):
 
     if article_count == 0:
         return {
-            "sentiment": "NEUTRAL",
             "raw_vibe": "NEUTRAL",
             "mean_score": 0.0,
             "sentiment_score": 0.0,
@@ -133,46 +123,23 @@ def get_news_sentiment(target_date: str, pair: str):
     sentiment_score = sum(mapped_scores) / article_count
 
     # =========================
-    # VIBE LOGIC
+    # RAW VIBE (PURE SENTIMENT ONLY)
     # =========================
     if sentiment_score > 0.05:
-        raw_vibe = "positive"
+        raw_vibe = "POSITIVE"
     elif sentiment_score < -0.05:
-        raw_vibe = "negative"
+        raw_vibe = "NEGATIVE"
     else:
-        raw_vibe = "neutral"
+        raw_vibe = "NEUTRAL"
 
     # =========================
-    # CURRENCY ADJUSTMENT
-    # =========================
-    pair = pair.upper()
-
-    if pair == "USDJPY":
-        if raw_vibe == "negative":
-            final = "bullish"
-        elif raw_vibe == "positive":
-            final = "bearish"
-        else:
-            final = "neutral"
-    else:
-        if raw_vibe == "positive":
-            final = "bullish"
-        elif raw_vibe == "negative":
-            final = "bearish"
-        else:
-            final = "neutral"
-
-    # =========================
-    # OUTPUT
+    # OUTPUT (NO FX LOGIC)
     # =========================
     return {
-        "sentiment": final.upper(),
-        "raw_vibe": raw_vibe.upper(),
+        "raw_vibe": raw_vibe,
         "mean_score": round(float(mean_score), 4),
         "sentiment_score": round(float(sentiment_score), 4),
-
         "article_count": article_count,
         "raw_article_count": raw_article_count,
-
         "titles": inference_rows
     }

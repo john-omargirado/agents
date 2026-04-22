@@ -18,12 +18,12 @@ def call_qwen(prompt):
         "messages": [
             {"role": "user", "content": prompt}
         ],
-        "max_tokens": 500,   # slightly higher for reasoning
+        "max_tokens": 2048,
         "temperature": 0.2
     }
 
     try:
-        response = requests.post(URL, headers=headers, json=data, timeout=30)
+        response = requests.post(URL, headers=headers, json=data, timeout=60)
     except Exception as e:
         return f"ERROR: request_failed {e}"
 
@@ -35,12 +35,12 @@ def call_qwen(prompt):
     except Exception:
         return f"ERROR: invalid_json {response.text[:300]}"
 
-    # 🔥 SAFE EXTRACTION
     try:
         choice = result["choices"][0]
 
         if "message" in choice:
-            raw = choice["message"].get("content")
+            message = choice["message"]
+            raw = message.get("content") or message.get("reasoning_content")
         else:
             raw = choice.get("text")
 
@@ -53,8 +53,6 @@ def call_qwen(prompt):
         return f"ERROR: malformed_response {result}"
 
 
-import re
-
 def parse_llm_output(raw):
     if raw is None:
         return "HOLD", "empty_llm_output"
@@ -63,19 +61,15 @@ def parse_llm_output(raw):
         raw = str(raw)
 
     text = raw.strip()
-
     lines = text.splitlines()
 
-    # verdict = first valid line
     verdict = "HOLD"
     if lines:
         first = lines[0].strip().upper()
         if first in ["BUY", "SELL", "HOLD"]:
             verdict = first
 
-    # reasoning = everything after
     reasoning = "\n".join(lines[1:]).strip()
-
     if not reasoning:
         reasoning = text[:300]
 
@@ -90,7 +84,7 @@ def verdict_agent(state):
     siv = state.get("siv_output", {})
 
     # =========================
-    # HARD BLOCK (still deterministic)
+    # HARD BLOCK (deterministic)
     # =========================
     if siv.get("signal") == "INCOHERENT":
         return {
@@ -116,7 +110,7 @@ def verdict_agent(state):
     weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
 
     # =========================
-    # LLM PROMPT (DECISION + REASONING)
+    # LLM PROMPT
     # =========================
     prompt = f"""
 You are a strict trading decision engine.
@@ -133,9 +127,10 @@ RULES (MANDATORY):
 
 REASONING REQUIREMENTS:
 - Mention weighted_score explicitly
-- Mention CE sentiment and TTS signal
-- Mention SIV signal
-- Explain alignment or conflict
+- Mention CE sentiment and its confidence — if CE explanation reveals internal contradiction (e.g. negative raw_vibe but bullish label), reduce trust in CE signal
+- Mention TTS signal and whether tts_insufficient is true
+- Mention SIV signal and whether signals are aligned or conflicting
+- If CE and TTS conflict and CE confidence is LOW or MODERATE, lean toward TTS
 - Be specific, no vague statements
 
 INPUT:
@@ -148,26 +143,29 @@ score: {tts.get("total_score")}
 ema_trend: {tts.get("ema_trend")}
 rsi: {tts.get("rsi_value")}
 bb_signal: {tts.get("bb_signal")}
+tts_insufficient: {tts.get("tts_insufficient")}
+tts_explanation: {tts.get("explanation", "none")}
 
 CE:
 sentiment: {ce.get("sentiment")}
 confidence: {ce.get("confidence")}
 articles: {ce.get("article_count")}
+raw_vibe: {ce.get("raw_vibe")}
+sentiment_score: {ce.get("sentiment_score")}
+ce_explanation: {ce.get("explanation", "none")}
 
 SIV:
 signal: {siv.get("signal")}
-conflict: {siv.get("conflict_type")}
-data_quality: {siv.get("data_quality_ok")}
+issues: {siv.get("issues")}
+siv_explanation: {siv.get("explanation", "none")}
 """
 
     raw = call_qwen(prompt)
-
     verdict, reasoning = parse_llm_output(raw)
 
     # =========================
-    # RISK LOGIC (still deterministic)
+    # RISK LOGIC (deterministic)
     # =========================
-    risk = 0.5
     if abs(weighted_score) > 0.5:
         risk = 0.8
     elif abs(weighted_score) > 0.2:

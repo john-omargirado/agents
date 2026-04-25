@@ -2,9 +2,9 @@ import json
 import requests
 import re
 from utils.credentials import get_do_model_key
+from utils.trade_config import get_pair_config
 
 URL = "https://inference.do-ai.run/v1/chat/completions"
-
 
 def call_qwen(prompt):
     key = get_do_model_key()
@@ -75,13 +75,21 @@ def parse_llm_output(raw):
 
     return verdict, reasoning
 
-
 def verdict_agent(state):
     state["debug_log"].append("VERDICT agent: LLM decision mode")
 
     tts = state.get("tts_output", {})
     ce  = state.get("ce_output", {})
     siv = state.get("siv_output", {})
+    pair = str(state.get("currency_pair", "")).upper()
+    atr = float(state.get("atr", 0.0))
+
+    pair_cfg = get_pair_config(pair)
+    sl_mult = float(pair_cfg.get("sl_mult", 1.0))
+    rr_ratio = float(pair_cfg.get("rr_ratio", 2.0))
+
+    sl_distance = round(atr * sl_mult, 5)
+    tp_distance = round(sl_distance * rr_ratio, 5)
 
     # =========================
     # HARD BLOCK (deterministic)
@@ -92,21 +100,18 @@ def verdict_agent(state):
             "weighted_score": 0.0,
             "verdict_reasoning": "SIV INCOHERENT",
             "risk_multiplier": 0.0,
+            "atr": atr,
+            "sl_distance": sl_distance,
+            "tp_distance": tp_distance,
             "action": "NONE"
         }
 
     # =========================
     # SCORE COMPUTATION
     # =========================
-    ce_map = {
-        "BULLISH": 1.0,
-        "BEARISH": -1.0,
-        "NEUTRAL": 0.0
-    }
-
+    ce_map = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
     ce_signal = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
     tts_signal = float(tts.get("total_score", 0.0))
-
     weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
 
     # =========================
@@ -127,15 +132,19 @@ RULES (MANDATORY):
 
 REASONING REQUIREMENTS:
 - Mention weighted_score explicitly
-- Mention CE sentiment and its confidence — if CE explanation reveals internal contradiction (e.g. negative raw_vibe but bullish label), reduce trust in CE signal
+- Mention CE sentiment and its confidence — if CE explanation reveals internal contradiction, reduce trust in CE signal
 - Mention TTS signal and whether tts_insufficient is true
 - Mention SIV signal and whether signals are aligned or conflicting
+- Mention ATR-based SL ({sl_distance}) and TP ({tp_distance}) and whether the risk/reward is acceptable
 - If CE and TTS conflict and CE confidence is LOW or MODERATE, lean toward TTS
 - Be specific, no vague statements
 
 INPUT:
 
 weighted_score: {round(weighted_score, 4)}
+atr: {round(atr, 5)}
+sl_distance: {sl_distance}
+tp_distance: {tp_distance}
 
 TTS:
 decision: {tts.get("decision")}
@@ -164,16 +173,18 @@ siv_explanation: {siv.get("explanation", "none")}
     verdict, reasoning = parse_llm_output(raw)
 
     # =========================
-    # RISK LOGIC (deterministic)
+    # RISK LOGIC (ATR-aware)
     # =========================
-    if abs(weighted_score) > 0.5:
+    if atr == 0.0:
+        risk = 0.4  # fallback if ATR missing
+    elif abs(weighted_score) > 0.5:
         risk = 0.8
     elif abs(weighted_score) > 0.2:
         risk = 0.6
     else:
         risk = 0.4
 
-    print(f"\n[VERDICT] {verdict}")
+    print(f"\n[VERDICT] {verdict} | ATR={atr:.5f} | SL={sl_distance} | TP={tp_distance}")
     print(f"[REASONING] {reasoning}\n")
 
     return {
@@ -181,5 +192,8 @@ siv_explanation: {siv.get("explanation", "none")}
         "weighted_score": round(weighted_score, 4),
         "verdict_reasoning": reasoning,
         "risk_multiplier": round(risk, 3),
+        "atr": atr,
+        "sl_distance": sl_distance,
+        "tp_distance": tp_distance,
         "action": "NONE"
     }

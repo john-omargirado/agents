@@ -45,4 +45,8 @@ class VerdictOutput(TypedDict):
     verdict: Literal["BUY", "SELL", "HOLD"]
     weighted_score: float
     risk_multiplier: float
+    # Backtesting Fields
+    atr:float
+    sl_distance: float
+    tp_distance: float
     reasoning: str

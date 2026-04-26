@@ -82,6 +82,7 @@ def normalize_initial_state(state: dict):
         **state,
         "raw_article_count": 0,
         "ce_output": state.get("ce_output") or {},
+        "backtest_mode": state.get("backtest_mode", False),
         "tts_output": state.get("tts_output") or {},
         "siv_output": state.get("siv_output") or {},
         "debug_log": state.get("debug_log") or [],
@@ -107,7 +108,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     rr_ratio = float(pair_cfg.get("rr_ratio", 1.75))
 
     project_root = Path(__file__).resolve().parents[1]
-    ohlcv_path = project_root / "data" / "calibration" / "forex_pair" / f"{target_pair}.json"
+    ohlcv_path = project_root / "data" / "backtesting" / "forex_pairs" / f"{target_pair}.json"
 
     months_tag = "_".join(map(str, target_months))
     report_output_path = (
@@ -193,6 +194,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
         initial_state = cast(TradingState, normalize_initial_state({
             "target_date":           current_date,
             "currency_pair":         target_pair,
+            "backtest_mode":         True,
             "price":                 entry_price,
             "calibration_threshold": CURRENT_TEST_THRESHOLD,
             "atr":                   atr,
@@ -288,12 +290,16 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
                 "Sentiment": ce_data.get("sentiment"),
                 "Articles": ce_data.get("article_count", 0),
+                "CE_Explanation": ce_data.get("explanation", ""),
 
                 "Tech_Score": tts_data.get("total_score", 0.0),
                 "Weighted_Score": weighted_score,
+                "TTS_Explanation": tts_data.get("explanation", ""),
 
                 "SIV_Signal": siv_data.get("signal"),
+                "SIV_Explanation": siv_data.get("explanation", ""),
                 "Final_Verdict": verdict,
+                "Verdict_Reasoning": final_output.get("verdict_reasoning", ""),
 
                 "Market_Reality": market_label,
                 "Correct": correct,
@@ -309,25 +315,69 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
         except Exception as e:
             print(f"Failed on {current_date}: {e}")
 
+    # =========================
+    # ACCURACY HELPERS
+    # =========================
+    def acc(c, t):
+        return round((c / t) * 100, 2) if t else 0.0
+
+    total_correct = buy_correct + sell_correct + hold_correct
+    total_trades = buy_total + sell_total + hold_total
+    buysell_correct = buy_correct + sell_correct
+    buysell_total = buy_total + sell_total
+
+    # =========================
+    # APPEND SUMMARY ROWS TO CSV
+    # =========================
     df = pd.DataFrame(results)
+
+    summary_rows = pd.DataFrame([
+        {"Date": "---", "Final_Verdict": "ACCURACY SUMMARY"},
+        {
+            "Date": "BUY Accuracy",
+            "Final_Verdict": f"{acc(buy_correct, buy_total)}%",
+            "Correct": f"{buy_correct}/{buy_total}"
+        },
+        {
+            "Date": "SELL Accuracy",
+            "Final_Verdict": f"{acc(sell_correct, sell_total)}%",
+            "Correct": f"{sell_correct}/{sell_total}"
+        },
+        {
+            "Date": "BUY+SELL Accuracy",
+            "Final_Verdict": f"{acc(buysell_correct, buysell_total)}%",
+            "Correct": f"{buysell_correct}/{buysell_total}"
+        },
+        {
+            "Date": "HOLD Accuracy",
+            "Final_Verdict": f"{acc(hold_correct, hold_total)}%",
+            "Correct": f"{hold_correct}/{hold_total}"
+        },
+        {
+            "Date": "OVERALL Accuracy",
+            "Final_Verdict": f"{acc(total_correct, total_trades)}%",
+            "Correct": f"{total_correct}/{total_trades}"
+        },
+        {"Date": "---", "Final_Verdict": "SL/TP SUMMARY"},
+        {"Date": "TP Hits",     "Correct": tp_hits},
+        {"Date": "SL Hits",     "Correct": sl_hits},
+        {"Date": "TIME Exits",  "Correct": time_exits},
+        {"Date": "HOLD Skips",  "Correct": hold_skips},
+    ])
+
+    df = pd.concat([df, summary_rows], ignore_index=True)
     df.to_csv(report_output_path, index=False)
 
     # =========================
     # FINAL ACCURACY REPORT
     # =========================
-    def acc(c, t):
-        return round((c / t) * 100, 2) if t else 0.0
-
     print("\n================ TRADE ACCURACY ================")
-    print(f"BUY Accuracy  : {acc(buy_correct, buy_total)}% ({buy_correct}/{buy_total})")
-    print(f"SELL Accuracy : {acc(sell_correct, sell_total)}% ({sell_correct}/{sell_total})")
-    print(f"HOLD Accuracy : {acc(hold_correct, hold_total)}% ({hold_correct}/{hold_total})")
-
-    total_correct = buy_correct + sell_correct + hold_correct
-    total_trades = buy_total + sell_total + hold_total
-
-    print(f"OVERALL ACCURACY: {acc(total_correct, total_trades)}%")
-    print(f"SL/TP Summary  : TP={tp_hits} | SL={sl_hits} | TIME={time_exits} | HOLD_SKIP={hold_skips}")
+    print(f"BUY Accuracy     : {acc(buy_correct, buy_total)}% ({buy_correct}/{buy_total})")
+    print(f"SELL Accuracy    : {acc(sell_correct, sell_total)}% ({sell_correct}/{sell_total})")
+    print(f"BUY+SELL Accuracy: {acc(buysell_correct, buysell_total)}% ({buysell_correct}/{buysell_total})")
+    print(f"HOLD Accuracy    : {acc(hold_correct, hold_total)}% ({hold_correct}/{hold_total})")
+    print(f"OVERALL ACCURACY : {acc(total_correct, total_trades)}%")
+    print(f"SL/TP Summary    : TP={tp_hits} | SL={sl_hits} | TIME={time_exits} | HOLD_SKIP={hold_skips}")
     print("=================================================\n")
 
     print("BACKTEST COMPLETE")

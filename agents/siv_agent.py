@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 from typing import Any, Dict, Tuple
 from utils.credentials import get_do_model_key
 from utils.formatters import prepare_siv_payload
@@ -10,7 +11,8 @@ URL = "https://inference.do-ai.run/v1/chat/completions"
 # =========================
 # LLM ONLY FOR EXPLANATION
 # =========================
-def call_llm(payload: Dict[str, Any]) -> str:
+
+def call_qwen(payload: Dict[str, Any]) -> str:
     key = get_do_model_key()
 
     headers = {"Content-Type": "application/json"}
@@ -45,28 +47,36 @@ INPUT:
         "temperature": 0.2
     }
 
-    try:
-        response = requests.post(URL, headers=headers, json=data, timeout=30)
-        print(f"[SIV EXPLANATION HTTP] status={response.status_code}")
+    max_retries = 3
+    backoff = 5  # seconds
 
-        if response.status_code != 200:
-            print(f"[SIV EXPLANATION ERROR] HTTP {response.status_code}: {response.text[:200]}")
-            return "LLM_ERROR"
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.post(URL, headers=headers, json=data, timeout=90)
+            print(f"[SIV EXPLANATION HTTP] status={response.status_code}")
 
-        result = response.json()
+            if response.status_code != 200:
+                print(f"[SIV EXPLANATION ERROR] HTTP {response.status_code}: {response.text[:200]}")
+                return "LLM_ERROR"
 
-        choice = result.get("choices", [{}])[0]
-        message = choice.get("message", {})
-        content = message.get("content")
+            result = response.json()
+            choice = result.get("choices", [{}])[0]
+            message = choice.get("message", {})
+            content = message.get("content")
 
-        if not content:
-            return "LLM_EMPTY"
+            if not content:
+                return "LLM_EMPTY"
 
-        return str(content).strip()
+            return str(content).strip()
 
-    except Exception as e:
-        print(f"[SIV EXPLANATION ERROR] {e}")
-        return "LLM_ERROR"
+        except Exception as e:
+            print(f"[SIV EXPLANATION ERROR] Attempt {attempt}/{max_retries}: {e}")
+            if attempt < max_retries:
+                print(f"[SIV EXPLANATION] Retrying in {backoff}s...")
+                time.sleep(backoff)
+                backoff *= 2  # exponential: 5 -> 10 -> 20
+
+    return "LLM_ERROR"
 
 
 # =========================
@@ -113,7 +123,7 @@ def siv_agent(state):
     # =========================
     # STEP 2: LLM EXPLANATION ONLY
     # =========================
-    explanation = call_llm(llm_input)
+    explanation = call_qwen(llm_input)
 
     # =========================
     # SAFE NORMALIZATION

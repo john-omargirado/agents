@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 from state.trading_state import TradingState
 from tools.ce_tools import get_news_sentiment
 from utils.credentials import get_do_model_key
@@ -36,19 +37,28 @@ INPUT:
         "temperature": 0.2,
     }
 
-    try:
-        resp = requests.post(CE_URL, headers=headers, json=data, timeout=30)
-        print(f"[CE EXPLANATION HTTP] status={resp.status_code}")
-        result = resp.json()
+    max_retries = 3
+    backoff = 5
 
-        message = result.get("choices", [{}])[0].get("message", {})
-        content = message.get("content") or message.get("reasoning_content")
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = requests.post(CE_URL, headers=headers, json=data, timeout=90)
+            print(f"[CE EXPLANATION HTTP] status={resp.status_code}")
+            result = resp.json()
 
-        return str(content).strip() if content else "explanation_unavailable"
+            message = result.get("choices", [{}])[0].get("message", {})
+            content = message.get("content") or message.get("reasoning_content")
 
-    except Exception as e:
-        print(f"[CE EXPLANATION ERROR] {e}")
-        return "explanation_unavailable"
+            return str(content).strip() if content else "explanation_unavailable"
+
+        except Exception as e:
+            print(f"[CE EXPLANATION ERROR] Attempt {attempt}/{max_retries}: {e}")
+            if attempt < max_retries:
+                print(f"[CE EXPLANATION] Retrying in {backoff}s...")
+                time.sleep(backoff)
+                backoff *= 2  # 5 -> 10 -> 20
+
+    return "explanation_unavailable"
 
 
 def ce_agent(state: TradingState):
@@ -57,7 +67,8 @@ def ce_agent(state: TradingState):
     target_date = state.get("target_date")
     pair = state.get("currency_pair")
 
-    sentiment_data = get_news_sentiment(target_date, pair)
+    backtest_mode = state.get("backtest_mode", False)
+    sentiment_data = get_news_sentiment(target_date, pair, backtest_mode=backtest_mode)
 
     # =========================
     # SAFE DEFAULT

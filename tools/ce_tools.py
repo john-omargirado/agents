@@ -29,41 +29,39 @@ def _map_label(label: str, score: float) -> float:
     return 0.0
 
 
-def get_news_sentiment(target_date: str, pair: str):
+def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False):
     repo_root = Path(__file__).resolve().parents[1]
-    data_path = repo_root / "data" / "calibration" / "news"
+
+    if backtest_mode:
+        data_path = repo_root / "data" / "backtesting" / "news"
+        # Split USDJPY → ["usd", "jpy"]
+        base = pair[:3].lower()
+        quote = pair[3:].lower()
+        target_files = [f"{base}_news_backtesting.json", f"{quote}_news_backtesting.json"]
+    else:
+        data_path = repo_root / "data" / "calibration" / "news"
+        target_files = [f for f in os.listdir(data_path) if f.endswith(".json")] if data_path.is_dir() else []
 
     if not data_path.is_dir():
-        return {
-            "raw_vibe": "NEUTRAL",
-            "mean_score": 0.0,
-            "sentiment_score": 0.0,
-            "article_count": 0,
-            "raw_article_count": 0,
-            "titles": []
-        }
+        return {"raw_vibe": "NEUTRAL", "mean_score": 0.0, "sentiment_score": 0.0,
+                "article_count": 0, "raw_article_count": 0, "titles": []}
 
     raw_rows = []
 
-    # =========================
-    # LOAD DATA
-    # =========================
-    for file in os.listdir(data_path):
-        if not file.endswith(".json"):
+    for file in target_files:
+        filepath = data_path / file
+        if not filepath.exists():
             continue
 
-        with open(data_path / file, "r", encoding="utf-8") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
-
             for article in data.get("articles", []):
                 try:
                     dt = datetime.strptime(article["seendate"], "%Y%m%dT%H%M%SZ")
-
                     if dt.strftime("%m/%d/%Y") == target_date:
                         title = article.get("title", "").strip()
                         if title:
                             raw_rows.append(title)
-
                 except:
                     continue
 

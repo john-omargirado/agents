@@ -21,3 +21,6 @@ class TradingState(TypedDict):
     debug_log: List[str]
     retry_count: int
     action: str
+
+    backtest_mode: bool
+    atr: float

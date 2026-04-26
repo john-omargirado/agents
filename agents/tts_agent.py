@@ -4,6 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 import requests
+import time
 import os
 from datetime import datetime
 from typing import Optional, List
@@ -126,18 +127,29 @@ INPUT:
         "max_tokens": 1024,
         "temperature": 0.2
     }
-    try:
-        resp = requests.post(URL, headers=headers, json=data, timeout=30)
-        print(f"[TTS EXPLANATION HTTP] status={resp.status_code}")
-        result = resp.json()
-        message = result.get("choices", [{}])[0].get("message", {})
-        content = message.get("content") or message.get("reasoning_content")
-        return str(content).strip() if content else "explanation_unavailable"
-    except Exception as e:
-        print(f"[TTS EXPLANATION ERROR] {e}")
-        if state is not None:
-            state["debug_log"].append(f"TTS explanation failed: {e}")
-        return "explanation_unavailable"
+
+    max_retries = 3
+    backoff = 5
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            resp = requests.post(URL, headers=headers, json=data, timeout=90)
+            print(f"[TTS EXPLANATION HTTP] status={resp.status_code}")
+            result = resp.json()
+            message = result.get("choices", [{}])[0].get("message", {})
+            content = message.get("content") or message.get("reasoning_content")
+            return str(content).strip() if content else "explanation_unavailable"
+
+        except Exception as e:
+            print(f"[TTS EXPLANATION ERROR] Attempt {attempt}/{max_retries}: {e}")
+            if attempt < max_retries:
+                print(f"[TTS EXPLANATION] Retrying in {backoff}s...")
+                time.sleep(backoff)
+                backoff *= 2  # 5 -> 10 -> 20
+            if state is not None:
+                state["debug_log"].append(f"TTS explanation attempt {attempt} failed: {e}")
+
+    return "explanation_unavailable"
 
 
 def tts_agent(state: TradingState):
@@ -147,7 +159,10 @@ def tts_agent(state: TradingState):
     target_date = state.get("target_date")
 
     project_root = Path(__file__).resolve().parents[1]
-    file_path = project_root / "data" / "calibration" / "forex_pair" / f"{pair}.json"
+    if state.get("backtest_mode"):
+        file_path = project_root / "data" / "backtesting" / "forex_pairs" / f"{pair}.json"
+    else:
+        file_path = project_root / "data" / "calibration" / "forex_pair" / f"{pair}.json"
 
     try:
         with open(file_path, "r") as f:

@@ -1,10 +1,12 @@
 import json
 import requests
+import time
 import re
 from utils.credentials import get_do_model_key
 from utils.trade_config import get_pair_config
 
 URL = "https://inference.do-ai.run/v1/chat/completions"
+
 
 def call_qwen(prompt):
     key = get_do_model_key()
@@ -14,7 +16,7 @@ def call_qwen(prompt):
         headers["Authorization"] = f"Bearer {key}"
 
     data = {
-        "model": "deepseek-r1-distill-llama-70b",
+        "model": "alibaba-qwen3-32b",
         "messages": [
             {"role": "user", "content": prompt}
         ],
@@ -22,35 +24,46 @@ def call_qwen(prompt):
         "temperature": 0.2
     }
 
-    try:
-        response = requests.post(URL, headers=headers, json=data, timeout=60)
-    except Exception as e:
-        return f"ERROR: request_failed {e}"
+    max_retries = 3
+    backoff = 5  # seconds
 
-    if response.status_code != 200:
-        return f"ERROR: status_{response.status_code} {response.text[:300]}"
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.post(URL, headers=headers, json=data, timeout=120)
+        except Exception as e:
+            print(f"[VERDICT ERROR] Attempt {attempt}/{max_retries}: request_failed {e}")
+            if attempt < max_retries:
+                print(f"[VERDICT] Retrying in {backoff}s...")
+                time.sleep(backoff)
+                backoff *= 2  # exponential: 5 -> 10 -> 20
+            continue
 
-    try:
-        result = response.json()
-    except Exception:
-        return f"ERROR: invalid_json {response.text[:300]}"
+        if response.status_code != 200:
+            return f"ERROR: status_{response.status_code} {response.text[:300]}"
 
-    try:
-        choice = result["choices"][0]
+        try:
+            result = response.json()
+        except Exception:
+            return f"ERROR: invalid_json {response.text[:300]}"
 
-        if "message" in choice:
-            message = choice["message"]
-            raw = message.get("content") or message.get("reasoning_content")
-        else:
-            raw = choice.get("text")
+        try:
+            choice = result["choices"][0]
 
-        if raw is None:
-            return f"ERROR: empty_content {result}"
+            if "message" in choice:
+                message = choice["message"]
+                raw = message.get("content") or message.get("reasoning_content")
+            else:
+                raw = choice.get("text")
 
-        return str(raw)
+            if raw is None:
+                return f"ERROR: empty_content {result}"
 
-    except Exception:
-        return f"ERROR: malformed_response {result}"
+            return str(raw)
+
+        except Exception:
+            return f"ERROR: malformed_response {result}"
+
+    return "ERROR: request_failed max_retries_exceeded"
 
 
 def parse_llm_output(raw):

@@ -390,9 +390,21 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("pair", nargs="?", default="USDJPY")
     parser.add_argument("-m", "--months", default="8,9,10")
-    parser.add_argument("-y", "--year", type=int, default=2018)
+    parser.add_argument("-y", "--years", default="2018")
 
     args = parser.parse_args()
     months = [int(x) for x in args.months.split(",")]
 
-    run_backtest(args.pair.upper(), months, args.year)
+    # Support single year (2018), range (2023-2025), or list (2023,2024,2025)
+    raw_years = args.years.strip()
+    if "-" in raw_years and "," not in raw_years:
+        start, end = raw_years.split("-")
+        years = list(range(int(start), int(end) + 1))
+    else:
+        years = [int(y) for y in raw_years.split(",")]
+
+    for year in years:
+        print(f"\n{'='*50}")
+        print(f"RUNNING BACKTEST: {args.pair.upper()} | YEAR={year} | MONTHS={months}")
+        print(f"{'='*50}")
+        run_backtest(args.pair.upper(), months, year)

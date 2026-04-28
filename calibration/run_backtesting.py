@@ -4,6 +4,7 @@ import json
 import pandas as pd
 from typing import cast
 import os
+import time
 
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
@@ -12,6 +13,7 @@ if str(project_root) not in sys.path:
 
 from graph.build_graph import build_graph
 from state.trading_state import TradingState
+from tools.tts_tools import precompute_indicators
 from utils.trade_config import ATR_LOOKBACK, get_pair_config
 
 
@@ -21,32 +23,21 @@ from utils.trade_config import ATR_LOOKBACK, get_pair_config
 MARKET_MOVE_THRESHOLD = 0.0015
 HORIZON_DAYS = 5
 CURRENT_TEST_THRESHOLD = 0.20
-
 ALLOWED_MONTHS = set(range(1, 13))
 
 
 # =========================
-# ATR COMPUTATION
+# AUTO TIMEFRAME DETECTION
 # =========================
-def compute_atr(lookback_df: pd.DataFrame, period: int = 14) -> float:
-    df = lookback_df.tail(period + 1).copy()
+def infer_candle_minutes(df: pd.DataFrame) -> int:
     if len(df) < 2:
-        return 0.0
-    df["prev_close"] = df["close"].shift(1)
-    df["tr"] = df[["high", "low", "prev_close"]].apply(
-        lambda r: max(
-            r["high"] - r["low"],
-            abs(r["high"] - r["prev_close"]),
-            abs(r["low"] - r["prev_close"])
-        ), axis=1
-    )
-    return float(df["tr"].tail(period).mean())
+        return 1
+    delta = (df["timestamp"].iloc[1] - df["timestamp"].iloc[0]).total_seconds()
+    return max(1, int(delta / 60))
 
 
 # =========================
 # TRADE SIMULATION
-# SL_Adaptive = P_entry +/- (k x ATR)
-# TP = P_entry +/- (SL_distance x RR_ratio)
 # =========================
 def simulate_trade(
     direction: str,
@@ -58,20 +49,22 @@ def simulate_trade(
     sl = entry_price - sl_distance if direction == "BUY" else entry_price + sl_distance
     tp = entry_price + tp_distance if direction == "BUY" else entry_price - tp_distance
 
-    for bars_held, (_, candle) in enumerate(future_window.iterrows(), start=1):
+    for _, candle in future_window.iterrows():
+
         if direction == "BUY":
             if candle["low"] <= sl:
-                return sl, "SL", bars_held
+                return sl, "SL"
             if candle["high"] >= tp:
-                return tp, "TP", bars_held
+                return tp, "TP"
+
         else:
             if candle["high"] >= sl:
-                return sl, "SL", bars_held
+                return sl, "SL"
             if candle["low"] <= tp:
-                return tp, "TP", bars_held
+                return tp, "TP"
 
     exit_price = future_window.iloc[-1]["close"] if not future_window.empty else entry_price
-    return exit_price, "TIME", len(future_window)
+    return exit_price, "TIME"
 
 
 # =========================
@@ -97,12 +90,6 @@ def normalize_initial_state(state: dict):
 # =========================
 def run_backtest(target_pair: str, target_months: list, target_year: int):
 
-    if not target_months:
-        raise ValueError("target_months cannot be empty")
-
-    if not all(m in ALLOWED_MONTHS for m in target_months):
-        raise ValueError(f"Invalid month detected: {target_months}")
-
     pair_cfg = get_pair_config(target_pair)
     sl_mult = float(pair_cfg.get("sl_mult", 2.0))
     rr_ratio = float(pair_cfg.get("rr_ratio", 1.75))
@@ -117,10 +104,6 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     )
     os.makedirs(project_root / "reports", exist_ok=True)
 
-    if not ohlcv_path.exists():
-        print(f"Missing data: {ohlcv_path}")
-        return
-
     with open(ohlcv_path, "r") as f:
         master_data = json.load(f)
 
@@ -129,48 +112,62 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     full_df["timestamp"] = pd.to_datetime(full_df["timestamp"])
     full_df = full_df.sort_values("timestamp").reset_index(drop=True)
 
+    # =========================
+    # TIMEFRAME DETECTION
+    # =========================
+    CANDLE_MINUTES = infer_candle_minutes(full_df)
+    print(f"[INFO] Detected timeframe: {CANDLE_MINUTES}-minute candles")
+
+    precomputed = precompute_indicators(full_df)
+    precomputed = precomputed.reset_index().set_index("timestamp")
+
+    full_df["prev_close"] = full_df["close"].shift(1)
+
+    full_df["tr"] = full_df.apply(
+        lambda r: max(
+            r["high"] - r["low"],
+            abs(r["high"] - r["prev_close"]),
+            abs(r["low"] - r["prev_close"])
+        ),
+        axis=1
+    )
+
+    full_df["atr"] = full_df["tr"].rolling(ATR_LOOKBACK).mean()
+
+    future_windows = [
+        full_df.iloc[i + 1: i + 1 + HORIZON_DAYS]
+        for i in range(len(full_df))
+    ]
+
     mask = (
         (full_df["timestamp"].dt.year == target_year) &
         (full_df["timestamp"].dt.month.isin(target_months))
     )
     calib_df = full_df[mask]
 
-    if calib_df.empty:
-        print("No data found for selection")
-        return
-
     app = build_graph()
     results = []
-
-    # =========================
-    # ACCURACY TRACKING
-    # =========================
-    buy_correct = buy_total = 0
-    sell_correct = sell_total = 0
-    hold_correct = hold_total = 0
-    tp_hits = sl_hits = time_exits = hold_skips = 0
-
-    experiment_config = {
-        "pair": target_pair,
-        "year": target_year,
-        "months": target_months,
-        "horizon_days": HORIZON_DAYS,
-        "market_threshold": MARKET_MOVE_THRESHOLD,
-        "test_threshold": CURRENT_TEST_THRESHOLD,
-        "sl_mult": sl_mult,
-        "rr_ratio": rr_ratio,
-    }
 
     print("\n--- STARTING BACKTEST ---")
 
     for idx in calib_df.index:
 
+        start_time = time.perf_counter()
+
         row = full_df.iloc[idx]
 
         current_date = row["timestamp"].strftime("%m/%d/%Y")
         entry_price = float(row["close"])
-        future_window = full_df.iloc[idx + 1: idx + 1 + HORIZON_DAYS]
 
+        print("\n==============================")
+        print(f"[DATE] {current_date}")
+        print(f"[ENTRY] {entry_price}")
+
+        future_window = future_windows[idx]
+
+        # =========================
+        # MARKET LABEL
+        # =========================
         market_label = "NEUTRAL"
 
         if not future_window.empty:
@@ -185,206 +182,77 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             elif downside > MARKET_MOVE_THRESHOLD:
                 market_label = "BEARISH"
 
-        # ATR
-        lookback_df = full_df.iloc[max(0, idx - ATR_LOOKBACK - 1): idx]
-        atr = compute_atr(lookback_df, period=ATR_LOOKBACK)
+        print(f"[MARKET] {market_label}")
+
+        atr = float(full_df.iloc[idx]["atr"])
         sl_distance = round(atr * sl_mult, 5)
         tp_distance = round(sl_distance * rr_ratio, 5)
 
         initial_state = cast(TradingState, normalize_initial_state({
-            "target_date":           current_date,
-            "currency_pair":         target_pair,
-            "backtest_mode":         True,
-            "price":                 entry_price,
-            "calibration_threshold": CURRENT_TEST_THRESHOLD,
-            "atr":                   atr,
-
-            "ce_output": {
-                "sentiment": "NEUTRAL", "raw_vibe": "NEUTRAL",
-                "mean_score": 0.0, "sentiment_score": 0.0,
-                "article_count": 0, "raw_article_count": 0,
-                "confidence": "LOW", "error": None
-            },
-            "tts_output": {
-                "total_score": 0.0, "ema_trend": "SIDEWAYS",
-                "ema_score": 0.0, "rsi_value": 50.0, "rsi_score": 0.0,
-                "bb_signal": "STABLE", "bb_score": 0.0, "breakout_score": 0.0,
-                "price": entry_price, "ema_200_confidence": 0.0,
-                "ema_200_reliable": False, "data_stale": False,
-                "rows_available": 0, "tts_insufficient": True, "error": None
-            },
-            "siv_output": {
-                "signal": "INCOHERENT", "conflict_type": "UNCLEAR",
-                "price_deviation": 0.0, "issues": [],
-                "tts_insufficient": True, "data_quality_ok": False,
-                "explanation": "Not yet run"
-            },
-
-            "verdict": "HOLD", "verdict_reasoning": "",
-            "weighted_score": 0.0, "risk_multiplier": 0.0,
+            "target_date": current_date,
+            "currency_pair": target_pair,
+            "backtest_mode": True,
+            "price": entry_price,
+            "atr": atr,
+            "precomputed_indicators": precomputed,
         }))
 
         try:
-            print(f"{current_date} | {market_label}")
-
             final_output = app.invoke(initial_state)
 
             ce_data = final_output.get("ce_output", {})
-            tts_data = final_output.get("tts_output", {})
-            siv_data = final_output.get("siv_output", {})
             verdict = final_output.get("verdict", "HOLD").upper()
             weighted_score = final_output.get("weighted_score", 0.0)
 
-            exit_reason = "HOLD_SKIP"
-            bars_held = 0
+            print(f"[DECISION] {verdict} | SCORE={weighted_score}")
 
-            if verdict in ("BUY", "SELL") and not future_window.empty and sl_distance > 0.0:
-                _, exit_reason, bars_held = simulate_trade(
+            exit_reason = "HOLD_SKIP"
+
+            if verdict in ("BUY", "SELL") and not future_window.empty:
+
+                _, exit_reason = simulate_trade(
                     verdict,
                     entry_price,
                     future_window,
                     sl_distance,
                     tp_distance,
                 )
-                if exit_reason == "TP":
-                    tp_hits += 1
-                elif exit_reason == "SL":
-                    sl_hits += 1
-                else:
-                    time_exits += 1
-            else:
-                hold_skips += 1
 
-            # =========================
-            # ACCURACY LOGIC
-            # =========================
-            correct = False
+            execution_time = round(time.perf_counter() - start_time, 6)
 
-            if verdict == "BUY":
-                buy_total += 1
-                correct = market_label == "BULLISH"
-                if correct:
-                    buy_correct += 1
-
-            elif verdict == "SELL":
-                sell_total += 1
-                correct = market_label == "BEARISH"
-                if correct:
-                    sell_correct += 1
-
-            else:
-                hold_total += 1
-                correct = market_label == "NEUTRAL"
-                if correct:
-                    hold_correct += 1
-
-            print(
-                f"DEBUG: {current_date} | SIV={siv_data.get('signal')} | "
-                f"VERDICT={verdict} | SCORE={weighted_score} | "
-                f"SL={sl_distance} | TP={tp_distance} | EXIT={exit_reason}"
-            )
+            print(f"[EXECUTION TIME] {execution_time} seconds")
 
             results.append({
                 "Date": current_date,
                 "Price": entry_price,
-
                 "Sentiment": ce_data.get("sentiment"),
-                "Articles": ce_data.get("article_count", 0),
-                "CE_Explanation": ce_data.get("explanation", ""),
-
-                "Tech_Score": tts_data.get("total_score", 0.0),
-                "Weighted_Score": weighted_score,
-                "TTS_Explanation": tts_data.get("explanation", ""),
-
-                "SIV_Signal": siv_data.get("signal"),
-                "SIV_Explanation": siv_data.get("explanation", ""),
                 "Final_Verdict": verdict,
-                "Verdict_Reasoning": final_output.get("verdict_reasoning", ""),
-
                 "Market_Reality": market_label,
-                "Correct": correct,
-
-                "SL_Distance": sl_distance,
-                "TP_Distance": tp_distance,
                 "Exit_Reason": exit_reason,
-                "Bars_Held": bars_held,
-
-                "Experiment_Config": str(experiment_config)
+                "Execution_Time_Seconds": execution_time,
+                "Weighted_Score": weighted_score,
             })
 
         except Exception as e:
-            print(f"Failed on {current_date}: {e}")
+            execution_time = round(time.perf_counter() - start_time, 6)
+            print(f"[ERROR] {current_date}: {e}")
 
-    # =========================
-    # ACCURACY HELPERS
-    # =========================
-    def acc(c, t):
-        return round((c / t) * 100, 2) if t else 0.0
+            results.append({
+                "Date": current_date,
+                "Price": entry_price,
+                "Final_Verdict": "ERROR",
+                "Execution_Time_Seconds": execution_time,
+            })
 
-    total_correct = buy_correct + sell_correct + hold_correct
-    total_trades = buy_total + sell_total + hold_total
-    buysell_correct = buy_correct + sell_correct
-    buysell_total = buy_total + sell_total
-
-    # =========================
-    # APPEND SUMMARY ROWS TO CSV
-    # =========================
     df = pd.DataFrame(results)
-
-    summary_rows = pd.DataFrame([
-        {"Date": "---", "Final_Verdict": "ACCURACY SUMMARY"},
-        {
-            "Date": "BUY Accuracy",
-            "Final_Verdict": f"{acc(buy_correct, buy_total)}%",
-            "Correct": f"{buy_correct}/{buy_total}"
-        },
-        {
-            "Date": "SELL Accuracy",
-            "Final_Verdict": f"{acc(sell_correct, sell_total)}%",
-            "Correct": f"{sell_correct}/{sell_total}"
-        },
-        {
-            "Date": "BUY+SELL Accuracy",
-            "Final_Verdict": f"{acc(buysell_correct, buysell_total)}%",
-            "Correct": f"{buysell_correct}/{buysell_total}"
-        },
-        {
-            "Date": "HOLD Accuracy",
-            "Final_Verdict": f"{acc(hold_correct, hold_total)}%",
-            "Correct": f"{hold_correct}/{hold_total}"
-        },
-        {
-            "Date": "OVERALL Accuracy",
-            "Final_Verdict": f"{acc(total_correct, total_trades)}%",
-            "Correct": f"{total_correct}/{total_trades}"
-        },
-        {"Date": "---", "Final_Verdict": "SL/TP SUMMARY"},
-        {"Date": "TP Hits",     "Correct": tp_hits},
-        {"Date": "SL Hits",     "Correct": sl_hits},
-        {"Date": "TIME Exits",  "Correct": time_exits},
-        {"Date": "HOLD Skips",  "Correct": hold_skips},
-    ])
-
-    df = pd.concat([df, summary_rows], ignore_index=True)
     df.to_csv(report_output_path, index=False)
 
-    # =========================
-    # FINAL ACCURACY REPORT
-    # =========================
-    print("\n================ TRADE ACCURACY ================")
-    print(f"BUY Accuracy     : {acc(buy_correct, buy_total)}% ({buy_correct}/{buy_total})")
-    print(f"SELL Accuracy    : {acc(sell_correct, sell_total)}% ({sell_correct}/{sell_total})")
-    print(f"BUY+SELL Accuracy: {acc(buysell_correct, buysell_total)}% ({buysell_correct}/{buysell_total})")
-    print(f"HOLD Accuracy    : {acc(hold_correct, hold_total)}% ({hold_correct}/{hold_total})")
-    print(f"OVERALL ACCURACY : {acc(total_correct, total_trades)}%")
-    print(f"SL/TP Summary    : TP={tp_hits} | SL={sl_hits} | TIME={time_exits} | HOLD_SKIP={hold_skips}")
-    print("=================================================\n")
-
-    print("BACKTEST COMPLETE")
+    print("\nBACKTEST COMPLETE")
     print(report_output_path)
 
 
 if __name__ == "__main__":
+
     import argparse
 
     parser = argparse.ArgumentParser()
@@ -394,17 +262,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     months = [int(x) for x in args.months.split(",")]
-
-    # Support single year (2018), range (2023-2025), or list (2023,2024,2025)
-    raw_years = args.years.strip()
-    if "-" in raw_years and "," not in raw_years:
-        start, end = raw_years.split("-")
-        years = list(range(int(start), int(end) + 1))
-    else:
-        years = [int(y) for y in raw_years.split(",")]
+    years = [int(y) for y in args.years.split(",")]
 
     for year in years:
-        print(f"\n{'='*50}")
-        print(f"RUNNING BACKTEST: {args.pair.upper()} | YEAR={year} | MONTHS={months}")
-        print(f"{'='*50}")
+        print(f"\nRUNNING BACKTEST: {args.pair.upper()} | YEAR={year} | MONTHS={months}")
         run_backtest(args.pair.upper(), months, year)

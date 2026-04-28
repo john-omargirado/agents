@@ -16,88 +16,28 @@ from utils.credentials import get_do_model_key
 
 URL = "https://inference.do-ai.run/v1/chat/completions"
 
+_ohlcv_cache: dict = {}
+_indicator_cache: dict = {}
 
-def call_gpt_mini(payload, state: Optional[TradingState] = None, candidate_models: Optional[List[str]] = None):
-    key = get_do_model_key()
-    project_root = Path(__file__).resolve().parents[1]
+def _load_ohlcv(file_path: Path):
+    from tools.tts_tools import precompute_indicators
 
-    if candidate_models is None:
-        candidate_models = [
-            "alibaba-qwen3-32b",
-        ]
+    key = str(file_path)
 
-    last_err = None
-    save_debug = os.getenv("TTS_DEBUG_SAVE", "0") in ("1", "true", "True")
+    if key not in _ohlcv_cache:
+        with open(file_path, "r") as f:
+            raw_data = json.load(f)
 
-    for model in candidate_models:
-        headers = {"Content-Type": "application/json"}
-        if key:
-            headers["Authorization"] = f"Bearer {key}"
+        df = pd.DataFrame(raw_data["data"])
+        df.columns = [c.lower() for c in df.columns]
+        df["timestamp"] = pd.to_datetime(df["timestamp"])
 
-        data = {
-            "model": model,
-            "messages": [{"role": "user", "content": json.dumps(payload)}],
-            "max_tokens": 200,
-        }
+        df = df.sort_values("timestamp").reset_index(drop=True)
 
-        try:
-            resp = requests.post(URL, headers=headers, json=data, timeout=30)
-        except Exception as e:
-            msg = f"LLM request failed for model {model}: {e}"
-            last_err = msg
-            if state is not None:
-                state["debug_log"].append(msg)
-            continue
+        _ohlcv_cache[key] = df
+        _indicator_cache[key] = precompute_indicators(df)
 
-        status = resp.status_code
-        body_text = resp.text
-
-        try:
-            result = resp.json()
-        except Exception as e:
-            msg = f"Invalid JSON from model {model} (status {status}): {body_text}"
-            last_err = msg
-            if state is not None:
-                state["debug_log"].append(msg)
-            if save_debug:
-                dbg_path = project_root / "logs"
-                dbg_path.mkdir(exist_ok=True)
-                (dbg_path / f"tts_debug_{model}_{datetime.utcnow().isoformat()}.txt").write_text(body_text)
-            continue
-
-        if isinstance(result, dict) and "choices" in result:
-            try:
-                content = result["choices"][0]["message"]["content"]
-                if state is not None:
-                    state["debug_log"].append(f"LLM success model={model} status={status}")
-                if save_debug:
-                    dbg_path = project_root / "logs"
-                    dbg_path.mkdir(exist_ok=True)
-                    (dbg_path / f"tts_debug_success_{model}_{datetime.utcnow().isoformat()}.json").write_text(
-                        json.dumps({"model": model, "status": status, "request": payload, "response": result}, default=str)
-                    )
-                return content
-            except Exception:
-                msg = f"Malformed choices structure from model {model}: {result}"
-                last_err = msg
-                if state is not None:
-                    state["debug_log"].append(msg)
-                continue
-
-        if isinstance(result, dict) and "error" in result:
-            err = result["error"]
-            msg = f"LLM error for model {model}: {err}"
-            last_err = msg
-            if state is not None:
-                state["debug_log"].append(msg)
-            continue
-
-        msg = f"Unknown response format from model {model}: {result}"
-        last_err = msg
-        if state is not None:
-            state["debug_log"].append(msg)
-
-    raise ValueError(f"LLM error: {last_err}")
+    return _ohlcv_cache[key].copy(), _indicator_cache[key].copy()
 
 
 def call_tts_explanation(tts_data: dict, state: Optional[TradingState] = None) -> str:
@@ -165,14 +105,8 @@ def tts_agent(state: TradingState):
         file_path = project_root / "data" / "calibration" / "forex_pair" / f"{pair}.json"
 
     try:
-        with open(file_path, "r") as f:
-            raw_data = json.load(f)
-
-        full_df = pd.DataFrame(raw_data["data"])
-        full_df.columns = [c.lower() for c in full_df.columns]
-        full_df["timestamp"] = pd.to_datetime(full_df["timestamp"])
-
-        tech = calculate_technical_indicators(full_df, target_date)
+        full_df, precomputed = _load_ohlcv(file_path)
+        tech = calculate_technical_indicators(full_df, target_date, precomputed=precomputed)
 
         if not tech:
             raise ValueError("No technical data")
@@ -237,31 +171,6 @@ def tts_agent(state: TradingState):
             total_score *= 0.7
 
         total_score = max(-1.0, min(total_score, 1.0))
-
-        # =========================
-        # LLM PAYLOAD (GPT-MINI)
-        # =========================
-
-        payload = {
-            "total_score": round(total_score, 4),
-            "ema_trend": tech["trend"],
-            "rsi": round(rsi, 2),
-            "bb_signal": tech["bb_signal"],
-            "breakout_score": round(breakout_score, 4),
-            "rule": {
-                "BUY": "> 0.15",
-                "SELL": "< -0.15",
-                "HOLD": "otherwise"
-            }
-        }
-
-        raw = call_gpt_mini(payload, state=state)
-
-        try:
-            parsed = json.loads(raw)
-            decision = parsed.get("decision", "HOLD")
-        except Exception:
-            decision = "HOLD"
 
         # =========================
         # HARD RULE ENFORCEMENT

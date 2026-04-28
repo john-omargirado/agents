@@ -1,9 +1,11 @@
 import os
-import json
-from datetime import datetime
 from pathlib import Path
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import pandas as pd
 from huggingface_hub import InferenceClient
 from dotenv import load_dotenv
+
 
 MODEL_ID = "ProsusAI/finbert"
 
@@ -18,7 +20,43 @@ client = InferenceClient(
     api_key=_hf_token,
 )
 
+# =========================
+# PROJECT ROOT FIXED
+# =========================
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
+DATA_PATH = PROJECT_ROOT / "data" / "backtesting" / "news_cleaned"
+PARQUET_FILE = DATA_PATH / "processed_news.parquet"
+
+_news_df_cache = None
+
+
+# =========================
+# LOAD PARQUET ONCE
+# =========================
+def _load_news_df():
+    global _news_df_cache
+
+    if _news_df_cache is not None:
+        return _news_df_cache
+
+    if not PARQUET_FILE.exists():
+        raise FileNotFoundError(f"Missing parquet file: {PARQUET_FILE}")
+
+    df = pd.read_parquet(PARQUET_FILE)
+
+    # ensure clean types
+    df["date"] = df["date"].astype(str)
+    df["currency"] = df["currency"].astype(str)
+    df["title"] = df["title"].fillna("").astype(str)
+
+    _news_df_cache = df
+    return df
+
+
+# =========================
+# LABEL MAPPING
+# =========================
 def _map_label(label: str, score: float) -> float:
     label = (label or "").lower()
 
@@ -29,41 +67,40 @@ def _map_label(label: str, score: float) -> float:
     return 0.0
 
 
+# =========================
+# MAIN FUNCTION
+# =========================
 def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False):
-    repo_root = Path(__file__).resolve().parents[1]
 
-    if backtest_mode:
-        data_path = repo_root / "data" / "backtesting" / "news"
-        # Split USDJPY → ["usd", "jpy"]
-        base = pair[:3].lower()
-        quote = pair[3:].lower()
-        target_files = [f"{base}_news_backtesting.json", f"{quote}_news_backtesting.json"]
-    else:
-        data_path = repo_root / "data" / "calibration" / "news"
-        target_files = [f for f in os.listdir(data_path) if f.endswith(".json")] if data_path.is_dir() else []
+    df = _load_news_df()
 
-    if not data_path.is_dir():
-        return {"raw_vibe": "NEUTRAL", "mean_score": 0.0, "sentiment_score": 0.0,
-                "article_count": 0, "raw_article_count": 0, "titles": []}
+    base = pair[:3].upper()
+    quote = pair[3:].upper()
 
-    raw_rows = []
+    # normalize date
+    try:
+        dt = datetime.strptime(target_date, "%m/%d/%Y")
+        date_key = dt.strftime("%Y-%m-%d")
+    except:
+        return {
+            "raw_vibe": "NEUTRAL",
+            "mean_score": 0.0,
+            "sentiment_score": 0.0,
+            "article_count": 0,
+            "raw_article_count": 0,
+            "titles": []
+        }
 
-    for file in target_files:
-        filepath = data_path / file
-        if not filepath.exists():
-            continue
+    # =========================
+    # FILTER (FAST VECTOR OPS)
+    # =========================
+    filtered = df[
+        (df["date"] == date_key) &
+        (df["currency"].isin([base, quote]))
+    ]
 
-        with open(filepath, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            for article in data.get("articles", []):
-                try:
-                    dt = datetime.strptime(article["seendate"], "%Y%m%dT%H%M%SZ")
-                    if dt.strftime("%m/%d/%Y") == target_date:
-                        title = article.get("title", "").strip()
-                        if title:
-                            raw_rows.append(title)
-                except:
-                    continue
+    raw_rows = filtered["title"].tolist()
+    raw_rows = [t for t in raw_rows if isinstance(t, str) and t.strip()]
 
     raw_article_count = len(raw_rows)
 
@@ -82,20 +119,21 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
     sentiments = []
     scores = []
 
-    # =========================
-    # INFERENCE
-    # =========================
-    for title in inference_rows:
-        try:
-            results = client.text_classification(title, model=MODEL_ID)
-            top = results[0]
+    def classify(title: str):
+        result = client.text_classification(title, model=MODEL_ID)
+        top = result[0]
+        return top.label, float(top.score)
 
-            sentiments.append(top.label)
-            scores.append(float(top.score))
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {executor.submit(classify, t): t for t in inference_rows}
 
-        except Exception as e:
-            print(f"[CE ERROR] FinBERT failed: {e}")
-            continue
+        for f in as_completed(futures):
+            try:
+                label, score = f.result()
+                sentiments.append(label)
+                scores.append(score)
+            except Exception as e:
+                print(f"[CE ERROR] {futures[f]} -> {e}")
 
     article_count = len(scores)
 
@@ -109,20 +147,14 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
             "titles": inference_rows
         }
 
-    # =========================
-    # SCORING
-    # =========================
     mapped_scores = [
-        _map_label(label, score)
-        for label, score in zip(sentiments, scores)
+        _map_label(l, s)
+        for l, s in zip(sentiments, scores)
     ]
 
     mean_score = sum(scores) / article_count
     sentiment_score = sum(mapped_scores) / article_count
 
-    # =========================
-    # RAW VIBE (PURE SENTIMENT ONLY)
-    # =========================
     if sentiment_score > 0.05:
         raw_vibe = "POSITIVE"
     elif sentiment_score < -0.05:
@@ -130,14 +162,13 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
     else:
         raw_vibe = "NEUTRAL"
 
-    # =========================
-    # OUTPUT (NO FX LOGIC)
-    # =========================
     return {
         "raw_vibe": raw_vibe,
-        "mean_score": round(float(mean_score), 4),
-        "sentiment_score": round(float(sentiment_score), 4),
+        "mean_score": round(mean_score, 4),
+        "sentiment_score": round(sentiment_score, 4),
         "article_count": article_count,
         "raw_article_count": raw_article_count,
-        "titles": inference_rows
+        "titles": inference_rows,
+        "debug_titles": inference_rows,  # NEW (for logging only)
+        
     }

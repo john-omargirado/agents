@@ -8,10 +8,17 @@ from utils.credentials import get_do_model_key
 
 CE_URL = "https://inference.do-ai.run/v1/chat/completions"
 
+_explanation_cache = {}
 
-def call_ce_explanation(ce_data: dict) -> str:
+
+# =========================
+# EXPLANATION ENGINE
+# =========================
+def call_ce_explanation(ce_data: dict):
+
     key = get_do_model_key()
     headers = {"Content-Type": "application/json"}
+
     if key:
         headers["Authorization"] = f"Bearer {key}"
 
@@ -30,87 +37,87 @@ INPUT:
 {json.dumps(ce_data)}
 """
 
-    data = {
+    payload = {
         "model": "alibaba-qwen3-32b",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 1024,
+        "max_tokens": 700,
         "temperature": 0.2,
     }
 
-    max_retries = 3
-    backoff = 5
-
-    for attempt in range(1, max_retries + 1):
+    for attempt in range(3):
         try:
-            resp = requests.post(CE_URL, headers=headers, json=data, timeout=90)
-            print(f"[CE EXPLANATION HTTP] status={resp.status_code}")
+            resp = requests.post(CE_URL, headers=headers, json=payload, timeout=90)
             result = resp.json()
 
-            message = result.get("choices", [{}])[0].get("message", {})
-            content = message.get("content") or message.get("reasoning_content")
+            msg = result.get("choices", [{}])[0].get("message", {})
+            content = msg.get("content") or msg.get("reasoning_content")
 
             return str(content).strip() if content else "explanation_unavailable"
 
         except Exception as e:
-            print(f"[CE EXPLANATION ERROR] Attempt {attempt}/{max_retries}: {e}")
-            if attempt < max_retries:
-                print(f"[CE EXPLANATION] Retrying in {backoff}s...")
-                time.sleep(backoff)
-                backoff *= 2  # 5 -> 10 -> 20
+            print(f"[CE EXPLANATION ERROR] {e}")
+            time.sleep(5 * (attempt + 1))
 
     return "explanation_unavailable"
 
 
+# =========================
+# CE AGENT
+# =========================
 def ce_agent(state: TradingState):
-    state["debug_log"].append("CE agent: Starting sentiment audit via tools")
+
+    state["debug_log"].append("CE agent started")
 
     target_date = state.get("target_date")
     pair = state.get("currency_pair")
-
     backtest_mode = state.get("backtest_mode", False)
+
     sentiment_data = get_news_sentiment(target_date, pair, backtest_mode=backtest_mode)
 
     # =========================
-    # SAFE DEFAULT
+    # DEBUG NEWS TRACE
     # =========================
-    safe_default = {
-        "sentiment": "NEUTRAL",
-        "raw_vibe": "NEUTRAL",
-        "mean_score": 0.0,
-        "sentiment_score": 0.0,
-        "article_count": 0,
-        "raw_article_count": 0,
-        "confidence": "LOW",
-        "error": None,
-        "explanation": "no_data"
-    }
+    debug_titles = sentiment_data.get("debug_titles", [])
 
-    if not sentiment_data:
-        return {"ce_output": safe_default}
+    print("\n[CE NEWS TRACE]")
+    print(f"Date: {target_date}")
+    print(f"Pair: {pair}")
+    print(f"Articles used: {sentiment_data.get('article_count', 0)}")
 
-    if sentiment_data.get("article_count", 0) == 0:
-        return {"ce_output": safe_default}
+    for i, title in enumerate(debug_titles):
+        print(f"{i+1}. {title}")
+
+    if not sentiment_data or sentiment_data.get("article_count", 0) == 0:
+        return {
+            "ce_output": {
+                "sentiment": "NEUTRAL",
+                "raw_vibe": "NEUTRAL",
+                "mean_score": 0.0,
+                "sentiment_score": 0.0,
+                "article_count": 0,
+                "raw_article_count": 0,
+                "confidence": "LOW",
+                "explanation": "no_data"
+            }
+        }
+
+    mean_score = float(sentiment_data["mean_score"])
+    sentiment_score = float(sentiment_data["sentiment_score"])
+    article_count = int(sentiment_data["article_count"])
+    raw_article_count = int(sentiment_data["raw_article_count"])
 
     # =========================
-    # NORMALIZATION
+    # CONFIDENCE
     # =========================
-    mean_score = float(sentiment_data.get("mean_score", 0.0))
-    sentiment_score = float(sentiment_data.get("sentiment_score", 0.0))
-    article_count = int(sentiment_data.get("article_count", 0))
-    raw_article_count = int(sentiment_data.get("raw_article_count", article_count))
-
-    # =========================
-    # CONFIDENCE LOGIC
-    # =========================
-    if article_count >= 20 and abs(mean_score) >= 0.5:
+    if article_count >= 20:
         confidence = "HIGH"
-    elif article_count >= 10 or abs(mean_score) >= 0.2:
+    elif article_count >= 10:
         confidence = "MODERATE"
     else:
         confidence = "LOW"
 
     # =========================
-    # MARKET SENTIMENT (NOW HERE, NOT IN TOOL)
+    # SENTIMENT
     # =========================
     if sentiment_score > 0.05:
         sentiment = "BULLISH"
@@ -121,24 +128,32 @@ def ce_agent(state: TradingState):
 
     normalized = {
         "sentiment": sentiment,
-        "raw_vibe": sentiment_data.get("raw_vibe", "NEUTRAL"),
+        "raw_vibe": sentiment_data["raw_vibe"],
         "mean_score": mean_score,
         "sentiment_score": sentiment_score,
         "article_count": article_count,
         "raw_article_count": raw_article_count,
         "confidence": confidence,
-        "error": None,
         "explanation": "pending"
     }
 
-    state["debug_log"].append(
-        f"CE: {article_count} articles | "
-        f"{sentiment} | confidence={confidence}"
+    cache_key = (
+        sentiment,
+        confidence,
+        article_count,
+        round(mean_score, 3),
+        round(sentiment_score, 3)
     )
 
-    normalized["explanation"] = call_ce_explanation(normalized)
+    if cache_key in _explanation_cache:
+        explanation = _explanation_cache[cache_key]
+    else:
+        explanation = call_ce_explanation(normalized)
+        _explanation_cache[cache_key] = explanation
 
-    print(f"\n[CE EXPLANATION]\n{normalized['explanation']}")
+    normalized["explanation"] = explanation
+
+    print(f"\n[CE EXPLANATION]\n{explanation}")
     state["debug_log"].append("CE explanation generated")
 
     return {"ce_output": normalized}

@@ -6,9 +6,11 @@ import time
 
 BASE_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 QUERY = (
-    "(%22Euro+exchange+rate%22+OR+%22European+Central+Bank%22"
-    "+OR+%22Eurozone+inflation%22+OR+%22Eurozone+economy%22"
-    "+OR+%22Euro+forex%22+OR+%22Euro+currency+pair%22)"
+    "(%22Swiss+Franc+exchange%22 OR %22Swiss+National+Bank%22 OR "
+    "%22Swiss+inflation%22 OR %22Switzerland+economy%22 OR "
+    "%22Swiss+Franc+forex%22 OR %22safe+haven+currency%22 OR "
+    "%22Swiss+monetary+policy%22 OR %22Swiss+Franc+valuation%22 OR "
+    "%22Swiss+interest+rates%22 OR %22Thomas+Jordan%22)"
 )
 def fetch_with_retry(url, month_label):
     """Retries monthly query until successful."""
@@ -75,4 +77,4 @@ def run_multi_year_extraction(start_year, end_year):
 
 if __name__ == "__main__":
     # Runs the 3-year span as requested
-    run_multi_year_extraction(2022, 2025)
+    run_multi_year_extraction(2023, 2025)

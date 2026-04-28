@@ -1,62 +1,55 @@
 import os
 from pathlib import Path
 from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 import pandas as pd
-from huggingface_hub import InferenceClient
+from transformers import pipeline
 from dotenv import load_dotenv
-
 
 MODEL_ID = "ProsusAI/finbert"
 
 load_dotenv()
-_hf_token = os.environ.get("HF_TOKEN")
 
-if not _hf_token:
-    raise EnvironmentError("HF_TOKEN environment variable is not set.")
-
-client = InferenceClient(
-    provider="hf-inference",
-    api_key=_hf_token,
-)
-
-# =========================
-# PROJECT ROOT FIXED
-# =========================
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-
 DATA_PATH = PROJECT_ROOT / "data" / "backtesting" / "news_cleaned"
 PARQUET_FILE = DATA_PATH / "processed_news.parquet"
 
-_news_df_cache = None
+_news_df_cache = dict = {}
+_finbert_cache = {}
+
+DEBUG_CE = True
+
+# CPU optimization (i5 11th gen sweet spot)
+BATCH_SIZE = 16
+
+# IMPORTANT: CPU only
+pipe = pipeline(
+    "text-classification",
+    model=MODEL_ID,
+    device=-1,  # CPU
+    truncation=True
+)
 
 
-# =========================
-# LOAD PARQUET ONCE
-# =========================
-def _load_news_df():
-    global _news_df_cache
+def log_time(label: str, start: float):
+    if DEBUG_CE:
+        print(f"[CE TIMER] {label}: {time.perf_counter() - start:.4f}s")
 
-    if _news_df_cache is not None:
-        return _news_df_cache
 
-    if not PARQUET_FILE.exists():
-        raise FileNotFoundError(f"Missing parquet file: {PARQUET_FILE}")
+def _load_news_df(parquet_file: Path):
+    key = str(parquet_file)
+    if key in _news_df_cache:
+        return _news_df_cache[key]
 
-    df = pd.read_parquet(PARQUET_FILE)
-
-    # ensure clean types
-    df["date"] = df["date"].astype(str)
+    df = pd.read_parquet(parquet_file)
+    df["date"]     = df["date"].astype(str)
     df["currency"] = df["currency"].astype(str)
-    df["title"] = df["title"].fillna("").astype(str)
+    df["title"]    = df["title"].fillna("").astype(str)
 
-    _news_df_cache = df
+    _news_df_cache[key] = df
     return df
 
 
-# =========================
-# LABEL MAPPING
-# =========================
 def _map_label(label: str, score: float) -> float:
     label = (label or "").lower()
 
@@ -68,16 +61,38 @@ def _map_label(label: str, score: float) -> float:
 
 
 # =========================
+# SAFE BATCH PREDICTION
+# =========================
+def batch_predict(texts: list[str]):
+    results = pipe(texts, batch_size=BATCH_SIZE)
+
+    sentiments = []
+    scores = []
+
+    for r in results:
+        sentiments.append(r["label"])
+        scores.append(float(r["score"]))
+
+    return sentiments, scores
+
+
+# =========================
 # MAIN FUNCTION
 # =========================
 def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False):
 
-    df = _load_news_df()
+    total_start = time.perf_counter()
+
+    if backtest_mode:
+        parquet_file = PROJECT_ROOT / "data" / "backtesting" / "news_cleaned" / "processed_news.parquet"
+    else:
+        parquet_file = PROJECT_ROOT / "data" / "calibration" / "news_cleaned" / "processed_news.parquet"
+
+    df = _load_news_df(parquet_file)
 
     base = pair[:3].upper()
     quote = pair[3:].upper()
 
-    # normalize date
     try:
         dt = datetime.strptime(target_date, "%m/%d/%Y")
         date_key = dt.strftime("%Y-%m-%d")
@@ -92,7 +107,7 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
         }
 
     # =========================
-    # FILTER (FAST VECTOR OPS)
+    # FILTER
     # =========================
     filtered = df[
         (df["date"] == date_key) &
@@ -116,24 +131,35 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
 
     inference_rows = list(set(raw_rows))
 
+    # =========================
+    # CACHE SPLIT
+    # =========================
+    uncached = [t for t in inference_rows if t not in _finbert_cache]
+
+    # =========================
+    # BATCH INFERENCE (FIXED)
+    # =========================
+    if uncached:
+        try:
+            sentiments, scores = batch_predict(uncached)
+
+            for t, l, s in zip(uncached, sentiments, scores):
+                _finbert_cache[t] = (l, s)
+
+        except Exception as e:
+            print(f"[CE BATCH ERROR] {e}")
+
+    # =========================
+    # BUILD FINAL OUTPUT
+    # =========================
     sentiments = []
     scores = []
 
-    def classify(title: str):
-        result = client.text_classification(title, model=MODEL_ID)
-        top = result[0]
-        return top.label, float(top.score)
-
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(classify, t): t for t in inference_rows}
-
-        for f in as_completed(futures):
-            try:
-                label, score = f.result()
-                sentiments.append(label)
-                scores.append(score)
-            except Exception as e:
-                print(f"[CE ERROR] {futures[f]} -> {e}")
+    for t in inference_rows:
+        if t in _finbert_cache:
+            l, s = _finbert_cache[t]
+            sentiments.append(l)
+            scores.append(s)
 
     article_count = len(scores)
 
@@ -147,6 +173,9 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
             "titles": inference_rows
         }
 
+    # =========================
+    # SCORING
+    # =========================
     mapped_scores = [
         _map_label(l, s)
         for l, s in zip(sentiments, scores)
@@ -162,6 +191,9 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
     else:
         raw_vibe = "NEUTRAL"
 
+    if DEBUG_CE:
+        print(f"[CE TOTAL TIME] {time.perf_counter() - total_start:.4f}s | articles={article_count}")
+
     return {
         "raw_vibe": raw_vibe,
         "mean_score": round(mean_score, 4),
@@ -169,6 +201,5 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
         "article_count": article_count,
         "raw_article_count": raw_article_count,
         "titles": inference_rows,
-        "debug_titles": inference_rows,  # NEW (for logging only)
-        
+        "debug_titles": inference_rows[:5],
     }

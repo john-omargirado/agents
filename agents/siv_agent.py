@@ -43,7 +43,7 @@ INPUT:
     data = {
         "model": "alibaba-qwen3-32b",
         "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 1024,
+        "max_tokens": 700,
         "temperature": 0.2
     }
 
@@ -114,16 +114,15 @@ def siv_agent(state):
     state["debug_log"].append("SIV agent running (deterministic core)")
 
     llm_input = prepare_siv_payload(state)
+    backtest_mode = state.get("backtest_mode", False)
 
-    # =========================
-    # STEP 1: DETERMINISTIC DECISION
-    # =========================
     signal, issues = compute_siv(llm_input)
 
-    # =========================
     # STEP 2: LLM EXPLANATION ONLY
-    # =========================
-    explanation = call_qwen(llm_input)
+    if not backtest_mode:
+        explanation = call_qwen(llm_input)
+    else:
+        explanation = "skipped_backtest"
 
     # =========================
     # SAFE NORMALIZATION

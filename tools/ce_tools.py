@@ -169,6 +169,6 @@ def get_news_sentiment(target_date: str, pair: str, backtest_mode: bool = False)
         "article_count": article_count,
         "raw_article_count": raw_article_count,
         "titles": inference_rows,
-        "debug_titles": inference_rows,  # NEW (for logging only)
+        "debug_titles": inference_rows[:5],  # NEW (for logging only)
         
     }

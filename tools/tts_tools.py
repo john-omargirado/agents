@@ -28,6 +28,12 @@ def precompute_indicators(full_df: pd.DataFrame) -> pd.DataFrame:
     df["lower_bb"] = df["sma_20"] - 2 * df["std_20"]
 
     df = df.set_index("timestamp")
+    
+    ema_12 = df["close"].ewm(span=12, adjust=False).mean()
+    ema_26 = df["close"].ewm(span=26, adjust=False).mean()
+    df["macd"] = ema_12 - ema_26
+    df["macd_signal"] = df["macd"].ewm(span=9, adjust=False).mean()
+    df["macd_hist"] = df["macd"] - df["macd_signal"]
 
     return df
 
@@ -50,6 +56,8 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
     rsi = float(row["rsi"])
     upper_bb = float(row["upper_bb"])
     lower_bb = float(row["lower_bb"])
+    macd_hist = float(row["macd_hist"])
+    macd_score = max(-1.0, min(macd_hist / (abs(float(row["macd"])) + 1e-9), 1.0))
 
     row_count = len(precomputed.loc[:target_dt])
 
@@ -65,6 +73,9 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         trend = "SIDEWAYS"
 
     trend_strength = min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf
+
+    if (trend == "BEARISH" and rsi > 60) or (trend == "BULLISH" and rsi < 40):
+        trend_strength *= 0.4
 
     rsi_strength = 0.0
     if rsi > 60:
@@ -97,5 +108,7 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "rows_available": row_count,
         "ema_200_confidence": ema_200_conf,
         "ema_200_reliable": row_count >= 400,
+        "macd_hist": macd_hist,
+        "macd_score": macd_score,
         "data_stale": False
     }

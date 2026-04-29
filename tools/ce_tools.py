@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "data" / "backtesting" / "news_cleaned"
 PARQUET_FILE = DATA_PATH / "processed_news.parquet"
 
-_news_df_cache = dict = {}
+_news_df_cache: dict = {}
 _finbert_cache = {}
 
 DEBUG_CE = True

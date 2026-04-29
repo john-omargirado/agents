@@ -99,9 +99,28 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
     except Exception:
         return "INCOHERENT", ["price_parse_error"]
 
-    # SIGNAL COMPARISON
-    if ce == tts:
-        return "UNANIMOUS", []
+    # =========================
+    # NORMALIZE TO DIRECTION
+    # CE uses BULLISH/BEARISH/NEUTRAL
+    # TTS uses BUY/SELL/HOLD
+    # =========================
+    direction_map = {
+        "BULLISH": "UP", "BUY":  "UP",
+        "BEARISH": "DOWN", "SELL": "DOWN",
+        "NEUTRAL": "FLAT", "HOLD": "FLAT",
+    }
+
+    ce_dir  = direction_map.get(str(ce).upper(),  "UNKNOWN")
+    tts_dir = direction_map.get(str(tts).upper(), "UNKNOWN")
+
+    if "UNKNOWN" in (ce_dir, tts_dir):
+        return "PARTIAL", ["unrecognized_signal"]
+
+    if ce_dir == tts_dir:
+        return "COHERENT", []
+
+    if "FLAT" in (ce_dir, tts_dir):
+        return "PARTIAL", ["one_signal_neutral"]
 
     return "PARTIAL", ["signal_mismatch"]
 

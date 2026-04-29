@@ -77,10 +77,11 @@ def parse_llm_output(raw):
     lines = text.splitlines()
 
     verdict = "HOLD"
-    if lines:
-        first = lines[0].strip().upper()
-        if first in ["BUY", "SELL", "HOLD"]:
-            verdict = first
+    for line in lines[:3]:  # check first 3 lines, not just line 0
+        candidate = line.strip().upper()
+        if candidate in ["BUY", "SELL", "HOLD"]:
+            verdict = candidate
+            break
 
     reasoning = "\n".join(lines[1:]).strip()
     if not reasoning:
@@ -123,14 +124,25 @@ def verdict_agent(state):
 
     # =========================
     # SCORE COMPUTATION
-    # Still computed and passed
-    # to LLM as context — but
-    # LLM decides the verdict
     # =========================
-    ce_map        = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
-    ce_signal     = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
-    tts_signal    = float(tts.get("total_score", 0.0))
-    weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
+    ce_map     = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
+    ce_signal  = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
+    tts_signal = float(tts.get("total_score", 0.0))
+
+    ce_confidence = ce.get("confidence", "LOW")
+    ce_articles   = int(ce.get("article_count", 0))
+    ce_is_weak    = ce_confidence == "LOW" or ce_articles < 10
+
+    if ce.get("sentiment") == "NEUTRAL":
+        weighted_score = tts_signal
+    elif ce_is_weak and abs(tts_signal) >= 0.15:
+        weighted_score = tts_signal
+    elif ce.get("sentiment") == "BEARISH" and tts_signal >= 0.0:
+        # CE says bearish but TTS sees no bearish confirmation at all
+        # reduce CE dominance
+        weighted_score = (0.40 * ce_signal) + (0.60 * tts_signal)
+    else:
+        weighted_score = (0.60 * ce_signal) + (0.40 * tts_signal)
 
     # =========================
     # LLM PROMPT
@@ -148,94 +160,47 @@ Second line onwards: your reasoning
 YOUR TASK:
 Make a trading decision for {pair} based on all available information below.
 
-The weighted_score is the primary directional signal, but it must be interpreted using strict thresholds and signal reliability checks.
-
 ------------------------------------------------------------
 DECISION FRAMEWORK (STRICT)
 ------------------------------------------------------------
 
-1. WEIGHTED_SCORE THRESHOLDS (HARD RULE):
+1. WEIGHTED_SCORE IS THE ONLY DIRECTION RULE:
 
-- >= 0.15 → BUY bias
-- <= -0.15 → SELL bias
-- between -0.15 and 0.15 → HOLD (NEUTRAL ZONE)
+weighted_score = (0.6 * CE_signal) + (0.4 * TTS_signal)
 
-IMPORTANT:
-- If weighted_score is in the neutral zone, you MUST choose HOLD
-- Do NOT override neutral zone even if CE or TTS suggest direction
+- >= 0.15  → BUY
+- <= -0.15 → SELL
+- between -0.15 and 0.15 → HOLD (mandatory, no override)
 
-------------------------------------------------------------
-2. TRADE DECISION RULES
-------------------------------------------------------------
-
-A. BUY:
-- weighted_score >= 0.15
-- AND at least one supporting condition:
-  - CE and TTS align bullish
-  - TTS shows bullish technical confirmation (EMA uptrend, RSI supportive, BB not bearish)
-  - CE confidence is MODERATE or HIGH with sufficient articles
-
-B. SELL:
-- weighted_score <= -0.15
-- AND at least one supporting condition:
-  - CE and TTS align bearish
-  - TTS shows bearish technical confirmation (EMA downtrend, RSI weak, BB bearish)
-  - CE confidence is MODERATE or HIGH with sufficient articles
-
-C. HOLD (STRICT):
-You MUST choose HOLD if ANY of the following apply:
-
-- -0.15 < weighted_score < 0.15 (neutral zone)
-- CE and TTS strongly conflict AND no clear dominance
-- CE confidence is LOW AND signals are inconsistent
-- SIV signal = "PARTIAL" with "signal_mismatch" AND no strong confirmation
-- Risk/reward is unclear or conflicting across agents
+The weighted_score already accounts for CE/TTS conflict mathematically.
+Do NOT override BUY or SELL to HOLD because CE and TTS disagree directionally.
+Signal conflict is already priced into the score.
 
 ------------------------------------------------------------
-3. SIGNAL RELIABILITY ADJUSTMENTS (FOR CONVICTION ONLY)
+2. CONVICTION ADJUSTMENTS (DO NOT CHANGE VERDICT)
 ------------------------------------------------------------
 
-Do NOT change BUY/SELL/HOLD from this section.
-Only adjust reasoning strength.
+These only affect reasoning strength, never the BUY/SELL/HOLD decision:
 
 Reduce conviction if:
 - CE confidence is LOW or article count < 10
-- CE and TTS conflict
-- SIV shows signal_mismatch
+- CE and TTS point in opposite directions
+- SIV signal = PARTIAL with signal_mismatch
 
 Increase conviction if:
-- CE and TTS align
-- CE confidence is HIGH or MODERATE with sufficient articles
+- CE and TTS align directionally
+- CE confidence HIGH or MODERATE with sufficient articles
 - EMA_200_confidence >= 0.8
-- TTS indicators (EMA, RSI, BB) agree
 
 ------------------------------------------------------------
-4. IMPORTANT RULES
+3. REASONING REQUIREMENTS
 ------------------------------------------------------------
 
-- weighted_score determines direction AND HOLD zone
-- HOLD is NOT optional in neutral zone (it is mandatory)
-- Do NOT force BUY or SELL inside [-0.15, 0.15]
-- Mixed signals outside neutral zone affect confidence only, not direction
-
-------------------------------------------------------------
-5. RISK MANAGEMENT (ATR BASED)
-------------------------------------------------------------
-
-SL distance: {sl_distance}
-TP distance: {tp_distance}
-
-If risk/reward is unclear or contradicts signal strength → HOLD
-
-------------------------------------------------------------
-REASONING REQUIREMENTS:
-------------------------------------------------------------
-
-- State weighted_score and classify it (BUY zone / SELL zone / HOLD zone)
+- State weighted_score and its zone
 - Evaluate CE (confidence, article count, sentiment strength)
-- Evaluate TTS (EMA, RSI, BB, EMA200 reliability)
-- Evaluate SIV (alignment or mismatch and impact)
-- Justify decision strictly based on threshold logic
+- Evaluate TTS (EMA, RSI, BB, MACD, EMA200 reliability)
+- Evaluate SIV (alignment or mismatch — conviction impact only)
+- Justify decision from weighted_score threshold only
 - Always reference actual values
 
 ------------------------------------------------------------
@@ -253,6 +218,7 @@ total_score: {tts.get("total_score")}
 ema_trend: {tts.get("ema_trend")}
 rsi: {tts.get("rsi")}
 bb_signal: {tts.get("bb_signal")}
+macd_hist: {tts.get("macd_hist")}
 ema_200_confidence: {tts.get("ema_200_confidence")}
 ema_200_reliable: {tts.get("ema_200_reliable")}
 data_stale: {tts.get("data_stale")}

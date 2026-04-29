@@ -141,7 +141,7 @@ def tts_agent(state: TradingState):
     if not tech:
         return {"tts_output": {"decision": "HOLD"}}
 
-    # =========================
+# =========================
     # FEATURE ENGINEERING
     # =========================
     t2 = time.perf_counter()
@@ -159,6 +159,7 @@ def tts_agent(state: TradingState):
         bb_score = 0.0
 
     price = tech["price"]
+    macd_score = tech.get("macd_score", 0.0)
 
     log("FEATURE ENGINEERING", t2)
 
@@ -168,9 +169,10 @@ def tts_agent(state: TradingState):
     t3 = time.perf_counter()
 
     total_score = (
-        0.3 * ema_score +
-        0.3 * rsi_score +
-        0.2 * bb_score
+        0.35 * ema_score +
+        0.25 * rsi_score +
+        0.20 * bb_score +
+        0.20 * macd_score
     )
 
     total_score = max(-1.0, min(total_score, 1.0))
@@ -199,6 +201,7 @@ def tts_agent(state: TradingState):
         "bb_signal": tech["bb_signal"],
         "ema_200_confidence": tech["ema_200_confidence"],
         "ema_200_reliable": tech["ema_200_reliable"],
+        "macd_hist": tech.get("macd_hist", 0.0),
         "data_stale": tech["data_stale"],
         "explanation": "skipped_backtest" if backtest_mode else "pending"
     }

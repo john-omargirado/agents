@@ -2,22 +2,18 @@ from typing import TypedDict, Optional, List, Literal
 
 
 class TTSOutput(TypedDict):
+    decision: Literal["BUY", "SELL", "HOLD"]      # was missing entirely
     total_score: float
-    ema_trend: Literal["BULLISH", "BEARISH", "SIDEWAYS"]
-    ema_score: float
-    rsi_value: float
-    rsi_score: float
-    bb_signal: Literal["OVERBOUGHT", "OVERSOLD", "STABLE"]
-    bb_score: float
-    breakout_score: float
     price: float
+    ema_trend: Literal["BULLISH", "BEARISH", "SIDEWAYS"]
+    rsi: float                                      # was rsi_value — wrong name
+    bb_signal: Literal["OVERBOUGHT", "OVERSOLD", "STABLE"]
+    macd_hist: float                                # new
     ema_200_confidence: float
     ema_200_reliable: bool
     data_stale: bool
-    rows_available: int
-    tts_insufficient: bool
+    explanation: str
     error: Optional[str]
-    explanation: str   
 
 
 class CEOutput(TypedDict):
@@ -45,8 +41,8 @@ class VerdictOutput(TypedDict):
     verdict: Literal["BUY", "SELL", "HOLD"]
     weighted_score: float
     risk_multiplier: float
-    # Backtesting Fields
-    atr:float
+    atr: float
     sl_distance: float
     tp_distance: float
-    reasoning: str
+    verdict_reasoning: str      # was "reasoning" — agent returns "verdict_reasoning"
+    action: str 

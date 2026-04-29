@@ -1,0 +1,407 @@
+Date,Price,Final_Verdict,Market_Reality,Correct,Weighted_Score,CE_Article_Count,CE_Sentiment,CE_Mean_Score,CE_Sentiment_Score,CE_Confidence,CE_Explanation,TTS_Score,TTS_Signal,TTS_Explanation,SIV_Signal,SIV_Explanation,Verdict_Reasoning,Exit_Reason,Execution_Time_Seconds
+01/01/2024,0.8396,SELL,BULLISH,False,-0.1924,1.0,NEUTRAL,0.8941,0.0,LOW,"---
+The sentiment distribution is not available due to the low article count, which limits the ability to generalize public perception or market mood. Confidence is low because the analysis is based on only one article, which is insufficient to establish a reliable trend or consensus. The signal is not reliable due to the low article count, as a single article cannot represent broader market sentiment. The final sentiment is neutral because there's not enough data to determine a clear bullish or bearish tone.
+
+---",-0.4811,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to the bearish EMA trend and oversold RSI condition, indicating downward momentum. The dominant signal was the EMA trend, which showed a bearish direction. No conflicting indicators were present, as the BB signal was stable, not contradicting the bearish EMA trend. The final decision is SELL due to the bearish EMA trend and oversold RSI, suggesting a continuation of downward movement. EMA 200 is highly confident and reliable, reinforcing the bearish signal rather than reducing reliability.
+
+---",PARTIAL,"---
+CE and TTS signals do not align, as CE is neutral while TTS is bearish. The signals conflict because CE lacks sufficient macroeconomic news sentiment data, while TTS has a strong bearish technical signal. Data quality is low for CE due to the single article and low confidence, but TTS data is reliable and up to date.","The decision to SELL is driven by the weighted score of **-0.1924**, which falls in the SELL zone (≤ -0.15). This score reflects a combination of contributions from Technical Trend Signals (TTS) and Crowd情绪 (CE), though their alignment is partial.  
+
+**TTS ANALYSIS** dominates the negative score with a total of **-0.4811**, driven by a **bearish EMA trend** (the dominant indicator) and an **oversold RSI of 19.82**, both signaling downward momentum. The EMA 200 trend is **bearish, reliable, and highly confident (1.0)**, reinforcing the technical case for selling without reliability concerns. No conflicting indicators are present, as the Bollinger Band signal is neutral/stable, leaving the bearish EMA trend unchallenged.  
+
+**CE ANALYSIS** contributes minimally due to its **neutral sentiment (0.0)** and **low confidence**, stemming from only **1 article**, which is insufficient to infer a reliable market sentiment trend. While CE does not oppose the SELL signal, its neutrality and low reliability mean it neither strengthens nor weakens the TTS-driven decision.  
+
+**SIV ALIGNMENT** reveals a **partial conflict**: TTS strongly favors SELL, while CE is neutral. However, this conflict does not override the TTS signal, as CE’s low data quality (single article) diminishes its weight. The final weighted score remains anchored by TTS’s robust bearish technical indicators, particularly the EMA 200’s reliability, ensuring the SELL decision is conviction-driven by technicals despite CE’s neutrality.",SL,0.2425
+01/02/2024,0.85008,SELL,BULLISH,False,-0.7524,9.0,BEARISH,0.8863,-0.179,LOW,"---
+The article sentiment distribution suggests a majority of negative sentiment, indicated by a high mean score and a bearish overall sentiment. Confidence is low due to a relatively small number of articles (9), which may not represent a comprehensive view of market sentiment. The signal might not be reliable given the limited article count, as it reduces statistical significance and increases the risk of sampling bias. The final sentiment is bearish because the aggregated sentiment scores strongly lean negative, despite low confidence.
+
+---",-0.381,SELL,,COHERENT,"sive view of market sentiment. The signal might not be reliable given the limited article count, as it reduces statistical significance and increases the risk of sampling bias. The final sentiment is bearish because the aggregated sentiment scores strongly lean negative, despite low confidence.
+
+--- TTS ---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and a low RSI value indicating oversold conditions. The dominant signal was the bearish EMA trend, while the stable Bollinger Band signal did not strongly contradict it. There were no significant conflicting indicators; the EMA and RSI signals aligned in suggesting a downward trend. The final decision is to sell based on the overall negative score and bearish EMA trend. The EMA 200 has high confidence and is reliable, which supports the decision's reliability.
+
+---  ---
+CE and TTS signals align in suggesting a bearish outlook, with CE indicating bearish sentiment and TTS recommending a sell. Signals align because both systems independently detect downward pressure, one from sentiment and the other from technical indicators. There are no data quality issues reported, as the  signal is coherent and no integrity issues are listed.","The decision to SELL stems from a weighted score of **-0.7524**, which falls in the SELL zone (≤ -0.15). This score integrates contributions from both the **CE (sentiment analysis)** and **TTS (technical indicators)**, both of which independently reinforced a bearish outlook.  
+
+1. **WEIGHTED SCORE**:  
+   - The score combines CE’s **-0.179 sentiment score** (bearish) and TTS’s **-0.381 total score** (SELL), driven by a bearish EMA trend and oversold RSI. While CE’s low confidence reduces its weight, TTS’s high-reliability signals (e.g., EMA 200 confidence = 1.0) dominate the calculation, pulling the weighted score deeply into the SELL range.  
+
+2. **CE ANALYSIS**:  
+   - **Confidence and reliability**: CE’s confidence is **LOW** due to only 9 articles, which increases sampling bias risk and limits representativeness.  
+   - **Sentiment strength**: Despite low confidence, the aggregated sentiment is **BEARISH** (-0.179) with a high mean score (0.8863) for negativity, indicating strong downward pressure in the limited sample.  
+   - **Summary**: The bearish CE signal aligns with technical indicators but is discounted for reliability, reducing its contribution to the weighted score.  
+
+3. **TTS ANALYSIS**:  
+   - **Dominant indicator**: The **bearish EMA trend** (EMA 200 reliable, confidence = 1.0) is the primary driver, supported by an RSI of 36.5 (oversold territory).  
+   - **Conflicting signals**: None detected—Bollinger Bands are stable, and EMA/RSI signals align on a downward trend.  
+   - **Summary**: TTS’s high-confidence bearish signals provide a robust technical foundation for the SELL decision, with no data staleness or integrity issues.  
+
+4. **SIV ALIGNMENT**:  
+   - CE and TTS **align coherently** on a bearish outlook, with CE flagging sentiment-driven weakness and TTS confirming structural technical deterioration.  
+   - **Impact on conviction**: While CE’s low confidence weakens the sentiment component, TTS’s reliability strengthens the technical case, resulting in a decisive weighted score.  
+
+The combined bearish signals, anchored by TTS’s high-confidence technical indicators and CE’s directional alignment, justify the SELL decision despite CE’s limited reliability.",TIME,0.7996
+01/03/2024,0.84899,SELL,BULLISH,False,-0.7544,22.0,BEARISH,0.7814,-0.1535,MODERATE,"---
+The sentiment distribution is dominated by negative articles, which skews the overall mean score. Confidence is moderate due to a reasonable but not large article count (22), limiting the breadth of the signal. The signal is generally reliable for short-term sentiment but may lack depth for long-term conclusions. The final sentiment is bearish because the raw vibe is negative, and the sentiment score is below zero, indicating an overall pessimistic tone in the news.
+
+---",-0.386,SELL,"---
+The EMA/RSI/BB signals combined to produce a negative score, with EMA showing a bearish trend and RSI below 50 indicating weakness. The dominant signal was the EMA trend, while BB showed stability and did not contradict the bearish view. EMA 200 is reliable and confident, reinforcing the bearish signal. The final decision is to sell due to the overall negative technical bias and the strength of the EMA 200 signal.
+
+---",COHERENT,"---
+CE and TTS signals align in a bearish direction, with CE showing bearish sentiment and TTS recommending a sell. The alignment is coherent, with no significant data quality issues reported. Both signals support a similar market outlook, though CE confidence is only moderate due to article count limitations.","The decision to sell was driven by a weighted score of **-0.7544**, which falls firmly within the SELL zone (≤ -0.15). This score aggregated contributions from both the **CE** and **TTS** analyses, both of which exhibited bearish signals. The **TTS** component delivered a strong negative score of **-0.386**, dominated by a **bearish EMA 200 trend** (confirmed as reliable with 1.0 confidence) and a weak **RSI of 35.67**, signaling oversold conditions. The **CE** analysis added a moderate bearish bias, with a **sentiment score of -0.1535** derived from 22 articles reflecting a **negative raw vibe**, despite a higher mean score of 0.7814. This discrepancy highlights the prevalence of pessimistic narratives in the news, skewing the overall sentiment.  
+
+The **TTS** analysis was underpinned by a coherent technical outlook: the EMA 200’s bearish trend was the dominant driver, reinforced by RSI below 50 and stable Bollinger Bands that did not challenge the bearish case. The **CE** analysis, while moderate in confidence due to a limited article count, aligned directionally with the technical indicators. The **SIV** confirmed coherence between CE and TTS, with no conflicting signals or data-quality issues. While CE’s moderate confidence slightly reduced conviction, the alignment of both components in the bearish direction amplified the strength of the weighted score, justifying the sell decision.",TIME,0.8111
+01/04/2024,0.8502,SELL,BULLISH,False,-0.7503,15.0,BEARISH,0.87,-0.1004,MODERATE,"---
+The sentiment distribution indicates a predominantly negative tone in the analyzed articles, with a high mean score suggesting strong bearish sentiment. Confidence is moderate due to the relatively small article count (15) and potential variability in the sentiment distribution. The signal is somewhat reliable given the moderate number of articles, but not strong enough to justify a high confidence level. The final sentiment is bearish due to the cumulative negative sentiment across the articles.
+
+---",-0.3758,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and low RSI, indicating oversold conditions and bearish momentum. The dominant signal was the EMA trend. There were no conflicting indicators as the BB signal was stable and did not contradict the other signals. The final decision is to sell due to the overall negative technical indicators. The EMA 200 is highly confident and reliable, which supports the decision.
+
+---",COHERENT,"---
+The CE and TTS signals align as both indicate a bearish or sell outlook. The signals align because the negative sentiment from macroeconomic news corresponds with the bearish technical indicators. There are no data quality issues reported, and the system integrity appears intact.","The decision to sell stems from a weighted score of **-0.7503**, which falls within the SELL zone (≤ -0.15). This score reflects a strong alignment between bearish technical and sentiment signals.  
+
+**CE Analysis** contributed a bearish sentiment with a moderate confidence level, driven by 15 articles showing a negative tone. The sentiment score of **-0.1004** indicates a clear downward bias, though the moderate confidence (due to a relatively low article count) introduces some caution. The high mean score of **0.87** underscores strong consensus in the negativity, but the reliability of the signal remains limited by the sample size.  
+
+**TTS Analysis** provided a more decisive bearish signal, with a total score of **-0.3758**. The dominant indicator was the **bearish EMA trend**, supported by an RSI of **37.37** (near oversold territory) and a stable Bollinger Band signal. The EMA 200’s reliability (confidence: **1.0**) reinforced the technical case for selling, with no conflicting indicators to undermine the bearish momentum.  
+
+**SIV Alignment** confirmed coherence between CE and TTS signals, both pointing to bearish conditions. While this alignment strengthened conviction in the decision, the moderate confidence from CE slightly tempered the overall certainty. However, the combined weight of the technical indicators’ reliability and the consistent negative sentiment justified the SELL recommendation.",TIME,0.4024
+01/05/2024,0.84945,BUY,BULLISH,True,0.4482,33.0,BULLISH,0.8128,0.0899,HIGH,"---  
+The sentiment distribution indicates strong positive sentiment with a mean score of 0.8128 and high confidence, reflecting a clear bullish consensus. The high confidence stems from a sufficient number of articles (33) relative to the total available (36), ensuring the signal is statistically meaningful. The final sentiment is BULLISH due to the strong positive sentiment score of 0.0899 and the alignment of the raw vibe with a positive macroeconomic outlook.
+
+---",-0.3796,SELL,"---  
+The EMA trend is bearish, RSI is in oversold territory, and BB is stable, contributing to a net negative score. The dominant signal is the bearish EMA trend. No major conflicts between indicators, as RSI and BB support a cautious stance. The final decision is SELL due to the bearish EMA trend and low overall score. EMA 200 is reliable with full confidence, which reinforces the bearish signal.
+
+---",PARTIAL,"---  
+CE and TTS signals conflict, with CE being bullish and TTS signaling a sell. The mismatch arises from differing signal sources: CE reflects macroeconomic optimism, while TTS detects bearish technical indicators. No major data quality issues reported, but the signal mismatch indicates potential divergence between sentiment and price action.","The decision to execute a long position arises from the weighted score of **0.4482**, which falls within the **BUY zone** (≥0.15). This score reflects a net positive balance between the **CE (Consensus Evaluation)** and **TTS (Technical Trend Signal)** components, despite their conflicting directional signals.  
+
+**CE analysis** contributed a **strong bullish bias** with a sentiment score of **0.0899** and a mean score of **0.8128**, underpinned by **33 high-quality articles** (86% of available 36) that established **high confidence** in the positive sentiment. The alignment of raw sentiment (""POSITIVE"") with a statistically robust sample reinforced the conclusion of macroeconomic optimism.  
+
+**TTS analysis**, however, generated a **bearish signal** (-0.3796) driven by a **reliable EMA 200 bearish trend** (100% confidence) and an oversold RSI (36.73), though Bollinger Bands remained neutral. The absence of conflicting indicators (e.g., divergences) strengthened the bearish technical case.  
+
+The **SIV (Signal Integrity Verification)** confirmed a **partial signal mismatch** between CE and TTS, with no data quality issues. While this divergence reduced conviction compared to a fully aligned scenario, the **CE’s high-confidence bullish signal outweighed the TTS bearishness** in the weighted scoring model, pushing the final score decisively into the buy range. The system prioritized the macroeconomic strength indicated by CE, even as technical indicators suggested caution.",TIME,1.2565
+01/08/2024,0.84793,SELL,BULLISH,False,-0.7551,32.0,BEARISH,0.7739,-0.0825,HIGH,"---
+The article sentiment distribution suggests a strong negative bias among the analyzed news, with a mean score significantly skewed toward negativity. Confidence is high because the sample size of 32 articles is sufficient to support a reliable sentiment inference. The signal appears reliable given the article count, as it exceeds the threshold for robust statistical significance. The final sentiment is bearish because the aggregated sentiment scores and raw vibe are consistently negative across the dataset.
+
+---",-0.3877,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and a relatively low RSI suggesting oversold conditions, which can precede a reversal to the downside. The dominant signal was the EMA trend, which indicated a bearish bias. No strong conflicting indicators were present, as the Bollinger Bands suggested stability rather than volatility. The final decision is to sell due to the combined bearish momentum and lack of upward pressure. EMA 200 is highly confident and reliable, which supports the validity of the bearish signal.
+
+---",COHERENT,"---
+CE and TTS signals align in a bearish direction, with CE indicating a bearish sentiment and TTS issuing a sell decision. Signals align because both macroeconomic sentiment and technical indicators suggest downward pressure. No data quality issues were detected, as the CE article count is sufficient, and TTS data is current and reliable.","The decision to SELL is driven by a weighted score of **-0.7551**, which falls firmly in the SELL zone (≤ -0.15). This score integrates inputs from **Consensus Estimate (CE)** and **Technical Trading Signals (TTS)**, both of which contributed bearish pressure.  
+
+**CE analysis** indicates a **HIGH-confidence bearish sentiment**, derived from 32 articles—a reliable sample size that ensures statistical significance. The aggregated sentiment score of **-0.0825** reflects consistent negativity in raw tone and direction, aligning with downward price expectations.  
+
+**TTS analysis** reinforces this with a **dominant bearish EMA 200 trend**, supported by a highly reliable (confidence: 1.0) and current dataset. The RSI of **35.38** signals oversold conditions, often precedents to further declines, while Bollinger Bands show stability, avoiding volatility-driven ambiguity. The TTS total score of **-0.3877** reflects no conflicting indicators, as all technical metrics harmonize in the bearish direction.  
+
+**SIV alignment** confirms coherence between CE and TTS: both systems independently point to bearish outcomes, with no data-quality issues undermining their validity. While this alignment strengthens conviction in the decision, the SELL verdict is unambiguously anchored in the weighted score’s position in the SELL zone.",TIME,1.4621
+01/09/2024,0.85226,HOLD,BULLISH,False,-0.1394,36.0,NEUTRAL,0.8673,-0.0027,HIGH,"---
+The sentiment distribution suggests a mixed but ultimately neutral market perception, with a mean score near neutrality and no strong bullish or bearish bias. Confidence is high due to the relatively large article count (36) and the consistency of sentiment across the sample. The signal is reliable given the article count, as 36 is sufficient for a robust sentiment assessment. The final sentiment is neutral because the mean score is close to zero and the raw_vibe is also neutral, indicating no strong directional sentiment.
+
+---",-0.3486,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and RSI below 50, indicating potential oversold conditions and downward momentum. The dominant signal was the EMA trend, which is bearish. There were no strong conflicting indicators, as BB is stable and does not counteract the EMA/RSI signals. The final decision is SELL due to the overall negative score and bearish trend confirmation. EMA 200 has high confidence and is reliable, which supports the decision's reliability.
+
+---",PARTIAL,"---
+CE and TTS signals do not align, as CE is neutral while TTS is bearish. Signals conflict because CE is based on macroeconomic sentiment with no strong directional bias, while TTS is driven by technical indicators showing a bearish trend. Data quality is not an issue, as both systems report high confidence and no stale data.","The decision to HOLD arises from the weighted score of **-0.1394**, which falls within the **-0.15 to 0.15 neutral zone**. This score reflects a balance between the **bearish TTS signal** (total_score = -0.3486) and the **neutral CE signal** (sentiment_score = -0.0027). While TTS strongly favors selling due to a bearish EMA 200 trend and RSI below 50, the neutral CE sentiment—supported by high-confidence analysis of 36 articles with no strong directional bias—reduces the overall negativity, preventing the score from crossing the -0.15 sell threshold.  
+
+**CE analysis** shows high confidence (mean_score = 0.8673) and reliable article volume (36), but sentiment remains neutral due to a mean score near zero and mixed market perceptions. This neutrality limits CE’s contribution to the weighted score.  
+
+**TTS analysis** is decisively bearish, driven by a reliable EMA 200 trend (ema_200_confidence = 1.0) and RSI of 41.9, signaling oversold conditions. However, the absence of conflicting signals from Bollinger Bands (stable) ensures technicals are consistent, though the EMA 200’s reliability does not override the CE’s neutral offset.  
+
+**SIV alignment** reveals a conflict: CE’s neutrality clashes with TTS’s bearishness (issue: *one_signal_neutral*). This partial misalignment reduces conviction but does not affect the decision, as the weighted score remains in the hold range. The final HOLD outcome prioritizes the statistical boundary over the internal signal conflict.",HOLD_SKIP,1.5751
+01/10/2024,0.8508,BUY,BULLISH,True,0.457,9.0,BULLISH,0.8568,0.2541,LOW,"---
+The article sentiment distribution is skewed towards positive, with a high mean score of 0.8568, suggesting optimism in the news. Confidence is low because the sample size of nine articles is small, limiting representativeness. The signal may not be fully reliable due to the low volume of articles. The final bullish sentiment is driven by the overall positive tone of the analyzed articles.
+
+---",-0.3575,SELL,"---
+The EMA/RSI/BB signals produced a negative total score due to a bearish EMA trend and a moderate RSI near neutral. The dominant signal was the EMA trend. No major conflicting indicators were present. The final decision is to sell due to the bearish trend in EMA. The EMA 200 signal is highly confident and reliable, reinforcing the decision.
+
+---",PARTIAL,"---
+The CE and TTS signals do not align; CE is bullish while TTS recommends a sell. The conflict likely arises from differing data sources and methodologies—CE reflects news sentiment while TTS reflects price action. Data quality is acceptable, but the low CE confidence may contribute to the signal mismatch.","The decision to buy is based on a weighted score of **0.457**, which exceeds the 0.15 threshold for a buy signal. This score reflects a combination of **CE** (sentiment analysis) and **TTS** (technical indicators), with CE’s bullish bias outweighing TTS’s bearish signal.  
+
+### **CE Analysis**  
+CE contributed a **bullish sentiment score of 0.2541**, driven by a high mean article score of **0.8568** and a positive raw sentiment. While confidence in CE is rated as **low** due to only **9 articles analyzed** (limiting representativeness), the skew toward optimism in the news suggests potential upward momentum. The low confidence introduces uncertainty but does not negate the directional signal.  
+
+### **TTS Analysis**  
+TTS produced a **total score of -0.3575**, signaling a sell decision. The dominant factor here is the **bearish EMA 200 trend**, reinforced by its **100% confidence and reliability**. RSI at **40.4** and stable Bollinger Bands add neutrality, with no major conflicting indicators. However, the EMA 200’s bearish bias is countered by CE’s stronger bullish influence in the weighted score calculation.  
+
+### **SIV Alignment**  
+CE and TTS signals **conflict** (bullish vs. bearish), categorized as a **partial signal mismatch**. This reduces conviction in the decision but does not override the threshold-based logic. The weighted score’s positive value (0.457) remains in the buy zone despite the technical indicators’ bearish bias, prioritizing the combined strength of CE’s optimism and the limited bearish drag from TTS.",TIME,0.3537
+01/11/2024,0.8518,SELL,BULLISH,False,-0.7394,18.0,BEARISH,0.8517,-0.1882,MODERATE,"---
+The article sentiment distribution suggests a strong bearish lean in the news, with a high proportion of negative content. Confidence is rated MODERATE due to the limited number of articles (18) and the possibility that the sentiment is influenced by a few highly negative pieces. The signal is somewhat reliable, but not strongly so, given the article count, which is relatively small for drawing a high-confidence conclusion. The final sentiment is BEARISH because the mean score and sentiment score both indicate a strong negative sentiment, and the raw vibe is negative, suggesting a general pessimism in the analyzed content.
+
+---",-0.3484,SELL,"---
+The EMA/RSI/BB signals produced this score due to a bearish EMA trend, an RSI that is slightly below the neutral level, and a stable Bollinger Band signal. The dominant signal was the EMA trend, which was bearish. There were no significant conflicting indicators, as the RSI was not overbought or oversold and the Bollinger Bands indicated stability. The final decision is SELL because the overall score is negative and the EMA trend is bearish. The EMA 200 is highly confident and reliable, which supports the bearish conclusion and does not affect the reliability of the signal.
+
+---",COHERENT,"---
+CE and TTS signals align, as both indicate a bearish or sell signal, which is a coherent outcome. The signals align because the sentiment from the news is negative, and the technical indicators also suggest a bearish price action. There are no data quality issues, as both the CE and TTS inputs are reliable and the data is not stale.","The decision to SELL is driven by a weighted score of **-0.7394**, which falls firmly in the SELL zone (≤ -0.15). This score integrates inputs from two components: **CE** (sentiment analysis) and **TTS** (technical indicators). CE contributed a **-0.1882** sentiment score, reflecting bearish news sentiment, while TTS added a **-0.3484** score, dominated by bearish technical signals. Together, these components created a strongly negative bias, justifying the SELL verdict.  
+
+**CE analysis** revealed a **BEARISH** sentiment with **MODERATE confidence**, based on 18 articles. While the article count is limited (reducing reliability), the sentiment scores and raw ""NEGATIVE"" vibe indicate a strong consensus against the asset. The **-0.1882 sentiment score** aligns with the negative mean score (0.8517 represents magnitude, not direction), reinforcing the bearish lean.  
+
+**TTS analysis** was led by the **EMA 200**, which showed a **BEARISH trend** with **100% confidence** and no reliability issues. The RSI at 41.93 suggested slight bearish momentum (below neutral) without overbought/oversold extremes, and Bollinger Bands signaled **STABLE** volatility. These non-conflicting indicators produced a **-0.3484** score, directly supporting the SELL decision.  
+
+**SIV alignment** confirmed coherence: both CE and TTS independently pointed to bearishness, with no data quality issues. While CE’s moderate confidence slightly reduced conviction, the technical signals’ high reliability (EMA 200) and CE’s clear negative sentiment solidified the SELL rationale.",SL,0.8207
+01/12/2024,0.85171,SELL,BULLISH,False,-0.7396,8.0,BEARISH,0.7839,-0.1182,LOW,"---
+The article sentiment distribution suggests a predominantly negative tone toward the subject, with a mean score of 0.7839 and a bearish sentiment conclusion. Confidence is low due to a limited number of articles (8), which may not be representative or sufficient to form a robust conclusion. The signal may not be reliable because the small article count increases the risk of sampling bias or outlier influence. The final sentiment is bearish because the aggregated scores of the articles strongly lean toward negative sentiment despite low confidence.
+
+---",-0.349,SELL,"---
+The EMA/RSI/BB signals produced a negative score because the EMA trend is bearish, indicating downward price momentum, while the RSI is below 50, suggesting weakness or oversold conditions. The dominant signal was the EMA trend. There were no strong conflicting indicators as the BB signal was neutral/stable. The final decision is to sell due to the combination of bearish momentum and weak relative strength. The EMA 200 is highly confident and reliable, supporting the decision.
+
+---",COHERENT,"---
+CE and TTS signals align as both indicate a bearish or sell bias. The signals align because the technical indicators and sentiment analysis both detect a downward trend, albeit through different methods. No data quality issues are reported, as the technical data is up to date and reliable, while the sentiment data, though low confidence, is not invalidated by quality problems.","The decision to SELL is driven by a weighted score of **-0.7396**, which falls in the **SELL zone** (≤ -0.15). This score integrates signals from two components:  
+
+1. **CE ANALYSIS** contributes a **bearish sentiment** (-0.1182) with **low confidence** due to only 8 articles, raising concerns about representativeness. However, the aggregated article scores show a **strong negative tone** (mean score of 0.7839), reinforcing a bearish bias despite the limited data.  
+
+2. **TTS ANALYSIS** dominates with a **bearish technical signal** (-0.349). The **EMA trend is bearish**, indicating downward momentum, while the **RSI (41.83)** confirms weakness below 50. The **EMA 200 is highly reliable** (confidence: 1.0), solidifying the technical case for selling. Bollinger Bands are neutral (stable), avoiding conflicting signals.  
+
+The **SIV alignment** confirms coherence: CE’s bearish sentiment and TTS’s bearish technicals converge. While CE’s low confidence slightly reduces conviction, the **robust reliability of TTS indicators** (especially EMA 200) ensures the combined weighted score strongly favors SELL. The final score reflects a synthesis of **weakness in technical momentum** and **negative sentiment**, both amplifying the downward bias.",SL,0.2713
+01/15/2024,0.85545,SELL,BULLISH,False,-0.7258,7.0,BEARISH,0.9011,-0.1261,LOW,"---
+The article sentiment distribution suggests a strong negative bias with a mean score close to 1, but the low confidence indicates inconsistency or uncertainty in the sentiment classification. The signal is not reliable due to the small article count of 7, which limits representativeness. The final sentiment is bearish due to the overall negative sentiment in the analyzed articles.
+
+---",-0.3145,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and a RSI below 50, indicating weak momentum. The dominant signal was the EMA trend. No conflicting indicators were present. The final decision is to sell due to the overall bearish technical outlook. EMA 200 is reliable and confident, which supports the reliability of the signal.
+
+---",COHERENT,"---
+The CE and TTS signals align as both are bearish. The signals align because the negative sentiment from macroeconomic news and the bearish technical indicators both suggest a downward trend. There are no data quality issues affecting the coherence of the signals.","The decision to SELL is driven by a weighted score of **-0.7258**, which falls firmly in the SELL zone (≤ -0.15). This score integrates contributions from **CE** and **TTS**, both of which exhibit bearish signals.  
+
+**CE analysis** reveals a **BEARISH** sentiment with a **negative raw_vibe** and a **sentiment_score of -0.1261**, reflecting consistent downward bias in news articles. However, the **LOW confidence** (due to only 7 articles) and a **mean_score of 0.9011** suggest potential inconsistency in sentiment classification, limiting reliability. The small article count reduces the representativeness of the signal, though the directional bias remains negative.  
+
+**TTS analysis** dominates the bearish outlook, with a **total_score of -0.3145**. The **EMA trend is BEARISH**, supported by an **RSI of 47.59** (below 50, signaling weak momentum) and a **reliable EMA 200** (confidence = 1.0, reliable = True). No conflicting indicators are present, and the **Bollinger Bands (STABLE)** add no contradiction. The EMA 200’s reliability strengthens the technical case for selling.  
+
+**SIV alignment** confirms coherence between CE and TTS, as both point to a bearish outlook. While CE’s low confidence slightly reduces conviction, the absence of data issues and the strong technical indicators (particularly the bearish EMA 200) underpin the decision. The combined bearishness of macroeconomic sentiment and technical signals justifies the aggressive SELL position.",SL,0.4875
+01/16/2024,0.86154,SELL,BULLISH,False,-0.675,9.0,BEARISH,0.8296,-0.2431,LOW,"---
+The sentiment distribution indicates a generally negative tone in the analyzed articles, with a high mean negativity score. Confidence is low likely due to insufficient data or inconsistent signals across articles. The signal may not be fully reliable with only nine articles, which is a small sample size for robust sentiment inference. The final sentiment is bearish because the aggregated negative sentiment scores outweigh any positive signals.
+
+---",-0.1876,SELL,"---
+The EMA/RSI/BB signals collectively contributed a mildly negative score, with EMA trend being bearish as the dominant signal. The RSI is near neutral, and the Bollinger Bands show stability, adding little to the overall bearish bias. No strong conflicting indicators are present. The final decision is to sell due to the bearish EMA trend and the overall negative technical score. EMA 200 is highly confident and reliable, which supports the reliability of the bearish signal.
+
+---",COHERENT,"---
+CE and TTS signals align in a bearish direction, with CE indicating bearish sentiment and TTS recommending a sell. The alignment likely stems from consistent negative signals in both macroeconomic sentiment and price action. No data quality issues are reported, and the system integrity is coherent.","The decision to sell is driven by a weighted score of -0.675, which falls firmly within the SELL zone (≤ -0.15). This score integrates contributions from both the CE and TTS analyses, both of which exhibit bearish signals.  
+
+**CE Analysis** contributed a sentiment score of -0.2431, reflecting a bearish outlook fueled by a negative ""raw_vibe"" and a high mean negativity score across 9 articles. However, the low confidence level (labeled ""LOW"") suggests potential limitations in reliability, likely due to the small sample size of 9 articles, which may not fully capture market sentiment.  
+
+**TTS Analysis** provided a stronger bearish signal, with a total score of -0.1876. The dominant indicator here is the **bearish EMA trend**, supported by a highly reliable EMA 200 (confidence: 1.0, reliability: True). While RSI (55.34) remains near neutral and Bollinger Bands show stability, these indicators do not conflict with the bearish EMA trend. The absence of conflicting signals and the EMA 200’s reliability reinforce the technical case for selling.  
+
+**SIV Alignment** confirms coherence between CE and TTS, as both point to a bearish direction. Although CE’s low confidence introduces some uncertainty, the alignment strengthens conviction in the decision. The combined weight of a bearish EMA trend (TTS) and negative sentiment (CE) drives the weighted score deep into the SELL range, justifying the trade action.",SL,0.2192
+01/17/2024,0.86435,SELL,BULLISH,False,-0.672,11.0,BEARISH,0.7798,-0.5401,LOW,"---
+The sentiment distribution suggests a strongly negative tone in the analyzed articles, as reflected by the high mean score of 0.7798 and a bearish final sentiment. Confidence is low because the article count is small (11), which limits the representativeness of the sample. The signal may not be reliable due to the low volume of input data, which increases the risk of noise influencing the outcome. The final sentiment is bearish because the aggregated sentiment scores and raw vibe are clearly negative, despite the limited confidence.
+
+---",-0.1801,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend, an RSI near neutral, and a BB signal indicating overbought conditions, which is bearish in a downtrend. The dominant signal was the EMA trend, which strongly indicated a bearish direction. No significant conflicting indicators were present, as the BB overbought signal aligned with the EMA bearish trend. The final decision is to sell due to the overall negative technical score and bearish trend confirmation. EMA 200 is reliable and confident, which supports the decision's credibility.
+
+---",COHERENT,"---
+CE and TTS signals align in a bearish direction, with CE indicating bearish sentiment and TTS recommending a sell. The alignment is likely due to both systems detecting a downward trend in market sentiment and price action. No data quality issues were reported, and the signal is labeled coherent, indicating internal consistency between the systems.","The decision to sell stems from a weighted score of **-0.672**, which falls in the **SELL zone** (≤ -0.15). This score combines contributions from **CE** and **TTS**, both of which reinforced bearish signals.  
+
+**CE analysis** indicated a **bearish sentiment** with a **sentiment score of -0.5401**, driven by a high mean score of **0.7798** (indicating strong negativity in aggregated article sentiment) and a ""negative"" raw vibe. However, confidence in this signal is **low** due to a limited **article count of 11**, which reduces the sample’s reliability and raises the risk of noise influencing the result. Despite this, the directional clarity of the sentiment remains consistent with a bearish outlook.  
+
+**TTS analysis** produced a **total score of -0.1801**, dominated by a **bearish EMA trend** (the most reliable indicator here, with EMA 200 marked as reliable and confident). While the RSI (58.4) was near neutral, the **Bollinger Band (BB) overbought signal** acted bearishly in the context of a downtrend, aligning with the EMA. No conflicting signals were present, and the EMA 200’s reliability strengthened the technical case for selling.  
+
+**SIV alignment** confirmed coherence between CE and TTS, both pointing to a bearish direction. Though CE’s low confidence introduces some uncertainty, the absence of data quality issues and the technical strength of the TTS signal (supported by EMA 200 reliability) solidified the SELL decision. The combined bearish momentum from sentiment and technical indicators justified the aggressive -0.672 weighted score, pushing it decisively into the SELL threshold.",TIME,0.5151
+01/18/2024,0.86802,BUY,BEARISH,False,0.5827,12.0,BULLISH,0.8141,0.1899,LOW,"---
+The sentiment distribution shows a positive tone with a high mean score of 0.8141, but the low confidence indicates limited statistical certainty due to the small sample size. With only 12 articles, the signal may not capture broader market sentiment reliably. The final sentiment is BULLISH because the overall tone of the analyzed articles is positive, even though the confidence in this conclusion is low.
+
+---",-0.0432,HOLD,"---
+The EMA trend is bearish, RSI is neutral, and Bollinger Bands indicate overbought conditions, which contributed to the low total score of -0.0432. The dominant signal was the bearish EMA trend, while the overbought BB signal was conflicting. The final decision is HOLD due to mixed signals and lack of strong consensus. EMA 200 has high confidence and is reliable, but it does not override the conflicting signals from other indicators.
+
+---",PARTIAL,"---
+CE and TTS signals do not fully align—CE is BULLISH, while TTS is HOLD. The conflict arises from differing methodologies: CE relies on sentiment from news, while TTS analyzes price and technical indicators. Data quality is not a major issue, but CE confidence is low due to a limited number of articles.","The decision to enter a long position is driven by the weighted score of **0.5827**, which falls within the buy threshold (≥ 0.15). This score reflects the combined influence of **CE** and **TTS** analyses, despite their partial divergence.  
+
+**CE ANALYSIS** contributed a **bullish signal** with a sentiment score of **0.1899**, underpinned by a high mean tone of **0.8141** across 12 articles. While confidence in this signal is low (due to the limited sample size), the strong positive sentiment direction tipped the weighted score toward buying. The small article count reduces reliability but does not negate the clear bullish tone.  
+
+**TTS ANALYSIS** generated a **hold signal** with a total score of **-0.0432**, reflecting mixed technical indicators. The dominant bearish EMA 200 trend (reliable with 1.0 confidence) conflicted with neutral RSI (62.05) and overbought Bollinger Bands. The lack of consensus among indicators diluted TTS’s influence, preventing it from outweighing CE’s bullish bias.  
+
+**SIV ALIGNMENT** highlights a partial conflict: CE’s bullish sentiment clashes with TTS’s hold, driven by differing methodologies (news vs. technicals). This reduced conviction in the decision but did not override the weighted score’s buy threshold. The low CE confidence and TTS’s neutral/overbought signals introduced caution, yet the net positive bias from CE’s strong directional signal anchored the final verdict.",TIME,0.3796
+01/19/2024,0.86764,SELL,BEARISH,True,-0.6144,9.0,BEARISH,0.8537,-0.4163,LOW,"---
+The article sentiment distribution suggests a predominantly bearish tone with a mean score of 0.8537 and a negative raw vibe. The confidence is low due to the small number of articles (9), which may not be sufficient to form a strong consensus. The signal is not reliable given the low article count, as it increases the risk of noise affecting the sentiment determination. The final sentiment is bearish because the overall tone of the analyzed articles is negative, even with low confidence.
+
+---",-0.0359,HOLD,"---
+The EMA/RSI/BB signals produced this score because the EMA trend is bearish, the RSI is in the neutral to slightly overbought range, and the BB signal is stable. The dominant signal was the bearish EMA trend. The RSI being in a neutral range and the stable BB signal introduced conflicting or balancing indicators. The final decision is HOLD because the conflicting signals from the RSI and BB offset the bearish EMA trend, leading to indecision. The EMA 200 has high confidence and is reliable, which supports the overall analysis.
+
+---",PARTIAL,"---
+The CE and TTS signals do not align, as CE is bearish and TTS is hold. The signals conflict because the sentiment analysis from macroeconomic news is bearish, while the technical indicators suggest a neutral or indecisive market. Data quality issues include low confidence in the CE signal due to the small article count, which affects the reliability of the bearish sentiment conclusion.","The decision to SELL is driven by a weighted score of **-0.6144**, which falls firmly in the SELL zone (≤ -0.15). This score combines contributions from **CE** and **TTS**, both of which introduced bearish or conflicting signals.  
+
+**CE Analysis** contributed a **bearish sentiment score of -0.4163**, despite low confidence (due to only 9 articles, below a reliable sample size). The mean article score (0.8537) and negative ""raw vibe"" indicate a predominantly negative tone in macroeconomic news, though the small article count increases noise risk. This weakens reliability but still skews the overall signal downward.  
+
+**TTS Analysis** showed a **slightly bearish bias (-0.0359)**, with the **EMA 200 trend as the dominant bearish indicator** (reliable with 1.0 confidence). However, neutralizing signals emerged: RSI (61.45) hovered in neutral-to-overbought territory, and stable Bollinger Bands introduced indecision, forcing the TTS decision to HOLD. The EMA 200’s bearishness, though reliable, was offset by these conflicting signals, diluting the technical bias.  
+
+**SIV Alignment** revealed **conflict**: CE’s bearish sentiment clashed with TTS’s HOLD. This misalignment, flagged by the ""one_signal_neutral"" issue, reduced conviction in the decision. However, the weighted score aggregated CE’s strong bearishness (despite low confidence) and TTS’s muted bearish undercurrents, tipping the balance into the SELL range. The low CE confidence and TTS’s balancing indicators weakened conviction but did not override the score’s placement in the SELL threshold.",TIME,0.1709
+01/22/2024,0.86894,SELL,BEARISH,True,-0.6121,16.0,BEARISH,0.8553,-0.0712,MODERATE,"---
+The sentiment distribution shows a predominantly negative tone in the analyzed articles, suggesting growing pessimism or concern around the topic. Confidence is rated as MODERATE due to the limited volume of articles (16), which provides some directional insight but lacks sufficient breadth for a high-confidence conclusion. The signal may be somewhat reliable given the article count, but it's not robust enough to rule out noise or outlier sentiment. The final sentiment is BEARISH due to the consistently negative sentiment scores and the mean score indicating a strong negative slant across the dataset.
+
+---",-0.0303,HOLD,"---
+The EMA/RSI/BB signals collectively produced a weakly negative score, with EMA showing a BEARISH trend, RSI near neutral territory at 62.8, and BB indicating STABLE conditions. The dominant signal was the BEARISH EMA trend, while BB’s STABLE signal provided a counterbalance. No strong conflicts were present, but the signals lacked consensus. The final decision is HOLD due to the weak total score and lack of a strong directional signal from the indicators. EMA 200 is highly confident and reliable, but it does not strongly influence the final decision due to the lack of a clear breakout or breakdown in price.
+
+---",PARTIAL,"---
+CE and TTS signals do not strongly align, with CE being BEARISH and TTS recommending a HOLD. The signals conflict because sentiment-based analysis suggests pessimism, while technical indicators show a neutral to slightly negative, but non-actionable, price signal. There are no major data quality issues, but the CE signal is based on a relatively small number of articles, which introduces some uncertainty. The  signal is PARTIAL due to one_signal_neutral, indicating a lack of strong agreement between the two analytical methods.","The decision to SELL was driven by a weighted score of **-0.6121**, which falls within the **SELL zone (≤ -0.15)**. This score reflects the combined influence of **Consensus Estimate (CE)** and **Technical Trading Signals (TTS)**, both contributing negatively, though with differing magnitudes and confidence levels.  
+
+### **1. Weighted Score Breakdown**  
+- **CE** contributed a **bearish sentiment** with a **score of -0.0712**, reflecting moderate confidence in negative sentiment.  
+- **TTS** produced a weaker but still negative **total score of -0.0303**, dominated by a **bearish EMA 200 signal** (highly reliable, 1.0 confidence). While RSI (62.8) and Bollinger Bands (STABLE) offset the EMA’s bearishness, the lack of consensus in TTS limited its directional strength. The combined analysis pushed the weighted score decisively into the SELL range.  
+
+### **2. CE Analysis**  
+- **Confidence and Reliability**: CE’s **MODERATE confidence** stemmed from **16 articles**, a limited sample size that reduces reliability but still provides directional insight.  
+- **Sentiment Strength**: The **BEARISH sentiment** was reinforced by a **raw_vibe of NEGATIVE** and a **mean_score of 0.8553**, indicating a strong negative slant in the analyzed articles. While not conclusive due to low volume, the consistent negativity contributed meaningfully to the weighted score.  
+
+### **3. TTS Analysis**  
+- **Dominant Indicator**: The **bearish EMA 200 trend** (reliable and confident) was the strongest technical signal, pulling the total score downward.  
+- **Conflicting Signals**: RSI and Bollinger Bands countered the EMA’s bearishness, resulting in a **weakly negative TTS score (-0.0303)** and a **HOLD recommendation**. However, the EMA 200’s reliability and bearish bias amplified its influence in the weighted score calculation.  
+
+### **4. SIV Alignment**  
+- **Conflict Between CE and TTS**: CE’s **bearish sentiment** clashed with TTS’s **neutral-to-weak bearish signal**, resulting in a **PARTIAL alignment** (flagged by `one_signal_neutral`). While this reduced conviction in the decision, the **weighted score’s magnitude (-0.6121)**—well below the -0.15 threshold—overrode the partial alignment, justifying the SELL.  
+
+In summary, the SELL decision arose from a **strong bearish CE signal** and a **reliable bearish EMA 200**, despite TTS’s internal conflicts and CE’s moderate confidence. The combined weighted score’s depth in the SELL zone (-0.6121) confirmed the action.",TIME,0.6852
+01/23/2024,0.8701,BUY,BEARISH,False,0.5899,9.0,BULLISH,0.8293,0.1586,LOW,"---
+The sentiment distribution is skewed toward positive, with a high mean score, but the low confidence reflects insufficient data to generalize the bullish outlook. The signal is marginally reliable due to nine articles, but this is on the lower side for robustness. The final sentiment is bullish due to the strong positive average sentiment despite the low confidence.
+
+---",-0.0253,HOLD,"---
+The EMA trend was bearish, RSI was near neutral, and BB was stable, producing a weakly negative score. The dominant signal was the bearish EMA trend. No strong conflicting indicators, as RSI and BB were neutral or stable. The final decision is HOLD due to weak signals and no clear trend. EMA 200 is confident and reliable, but it does not strongly influence the final decision due to conflicting signals from other indicators.
+
+---",PARTIAL,"---
+CE and TTS signals do not align, with CE being bullish and TTS neutral. The signals conflict due to differing data sources and methodologies: CE reflects sentiment while TTS reflects price action. Data quality appears acceptable, but the low CE confidence and neutral TTS score contribute to the partial system integrity.","The decision to buy was driven by a weighted score of **0.5899**, which falls in the **buy zone (≥ 0.15)**. This score reflects the combined influence of **CE analysis** and **TTS analysis**, where CE contributed a bullish bias despite limited data, while TTS showed a weakly bearish signal that did not outweigh CE’s strength.  
+
+**CE analysis** indicated **bullish sentiment** with a **mean score of 0.8293**, reflecting a strongly positive average sentiment across 9 articles. Although confidence was rated **low** due to the relatively small number of articles (9), the skew toward positive sentiment (raw_vibe: positive) and high mean score justified the bullish designation. This suggests market sentiment favors upward movement, albeit with caution due to data constraints.  
+
+**TTS analysis**, however, returned a **hold decision** with a **total score of -0.0253**, driven by a **bearish EMA trend** as the dominant indicator. The RSI (63.97) and Bollinger Bands (stable) provided neutral/contrary signals, limiting the bearish conviction. While the EMA 200 was reliable (confidence: 1.0, reliable: True), its bearish signal was offset by the lack of strong momentum or volatility shifts, resulting in a weakly negative score.  
+
+The **SIV alignment** between CE and TTS was **conflicted** (signal: partial), as CE’s bullish sentiment clashed with TTS’s neutral/hold assessment. This misalignment reduced **conviction** in the decision but did not override the weighted score’s buy threshold, as CE’s strong positive sentiment outweighed TTS’s minor bearishness in the calculation. The final verdict prioritized the statistically significant bullish sentiment (despite low confidence) over TTS’s ambiguous technical signals.",SL,0.1649
+01/24/2024,0.86285,BUY,BEARISH,False,0.5204,11.0,BULLISH,0.87,0.3256,LOW,"---
+The article sentiment distribution shows a generally positive tone with a high mean score, suggesting optimism in the news. Confidence is low due to the limited number of articles (11) used in the analysis, which may not represent the broader market view. The signal may not be reliable due to the relatively small sample size. The final sentiment is bullish because the overall tone of the articles, despite low confidence, indicates a positive outlook.
+
+---",-0.199,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend, with the RSI near neutral and Bollinger Bands indicating stability. The dominant signal was the bearish EMA trend. There were no strong conflicting indicators, as RSI and BB did not counter the EMA signal. The final decision is to sell because the bearish EMA trend suggests downward momentum. The EMA 200 is highly confident and reliable, which supports the decision.
+
+---",PARTIAL,"---
+The CE and TTS signals conflict, with CE being bullish and TTS suggesting a sell. The signals conflict because CE relies on positive news sentiment, while TTS identifies a bearish trend in technical indicators. Data quality issues include low confidence in the CE signal due to a small article count, which may affect the reliability of the bullish CE signal.","The decision to enter a long position is driven by a weighted score of **0.5204**, which falls within the buy threshold (> 0.15). This outcome arises from the interplay between conflicting signals from the **CE (sentiment analysis)** and **TTS (technical indicators)**, with the former exerting stronger influence.  
+
+**CE Analysis** contributed a **bullish bias** despite limitations. The sentiment score of **0.3256** reflects a high mean positivity (**0.87**) across 11 articles, indicating optimism in market news. However, confidence is rated **low** due to the small article count, which may underrepresent broader market sentiment. The positive tone of available articles, though limited in scope, skewed the CE signal toward bullishness.  
+
+**TTS Analysis** produced a **sell signal** with a total score of **-0.199**, dominated by a **bearish EMA trend**. The RSI (52.61) and stable Bollinger Bands neither confirmed nor contradicted this, leaving the EMA 200 as the decisive factor. Its **high reliability** and bearish direction reinforced the sell recommendation. However, no strong conflicting indicators diluted the bearish momentum.  
+
+The **SIV (Signal Integrity Verification)** highlighted a **conflict** between CE and TTS: CE’s bullish sentiment clashed with TTS’s bearish technicals. This reduced conviction in the final decision but did not override the weighted score. The system’s calculation likely prioritized CE’s positive sentiment strength (**0.3256**) over TTS’s negative score (**-0.199**), amplified by the reliability of the EMA 200 (which, while bearish, may carry less weight in the scoring model). The resulting **0.5204** crossed the buy threshold, justifying the long position despite the technical divergence.",TIME,0.3172
+01/25/2024,0.86703,SELL,BEARISH,True,-0.6717,12.0,BEARISH,0.7547,-0.0673,LOW,"---
+The article sentiment distribution suggests a generally negative outlook, but with low confidence likely due to a relatively small sample of articles (12 relevant to the sentiment score). The signal may not be reliable given the low article count, which increases the risk of skewed or unrepresentative results. The final sentiment is bearish because the mean score is negative, but the low confidence implies uncertainty in the strength of the bearish signal.
+
+---",-0.1793,SELL,"---
+The EMA/RSI/BB signals produced a negative score due to a bearish EMA trend and a moderate RSI that is approaching overbought but not yet in it, with a stable BB signal. The dominant signal was the bearish EMA trend. There were no strong conflicting indicators, as BB remained neutral. The final decision is to sell due to the overall bearish momentum from the EMA. The EMA 200 is highly confident and reliable, which supports the decision's validity.
+
+---",COHERENT,"---
+The CE and TTS signals align in a bearish direction, with CE indicating bearish sentiment and TTS recommending a sell. The signals align because both systems detect downward pressure, though CE confidence is low due to limited data. No significant data quality issues are present.","The decision to SELL is driven by a **weighted score of -0.6717**, which falls in the strong SELL zone (≤ -0.15). This score integrates signals from both **TTS** and **CE**, both of which contributed bearish bias despite varying confidence levels.  
+
+### **CE Analysis**  
+The **sentiment score of -0.0673** reflects a bearish outlook, derived from 12 articles with a ""negative"" raw vibe. However, the **low confidence level** (labeled ""LOW"") undermines the reliability of this signal due to the small article count, increasing the risk of unrepresentative results. While the mean score confirms downward pressure, the limited data weakens the conviction in its strength.  
+
+### **TTS Analysis**  
+The **dominant bearish signal comes from the EMA trend**, which is labeled ""BEARISH"" and contributes significantly to the TTS total score of -0.1793. The RSI at 57.32 is moderate but trending toward overbought territory, while the Bollinger Band signal remains neutral (""STABLE""), avoiding conflict. The **EMA 200 is fully reliable** (confidence: 1.0) and reinforces the bearish momentum, ensuring the TTS decision is robust.  
+
+### **SIV Alignment**  
+CE and TTS signals **align coherently** in the bearish direction, with both systems identifying downward pressure. However, the **low confidence in CE** reduces overall conviction, as the TTS signal depends on more reliable technical indicators. This alignment validates the SELL decision but highlights the need for caution due to the weak CE foundation.  
+
+The final verdict prioritizes the **reliable TTS bearish momentum** (anchored by EMA 200) and the **non-conflicting CE bias**, even as the latter’s limitations temper certainty in the strength of the sentiment.",TIME,0.2737
+01/26/2024,0.86364,BUY,BEARISH,False,0.5206,23.0,BULLISH,0.7726,0.1138,MODERATE,"---
+The article sentiment distribution suggests a generally positive tone, with a mean score of 0.7726 and a bullish overall sentiment. Confidence is moderate due to the limited number of articles (23) and the potential for topic bias or outlier influence. The signal is somewhat reliable, but not highly conclusive, given the relatively small sample size compared to the raw article count of 29. The final sentiment is bullish because the overall mean score and raw vibe indicate a positive sentiment trend, despite the moderate confidence level.
+
+---",-0.1985,SELL,,PARTIAL,"sive, given the relatively small sample size compared to the raw article count of 29. The final sentiment is bullish because the overall mean score and raw vibe indicate a positive sentiment trend, despite the moderate confidence level.
+
+--- TTS ---
+The EMA/RSI/BB signals produced this score due to a bearish EMA trend, a near-neutral RSI, and a stable BB signal, which collectively indicate a weak price outlook. The dominant signal was the EMA trend, which is bearish. The RSI is close to neutral but does not strongly counteract the EMA. The final decision is SELL due to the overall negative score and the bearish EMA trend. EMA 200 has high confidence and is reliable, but it does not override the bearish EMA trend, which is the primary driver of the decision.
+
+---  ---
+CE and TTS signals do not align, with CE being bullish and TTS recommending a sell. The signals conflict because CE reflects positive sentiment from news articles, while TTS shows bearish technical indicators. Data quality is not a major issue, as the TTS data is not stale and the EMA 200 is reliable. However, the signal mismatch is the primary issue affecting system integrity.","The decision to buy is driven by a **weighted score of 0.5206**, which falls within the **BUY zone (≥ 0.15)**. This outcome arises from the interplay between **Cognitive Evaluation (CE)** and **Technical Trading Signals (TTS)**, despite their conflicting directional biases.  
+
+### **Weighted Score Composition**  
+The score aggregates contributions from CE and TTS. While TTS generated a bearish technical signal (**total_score = -0.1985**), CE’s bullish sentiment (**sentiment_score = 0.1138**, **mean_score = 0.7726**) outweighed it, resulting in a net positive score. The system’s weighting methodology likely prioritizes CE’s strength in this instance, tipping the balance into the BUY range.  
+
+---
+
+### **CE Analysis**  
+CE’s **bullish sentiment** is underpinned by a **mean article score of 0.7726** and a **positive raw tone**, despite **moderate confidence**. The analysis is based on **23 articles**, a limited but non-trivial sample, which introduces some uncertainty (e.g., potential topic bias or outlier influence). However, the **high mean score** and **positive raw vibe** collectively justify the bullish conclusion. The confidence level reflects caution due to the smaller sample size relative to the raw article count of 29, but the directional signal remains statistically significant.  
+
+---
+
+### **TTS Analysis**  
+TTS produced a **sell signal** with a **total_score of -0.1985**, dominated by a **bearish EMA trend**. Supporting indicators showed a **neutral RSI (52.74)** and **stable Bollinger Bands**, which failed to counteract the EMA’s bearish bias. Crucially, the **EMA 200 is reliable (confidence = 1.0)** and non-stale, reinforcing the technical case for selling. However, the system’s weighted score calculation does not fully override the CE input, even with TTS’s strong bearish signal. This suggests either differing weights assigned to CE/TTS or a threshold-based logic where CE’s contribution sufficed to flip the net outcome.  
+
+---
+
+### **SIV Alignment**  
+CE and TTS signals **conflict** (**bullish vs. bearish**), flagged as a **signal mismatch** in the Signal Integrity Verification (SIV). This reduces **conviction in the decision’s robustness** but does not invalidate the BUY verdict, as the weighted score threshold was met. Data quality is intact: TTS indicators are reliable and up-to-date, while CE’s moderate confidence stems from article count limitations, not data corruption. The conflict highlights a divergence between fundamental optimism (CE) and technical pessimism (TTS), leaving the system to prioritize the stronger CE signal in this instance.  
+
+In summary, the BUY decision hinges on CE’s statistically robust bullish sentiment overcoming TTS’s bearish technicals, despite their misalignment, with the final score comfortably exceeding the 0.15 threshold.",TIME,0.6464
+01/29/2024,0.86119,SELL,BULLISH,False,-0.7208,29.0,BEARISH,0.8375,-0.1615,HIGH,"---
+The article sentiment distribution suggests a strong negative bias toward the subject, as indicated by the high mean score and bearish sentiment. Confidence is high because the sentiment is consistent across 29 articles, suggesting a reliable signal. Given the article count, the signal is deemed reliable. The final sentiment is bearish because the aggregated sentiment scores reflect a strong negative tone, reinforcing downward expectations.
+
+---",-0.3021,SELL,"---
+The EMA, RSI, and BB signals contributed to a negative score due to bearish EMA trend and sub-50 RSI, which indicates weakening momentum. The dominant signal was the EMA trend, which was strongly bearish. No clear conflicting indicators were present, as Bollinger Bands suggested stability, not volatility. The final decision is to sell because the technical indicators collectively point to a downward trend. The EMA 200 is highly confident and reliable, which strengthens the validity of the bearish outlook.
+
+---",COHERENT,"---
+CE and TTS signals align, both indicating a bearish outlook. The signals align because the sentiment analysis and technical indicators are both pointing to downward movement. No data quality issues were identified, and the system integrity is confirmed as coherent.","The decision to SELL is driven by a weighted score of -0.7208, which falls in the SELL zone (≤ -0.15). This score synthesizes contributions from both the CE and TTS components, both of which reinforced bearish signals.  
+
+**CE Analysis** contributed a sentiment score of -0.1615, reflecting a BEARISH outlook. The high confidence in this signal stems from 29 articles, ensuring reliability through sufficient volume and consistency. The aggregated sentiment scores revealed a strong negative tone, with a mean score of 0.8375 (indicating uniformity in bearishness across articles). This consistent negative bias strengthened the CE’s downward pressure on the weighted score.  
+
+**TTS Analysis** added a total score of -0.3021, dominated by a BEARISH EMA trend and a sub-50 RSI (49.66), signaling weakening momentum. Bollinger Bands showed STABLE conditions, avoiding volatility-driven conflicts. The EMA 200’s reliability (1.0 confidence) validated the bearish technical trend, solidifying the SELL recommendation. No conflicting indicators diluted this signal, ensuring technical alignment with the CE’s sentiment.  
+
+**SIV Alignment** confirmed coherence between CE and TTS, both pointing to a bearish outlook. While this alignment heightened conviction in the decision, it was not necessary for the SELL verdict, as each component independently justified the negative score. The combined reliability of sentiment consistency and technical indicators created a robust case for exiting long positions.",SL,0.7698
+01/30/2024,0.8617,HOLD,BULLISH,False,-0.0835,26.0,NEUTRAL,0.7909,-0.0056,HIGH,"---
+The article sentiment distribution suggests a balanced mix of positive and negative tones, leading to an overall neutral stance. Confidence is high due to the substantial number of articles (26), which ensures a representative sample and reduces the likelihood of bias. The signal is reliable given the article count, as 26 articles provide sufficient data for a robust analysis. The final sentiment is neutral because the mean score is close to zero, indicating that the positive and negative sentiments largely cancel each other out.
+
+---",-0.2087,SELL,"---
+The EMA/RSI/BB signals produced this score due to a bearish trend in the EMA, a neutral RSI near the midpoint, and a stable Bollinger Band signal. The dominant signal was the EMA trend, which indicated a bearish outlook. There were no conflicting indicators, as all signals aligned with a cautious or bearish stance. The final decision is to sell because the overall technical indicators suggest a downward trend. The EMA 200 has high confidence and is reliable, which supports the decision and does not affect the reliability of the signal.
+
+---",PARTIAL,"---
+The CE and TTS signals do not align, as CE is neutral while TTS is bearish. The signals conflict because CE is based on sentiment from macroeconomic news, which is neutral, while TTS is based on technical indicators, which suggest a sell. There are no significant data quality issues, as both systems have high confidence and reliable data inputs.","The decision to **HOLD** arises because the weighted score of **-0.0835** falls within the neutral zone between -0.15 and 0.15. This score reflects a balance between the **Technical Trading System (TTS)** and **Cognitive Engine (CE)** inputs, which contributed conflicting signals of varying strength.  
+
+1. **WEIGHTED SCORE**: The score of -0.0835 is derived from a combination of TTS’s bearish bias (-0.2087) and CE’s neutral stance (-0.0056). While TTS strongly favors selling, its influence is offset by CE’s neutrality, resulting in a net score insufficient to cross the -0.15 threshold required for a definitive SELL.  
+
+2. **CE ANALYSIS**: CE reports **neutral sentiment** (-0.0056) with **high confidence** due to 26 articles, a robust sample size ensuring reliability. The sentiment distribution is balanced, with positive and negative tones canceling out (mean score near zero). This neutrality adds minimal downward pressure to the weighted score.  
+
+3. **TTS ANALYSIS**: TTS generates a **bearish signal** (-0.2087) driven by a **bearish EMA 200 trend**, a neutral RSI (50.31), and stable Bollinger Bands. The EMA 200’s high confidence and reliability reinforce the bearish outlook, but the absence of conflicting indicators means the sell signal, while strong, is not amplified by additional divergences.  
+
+4. **SIV ALIGNMENT**: The CE and TTS signals **conflict** (neutral vs. bearish), categorized as **PARTIAL alignment**. This reduces overall conviction in the weighted score, as the neutral CE sentiment dilutes the bearish TTS bias. While TTS’s reliability strengthens its signal, the lack of alignment prevents the weighted score from reaching the SELL threshold.  
+
+In summary, the HOLD decision emerges from TTS’s bearishness being counterbalanced by CE’s neutrality, with their conflicting inputs producing a weighted score too weak to justify action.",HOLD_SKIP,0.6515
+01/31/2024,0.86134,SELL,BULLISH,False,-0.7204,19.0,BEARISH,0.7999,-0.1039,MODERATE,"---
+The article sentiment distribution indicates a predominantly negative tone, with a mean score near the threshold for strong negativity, but the relatively small article count reduces certainty. Confidence is moderate because while the sentiment is clearly bearish, the limited number of articles makes the signal less robust. The signal is somewhat reliable, but not definitive, due to the low article count. The final sentiment is bearish because the aggregated scores and raw sentiment lean decisively negative, despite uncertainty in reliability.
+
+---",-0.3011,SELL,,COHERENT,"sively negative, despite uncertainty in reliability.
+
+--- TTS ---
+The EMA/RSI/BB signals produced a negative score because the EMA trend is bearish, RSI is near neutral but shows no strong bullish momentum, and BB remains stable with no breakout. The dominant signal was the EMA trend, which is bearish and reliable. No conflicting indicators were present; all signals supported the bearish case. The final decision is to sell due to the bearish trend and absence of bullish momentum. EMA 200 has high confidence and is reliable, reinforcing the decision.
+
+---  ---
+CE and TTS signals align as both indicate a bearish outlook, with CE suggesting negative sentiment and TTS supporting it with technical indicators. The alignment is likely because the market sentiment and price action are both moving in the same direction. No data quality issues were detected; both systems provided coherent and reliable inputs.","The decision to SELL is driven by a weighted score of **-0.7204**, which falls within the SELL zone (≤ -0.15). This score integrates bearish signals from both the **CE (sentiment analysis)** and **TTS (technical indicators)**, which align to reinforce the negative outlook.  
+
+### 1. **WEIGHTED SCORE BREAKDOWN**  
+The weighted score combines CE and TTS contributions:  
+- **CE** provided a bearish sentiment score of **-0.1039**, reflecting negative market sentiment.  
+- **TTS** generated a stronger bearish signal with a total score of **-0.3011**, dominated by a reliable **bearish EMA trend** (confirmed by EMA 200 reliability: 1.0 confidence). Together, these components pushed the aggregate score deep into the SELL territory.  
+
+---
+
+### 2. **CE ANALYSIS**  
+- **Confidence and Reliability**: CE’s **moderate confidence** stems from **19 articles**, a small sample size that reduces certainty. While the **raw sentiment is negative** (mean score: **0.7999**, near the threshold for strong negativity), the limited data softens the signal’s robustness.  
+- **Sentiment Direction**: The aggregated scores and raw tone lean decisively bearish, justifying its contribution to the weighted score despite moderate confidence.  
+
+---
+
+### 3. **TTS ANALYSIS**  
+- **Dominant Indicator**: The **bearish EMA trend** (reliable with 1.0 confidence) is the primary driver of TTS’s **-0.3011** score.  
+- **Supporting Signals**:  
+  - **RSI (49.82)** is near neutral, showing no bullish momentum.  
+  - **Bollinger Bands (STABLE)** indicate no breakout, confirming a lack of volatility-driven upside potential.  
+- **No Conflicts**: All technical indicators (EMA, RSI, BB) align on bearish, with no contradictory signals. The EMA 200’s reliability further strengthens the case for selling.  
+
+---
+
+### 4. **SIV ALIGNMENT**  
+CE and TTS signals are **coherent**, both pointing to a bearish outlook. This alignment increases **conviction** in the decision but does not alter the verdict, which is already firmly established by the weighted score. No data quality issues were detected, ensuring the reliability of the combined analysis.  
+
+In summary, the SELL decision is underpinned by a strongly negative weighted score, with CE’s bearish sentiment and TTS’s reliable technical bearishness working in unison to justify the trade.",SL,0.7459
+---,,ACCURACY SUMMARY,,,,,,,,,,,,,,,,,
+BUY Accuracy,,33.33%,2/6,,,,,,,,,,,,,,,,
+SELL Accuracy,,20.0%,3/15,,,,,,,,,,,,,,,,
+BUY+SELL Accuracy,,23.81%,5/21,,,,,,,,,,,,,,,,
+HOLD Accuracy,,0.0%,0/2,,,,,,,,,,,,,,,,
+OVERALL Accuracy,,21.74%,5/23,,,,,,,,,,,,,,,,
+---,,SL/TP SUMMARY,,,,,,,,,,,,,,,,,
+TP Hits,,,0,,,,,,,,,,,,,,,,
+SL Hits,,,8,,,,,,,,,,,,,,,,
+TIME Exits,,,13,,,,,,,,,,,,,,,,
+HOLD Skips,,,4,,,,,,,,,,,,,,,,

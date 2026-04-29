@@ -202,13 +202,13 @@ INPUT:
 """
 
     payload = {
-        "siv_signal":       siv.get("signal"),
-        "siv_issues":       siv.get("issues"),
-        "ce_signal":        ce.get("sentiment"),
-        "tts_signal":       tts.get("decision"),
-        "ce_confidence":    ce.get("confidence"),
+        "siv_signal": siv.get("signal"),
+        "siv_issues": siv.get("issues"),
+        "ce_signal": ce.get("sentiment"),
+        "tts_signal": tts.get("decision"),
+        "ce_confidence": ce.get("confidence"),
         "ce_article_count": ce.get("article_count"),
-        "tts_score":        tts.get("total_score"),
+        "tts_score": tts.get("total_score"),
     }
 
     siv_prompt = f"""
@@ -229,38 +229,54 @@ INPUT:
 {json.dumps(payload)}
 """
 
-    # 🔥 ONE CALL, 3 PROMPTS
     master_prompt = f"""
-You will execute THREE independent prompts and return results in JSON.
+You will execute THREE independent prompts and return results in text sections.
 
---- PROMPT 1 (CE) ---
+--- CE ---
 {ce_prompt}
 
---- PROMPT 2 (TTS) ---
+--- TTS ---
 {tts_prompt}
 
---- PROMPT 3 (SIV) ---
+--- SIV ---
 {siv_prompt}
-
-Return STRICT JSON:
-{{
-  "ce": "...",
-  "tts": "...",
-  "siv": "..."
-}}
 """
 
     raw = call_llm(master_prompt, max_tokens=1000, label="COMBINED EXPLANATION")
 
-    try:
-        return json.loads(raw)
-    except:
-        return {
-            "ce": raw,
-            "tts": raw,
-            "siv": raw
-        }
+    # =========================
+    # HARD SPLIT (NO JSON, NO PARSING RELIANCE)
+    # =========================
 
+    ce_text = ""
+    tts_text = ""
+    siv_text = ""
+
+    try:
+        ce_marker = raw.lower().find("ce")
+        tts_marker = raw.lower().find("tts")
+        siv_marker = raw.lower().find("siv")
+
+        if ce_marker != -1 and tts_marker != -1 and siv_marker != -1:
+            ce_text = raw[ce_marker:tts_marker].replace("CE", "").strip()
+            tts_text = raw[tts_marker:siv_marker].replace("TTS", "").strip()
+            siv_text = raw[siv_marker:].replace("SIV", "").strip()
+        else:
+            # fallback without duplication
+            ce_text = raw
+            tts_text = raw
+            siv_text = raw
+
+    except:
+        ce_text = raw
+        tts_text = raw
+        siv_text = raw
+
+    return {
+        "ce": ce_text,
+        "tts": tts_text,
+        "siv": siv_text
+    }
 
 # =========================
 # VERDICT EXPLANATION

@@ -84,22 +84,39 @@ INPUT:
         "temperature": 0.2
     }
 
-    for attempt in range(3):
+    attempt = 0
+    while True:
+        attempt += 1
         try:
             t0 = time.perf_counter()
             resp = requests.post(URL, headers=headers, json=data, timeout=90)
             log("LLM REQUEST", t0)
 
+            if resp.status_code == 429:
+                print(f"[TTS] Rate limited on attempt {attempt}. Waiting 15s...")
+                time.sleep(15)
+                continue
+
+            if resp.status_code != 200:
+                print(f"[TTS ERROR] HTTP {resp.status_code} on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
+
             result = resp.json()
             message = result.get("choices", [{}])[0].get("message", {})
             content = message.get("content") or message.get("reasoning_content")
 
-            return str(content).strip() if content else "explanation_unavailable"
+            if not content:
+                print(f"[TTS ERROR] Empty content on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
 
-        
+            return str(content).strip()
+
         except Exception as e:
-            print(f"[TTS ERROR] {e}")
-            time.sleep(5 * (attempt + 1))
+            print(f"[TTS ERROR] Attempt {attempt}: {e} — retrying in 10s...")
+            time.sleep(10)
+            continue
 
     return "explanation_unavailable"
 

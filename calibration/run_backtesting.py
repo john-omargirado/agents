@@ -5,6 +5,7 @@ import pandas as pd
 from typing import cast
 import time
 import os
+from copy import deepcopy
 
 
 current_dir = Path(__file__).resolve().parent
@@ -183,6 +184,9 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             "atr": atr,
             "precomputed_indicators": precomputed,
         }))
+
+        # 🔥 IMPORTANT: isolate state per run
+        state = deepcopy(state)
 
         # =========================
         # GRAPH EXECUTION

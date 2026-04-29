@@ -1,5 +1,6 @@
-from typing import TypedDict, List
+from typing import TypedDict, List, Optional, Literal, Dict, Any
 from state.contracts import TTSOutput, CEOutput, SIVOutput
+from langgraph.graph.message import add_messages
 
 
 class TradingState(TypedDict):
@@ -8,9 +9,9 @@ class TradingState(TypedDict):
     price: float
     calibration_threshold: float
 
-    ce_output: CEOutput
-    tts_output: TTSOutput
-    siv_output: SIVOutput
+    ce_output: Dict[str, Any]
+    tts_output: Dict[str, Any]
+    siv_output: Dict[str, Any]
 
     verdict: str
     verdict_reasoning: str

@@ -10,24 +10,27 @@ from agents.verdict_agent import verdict_agent
 USE_PARALLEL = False
 
 
+# =========================
+# RETRY LOGIC
+# =========================
 def retry_fanout(state):
     state["retry_count"] = state.get("retry_count", 0) + 1
     state["debug_log"].append(f"Retry fanout triggered ({state['retry_count']})")
 
-    # HARD STOP after max retries
     if state["retry_count"] >= 2:
         state["action"] = "NONE"
 
+    state["backtest_mode"] = True
     return state
 
 
 def route_after_verdict(state):
-    action = state.get("action", "NONE")
-    if action == "RETRY_TTS_CE":
-        return "retry"
-    return "end"
+    return "retry" if state.get("action", "NONE") == "RETRY_TTS_CE" else "end"
 
 
+# =========================
+# GRAPH BUILD
+# =========================
 def build_graph():
     graph = StateGraph(TradingState)
 
@@ -38,24 +41,15 @@ def build_graph():
     graph.add_node("retry_fanout", retry_fanout)
 
     # =========================
-    # MAIN FLOW
+    # MAIN FLOW (SEQUENTIAL SAFE)
     # =========================
-    if USE_PARALLEL:
-        graph.add_edge(START, "ce")
-        graph.add_edge(START, "tts")
-
-        graph.add_edge("ce", "siv")
-        graph.add_edge("tts", "siv")
-
-    else:
-        graph.add_edge(START, "tts")
-        graph.add_edge("tts", "ce")
-        graph.add_edge("ce", "siv")
-
+    graph.add_edge(START, "tts")
+    graph.add_edge("tts", "ce")
+    graph.add_edge("ce", "siv")
     graph.add_edge("siv", "verdict")
 
     # =========================
-    # RETRY LOGIC
+    # RETRY FLOW (SAFE ISOLATED PATH)
     # =========================
     graph.add_conditional_edges(
         "verdict",
@@ -66,7 +60,8 @@ def build_graph():
         }
     )
 
-    # 🔥 FIX: ONLY RETRY TTS (not CE)
+    # 🔥 CRITICAL FIX:
+    # Retry does NOT re-run CE or SIV anymore
     graph.add_edge("retry_fanout", "tts")
 
     return graph.compile()

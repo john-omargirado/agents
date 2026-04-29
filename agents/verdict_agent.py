@@ -10,66 +10,59 @@ URL = "https://inference.do-ai.run/v1/chat/completions"
 
 def call_qwen(prompt):
     key = get_do_model_key()
-
     headers = {"Content-Type": "application/json"}
     if key:
         headers["Authorization"] = f"Bearer {key}"
 
     data = {
         "model": "alibaba-qwen3-32b",
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
+        "messages": [{"role": "user", "content": prompt}],
         "max_tokens": 1024,
         "temperature": 0.2
     }
 
-    max_retries = 3
-    backoff = 5
+    attempt = 0
+    backoff = 10
+    max_backoff = 60
 
-    for attempt in range(1, max_retries + 1):
+    while True:
+        attempt += 1
         try:
-            response = requests.post(URL, headers=headers, json=data, timeout=120)
-        except Exception as e:
-            print(f"[VERDICT ERROR] Attempt {attempt}/{max_retries}: request_failed {e}")
-            if attempt < max_retries:
-                print(f"[VERDICT] Retrying in {backoff}s...")
+            response = requests.post(URL, headers=headers, json=data, timeout=90)
+
+            if response.status_code == 429:
+                print(f"[VERDICT] Rate limited on attempt {attempt}. Waiting {backoff}s...")
                 time.sleep(backoff)
-                backoff *= 2
-            continue
+                backoff = min(backoff * 2, max_backoff)
+                continue
 
-        if response.status_code == 429:
-            wait = backoff * attempt
-            print(f"[VERDICT] Rate limited. Waiting {wait}s before retry {attempt}/{max_retries}...")
-            time.sleep(wait)
-            continue
+            if response.status_code in [400, 401, 403]:
+                print(f"[VERDICT FATAL] HTTP {response.status_code}: {response.text}")
+                return "explanation_unavailable"
 
-        if response.status_code != 200:
-            return f"ERROR: status_{response.status_code} {response.text[:300]}"
+            if response.status_code != 200:
+                print(f"[VERDICT ERROR] HTTP {response.status_code} on attempt {attempt} — retrying...")
+                time.sleep(backoff)
+                backoff = min(backoff * 2, max_backoff)
+                continue
 
-        try:
             result = response.json()
-        except Exception:
-            return f"ERROR: invalid_json {response.text[:300]}"
+            choice = result.get("choices", [{}])[0]
+            message = choice.get("message", {})
+            content = message.get("content") or message.get("reasoning_content")
 
-        try:
-            choice = result["choices"][0]
+            if not content:
+                print(f"[VERDICT ERROR] Empty content on attempt {attempt} — retrying...")
+                time.sleep(backoff)
+                backoff = min(backoff * 2, max_backoff)
+                continue
 
-            if "message" in choice:
-                message = choice["message"]
-                raw = message.get("content") or message.get("reasoning_content")
-            else:
-                raw = choice.get("text")
+            return str(content).strip()
 
-            if raw is None:
-                return f"ERROR: empty_content {result}"
-
-            return str(raw)
-
-        except Exception:
-            return f"ERROR: malformed_response {result}"
-
-    return "ERROR: request_failed max_retries_exceeded"
+        except Exception as e:
+            print(f"[VERDICT ERROR] Attempt {attempt}: {e} — retrying...")
+            time.sleep(backoff)
+            backoff = min(backoff * 2, max_backoff)
 
 
 def parse_llm_output(raw):
@@ -83,7 +76,7 @@ def parse_llm_output(raw):
     lines = text.splitlines()
 
     verdict = "HOLD"
-    for line in lines[:3]:  # check first 3 lines, not just line 0
+    for line in lines[:3]:
         candidate = line.strip().upper()
         if candidate in ["BUY", "SELL", "HOLD"]:
             verdict = candidate
@@ -96,6 +89,26 @@ def parse_llm_output(raw):
     return verdict, reasoning
 
 
+# =========================
+# DETERMINISTIC VERDICT
+# Used in backtest mode — no LLM call.
+# Mirrors the exact thresholds in the LLM prompt so results are consistent.
+# =========================
+def compute_verdict_deterministic(weighted_score: float) -> tuple[str, str]:
+    if weighted_score >= 0.15:
+        verdict = "BUY"
+    elif weighted_score <= -0.15:
+        verdict = "SELL"
+    else:
+        verdict = "HOLD"
+
+    reasoning = (
+        f"[backtest deterministic] weighted_score={round(weighted_score, 4)} → {verdict} "
+        f"(thresholds: >=0.15 BUY, <=-0.15 SELL, else HOLD)"
+    )
+    return verdict, reasoning
+
+
 def verdict_agent(state):
     state["debug_log"].append("VERDICT agent: LLM decision mode")
 
@@ -105,6 +118,12 @@ def verdict_agent(state):
     pair = str(state.get("currency_pair", "")).upper()
     atr  = float(state.get("atr", 0.0))
 
+    # =========================
+    # READ BACKTEST FLAG EARLY
+    # This is the key fix: skip LLM entirely in backtest mode
+    # =========================
+    backtest_mode = bool(state.get("backtest_mode", False))
+
     pair_cfg    = get_pair_config(pair)
     sl_mult     = float(pair_cfg.get("sl_mult", 1.0))
     rr_ratio    = float(pair_cfg.get("rr_ratio", 2.0))
@@ -112,9 +131,7 @@ def verdict_agent(state):
     tp_distance = round(sl_distance * rr_ratio, 5)
 
     # =========================
-    # HARD BLOCK (SIV INCOHERENT
-    # still a hard block — price
-    # mismatch means data is broken)
+    # HARD BLOCK (SIV INCOHERENT)
     # =========================
     if siv.get("signal") == "INCOHERENT":
         return {
@@ -129,62 +146,44 @@ def verdict_agent(state):
         }
 
     # =========================
-    # SCORE COMPUTATION (OLD LOGIC RESTORED)
+    # SCORE COMPUTATION
     # =========================
-
     ce_map = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
     ce_signal = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
-
     tts_signal = float(tts.get("total_score", 0.0))
 
-    # OLD SIMPLE WEIGHTED SCORE (RESTORED)
     weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
-
-    # clamp safety (kept from newer system)
     weighted_score = max(-1.0, min(weighted_score, 1.0))
 
-        # =========================
-    # FIX 2: DYNAMIC SL/TP (VOLATILITY REGIME IMPROVED)
     # =========================
-
+    # DYNAMIC SL/TP
+    # =========================
     price = float(tts.get("price", 1e-9))
     atr_pct = atr / price if price > 0 else 0
 
-    # volatility regime (ATR-based, more stable than price-dependent scaling)
     if atr_pct < 0.002:
-        volatility = "LOW"
         vol_mult = 1.6
     elif atr_pct < 0.005:
-        volatility = "MEDIUM"
         vol_mult = 2.2
     else:
-        volatility = "HIGH"
         vol_mult = 3.0
 
     ema_trend = tts.get("ema_trend", "NEUTRAL")
     trend_regime = "TRENDING" if ema_trend in ["BULLISH", "BEARISH"] else "RANGING"
 
-    # SL stays ATR-based (unchanged core logic)
     sl_distance = round(atr * sl_mult, 5)
-
-    # base TP
     base_tp = sl_distance * rr_ratio * vol_mult
-
-    # trend adjustment (kept but normalized so it doesn't explode TP)
-    if trend_regime == "TRENDING":
-        base_tp *= 1.15
-    else:
-        base_tp *= 0.9
-
+    base_tp *= 1.15 if trend_regime == "TRENDING" else 0.9
     tp_distance = round(base_tp, 5)
 
     # =========================
-    # LLM PROMPT
-    # No hard rules — LLM reasons
-    # from weighted score + all
-    # agent context + explanations
+    # VERDICT — BACKTEST: deterministic, LIVE: LLM
     # =========================
-    prompt = f"""
+    if backtest_mode:
+        verdict, reasoning = compute_verdict_deterministic(weighted_score)
+        print(f"\n[VERDICT] {verdict} | BACKTEST DETERMINISTIC | score={round(weighted_score, 4)}")
+    else:
+        prompt = f"""
 You are an expert forex trading decision engine.
 
 OUTPUT FORMAT (STRICT):
@@ -213,8 +212,6 @@ Signal conflict is already priced into the score.
 ------------------------------------------------------------
 2. CONVICTION ADJUSTMENTS (DO NOT CHANGE VERDICT)
 ------------------------------------------------------------
-
-These only affect reasoning strength, never the BUY/SELL/HOLD decision:
 
 Reduce conviction if:
 - CE confidence is LOW or article count < 10
@@ -271,12 +268,13 @@ signal: {siv.get("signal")}
 issues: {siv.get("issues")}
 siv_explanation: {siv.get("explanation", "none")}
 """
-
-    raw = call_qwen(prompt)
-    verdict, reasoning = parse_llm_output(raw)
+        raw = call_qwen(prompt)
+        verdict, reasoning = parse_llm_output(raw)
+        print(f"\n[VERDICT] {verdict} | ATR={atr:.5f} | SL={sl_distance} | TP={tp_distance}")
+        print(f"[REASONING] {reasoning}\n")
 
     # =========================
-    # RISK LOGIC (ATR-aware)
+    # RISK LOGIC
     # =========================
     if atr == 0.0:
         risk = 0.4
@@ -286,9 +284,6 @@ siv_explanation: {siv.get("explanation", "none")}
         risk = 0.6
     else:
         risk = 0.4
-
-    print(f"\n[VERDICT] {verdict} | ATR={atr:.5f} | SL={sl_distance} | TP={tp_distance}")
-    print(f"[REASONING] {reasoning}\n")
 
     return {
         "verdict": verdict,

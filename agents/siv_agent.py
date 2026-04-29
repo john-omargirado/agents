@@ -13,6 +13,7 @@ URL = "https://inference.do-ai.run/v1/chat/completions"
 # =========================
 
 def call_qwen(payload: Dict[str, Any]) -> str:
+    print("🔥 CALL_QWEN HIT FROM:", __file__)
     key = get_do_model_key()
 
     headers = {"Content-Type": "application/json"}
@@ -47,24 +48,21 @@ INPUT:
         "temperature": 0.2
     }
 
-    max_retries = 3
-    backoff = 5  # seconds
-
-    for attempt in range(1, max_retries + 1):
+    attempt = 0
+    while True:
+        attempt += 1
         try:
             response = requests.post(URL, headers=headers, json=data, timeout=90)
-            print(f"[SIV EXPLANATION HTTP] status={response.status_code}")
 
             if response.status_code == 429:
-                wait = backoff * attempt
-                print(f"[SIV] Rate limited. Waiting {wait}s...")
-                time.sleep(wait)
-                backoff *= 2
+                print(f"[SIV] Rate limited on attempt {attempt}. Waiting 15s...")
+                time.sleep(15)
                 continue
 
             if response.status_code != 200:
-                print(f"[SIV EXPLANATION ERROR] HTTP {response.status_code}: {response.text[:200]}")
-                return "LLM_ERROR"
+                print(f"[SIV ERROR] HTTP {response.status_code} on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
 
             result = response.json()
             choice = result.get("choices", [{}])[0]
@@ -72,18 +70,16 @@ INPUT:
             content = message.get("content")
 
             if not content:
-                return "LLM_EMPTY"
+                print(f"[SIV ERROR] Empty content on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
 
             return str(content).strip()
 
         except Exception as e:
-            print(f"[SIV EXPLANATION ERROR] Attempt {attempt}/{max_retries}: {e}")
-            if attempt < max_retries:
-                print(f"[SIV EXPLANATION] Retrying in {backoff}s...")
-                time.sleep(backoff)
-                backoff *= 2  # exponential: 5 -> 10 -> 20
-
-    return "LLM_ERROR"
+            print(f"[SIV ERROR] Attempt {attempt}: {e} — retrying in 10s...")
+            time.sleep(10)
+            continue
 
 
 # =========================
@@ -144,32 +140,18 @@ def siv_agent(state):
 
     signal, issues = compute_siv(llm_input)
 
-    # STEP 2: LLM EXPLANATION ONLY
-    if not backtest_mode:
-        explanation = call_qwen(llm_input)
-    else:
+    # 🔥 HARD SAFETY LOCK (NEW)
+    force_skip = state.get("skip_llm", False)
+
+    if backtest_mode or force_skip:
         explanation = "skipped_backtest"
+    else:
+        explanation = None
 
-    # =========================
-    # SAFE NORMALIZATION
-    # =========================
-    if not explanation or explanation in ["LLM_ERROR", "LLM_EMPTY"]:
-        explanation = "fallback_explanation_used"
-
-    explanation = str(explanation).strip()
-    if not explanation:
-        explanation = "fallback_explanation_used"
-
-    # =========================
-    # DEBUG OUTPUT
-    # =========================
     print(f"\n[SIV OUTPUT] {signal}")
     print(f"[SIV ISSUES] {issues}")
     print(f"[SIV EXPLANATION] {explanation}\n")
 
-    # =========================
-    # OUTPUT
-    # =========================
     return {
         "siv_output": {
             "signal": signal,

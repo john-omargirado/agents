@@ -9,6 +9,9 @@ CE_URL = "https://inference.do-ai.run/v1/chat/completions"
 
 _explanation_cache = {}
 
+def log(stage: str, start: float):
+    elapsed = (time.perf_counter() - start) * 1000
+    print(f"[CE TIMER] {stage}: {elapsed:.2f} ms")
 
 def call_ce_explanation(ce_data: dict):
     key = get_do_model_key()
@@ -35,24 +38,39 @@ INPUT:
         "temperature": 0.2,
     }
 
-    for attempt in range(3):
+    attempt = 0
+    while True:
+        attempt += 1
         try:
-            resp = requests.post(CE_URL, headers=headers, json=payload, timeout=60)
+            t0 = time.perf_counter()
+            resp = requests.post(CE_URL, headers=headers, json=payload, timeout=90)
+            log("LLM REQUEST", t0)
+
+            if resp.status_code == 429:
+                print(f"[TTS] Rate limited on attempt {attempt}. Waiting 15s...")
+                time.sleep(15)
+                continue
+
+            if resp.status_code != 200:
+                print(f"[TTS ERROR] HTTP {resp.status_code} on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
+
             result = resp.json()
+            message = result.get("choices", [{}])[0].get("message", {})
+            content = message.get("content") or message.get("reasoning_content")
 
-            msg = result.get("choices", [{}])[0].get("message", {})
-
-            content = (
-                msg.get("content")
-                or msg.get("reasoning_content")
-                or "explanation_unavailable"
-            )
+            if not content:
+                print(f"[TTS ERROR] Empty content on attempt {attempt} — retrying in 10s...")
+                time.sleep(10)
+                continue
 
             return str(content).strip()
 
         except Exception as e:
-            print(f"[CE EXPLANATION ERROR] {e}")
-            time.sleep(3 * (attempt + 1))
+            print(f"[TTS ERROR] Attempt {attempt}: {e} — retrying in 10s...")
+            time.sleep(10)
+            continue
 
     return "explanation_unavailable"
 

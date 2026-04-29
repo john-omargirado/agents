@@ -59,6 +59,25 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
     macd_hist = float(row["macd_hist"])
     macd_score = max(-1.0, min(macd_hist / (abs(float(row["macd"])) + 1e-9), 1.0))
 
+    try:
+        prev_row = precomputed.loc[:target_dt].iloc[-2]
+        macd_cross_prev = float(prev_row["macd"]) - float(prev_row["macd_signal"])
+    except Exception:
+        macd_cross_prev = 0.0
+    
+    
+
+    macd_cross_curr = float(row["macd"]) - float(row["macd_signal"])
+
+    if macd_cross_prev > 0 and macd_cross_curr < 0:
+        macd_direction_score = -0.6   # bearish cross
+    elif macd_cross_prev < 0 and macd_cross_curr > 0:
+        macd_direction_score = 0.6    # bullish cross
+    else:
+        macd_direction_score = macd_cross_curr / (abs(macd_cross_curr) + 1e-9) * 0.2
+    
+    print(f"[TTS DEBUG] macd_cross_curr={macd_cross_curr:.6f} | macd_cross_prev={macd_cross_prev:.6f} | macd_dir_score={macd_direction_score:.4f}")
+
     row_count = len(precomputed.loc[:target_dt])
 
     ema_200_conf = min(row_count / 400, 1.0)
@@ -74,8 +93,10 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
 
     trend_strength = min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf
 
-    if (trend == "BEARISH" and rsi > 60) or (trend == "BULLISH" and rsi < 40):
-        trend_strength *= 0.4
+    if (trend == "BEARISH" and rsi > 70) or (trend == "BULLISH" and rsi < 30):
+        trend_strength *= 0.2  # extreme divergence
+    elif (trend == "BEARISH" and rsi > 60) or (trend == "BULLISH" and rsi < 40):
+        trend_strength *= 0.4  # moderate divergence
 
     rsi_strength = 0.0
     if rsi > 60:
@@ -110,5 +131,6 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "ema_200_reliable": row_count >= 400,
         "macd_hist": macd_hist,
         "macd_score": macd_score,
+        "macd_direction_score": macd_direction_score,
         "data_stale": False
     }

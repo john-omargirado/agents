@@ -96,6 +96,7 @@ INPUT:
 
             return str(content).strip() if content else "explanation_unavailable"
 
+        
         except Exception as e:
             print(f"[TTS ERROR] {e}")
             time.sleep(5 * (attempt + 1))
@@ -141,39 +142,69 @@ def tts_agent(state: TradingState):
     if not tech:
         return {"tts_output": {"decision": "HOLD"}}
 
-# =========================
-    # FEATURE ENGINEERING
+    # =========================
+    # FEATURE ENGINEERING (OLD LOGIC RESTORED, NO MACD)
     # =========================
     t2 = time.perf_counter()
 
+    # EMA signal
     ema_vote = 1 if tech["trend"] == "BULLISH" else -1 if tech["trend"] == "BEARISH" else 0
-    ema_score = ema_vote * tech["trend_strength"]
+    ema_strength = tech["trend_strength"]
+    ema_score = ema_vote * min(ema_strength, 1.0) if ema_vote else 0.0
 
-    rsi_score = (tech["rsi"] - 50) / 50
+    # RSI signal (old style centered scoring)
+    rsi_score = max(-1.0, min((tech["rsi"] - 50) / 50, 1.0))
 
+    # Bollinger Bands signal
     if tech["bb_signal"] == "OVERSOLD":
-        bb_score = tech["bb_strength"]
+        bb_score = min(tech["bb_strength"], 1.0)
     elif tech["bb_signal"] == "OVERBOUGHT":
-        bb_score = -tech["bb_strength"]
+        bb_score = -min(tech["bb_strength"], 1.0)
     else:
         bb_score = 0.0
 
+    # Breakout logic (RESTORED)
+    filtered_df = full_df[full_df["timestamp"] <= pd.to_datetime(target_date)]
+    recent_high = filtered_df["high"].tail(20).max()
+    recent_low = filtered_df["low"].tail(20).min()
     price = tech["price"]
-    macd_score = tech.get("macd_score", 0.0)
+
+    if price > recent_high:
+        breakout_score = 1.0
+    elif price < recent_low:
+        breakout_score = -1.0
+    else:
+        breakout_score = 0.0
 
     log("FEATURE ENGINEERING", t2)
 
     # =========================
-    # SCORING
+    # SCORING (OLD SYSTEM RESTORED)
     # =========================
     t3 = time.perf_counter()
 
+    weights = {
+        "ema": 0.3,
+        "rsi": 0.3,
+        "bb": 0.2,
+        "breakout": 0.2
+    }
+
     total_score = (
-        0.35 * ema_score +
-        0.25 * rsi_score +
-        0.20 * bb_score +
-        0.20 * macd_score
+        weights["ema"] * ema_score +
+        weights["rsi"] * rsi_score +
+        weights["bb"] * bb_score +
+        weights["breakout"] * breakout_score
     )
+
+    # conflict penalty (OLD BEHAVIOR)
+    if ema_score * rsi_score < 0:
+        total_score *= 0.7
+
+    total_score = max(-1.0, min(total_score, 1.0))
+
+    log("SCORING", t3)
+
 
     total_score = max(-1.0, min(total_score, 1.0))
 
@@ -193,17 +224,16 @@ def tts_agent(state: TradingState):
     # OUTPUT
     # =========================
     tts_result = {
-        "decision": decision,
-        "total_score": round(total_score, 4),
-        "price": price,
-        "ema_trend": tech["trend"],
-        "rsi": tech["rsi"],
-        "bb_signal": tech["bb_signal"],
-        "ema_200_confidence": tech["ema_200_confidence"],
-        "ema_200_reliable": tech["ema_200_reliable"],
-        "macd_hist": tech.get("macd_hist", 0.0),
-        "data_stale": tech["data_stale"],
-        "explanation": "skipped_backtest" if backtest_mode else "pending"
+    "decision": decision,
+    "total_score": round(total_score, 4),
+    "price": price,
+    "ema_trend": tech["trend"],
+    "rsi": tech["rsi"],
+    "bb_signal": tech["bb_signal"],
+    "ema_200_confidence": tech["ema_200_confidence"],
+    "ema_200_reliable": tech["ema_200_reliable"],
+    "data_stale": tech["data_stale"],
+    "explanation": "skipped_backtest" if backtest_mode else "pending"
     }
     # After building tts_result, add:
     if not backtest_mode:

@@ -2,18 +2,22 @@ from typing import TypedDict, Optional, List, Literal
 
 
 class TTSOutput(TypedDict):
-    decision: Literal["BUY", "SELL", "HOLD"]      # was missing entirely
     total_score: float
-    price: float
     ema_trend: Literal["BULLISH", "BEARISH", "SIDEWAYS"]
-    rsi: float                                      # was rsi_value — wrong name
+    ema_score: float
+    rsi_value: float
+    rsi_score: float
     bb_signal: Literal["OVERBOUGHT", "OVERSOLD", "STABLE"]
-    macd_hist: float                                # new
+    bb_score: float
+    breakout_score: float
+    price: float
     ema_200_confidence: float
     ema_200_reliable: bool
     data_stale: bool
-    explanation: str
+    rows_available: int
+    tts_insufficient: bool
     error: Optional[str]
+    explanation: str   
 
 
 class CEOutput(TypedDict):

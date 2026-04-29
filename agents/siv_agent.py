@@ -55,6 +55,13 @@ INPUT:
             response = requests.post(URL, headers=headers, json=data, timeout=90)
             print(f"[SIV EXPLANATION HTTP] status={response.status_code}")
 
+            if response.status_code == 429:
+                wait = backoff * attempt
+                print(f"[SIV] Rate limited. Waiting {wait}s...")
+                time.sleep(wait)
+                backoff *= 2
+                continue
+
             if response.status_code != 200:
                 print(f"[SIV EXPLANATION ERROR] HTTP {response.status_code}: {response.text[:200]}")
                 return "LLM_ERROR"

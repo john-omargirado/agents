@@ -241,7 +241,6 @@ total_score: {tts.get("total_score")}
 ema_trend: {tts.get("ema_trend")}
 rsi: {tts.get("rsi")}
 bb_signal: {tts.get("bb_signal")}
-macd_hist: {tts.get("macd_hist")}
 ema_200_confidence: {tts.get("ema_200_confidence")}
 ema_200_reliable: {tts.get("ema_200_reliable")}
 data_stale: {tts.get("data_stale")}
@@ -261,6 +260,7 @@ signal: {siv.get("signal")}
 issues: {siv.get("issues")}
 siv_explanation: {siv.get("explanation", "none")}
 """
+
 
     return call_llm(prompt, max_tokens=1024, label="VERDICT REASONING")
 

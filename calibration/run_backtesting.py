@@ -6,6 +6,7 @@ from typing import cast
 import time
 import os
 
+
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
 if str(project_root) not in sys.path:
@@ -364,7 +365,6 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
 if __name__ == "__main__":
     import argparse
-    from concurrent.futures import ThreadPoolExecutor
 
     parser = argparse.ArgumentParser()
     parser.add_argument("pair", nargs="?", default="USDJPY")
@@ -381,11 +381,27 @@ if __name__ == "__main__":
     else:
         years = [int(y) for y in raw_years.split(",")]
 
-    def run_year(year):
+    # =========================
+    # SEQUENTIAL QUEUE
+    # Runs one year at a time —
+    # explanation pipeline finishes
+    # before next year starts
+    # =========================
+    total_years = len(years)
+    for i, year in enumerate(years, 1):
         print(f"\n{'='*50}")
-        print(f"RUNNING BACKTEST: {args.pair.upper()} | YEAR={year} | MONTHS={months}")
+        print(f"QUEUE [{i}/{total_years}]: {args.pair.upper()} | YEAR={year} | MONTHS={months}")
         print(f"{'='*50}")
-        run_backtest(args.pair.upper(), months, year)
 
-    with ThreadPoolExecutor(max_workers=len(years)) as executor:
-        executor.map(run_year, years)
+        try:
+            run_backtest(args.pair.upper(), months, year)
+        except Exception as e:
+            print(f"[QUEUE ERROR] Year {year} failed: {e}")
+            print(f"[QUEUE] Skipping to next year...\n")
+            continue
+
+        if i < total_years:
+            print(f"\n[QUEUE] Year {year} complete. Starting {years[i]} in 5s...")
+            time.sleep(5)
+
+    print(f"\n[QUEUE] All {total_years} years complete.")

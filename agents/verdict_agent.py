@@ -38,6 +38,12 @@ def call_qwen(prompt):
                 backoff *= 2
             continue
 
+        if response.status_code == 429:
+            wait = backoff * attempt
+            print(f"[VERDICT] Rate limited. Waiting {wait}s before retry {attempt}/{max_retries}...")
+            time.sleep(wait)
+            continue
+
         if response.status_code != 200:
             return f"ERROR: status_{response.status_code} {response.text[:300]}"
 
@@ -123,26 +129,54 @@ def verdict_agent(state):
         }
 
     # =========================
-    # SCORE COMPUTATION
+    # SCORE COMPUTATION (OLD LOGIC RESTORED)
     # =========================
-    ce_map     = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
-    ce_signal  = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
+
+    ce_map = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
+    ce_signal = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
+
     tts_signal = float(tts.get("total_score", 0.0))
 
-    ce_confidence = ce.get("confidence", "LOW")
-    ce_articles   = int(ce.get("article_count", 0))
-    ce_is_weak    = ce_confidence == "LOW" or ce_articles < 10
+    # OLD SIMPLE WEIGHTED SCORE (RESTORED)
+    weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
 
-    if ce.get("sentiment") == "NEUTRAL":
-        weighted_score = tts_signal
-    elif ce_is_weak and abs(tts_signal) >= 0.15:
-        weighted_score = tts_signal
-    elif ce.get("sentiment") == "BEARISH" and tts_signal >= 0.0:
-        # CE says bearish but TTS sees no bearish confirmation at all
-        # reduce CE dominance
-        weighted_score = (0.40 * ce_signal) + (0.60 * tts_signal)
+    # clamp safety (kept from newer system)
+    weighted_score = max(-1.0, min(weighted_score, 1.0))
+
+        # =========================
+    # FIX 2: DYNAMIC SL/TP (VOLATILITY REGIME IMPROVED)
+    # =========================
+
+    price = float(tts.get("price", 1e-9))
+    atr_pct = atr / price if price > 0 else 0
+
+    # volatility regime (ATR-based, more stable than price-dependent scaling)
+    if atr_pct < 0.002:
+        volatility = "LOW"
+        vol_mult = 1.6
+    elif atr_pct < 0.005:
+        volatility = "MEDIUM"
+        vol_mult = 2.2
     else:
-        weighted_score = (0.60 * ce_signal) + (0.40 * tts_signal)
+        volatility = "HIGH"
+        vol_mult = 3.0
+
+    ema_trend = tts.get("ema_trend", "NEUTRAL")
+    trend_regime = "TRENDING" if ema_trend in ["BULLISH", "BEARISH"] else "RANGING"
+
+    # SL stays ATR-based (unchanged core logic)
+    sl_distance = round(atr * sl_mult, 5)
+
+    # base TP
+    base_tp = sl_distance * rr_ratio * vol_mult
+
+    # trend adjustment (kept but normalized so it doesn't explode TP)
+    if trend_regime == "TRENDING":
+        base_tp *= 1.15
+    else:
+        base_tp *= 0.9
+
+    tp_distance = round(base_tp, 5)
 
     # =========================
     # LLM PROMPT
@@ -218,7 +252,6 @@ total_score: {tts.get("total_score")}
 ema_trend: {tts.get("ema_trend")}
 rsi: {tts.get("rsi")}
 bb_signal: {tts.get("bb_signal")}
-macd_hist: {tts.get("macd_hist")}
 ema_200_confidence: {tts.get("ema_200_confidence")}
 ema_200_reliable: {tts.get("ema_200_reliable")}
 data_stale: {tts.get("data_stale")}

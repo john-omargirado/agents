@@ -20,13 +20,13 @@ _finbert_cache = {}
 DEBUG_CE = True
 
 # CPU optimization (i5 11th gen sweet spot)
-BATCH_SIZE = 16
+BATCH_SIZE = 32
 
 # IMPORTANT: CPU only
 pipe = pipeline(
     "text-classification",
     model=MODEL_ID,
-    device=-1,  # CPU
+    device=0,  # CPU
     truncation=True
 )
 

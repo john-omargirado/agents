@@ -1,7 +1,6 @@
 import json
 import requests
 import time
-import re
 from utils.credentials import get_do_model_key
 from utils.trade_config import get_pair_config
 
@@ -89,25 +88,6 @@ def parse_llm_output(raw):
     return verdict, reasoning
 
 
-# =========================
-# DETERMINISTIC VERDICT
-# Used in backtest mode — no LLM call.
-# Mirrors the exact thresholds in the LLM prompt so results are consistent.
-# =========================
-def compute_verdict_deterministic(weighted_score: float) -> tuple[str, str]:
-    if weighted_score >= 0.15:
-        verdict = "BUY"
-    elif weighted_score <= -0.15:
-        verdict = "SELL"
-    else:
-        verdict = "HOLD"
-
-    reasoning = (
-        f"[backtest deterministic] weighted_score={round(weighted_score, 4)} → {verdict} "
-        f"(thresholds: >=0.15 BUY, <=-0.15 SELL, else HOLD)"
-    )
-    return verdict, reasoning
-
 
 def verdict_agent(state):
     state["debug_log"].append("VERDICT agent: LLM decision mode")
@@ -118,26 +98,23 @@ def verdict_agent(state):
     pair = str(state.get("currency_pair", "")).upper()
     atr  = float(state.get("atr", 0.0))
 
-    # =========================
-    # READ BACKTEST FLAG EARLY
-    # This is the key fix: skip LLM entirely in backtest mode
-    # =========================
     backtest_mode = bool(state.get("backtest_mode", False))
+    skip_llm      = bool(state.get("skip_llm", False))
 
     pair_cfg    = get_pair_config(pair)
     sl_mult     = float(pair_cfg.get("sl_mult", 1.0))
     rr_ratio    = float(pair_cfg.get("rr_ratio", 2.0))
-    sl_distance = round(atr * sl_mult, 5)
-    tp_distance = round(sl_distance * rr_ratio, 5)
 
     # =========================
     # HARD BLOCK (SIV INCOHERENT)
     # =========================
     if siv.get("signal") == "INCOHERENT":
+        sl_distance = round(atr * sl_mult, 5)
+        tp_distance = round(sl_distance * rr_ratio, 5)
         return {
             "verdict": "HOLD",
             "weighted_score": 0.0,
-            "verdict_reasoning": "SIV INCOHERENT — price mismatch or missing data, no trade.",
+            "verdict_reasoning": "SIV INCOHERENT — price mismatch or missing data.",
             "risk_multiplier": 0.0,
             "atr": atr,
             "sl_distance": sl_distance,
@@ -146,13 +123,53 @@ def verdict_agent(state):
         }
 
     # =========================
-    # SCORE COMPUTATION
+    # SCORE COMPUTATION — continuous ce_score + adaptive weight
     # =========================
-    ce_map = {"BULLISH": 1.0, "BEARISH": -1.0, "NEUTRAL": 0.0}
-    ce_signal = ce_map.get(ce.get("sentiment", "NEUTRAL"), 0.0)
-    tts_signal = float(tts.get("total_score", 0.0))
+    ce_score_raw = float(ce.get("ce_score", 0.0))
+    ce_conf      = float(ce.get("ce_confidence", 0.0))
+    tts_score    = float(tts.get("total_score", 0.0))
 
-    weighted_score = (0.6 * ce_signal) + (0.4 * tts_signal)
+    ce_weight  = 0.35 + (0.30 * ce_conf)   # 0.35 → 0.65 based on data quality
+    tts_weight = 1.0 - ce_weight
+
+    weighted_score = (ce_weight * ce_score_raw) + (tts_weight * tts_score)
+
+    # =========================
+    # SIGNAL QUALITY GATE
+    # =========================
+    ce_article_count = int(ce.get("article_count", 0))
+    ce_strong  = ce_article_count >= 10 and abs(ce_score_raw) >= 0.05
+    tts_strong = abs(tts_score) >= 0.08
+    siv_issues = siv.get("issues", [])
+
+    if siv.get("signal") == "PARTIAL" and "signal_mismatch" in siv_issues:
+        # ✅ FIX: was (ce_strong and tts_strong) — TTS is 0 for 83% of days
+        # so this gate was blocking almost every PARTIAL trade
+        tradeable   = ce_strong          # ← only require CE when TTS is unavailable
+        skip_reason = "signal_mismatch — need CE strong (TTS unreliable)"
+    elif not ce_strong and not tts_strong:
+        tradeable   = False
+        skip_reason = f"weak signals — articles={ce_article_count} |ce|={abs(ce_score_raw):.3f} |tts|={abs(tts_score):.3f}"
+    else:
+        tradeable   = True
+        skip_reason = None
+
+    if not tradeable:
+        print(f"\n[VERDICT] SKIP — {skip_reason}")
+        return {
+            "verdict":           "HOLD",
+            "weighted_score":    0.0,
+            "verdict_reasoning": f"SKIP: {skip_reason}",
+            "risk_multiplier":   0.0,
+            "atr":               atr,
+            "sl_distance":       round(atr * sl_mult, 5),
+            "tp_distance":       0.0,
+            "action":            "SKIP"
+        }
+
+    # Apply SIV score multiplier
+    siv_multiplier = float(siv.get("score_multiplier", 1.0))
+    weighted_score = weighted_score * siv_multiplier
     weighted_score = max(-1.0, min(weighted_score, 1.0))
 
     # =========================
@@ -168,20 +185,21 @@ def verdict_agent(state):
     else:
         vol_mult = 3.0
 
-    ema_trend = tts.get("ema_trend", "NEUTRAL")
+    ema_trend    = tts.get("ema_trend", "NEUTRAL")
     trend_regime = "TRENDING" if ema_trend in ["BULLISH", "BEARISH"] else "RANGING"
 
     sl_distance = round(atr * sl_mult, 5)
-    base_tp = sl_distance * rr_ratio * vol_mult
-    base_tp *= 1.15 if trend_regime == "TRENDING" else 0.9
+    base_tp     = sl_distance * rr_ratio * vol_mult
+    base_tp    *= 1.15 if trend_regime == "TRENDING" else 0.9
     tp_distance = round(base_tp, 5)
 
     # =========================
-    # VERDICT — BACKTEST: deterministic, LIVE: LLM
+    # VERDICT
     # =========================
-    if backtest_mode:
-        verdict, reasoning = compute_verdict_deterministic(weighted_score)
-        print(f"\n[VERDICT] {verdict} | BACKTEST DETERMINISTIC | score={round(weighted_score, 4)}")
+    if backtest_mode or skip_llm:
+        deterministic_threshold = float(state.get("calibration_threshold", 0.20))
+        verdict, reasoning = compute_verdict_deterministic(weighted_score, deterministic_threshold)
+        print(f"\n[VERDICT] {verdict} | DETERMINISTIC | score={round(weighted_score, 4)}")
     else:
         prompt = f"""
 You are an expert forex trading decision engine.
@@ -190,91 +208,25 @@ OUTPUT FORMAT (STRICT):
 First line: BUY or SELL or HOLD (one word only)
 Second line onwards: your reasoning
 
-YOUR TASK:
-Make a trading decision for {pair} based on all available information below.
-
-------------------------------------------------------------
-DECISION FRAMEWORK (STRICT)
-------------------------------------------------------------
-
-1. WEIGHTED_SCORE IS THE ONLY DIRECTION RULE:
-
-weighted_score = (0.6 * CE_signal) + (0.4 * TTS_signal)
-
-- >= 0.15  → BUY
-- <= -0.15 → SELL
-- between -0.15 and 0.15 → HOLD (mandatory, no override)
-
-The weighted_score already accounts for CE/TTS conflict mathematically.
-Do NOT override BUY or SELL to HOLD because CE and TTS disagree directionally.
-Signal conflict is already priced into the score.
-
-------------------------------------------------------------
-2. CONVICTION ADJUSTMENTS (DO NOT CHANGE VERDICT)
-------------------------------------------------------------
-
-Reduce conviction if:
-- CE confidence is LOW or article count < 10
-- CE and TTS point in opposite directions
-- SIV signal = PARTIAL with signal_mismatch
-
-Increase conviction if:
-- CE and TTS align directionally
-- CE confidence HIGH or MODERATE with sufficient articles
-- EMA_200_confidence >= 0.8
-
-------------------------------------------------------------
-3. REASONING REQUIREMENTS
-------------------------------------------------------------
-
-- State weighted_score and its zone
-- Evaluate CE (confidence, article count, sentiment strength)
-- Evaluate TTS (EMA, RSI, BB, MACD, EMA200 reliability)
-- Evaluate SIV (alignment or mismatch — conviction impact only)
-- Justify decision from weighted_score threshold only
-- Always reference actual values
-
-------------------------------------------------------------
-INPUT DATA
-------------------------------------------------------------
+DECISION RULE (NON-NEGOTIABLE):
+weighted_score >= 0.20  → BUY
+weighted_score <= -0.20 → SELL
+between -0.20 and 0.20  → HOLD
 
 weighted_score: {round(weighted_score, 4)}
-atr: {round(atr, 5)}
-sl_distance: {sl_distance}
-tp_distance: {tp_distance}
+ce_weight used: {round(ce_weight, 2)} (based on ce_confidence={ce_conf})
+atr: {round(atr, 5)} | sl: {sl_distance} | tp: {tp_distance}
 
-TTS:
-decision: {tts.get("decision")}
-total_score: {tts.get("total_score")}
-ema_trend: {tts.get("ema_trend")}
-rsi: {tts.get("rsi")}
-bb_signal: {tts.get("bb_signal")}
-ema_200_confidence: {tts.get("ema_200_confidence")}
-ema_200_reliable: {tts.get("ema_200_reliable")}
-data_stale: {tts.get("data_stale")}
-tts_explanation: {tts.get("explanation", "none")}
-
-CE:
-sentiment: {ce.get("sentiment")}
-confidence: {ce.get("confidence")}
-articles: {ce.get("article_count")}
-raw_vibe: {ce.get("raw_vibe")}
-sentiment_score: {ce.get("sentiment_score")}
-mean_score: {ce.get("mean_score")}
-ce_explanation: {ce.get("explanation", "none")}
-
-SIV:
-signal: {siv.get("signal")}
-issues: {siv.get("issues")}
-siv_explanation: {siv.get("explanation", "none")}
+TTS: decision={tts.get("decision")} score={tts.get("total_score")} ema={tts.get("ema_trend")} rsi={tts.get("rsi")} bb={tts.get("bb_signal")} regime={tts.get("regime", "UNKNOWN")}
+CE:  sentiment={ce.get("sentiment")} confidence={ce.get("confidence")} articles={ce.get("article_count")} ce_score={ce_score_raw}
+SIV: signal={siv.get("signal")} issues={siv.get("issues")} multiplier={siv_multiplier}
 """
         raw = call_qwen(prompt)
         verdict, reasoning = parse_llm_output(raw)
-        print(f"\n[VERDICT] {verdict} | ATR={atr:.5f} | SL={sl_distance} | TP={tp_distance}")
-        print(f"[REASONING] {reasoning}\n")
+        print(f"\n[VERDICT] {verdict} | LLM | score={round(weighted_score, 4)}")
 
     # =========================
-    # RISK LOGIC
+    # RISK MULTIPLIER (clean, no variable collision)
     # =========================
     if atr == 0.0:
         risk = 0.4
@@ -286,12 +238,27 @@ siv_explanation: {siv.get("explanation", "none")}
         risk = 0.4
 
     return {
-        "verdict": verdict,
-        "weighted_score": round(weighted_score, 4),
+        "verdict":           verdict,
+        "weighted_score":    weighted_score,
         "verdict_reasoning": reasoning,
-        "risk_multiplier": round(risk, 3),
-        "atr": atr,
-        "sl_distance": sl_distance,
-        "tp_distance": tp_distance,
-        "action": "NONE"
+        "risk_multiplier":   risk,
+        "atr":               atr,
+        "sl_distance":       sl_distance,
+        "tp_distance":       tp_distance,
+        "action":            verdict if verdict in ["BUY", "SELL"] else "NONE"
     }
+
+
+def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.10) -> tuple[str, str]:
+    if weighted_score >= threshold:
+        verdict = "BUY"
+    elif weighted_score <= -threshold:
+        verdict = "SELL"
+    else:
+        verdict = "HOLD"
+
+    reasoning = (
+        f"[deterministic] weighted_score={round(weighted_score, 4)} → {verdict} "
+        f"(thresholds: >={threshold} BUY, <=-{threshold} SELL)"
+    )
+    return verdict, reasoning

@@ -76,80 +76,63 @@ INPUT:
 
 
 def ce_agent(state: TradingState):
-
     state["debug_log"].append("CE agent started")
 
-    target_date = state.get("target_date")
-    pair = state.get("currency_pair")
-
-    # ALWAYS SAFE BOOLEAN (important for backtesting stability)
+    target_date   = state.get("target_date")
+    pair          = state.get("currency_pair")
     backtest_mode = bool(state.get("backtest_mode"))
+    skip_llm      = bool(state.get("skip_llm", False))
 
-    # =========================
-    # CORE SENTIMENT PIPELINE
-    # =========================
     sentiment_data = get_news_sentiment(
-        target_date,
-        pair,
-        backtest_mode=backtest_mode
+        target_date, pair, backtest_mode=backtest_mode
     )
 
+    # Early exit — no usable articles found
     if not sentiment_data or sentiment_data.get("article_count", 0) == 0:
         return {
             "ce_output": {
-                "sentiment": "NEUTRAL",
-                "raw_vibe": "NEUTRAL",
-                "mean_score": 0.0,
-                "sentiment_score": 0.0,
-                "article_count": 0,
-                "raw_article_count": 0,
-                "confidence": "LOW",
-                "explanation": "no_data"
+                "sentiment":         "NEUTRAL",
+                "confidence":        "LOW",
+                "raw_vibe":          "NEUTRAL",
+                "ce_score":          0.0,
+                "ce_confidence":     0.0,
+                "article_count":     0,
+                "raw_article_count": sentiment_data.get("raw_article_count", 0) if sentiment_data else 0,
+                "explanation":       "no_data"
             }
         }
 
-    mean_score = sentiment_data.get("mean_score", 0.0)
-    sentiment_score = sentiment_data.get("sentiment_score", 0.0)
-    article_count = sentiment_data.get("article_count", 0)
+    article_count     = sentiment_data.get("article_count", 0)
     raw_article_count = sentiment_data.get("raw_article_count", 0)
+    ce_final          = sentiment_data.get("ce_score", 0.0)
+    ce_confidence     = sentiment_data.get("ce_confidence", 0.0)
 
-    # =========================
-    # CLASSIFICATION
-    # =========================
     confidence = (
-        "HIGH" if article_count >= 25 else
+        "HIGH"     if article_count >= 25 else
         "MODERATE" if article_count >= 15 else
         "LOW"
     )
 
     sentiment = (
-        "BULLISH" if sentiment_score > 0.05 else
-        "BEARISH" if sentiment_score < -0.05 else
+        "BULLISH" if ce_final > 0.05 else
+        "BEARISH" if ce_final < -0.05 else
         "NEUTRAL"
     )
 
     normalized = {
-        "sentiment": sentiment,
-        "raw_vibe": sentiment_data.get("raw_vibe", "NEUTRAL"),
-        "mean_score": mean_score,
-        "sentiment_score": sentiment_score,
-        "article_count": article_count,
+        "sentiment":         sentiment,
+        "confidence":        confidence,
+        "raw_vibe":          sentiment_data.get("raw_vibe", "NEUTRAL"),
+        "ce_score":          ce_final,
+        "ce_confidence":     ce_confidence,
+        "article_count":     article_count,
         "raw_article_count": raw_article_count,
-        "confidence": confidence,
-        "explanation": "pending"
+        "explanation":       "pending"
     }
 
-    # =========================
-    # EXPLANATION (LIVE ONLY)
-    # =========================
-    if not backtest_mode:
-
-        cache_key = (
-            sentiment,
-            confidence,
-            article_count,
-            round(sentiment_score, 3)
-        )
+    # EXPLANATION — live only
+    if not backtest_mode and not skip_llm:
+        cache_key = (ce_final, confidence, article_count)
 
         if cache_key in _explanation_cache:
             explanation = _explanation_cache[cache_key]
@@ -158,8 +141,7 @@ def ce_agent(state: TradingState):
             _explanation_cache[cache_key] = explanation
 
         normalized["explanation"] = explanation
-
     else:
-        normalized["explanation"] = "skipped_backtest"
+        normalized["explanation"] = "skipped"
 
     return {"ce_output": normalized}

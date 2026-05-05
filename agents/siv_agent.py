@@ -85,7 +85,7 @@ INPUT:
 # =========================
 # PURE DETERMINISTIC CORE
 # =========================
-def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
+def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list, float]:
     ce = payload.get("ce_signal")
     tts = payload.get("tts_signal")
 
@@ -94,13 +94,13 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
 
     # PRICE INTEGRITY (HIGHEST PRIORITY)
     if actual_price is None or tts_price is None:
-        return "INCOHERENT", ["missing_price"]
+        return "INCOHERENT", ["missing_price"], 0.0
 
     try:
         if float(actual_price) != float(tts_price):
-            return "INCOHERENT", ["price_mismatch"]
+            return "INCOHERENT", ["price_mismatch"], 0.0
     except Exception:
-        return "INCOHERENT", ["price_parse_error"]
+        return "INCOHERENT", ["price_parse_error"], 0.0
 
     # =========================
     # NORMALIZE TO DIRECTION
@@ -117,15 +117,15 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
     tts_dir = direction_map.get(str(tts).upper(), "UNKNOWN")
 
     if "UNKNOWN" in (ce_dir, tts_dir):
-        return "PARTIAL", ["unrecognized_signal"]
+        return "PARTIAL", ["unrecognized_signal"], 0.5
 
     if ce_dir == tts_dir:
-        return "COHERENT", []
+        return "COHERENT", [], 1.0
 
     if "FLAT" in (ce_dir, tts_dir):
-        return "PARTIAL", ["one_signal_neutral"]
+        return "PARTIAL", ["one_signal_neutral"], 0.95
 
-    return "PARTIAL", ["signal_mismatch"]
+    return "PARTIAL", ["signal_mismatch"], 0.85
 
 
 # =========================
@@ -133,33 +133,33 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list]:
 # =========================
 def siv_agent(state):
     state.setdefault("debug_log", [])
-    state["debug_log"].append("SIV agent running (deterministic core)")
+    state["debug_log"].append("SIV agent running")
 
-    llm_input = prepare_siv_payload(state)
+    llm_input     = prepare_siv_payload(state)
     backtest_mode = state.get("backtest_mode", False)
+    force_skip    = state.get("skip_llm", False)
 
-    signal, issues = compute_siv(llm_input)
+    # UPDATED: unpack 3 values
+    signal, issues, score_multiplier = compute_siv(llm_input)
 
-    # 🔥 HARD SAFETY LOCK (NEW)
-    force_skip = state.get("skip_llm", False)
+    risk_penalty = 0.0
+    if signal == "INCOHERENT":
+        risk_penalty = 1.0
+    elif "signal_mismatch" in issues:
+        risk_penalty = 0.5
+    elif "one_signal_neutral" in issues:
+        risk_penalty = 0.2
 
-    if backtest_mode or force_skip:
-        explanation = "skipped_backtest"
-    else:
-        explanation = None
+    explanation = "skipped" if (backtest_mode or force_skip) else call_qwen(llm_input)
 
-    print(f"\n[SIV OUTPUT] {signal}")
-    print(f"[SIV ISSUES] {issues}")
-    print(f"[SIV EXPLANATION] {explanation}\n")
+    print(f"\n[SIV] {signal} | multiplier={score_multiplier} | issues={issues}")
 
     return {
         "siv_output": {
-            "signal": signal,
-            "issues": issues,
-            "ce_signal": llm_input.get("ce_signal"),
-            "tts_signal": llm_input.get("tts_signal"),
-            "actual_price": llm_input.get("actual_price"),
-            "tts_price": llm_input.get("tts_price"),
-            "explanation": explanation
+            "signal":           signal,
+            "issues":           issues,
+            "score_multiplier": score_multiplier,   # NEW
+            "risk_penalty":     risk_penalty,
+            "explanation":      explanation
         }
     }

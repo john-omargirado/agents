@@ -13,6 +13,11 @@ class TradingState(TypedDict):
     tts_output: Dict[str, Any]
     siv_output: Dict[str, Any]
 
+    ce_score: float
+    ce_confidence: float
+    tts_score: float
+    risk_penalty: float
+
     verdict: str
     verdict_reasoning: str
 
@@ -25,3 +30,5 @@ class TradingState(TypedDict):
 
     backtest_mode: bool
     atr: float
+    skip_llm: bool
+    regime: str          # ADD — populated from tts_output["regime"]

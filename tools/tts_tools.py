@@ -80,7 +80,7 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
 
     row_count = len(precomputed.loc[:target_dt])
 
-    ema_200_conf = min(row_count / 400, 1.0)
+    ema_200_conf = min(row_count / 200, 1.0)
 
     trend_diff = (ema_50 - ema_200) / (ema_200 + 1e-9)
 
@@ -120,6 +120,7 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "price": last_close,
         "trend": trend,
         "trend_strength": trend_strength,
+         "adx_proxy": min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf,  # ADD
         "rsi": rsi,
         "rsi_strength": rsi_strength,
         "bb_signal": bb_signal,
@@ -128,7 +129,7 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "ema_200": ema_200,
         "rows_available": row_count,
         "ema_200_confidence": ema_200_conf,
-        "ema_200_reliable": row_count >= 400,
+        "ema_200_reliable": row_count >= 200,
         "macd_hist": macd_hist,
         "macd_score": macd_score,
         "macd_direction_score": macd_direction_score,

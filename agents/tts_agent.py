@@ -128,8 +128,6 @@ def tts_agent(state: TradingState):
 
     total_start = time.perf_counter()
 
-    
-
     pair = state.get("currency_pair", "USDJPY").upper()
     target_date = state.get("target_date")
     backtest_mode = state.get("backtest_mode", False)
@@ -137,7 +135,6 @@ def tts_agent(state: TradingState):
 
     project_root = Path(__file__).resolve().parents[1]
 
-    # ✅ FIX: define file_path BEFORE usage
     if backtest_mode:
         file_path = project_root / "data" / "backtesting" / "forex_pairs" / f"{pair}.json"
     else:
@@ -159,7 +156,6 @@ def tts_agent(state: TradingState):
 
     if not tech:
         return {"tts_output": {"decision": "HOLD"}}
-
 
     atr_val = state.get("atr", 0.0)
 
@@ -186,44 +182,72 @@ def tts_agent(state: TradingState):
     macd_score = tech.get("macd_direction_score", 0.0)
     is_macd_cross = abs(macd_score) >= 0.6
 
-    # ✅ FIX 1: RSI threshold 60/40 instead of 70/30
-    # 70/30 only fires 16% of days; 60/40 fires 42% while keeping accuracy
     if rsi > 60:
         rsi_score = -1.0 * min((rsi - 60) / 40, 1.0)   # overbought → SELL
     elif rsi < 40:
-        rsi_score = 1.0 * min((40 - rsi) / 40, 1.0)    # oversold → BUY
+        rsi_score = 1.0 * min((40 - rsi) / 40, 1.0)    # oversold  → BUY
     else:
         rsi_score = 0.0
 
-    # ✅ FIX 2: BB OVERBOUGHT re-enabled as SELL
-    # Old comment "35.7% BUY accuracy" was misread:
-    # 35.7% correct as BUY = 64.3% of overbought days go DOWN → strong SELL signal
     if tech["bb_signal"] == "OVERSOLD":
-        bb_score = min(tech["bb_strength"], 1.0)     # below lower band → BUY
+        bb_score = min(tech["bb_strength"], 1.0)              # below lower band → BUY
     elif tech["bb_signal"] == "OVERBOUGHT":
-        bb_score = -1.0 * min(tech["bb_strength"], 1.0)  # above upper band → SELL
+        bb_score = -1.0 * min(tech["bb_strength"], 1.0)      # above upper band → SELL
     else:
         bb_score = 0.0
 
     ema_context = tech["trend"]
 
+    # ── Breakout score ───────────────────────────────────────────────────────
+    # BREAKOUT_UP   → positive score (momentum BUY)
+    # BREAKOUT_DOWN → negative score (momentum SELL)
+    # NONE          → 0.0 (no breakout, ignored)
+    #
+    # Regime weighting:
+    #   TRENDING     → breakout is a strong confirmation signal  (weight 0.25)
+    #   TRANSITIONAL → moderate confirmation                     (weight 0.15)
+    #   RANGING      → breakout is less reliable / fakeout-prone (weight 0.05)
+    breakout_signal   = tech.get("breakout_signal", "NONE")
+    breakout_strength = tech.get("breakout_strength", 0.0)
+
+    if breakout_signal == "BREAKOUT_UP":
+        breakout_raw_score = breakout_strength          # +ve → BUY momentum
+    elif breakout_signal == "BREAKOUT_DOWN":
+        breakout_raw_score = -breakout_strength         # -ve → SELL momentum
+    else:
+        breakout_raw_score = 0.0
+
+    breakout_weight = {"TRENDING": 0.25, "TRANSITIONAL": 0.15, "RANGING": 0.05}[regime]
+
+    print(
+        f"[TTS DEBUG] breakout_signal={breakout_signal} | "
+        f"raw_score={breakout_raw_score:.4f} | weight={breakout_weight} | regime={regime}"
+    )
+    # ────────────────────────────────────────────────────────────────────────
+
     # =========================
     # SCORING
     # =========================
+    # Weights are redistributed to make room for breakout_weight.
+    # The leftover (1.0 - breakout_weight) is split among existing signals
+    # using the same proportions as before so existing behaviour is preserved
+    # when there is no breakout (breakout_raw_score == 0).
+
+    remaining = 1.0 - breakout_weight
 
     if is_macd_cross:
         total_score = (
-            macd_score * 0.50 +
-            rsi_score  * 0.30 +
-            bb_score   * 0.20
+            macd_score          * (0.50 * remaining) +
+            rsi_score           * (0.30 * remaining) +
+            bb_score            * (0.20 * remaining) +
+            breakout_raw_score  * breakout_weight
         )
     else:
-        # ✅ FIX 3: MACD direction now included on non-cross days
-        # macd_direction_score = ±0.2 on non-cross days — directional info was being thrown away
         total_score = (
-            rsi_score  * 0.45 +
-            bb_score   * 0.25 +
-            macd_score * 0.30   # was ignored entirely — now 30% weight
+            rsi_score           * (0.45 * remaining) +
+            bb_score            * (0.25 * remaining) +
+            macd_score          * (0.30 * remaining) +
+            breakout_raw_score  * breakout_weight
         )
 
     total_score = max(-1.0, min(total_score, 1.0))
@@ -231,9 +255,6 @@ def tts_agent(state: TradingState):
     # =========================
     # DECISION
     # =========================
-    # ✅ FIX 4: Raise threshold from 0.10 → 0.15
-    # At 0.10: BUY=43.9%, SELL=60.0% (too noisy)
-    # At 0.15: BUY=53.8%, SELL=69.2%, Directional=59.0% (clean)
     if total_score > 0.15:
         decision = "BUY"
     elif total_score < -0.15:
@@ -242,20 +263,26 @@ def tts_agent(state: TradingState):
         decision = "HOLD"
 
     tts_result = {
-        "decision":            decision,
-        "tts_score":           total_score,
-        "total_score":         round(total_score, 4),
-        "price":               tech["price"],
-        "ema_trend":           tech["trend"],        # context only
-        "rsi":                 rsi,
-        "bb_signal":           tech["bb_signal"],
+        "decision":             decision,
+        "tts_score":            total_score,
+        "total_score":          round(total_score, 4),
+        "price":                tech["price"],
+        "ema_trend":            tech["trend"],
+        "rsi":                  rsi,
+        "bb_signal":            tech["bb_signal"],
         "macd_direction_score": macd_score,
-        "is_macd_cross":       is_macd_cross,
-        "regime":              regime,
-        "ema_200_confidence":  tech["ema_200_confidence"],
-        "ema_200_reliable":    tech["ema_200_reliable"],
-        "data_stale":          tech["data_stale"],
-        "explanation":         "pending"
+        "is_macd_cross":        is_macd_cross,
+        "regime":               regime,
+        "ema_200_confidence":   tech["ema_200_confidence"],
+        "ema_200_reliable":     tech["ema_200_reliable"],
+        "data_stale":           tech["data_stale"],
+        # ── breakout keys ──────────────────────────────
+        "breakout_signal":      breakout_signal,
+        "breakout_strength":    round(breakout_strength, 4),
+        "breakout_high":        tech.get("breakout_high"),
+        "breakout_low":         tech.get("breakout_low"),
+        # ───────────────────────────────────────────────
+        "explanation":          "pending"
     }
 
     if not backtest_mode and not skip_llm:

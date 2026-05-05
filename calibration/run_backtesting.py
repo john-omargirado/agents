@@ -35,11 +35,15 @@ def log(stage: str, start: float):
 # CONSTANTS
 # Must match calibration settings for consistent signal evaluation
 # =========================
-MARKET_MOVE_THRESHOLD = 0.0025   # aligned with calibration (was 0.0015)
-HORIZON_DAYS          = 3        # aligned with calibration (was 5)
+MARKET_MOVE_THRESHOLD = 0.0025   # aligned with calibration
+HORIZON_DAYS          = 3        # aligned with calibration
 
 # Verdict threshold — must match CURRENT_TEST_THRESHOLD in run_calibration.py
 VERDICT_THRESHOLD = 0.05
+
+# Quality gate — must match run_calibration.py
+MIN_SIGNAL_CONFIDENCE = 0.05
+MIN_VERDICT_STRENGTH  = 0.06
 
 
 # =========================
@@ -169,10 +173,19 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     time_exits = 0
     hold_skips = 0   # days with HOLD verdict — no simulation run
 
+    # =========================
+    # BREAKOUT COUNTERS
+    # =========================
+    breakout_up_total     = 0
+    breakout_up_correct   = 0
+    breakout_down_total   = 0
+    breakout_down_correct = 0
+
     print("\n--- STARTING BACKTEST ---")
     print(f"Pair={target_pair} | Year={target_year} | Months={target_months}")
     print(f"Threshold={VERDICT_THRESHOLD} | ATR_lookback={ATR_LOOKBACK}")
     print(f"Market threshold={MARKET_MOVE_THRESHOLD} | Horizon={HORIZON_DAYS}d")
+    print(f"Min verdict strength={MIN_VERDICT_STRENGTH} | Min signal confidence={MIN_SIGNAL_CONFIDENCE}")
 
     # =========================
     # MAIN LOOP
@@ -234,6 +247,14 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
         weighted_score    = final_output.get("weighted_score", 0.0)
         verdict_reasoning = final_output.get("verdict_reasoning", "")
 
+        # =========================
+        # BREAKOUT FIELDS (from tts_agent)
+        # =========================
+        breakout_signal   = tts.get("breakout_signal",   "NONE")
+        breakout_strength = tts.get("breakout_strength", 0.0)
+        breakout_high     = tts.get("breakout_high")
+        breakout_low      = tts.get("breakout_low")
+
         exec_time = time.perf_counter() - loop_start
 
         # =========================
@@ -261,6 +282,10 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
                 "TTS_Score":        tts.get("total_score", 0.0),
                 "TTS_Decision":     tts.get("decision", "HOLD"),
                 "TTS_Regime":       tts.get("regime", "UNKNOWN"),
+                "TTS_Breakout_Signal":   "NONE",
+                "TTS_Breakout_Strength": 0.0,
+                "TTS_Breakout_High":     None,
+                "TTS_Breakout_Low":      None,
                 "SIV_Signal":       siv.get("signal", "UNKNOWN"),
                 "SIV_Multiplier":   siv.get("score_multiplier", 1.0),
                 "Verdict_Reasoning": verdict_reasoning,
@@ -270,6 +295,25 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
                 "Execution_Time_Seconds": round(exec_time, 4),
             })
             continue   # do NOT count in accuracy
+
+        # =========================
+        # QUALITY GATE — aligned with run_calibration.py
+        # Downgrade BUY/SELL → HOLD if signal is too weak
+        # =========================
+        ce_raw  = float(ce.get("ce_score",  0.0))
+        tts_raw = float(tts.get("tts_score", tts.get("total_score", 0.0)))
+        combined_confidence = (abs(ce_raw) + abs(tts_raw)) / 2.0
+        is_strong_verdict   = abs(weighted_score) > MIN_VERDICT_STRENGTH
+        siv_ok              = siv.get("signal", "COHERENT") != "INCOHERENT"
+
+        trade_allowed = (
+            verdict in ("BUY", "SELL")
+            and is_strong_verdict
+            and combined_confidence >= MIN_SIGNAL_CONFIDENCE
+            and siv_ok
+        )
+        if verdict in ("BUY", "SELL") and not trade_allowed:
+            verdict = "HOLD"
 
         # =========================
         # SIMULATION
@@ -314,14 +358,30 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             if correct:
                 hold_correct += 1
 
+        # =========================
+        # BREAKOUT ACCURACY TRACKING
+        # =========================
+        if breakout_signal == "BREAKOUT_UP":
+            breakout_up_total += 1
+            if market_label == "BULLISH":
+                breakout_up_correct += 1
+        elif breakout_signal == "BREAKOUT_DOWN":
+            breakout_down_total += 1
+            if market_label == "BEARISH":
+                breakout_down_correct += 1
+
         print(
             f"DEBUG: {current_date} | "
             f"SIV={siv.get('signal')} | "
             f"VERDICT={verdict} | "
             f"SCORE={weighted_score:.4f} | "
+            f"STRONG={is_strong_verdict} | "
+            f"ALLOWED={trade_allowed} | "
+            f"CONF={combined_confidence:.2f} | "
             f"MARKET={market_label} | "
             f"CORRECT={correct} | "
             f"EXIT={sim_reason} | "
+            f"BREAKOUT={breakout_signal} | "
             f"t={exec_time:.2f}s"
         )
 
@@ -336,6 +396,9 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             "Market_Reality": market_label,
             "Correct":        correct,
             "Weighted_Score": weighted_score,
+            "Strong_Verdict": is_strong_verdict,
+            "Trade_Allowed":  trade_allowed,
+            "Signal_Confidence": combined_confidence,
 
             # CE
             "CE_Article_Count": ce.get("article_count", 0),
@@ -349,6 +412,12 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             "TTS_Decision":    tts.get("decision", "HOLD"),
             "TTS_Regime":      tts.get("regime", "UNKNOWN"),
             "TTS_Explanation": "pending_explanation",
+
+            # TTS Breakout (new)
+            "TTS_Breakout_Signal":   breakout_signal,
+            "TTS_Breakout_Strength": round(breakout_strength, 4),
+            "TTS_Breakout_High":     breakout_high,
+            "TTS_Breakout_Low":      breakout_low,
 
             # SIV
             "SIV_Signal":      siv.get("signal", "UNKNOWN"),
@@ -408,6 +477,11 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
         {"Date": "SL Hits",           "Market_Reality": sl_hits},
         {"Date": "TIME Exits",        "Market_Reality": time_exits},
         {"Date": "HOLD Skips",        "Market_Reality": hold_skips},
+        {"Date": "---",               "Final_Verdict": "BREAKOUT SUMMARY"},
+        {"Date": "Breakout UP Total",    "Market_Reality": breakout_up_total},
+        {"Date": "Breakout UP Correct",  "Market_Reality": f"{acc(breakout_up_correct, breakout_up_total)}% ({breakout_up_correct}/{breakout_up_total})"},
+        {"Date": "Breakout DOWN Total",  "Market_Reality": breakout_down_total},
+        {"Date": "Breakout DOWN Correct","Market_Reality": f"{acc(breakout_down_correct, breakout_down_total)}% ({breakout_down_correct}/{breakout_down_total})"},
     ])
 
     df_with_summary = pd.concat([df, summary_rows], ignore_index=True)
@@ -429,6 +503,9 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     print(f"OVERALL ACCURACY  : {acc(total_correct, total_trades)}%")
     print(f"Quality Gate Skip : {skip_total} days")
     print(f"SL/TP             : TP={tp_hits} | SL={sl_hits} | TIME={time_exits} | HOLD={hold_skips}")
+    print("---------------- BREAKOUT STATS -------------------")
+    print(f"Breakout UP   : {acc(breakout_up_correct, breakout_up_total)}%  ({breakout_up_correct}/{breakout_up_total})")
+    print(f"Breakout DOWN : {acc(breakout_down_correct, breakout_down_total)}%  ({breakout_down_correct}/{breakout_down_total})")
     print("====================================================\n")
     print(f"TOTAL BACKTEST TIME : {round(time.perf_counter() - total_start, 2)}s")
     print(f"CSV  : {csv_out}")
@@ -438,7 +515,6 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     # AUTO-RUN EXPLANATION PIPELINE
     # =========================
     print("\n--- AUTO-STARTING EXPLANATION PIPELINE ---")
-    
 
 
 if __name__ == "__main__":

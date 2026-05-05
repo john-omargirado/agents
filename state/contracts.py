@@ -2,22 +2,38 @@ from typing import TypedDict, Optional, List, Literal
 
 
 class TTSOutput(TypedDict):
+    # ── core ──────────────────────────────────────────────────────────────────
+    decision: Literal["BUY", "SELL", "HOLD"]
+    tts_score: float
     total_score: float
-    ema_trend: Literal["BULLISH", "BEARISH", "SIDEWAYS"]
-    ema_score: float
-    rsi_value: float
-    rsi_score: float
-    bb_signal: Literal["OVERBOUGHT", "OVERSOLD", "STABLE"]
-    bb_score: float
-    breakout_score: float
     price: float
+    explanation: str
+
+    # ── trend / EMA ───────────────────────────────────────────────────────────
+    ema_trend: Literal["BULLISH", "BEARISH", "SIDEWAYS"]
     ema_200_confidence: float
     ema_200_reliable: bool
+
+    # ── RSI ───────────────────────────────────────────────────────────────────
+    rsi: float
+
+    # ── Bollinger Bands ───────────────────────────────────────────────────────
+    bb_signal: Literal["OVERBOUGHT", "OVERSOLD", "STABLE"]
+
+    # ── MACD ──────────────────────────────────────────────────────────────────
+    macd_direction_score: float
+    is_macd_cross: bool
+
+    # ── Breakout ──────────────────────────────────────────────────────────────
+    breakout_signal: Literal["BREAKOUT_UP", "BREAKOUT_DOWN", "NONE"]
+    breakout_strength: float           # 0.0 – 1.0
+    breakout_high: Optional[float]     # resistance level tested
+    breakout_low: Optional[float]      # support level tested
+
+    # ── regime / meta ─────────────────────────────────────────────────────────
+    regime: Literal["TRENDING", "RANGING", "TRANSITIONAL"]
     data_stale: bool
-    rows_available: int
-    tts_insufficient: bool
     error: Optional[str]
-    explanation: str   
 
 
 class CEOutput(TypedDict):
@@ -28,7 +44,7 @@ class CEOutput(TypedDict):
     article_count: int
     confidence: Literal["HIGH", "MODERATE", "LOW"]
     error: Optional[str]
-    explanation: str 
+    explanation: str
 
 
 class SIVOutput(TypedDict):
@@ -48,5 +64,5 @@ class VerdictOutput(TypedDict):
     atr: float
     sl_distance: float
     tp_distance: float
-    verdict_reasoning: str      # was "reasoning" — agent returns "verdict_reasoning"
-    action: str 
+    verdict_reasoning: str
+    action: str

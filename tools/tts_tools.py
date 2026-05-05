@@ -27,6 +27,13 @@ def precompute_indicators(full_df: pd.DataFrame) -> pd.DataFrame:
     df["upper_bb"] = df["sma_20"] + 2 * df["std_20"]
     df["lower_bb"] = df["sma_20"] - 2 * df["std_20"]
 
+    # ── Breakout: rolling high/low over the previous N candles (excluding current)
+    # Uses shift(1) so the current bar is NOT included in its own reference window,
+    # which matches the strict formula:  max(P_{t-n}, …, P_{t-1})
+    BREAKOUT_PERIOD = 20
+    df["breakout_high"] = df["close"].shift(1).rolling(BREAKOUT_PERIOD).max()
+    df["breakout_low"]  = df["close"].shift(1).rolling(BREAKOUT_PERIOD).min()
+
     df = df.set_index("timestamp")
     
     ema_12 = df["close"].ewm(span=12, adjust=False).mean()
@@ -65,8 +72,6 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
     except Exception:
         macd_cross_prev = 0.0
     
-    
-
     macd_cross_curr = float(row["macd"]) - float(row["macd_signal"])
 
     if macd_cross_prev > 0 and macd_cross_curr < 0:
@@ -77,6 +82,40 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         macd_direction_score = macd_cross_curr / (abs(macd_cross_curr) + 1e-9) * 0.2
     
     print(f"[TTS DEBUG] macd_cross_curr={macd_cross_curr:.6f} | macd_cross_prev={macd_cross_prev:.6f} | macd_dir_score={macd_direction_score:.4f}")
+
+    # ── Breakout signal ──────────────────────────────────────────────────────
+    # Formula:  Buy  if P_t > max(P_{t-n}, …, P_{t-1})   →  "BREAKOUT_UP"
+    #           Sell if P_t < min(P_{t-n}, …, P_{t-1})   →  "BREAKOUT_DOWN"
+    #           Otherwise                                 →  "NONE"
+    #
+    # breakout_strength: how far price has moved beyond the boundary,
+    # normalised by the width of the recent trading range so it is
+    # comparable across different price scales.
+    breakout_high = float(row["breakout_high"]) if not pd.isna(row["breakout_high"]) else None
+    breakout_low  = float(row["breakout_low"])  if not pd.isna(row["breakout_low"])  else None
+
+    breakout_signal   = "NONE"
+    breakout_strength = 0.0
+
+    if breakout_high is not None and breakout_low is not None:
+        trading_range = (breakout_high - breakout_low) + 1e-9  # avoid /0
+
+        if last_close > breakout_high:
+            breakout_signal   = "BREAKOUT_UP"
+            # strength = excess above resistance / range  (capped at 1.0)
+            breakout_strength = min((last_close - breakout_high) / trading_range, 1.0)
+
+        elif last_close < breakout_low:
+            breakout_signal   = "BREAKOUT_DOWN"
+            # strength = excess below support / range  (capped at 1.0)
+            breakout_strength = min((breakout_low - last_close) / trading_range, 1.0)
+
+    print(
+        f"[TTS DEBUG] breakout={breakout_signal} | "
+        f"close={last_close:.4f} | high={breakout_high} | low={breakout_low} | "
+        f"strength={breakout_strength:.4f}"
+    )
+    # ────────────────────────────────────────────────────────────────────────
 
     row_count = len(precomputed.loc[:target_dt])
 
@@ -120,7 +159,7 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "price": last_close,
         "trend": trend,
         "trend_strength": trend_strength,
-         "adx_proxy": min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf,  # ADD
+        "adx_proxy": min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf,
         "rsi": rsi,
         "rsi_strength": rsi_strength,
         "bb_signal": bb_signal,
@@ -133,5 +172,11 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         "macd_hist": macd_hist,
         "macd_score": macd_score,
         "macd_direction_score": macd_direction_score,
+        # ── breakout keys ──
+        "breakout_signal":   breakout_signal,    # "BREAKOUT_UP" | "BREAKOUT_DOWN" | "NONE"
+        "breakout_strength": breakout_strength,  # 0.0 – 1.0
+        "breakout_high":     breakout_high,      # resistance level used
+        "breakout_low":      breakout_low,       # support level used
+        # ───────────────────
         "data_stale": False
     }

@@ -202,7 +202,6 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             verdict     = raw_verdict
             final_score = final_output.get("weighted_score", 0.0)
 
-            # ✅ FIX 1: `continue` is now correctly inside the if block
             if action == "SKIP":
                 results.append({
                     "Date": current_date,
@@ -214,9 +213,14 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                     "SIV_Signal": siv_data.get("signal"),
                     "Final_Verdict": "SKIP",
                     "Market_Reality": market_label,
+                    # ── breakout (safe defaults for skipped rows) ──
+                    "TTS_Breakout_Signal":   "NONE",
+                    "TTS_Breakout_Strength": 0.0,
+                    "TTS_Breakout_High":     None,
+                    "TTS_Breakout_Low":      None,
                     "Correct": None,
                 })
-                continue  # ← now inside the if block
+                continue
 
             # =========================
             # ACCURACY LOGIC
@@ -245,7 +249,6 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
             if verdict in ["BUY", "SELL"] and not trade_allowed:
                 verdict = "HOLD"
 
-            # ✅ FIX 3: separate flag so good_hold is not gated by trade_allowed
             is_active_trade = trade_allowed and verdict in ["BUY", "SELL"]
 
             if verdict == "BUY":
@@ -273,7 +276,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 correct = market_label == "NEUTRAL"
                 if correct:
                     hold_correct += 1
-                good_hold_total += 1  # all HOLDs count as "good" (not overridden)
+                good_hold_total += 1
                 if correct:
                     good_hold_correct += 1
 
@@ -289,7 +292,8 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 f"SCORE={final_score:.4f} | "
                 f"SIV={siv_data.get('signal')} | "
                 f"RAW={raw_verdict} | "
-                f"VERDICT={verdict}"
+                f"VERDICT={verdict} | "
+                f"BREAKOUT={tts_data.get('breakout_signal', 'NONE')}"
             )
 
             results.append({
@@ -310,6 +314,12 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 "Risk_Penalty": siv_data.get("risk_penalty", 0.0),
                 "Final_Verdict": verdict,
                 "Market_Reality": market_label,
+                # ── breakout ───────────────────────────────────────────────
+                "TTS_Breakout_Signal":   tts_data.get("breakout_signal",   "NONE"),
+                "TTS_Breakout_Strength": tts_data.get("breakout_strength", 0.0),
+                "TTS_Breakout_High":     tts_data.get("breakout_high"),
+                "TTS_Breakout_Low":      tts_data.get("breakout_low"),
+                # ──────────────────────────────────────────────────────────
                 "Correct": correct,
             })
 
@@ -340,7 +350,6 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     total_trades = buy_total + sell_total + hold_total
     print(f"OVERALL ACCURACY: {acc(total_correct, total_trades)}%")
 
-    # ✅ FIX 2: Added missing section title
     print("\n" + "="*60)
     print("ACCURACY ON QUALITY-GATED TRADES ONLY")
     print("="*60)

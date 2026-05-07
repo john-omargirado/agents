@@ -17,7 +17,6 @@ from graph.build_graph import build_graph
 from state.trading_state import TradingState
 from tools.tts_tools import precompute_indicators
 from utils.trade_config import ATR_LOOKBACK, get_pair_config
-from explanation_pipeline import run_explanation_pipeline
 
 
 # =========================
@@ -39,7 +38,7 @@ MARKET_MOVE_THRESHOLD = 0.0025   # aligned with calibration
 HORIZON_DAYS          = 3        # aligned with calibration
 
 # Verdict threshold — must match CURRENT_TEST_THRESHOLD in run_calibration.py
-VERDICT_THRESHOLD = 0.05
+VERDICT_THRESHOLD = 0.10
 
 # Quality gate — must match run_calibration.py
 MIN_SIGNAL_CONFIDENCE = 0.05
@@ -78,16 +77,36 @@ def simulate_trade(
 
 # =========================
 # STATE NORMALIZER
+# Builds the full TradingState that every agent expects.
+#
+# Mode flags:
+#   live_mode=False    → ce_agent skips live news fetch, uses backtest data
+#   backtest_mode=True → tts_agent + verdict_agent take the deterministic path
+#   skip_llm=True      → all agents skip LLM calls; verdict uses compute_verdict_deterministic
+#
+# verdict_agent still reads account_capital / risk_per_trade / leverage for its
+# internal position-sizing math (sl_distance / tp_distance). These values do NOT
+# affect the verdict or weighted_score; they are provided here as safe defaults
+# so the agent never KeyErrors during a backtest run.
 # =========================
 def normalize_initial_state(state: dict) -> dict:
     return {
         **state,
+        # --- mode flags ---
+        "live_mode":     False,
         "backtest_mode": True,
         "skip_llm":      True,
-        "debug_log":     [],
-        "tts_output":    {},
-        "ce_output":     {},
-        # Provide a safe placeholder — SIV agent overwrites this on every run.
+
+        # --- verdict_agent position-sizing defaults (neutral / no real capital risk) ---
+        "account_capital": 10_000.0,
+        "risk_per_trade":  1,        # 1%
+        "leverage":        "1:100",
+
+        # --- output placeholders ---
+        "debug_log":  [],
+        "tts_output": {},
+        "ce_output":  {},
+        # SIV placeholder — siv_agent overwrites this on every run.
         # score_multiplier must be present so verdict_agent never KeyErrors.
         "siv_output": {
             "signal":           "COHERENT",
@@ -124,10 +143,12 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
     # =========================
     # PRECOMPUTE INDICATORS
+    # tts_agent reads state["precomputed_indicators"] and skips its own file-based
+    # indicator load when it is present — pass it in here for speed.
     # =========================
     precomputed = precompute_indicators(full_df).reset_index().set_index("timestamp")
 
-    # ATR
+    # ATR (14-period, matches ATR_LOOKBACK from trade_config)
     full_df["prev_close"] = full_df["close"].shift(1)
     full_df["tr"] = full_df.apply(
         lambda r: max(
@@ -166,7 +187,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     buy_correct  = buy_total  = 0
     sell_correct = sell_total = 0
     hold_correct = hold_total = 0
-    skip_total   = 0                # quality-gate skips (action == "SKIP")
+    skip_total   = 0            # quality-gate skips (action == "SKIP")
 
     tp_hits    = 0
     sl_hits    = 0
@@ -202,6 +223,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
         # =========================
         # MARKET LABEL
+        # Ground truth used for accuracy evaluation.
         # =========================
         market_label = "NEUTRAL"
         if not fw.empty:
@@ -217,13 +239,19 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
         # =========================
         # BUILD STATE
+        # target_date  — read by ce_agent (news lookup) and tts_agent (indicator slice)
+        # currency_pair — read by all agents
+        # price / atr   — atr is the backtest-computed value; siv_agent will overwrite
+        #                 state["price"] from tts_output before its own check
+        # calibration_threshold — verdict_agent uses this as the deterministic threshold
+        # precomputed_indicators — passed so tts_agent skips its own file-based load
         # =========================
         state = cast(TradingState, normalize_initial_state({
             "target_date":            current_date,
             "currency_pair":          target_pair,
             "price":                  entry_price,
             "atr":                    atr_val,
-            "calibration_threshold":  VERDICT_THRESHOLD,   # ← must match calibration
+            "calibration_threshold":  VERDICT_THRESHOLD,
             "precomputed_indicators": precomputed,
         }))
 
@@ -248,7 +276,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
         verdict_reasoning = final_output.get("verdict_reasoning", "")
 
         # =========================
-        # BREAKOUT FIELDS (from tts_agent)
+        # BREAKOUT FIELDS (populated by tts_agent)
         # =========================
         breakout_signal   = tts.get("breakout_signal",   "NONE")
         breakout_strength = tts.get("breakout_strength", 0.0)
@@ -259,7 +287,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
         # =========================
         # QUALITY GATE SKIP
-        # verdict_agent returns action="SKIP" when signals are too weak.
+        # verdict_agent sets action="SKIP" when signals are too weak.
         # Record the day for analysis but exclude from accuracy counters.
         # =========================
         if action == "SKIP":
@@ -298,7 +326,8 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
         # =========================
         # QUALITY GATE — aligned with run_calibration.py
-        # Downgrade BUY/SELL → HOLD if signal is too weak
+        # Downgrade BUY/SELL → HOLD if signal is too weak.
+        # tts_agent sets both tts_score and total_score; prefer tts_score.
         # =========================
         ce_raw  = float(ce.get("ce_score",  0.0))
         tts_raw = float(tts.get("tts_score", tts.get("total_score", 0.0)))
@@ -317,7 +346,8 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
 
         # =========================
         # SIMULATION
-        # Only runs for BUY/SELL — HOLD has no trade to simulate
+        # Uses sl_mult / rr_ratio from pair_cfg — same values verdict_agent uses
+        # for its dynamic SL/TP when running live.
         # =========================
         sim_reason = "HOLD_SKIP"
 
@@ -333,7 +363,7 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             else:
                 time_exits += 1
         else:
-            hold_skips += 1   # HOLD verdict — simulation not run
+            hold_skips += 1
 
         # =========================
         # ACCURACY
@@ -400,34 +430,34 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
             "Trade_Allowed":  trade_allowed,
             "Signal_Confidence": combined_confidence,
 
-            # CE
+            # CE — from ce_agent output
             "CE_Article_Count": ce.get("article_count", 0),
             "CE_Sentiment":     ce.get("sentiment", "NEUTRAL"),
             "CE_Score":         ce.get("ce_score", 0.0),
             "CE_Confidence":    ce.get("ce_confidence", 0.0),
-            "CE_Explanation":   "pending_explanation",
+            "CE_Explanation":   ce.get("explanation", "skipped"),
 
-            # TTS
+            # TTS — from tts_agent output
             "TTS_Score":       tts.get("total_score", 0.0),
             "TTS_Decision":    tts.get("decision", "HOLD"),
             "TTS_Regime":      tts.get("regime", "UNKNOWN"),
-            "TTS_Explanation": "pending_explanation",
+            "TTS_Explanation": tts.get("explanation", "skipped"),
 
-            # TTS Breakout (new)
+            # TTS Breakout — from tts_agent output
             "TTS_Breakout_Signal":   breakout_signal,
             "TTS_Breakout_Strength": round(breakout_strength, 4),
             "TTS_Breakout_High":     breakout_high,
             "TTS_Breakout_Low":      breakout_low,
 
-            # SIV
+            # SIV — from siv_agent output
             "SIV_Signal":      siv.get("signal", "UNKNOWN"),
             "SIV_Multiplier":  siv.get("score_multiplier", 1.0),
-            "SIV_Explanation": "pending_explanation",
+            "SIV_Explanation": siv.get("explanation", "skipped"),
 
             # Trade
-            "Verdict_Reasoning":       verdict_reasoning,
-            "Exit_Reason":             sim_reason,
-            "Execution_Time_Seconds":  round(exec_time, 4),
+            "Verdict_Reasoning":      verdict_reasoning,
+            "Exit_Reason":            sim_reason,
+            "Execution_Time_Seconds": round(exec_time, 4),
         })
 
         # =========================
@@ -511,9 +541,6 @@ def run_backtest(target_pair: str, target_months: list, target_year: int):
     print(f"CSV  : {csv_out}")
     print(f"JSON : {raw_out}")
 
-    # =========================
-    # AUTO-RUN EXPLANATION PIPELINE
-    # =========================
     print("\n--- AUTO-STARTING EXPLANATION PIPELINE ---")
 
 
@@ -537,7 +564,6 @@ if __name__ == "__main__":
 
     # =========================
     # SEQUENTIAL YEAR QUEUE
-    # Explanation pipeline finishes before next year starts
     # =========================
     total_years = len(years)
     for i, year in enumerate(years, 1):

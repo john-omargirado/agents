@@ -41,6 +41,7 @@ class TradingState(TypedDict):
     backtest_mode: bool
     live_mode: bool
     skip_llm: bool
+    calibration_mode: bool 
 
     # ── MARKET CONTEXT ────────────────────────────────────
     atr: float
@@ -53,3 +54,5 @@ class TradingState(TypedDict):
 
     # ── TRADER PROFILE ─────────────────────────────────────
     experience_level: Optional[str]
+
+    precomputed_indicators: Optional[Any]

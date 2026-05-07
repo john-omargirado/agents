@@ -1,67 +1,22 @@
 [
   {
-    "date": "01/03/2023",
-    "currency_pair": "USDJPY",
-    "atr": 1.8292857142857173,
-    "ce_output": {
-      "sentiment": "BEARISH",
-      "confidence": "LOW",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0527,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 14,
-      "explanation": "skipped"
-    },
-    "tts_output": {
-      "decision": "HOLD",
-      "tts_score": 0.0024307044753592855,
-      "total_score": 0.0024,
-      "price": 131.014,
-      "ema_trend": "BULLISH",
-      "rsi": 34.37858323497875,
-      "bb_signal": "STABLE",
-      "macd_direction_score": -0.19999999768670015,
-      "is_macd_cross": false,
-      "regime": "TRENDING",
-      "ema_200_confidence": 1.0,
-      "ema_200_reliable": true,
-      "data_stale": false,
-      "breakout_signal": "NONE",
-      "breakout_strength": 0.0,
-      "breakout_high": 137.769,
-      "breakout_low": 130.79,
-      "explanation": "skipped"
-    },
-    "siv_output": {
-      "signal": "PARTIAL",
-      "issues": [
-        "one_signal_neutral"
-      ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
-      "explanation": "skipped"
-    },
-    "verdict": "HOLD",
-    "weighted_score": -0.024206569999999997,
-    "market_reality": "BULLISH"
-  },
-  {
     "date": "01/05/2023",
     "currency_pair": "USDJPY",
     "atr": 1.8723571428571444,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.3193,
       "ce_confidence": 0.44,
       "article_count": 11,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 17,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.8988387104172864,
       "tts_score": 0.04499999974440879,
       "total_score": 0.045,
       "price": 133.401,
@@ -99,16 +54,18 @@
     "atr": 1.9703571428571434,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2004,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": 0.2695,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 30,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.9634216596731944,
       "tts_score": 0.04499999975774522,
       "total_score": 0.045,
       "price": 132.03,
@@ -137,7 +94,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.12630857999999998,
+    "weighted_score": 0.15578575,
     "market_reality": "BULLISH"
   },
   {
@@ -146,16 +103,18 @@
     "atr": 1.574,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.2488,
       "ce_confidence": 0.64,
       "article_count": 16,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "raw_article_count": 24,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.9213201125536803,
       "tts_score": 0.04499999976188681,
       "total_score": 0.045,
       "price": 131.874,
@@ -193,16 +152,18 @@
     "atr": 1.7471428571428578,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.2435,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 10,
-      "explanation": "skipped"
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.9231692009039503,
       "tts_score": 0.04470892296712012,
       "total_score": 0.0447,
       "price": 129.27,
@@ -230,7 +191,7 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
+    "verdict": "HOLD",
     "weighted_score": -0.08621629999999998,
     "market_reality": "BEARISH"
   },
@@ -240,16 +201,18 @@
     "atr": 1.8216428571428582,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.4932,
       "ce_confidence": 0.44,
       "article_count": 11,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 15,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.9286571151250966,
       "tts_score": -0.2058520304301183,
       "total_score": -0.2059,
       "price": 127.853,
@@ -287,16 +250,18 @@
     "atr": 1.8673571428571438,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1288,
       "ce_confidence": 0.52,
       "article_count": 13,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.9084673211875898,
       "tts_score": 0.008145512273843358,
       "total_score": 0.0081,
       "price": 128.57,
@@ -324,8 +289,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
+    "verdict": "HOLD",
     "weighted_score": 0.06571549,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/17/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.8670714285714294,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4004,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 18,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.8556482268170473,
+      "tts_score": 0.018899809957533563,
+      "total_score": 0.0189,
+      "price": 128.1,
+      "ema_trend": "BULLISH",
+      "rsi": 32.69021597864037,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999900673698,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.47,
+      "breakout_low": 127.853,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.19316255,
     "market_reality": "BULLISH"
   },
   {
@@ -334,16 +348,18 @@
     "atr": 2.0382857142857143,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.465,
-      "ce_confidence": 0.96,
-      "article_count": 24,
-      "raw_article_count": 72,
-      "explanation": "skipped"
+      "ce_score": 0.6005,
+      "ce_confidence": 1.0,
+      "article_count": 72,
+      "raw_article_count": 97,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 2.010030496330115,
       "tts_score": -0.01751843851534978,
       "total_score": -0.0175,
       "price": 128.887,
@@ -372,7 +388,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.27581825,
+    "weighted_score": 0.36499,
     "market_reality": "BULLISH"
   },
   {
@@ -381,16 +397,18 @@
     "atr": 1.9540714285714285,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.0921,
       "ce_confidence": 0.64,
       "article_count": 16,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.9493854608779642,
       "tts_score": -0.005742467949818544,
       "total_score": -0.0057,
       "price": 128.412,
@@ -428,16 +446,18 @@
     "atr": 1.8207857142857153,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1034,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "ce_score": 0.2141,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.8654905878610142,
       "tts_score": 0.05699999980563286,
       "total_score": 0.057,
       "price": 130.209,
@@ -466,7 +486,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.07698344,
+    "weighted_score": 0.13683173,
     "market_reality": "BEARISH"
   },
   {
@@ -475,16 +495,18 @@
     "atr": 1.7997142857142856,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.0851,
       "ce_confidence": 0.52,
       "article_count": 13,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "raw_article_count": 20,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.760652598716894,
       "tts_score": 0.05099999985066041,
       "total_score": 0.051,
       "price": 130.405,
@@ -522,16 +544,18 @@
     "atr": 1.7974285714285705,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.1436,
       "ce_confidence": 0.44,
       "article_count": 11,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 22,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.6920345559514025,
       "tts_score": 0.0509999998511545,
       "total_score": 0.051,
       "price": 130.09,
@@ -569,16 +593,18 @@
     "atr": 1.6710714285714272,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1573,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 26,
-      "explanation": "skipped"
+      "ce_score": -0.1174,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 30,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7062463733834445,
       "tts_score": 0.05099999980642779,
       "total_score": 0.051,
       "price": 128.923,
@@ -606,55 +632,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.06117829000000001,
-    "market_reality": "BULLISH"
-  },
-  {
-    "date": "02/02/2023",
-    "currency_pair": "USDJPY",
-    "atr": 1.604857142857142,
-    "ce_output": {
-      "sentiment": "BEARISH",
-      "confidence": "HIGH",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.079,
-      "ce_confidence": 1.0,
-      "article_count": 25,
-      "raw_article_count": 27,
-      "explanation": "skipped"
-    },
-    "tts_output": {
-      "decision": "HOLD",
-      "tts_score": 0.05670287412090878,
-      "total_score": 0.0567,
-      "price": 128.668,
-      "ema_trend": "BEARISH",
-      "rsi": 39.403620979713544,
-      "bb_signal": "STABLE",
-      "macd_direction_score": 0.19999999897811588,
-      "is_macd_cross": false,
-      "regime": "TRANSITIONAL",
-      "ema_200_confidence": 1.0,
-      "ema_200_reliable": true,
-      "data_stale": false,
-      "breakout_signal": "NONE",
-      "breakout_strength": 0.0,
-      "breakout_high": 133.401,
-      "breakout_low": 127.853,
-      "explanation": "skipped"
-    },
-    "siv_output": {
-      "signal": "PARTIAL",
-      "issues": [
-        "one_signal_neutral"
-      ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
-      "explanation": "skipped"
-    },
     "verdict": "HOLD",
-    "weighted_score": -0.02992974999999999,
+    "weighted_score": -0.051697480000000004,
     "market_reality": "BULLISH"
   },
   {
@@ -663,16 +642,18 @@
     "atr": 1.6945714285714268,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.4202,
+      "ce_score": -0.3991,
       "ce_confidence": 1.0,
-      "article_count": 26,
-      "raw_article_count": 32,
-      "explanation": "skipped"
+      "article_count": 30,
+      "raw_article_count": 41,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7496563117438881,
       "tts_score": 0.05099999983720674,
       "total_score": 0.051,
       "price": 131.156,
@@ -701,7 +682,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.24251599999999995,
+    "weighted_score": -0.22948674999999993,
     "market_reality": "BULLISH"
   },
   {
@@ -710,16 +691,18 @@
     "atr": 1.7357857142857114,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2739,
+      "ce_score": -0.2075,
       "ce_confidence": 0.92,
       "article_count": 23,
-      "raw_article_count": 24,
-      "explanation": "skipped"
+      "raw_article_count": 34,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7493951466193234,
       "tts_score": 0.056395449512413855,
       "total_score": 0.0564,
       "price": 132.634,
@@ -748,7 +731,56 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.14284940999999998,
+    "weighted_score": -0.10336132999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/07/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.6092857142857102,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0865,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.7848669218607989,
+      "tts_score": 0.05099999988949423,
+      "total_score": 0.051,
+      "price": 131.056,
+      "ema_trend": "BEARISH",
+      "rsi": 50.20148149457403,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999956664405,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 132.634,
+      "breakout_low": 127.853,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.06591955,
     "market_reality": "BEARISH"
   },
   {
@@ -757,16 +789,18 @@
     "atr": 1.5954999999999973,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2936,
-      "ce_confidence": 0.6,
-      "article_count": 15,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "ce_score": -0.2752,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.726519284585029,
       "tts_score": 0.050999999888889425,
       "total_score": 0.051,
       "price": 131.399,
@@ -795,8 +829,57 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.12505610000000003,
+    "weighted_score": -0.11951038,
     "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/10/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.5559999999999994,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1193,
+      "ce_confidence": 1.0,
+      "article_count": 27,
+      "raw_article_count": 30,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.7377232606881132,
+      "tts_score": 0.0449999998919478,
+      "total_score": 0.045,
+      "price": 131.347,
+      "ema_trend": "BEARISH",
+      "rsi": 51.160169302262666,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999951976802,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 132.634,
+      "breakout_low": 127.853,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.08863024999999998,
+    "market_reality": "BULLISH"
   },
   {
     "date": "02/13/2023",
@@ -804,16 +887,18 @@
     "atr": 1.5764999999999978,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1317,
+      "ce_score": 0.1272,
       "ce_confidence": 0.56,
       "article_count": 14,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "raw_article_count": 28,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7352430277818198,
       "tts_score": 0.04499999989884497,
       "total_score": 0.045,
       "price": 132.4,
@@ -841,8 +926,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.08541507000000001,
+    "verdict": "HOLD",
+    "weighted_score": 0.08320062,
     "market_reality": "BULLISH"
   },
   {
@@ -851,16 +936,18 @@
     "atr": 1.610285714285713,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2052,
+      "ce_score": 0.1631,
       "ce_confidence": 1.0,
-      "article_count": 35,
+      "article_count": 43,
       "raw_article_count": 47,
-      "explanation": "skipped"
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7410113829402616,
       "tts_score": 0.07389280978312589,
       "total_score": 0.0739,
       "price": 133.158,
@@ -889,7 +976,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.15128274999999997,
+    "weighted_score": 0.12528599999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -898,16 +985,18 @@
     "atr": 1.6322142857142836,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1132,
-      "ce_confidence": 0.4,
-      "article_count": 10,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "ce_score": -0.172,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.6862955291678774,
       "tts_score": 0.046178316878918886,
       "total_score": 0.0462,
       "price": 133.932,
@@ -936,7 +1025,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.027282099999999993,
+    "weighted_score": -0.056023779999999995,
     "market_reality": "BULLISH"
   },
   {
@@ -945,16 +1034,18 @@
     "atr": 1.6194285714285712,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2505,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 21,
-      "explanation": "skipped"
+      "ce_score": -0.1972,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 22,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.652274419941601,
       "tts_score": 0.03982316004884014,
       "total_score": 0.0398,
       "price": 134.114,
@@ -982,8 +1073,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.11497489000000001,
+    "verdict": "HOLD",
+    "weighted_score": -0.09773029999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -992,16 +1083,18 @@
     "atr": 1.6065714285714279,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1113,
       "ce_confidence": 0.56,
       "article_count": 14,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "raw_article_count": 15,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5785405328029158,
       "tts_score": 0.03813415047342598,
       "total_score": 0.0381,
       "price": 134.23,
@@ -1029,7 +1122,7 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
+    "verdict": "HOLD",
     "weighted_score": 0.07221672,
     "market_reality": "BULLISH"
   },
@@ -1039,16 +1132,18 @@
     "atr": 1.5490714285714293,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.4817,
-      "ce_confidence": 0.48,
-      "article_count": 12,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": -0.5757,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5433590661741372,
       "tts_score": 0.028692551678103893,
       "total_score": 0.0287,
       "price": 134.993,
@@ -1077,7 +1172,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.21226571999999996,
+    "weighted_score": -0.29772087999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -1086,16 +1181,18 @@
     "atr": 1.5224999999999997,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1627,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": 0.1542,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4831905614474128,
       "tts_score": 0.01659377120183078,
       "total_score": 0.0166,
       "price": 134.861,
@@ -1123,8 +1220,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.09432797,
+    "verdict": "HOLD",
+    "weighted_score": 0.09132616,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/23/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.3782857142857157,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1363,
+      "ce_confidence": 1.0,
+      "article_count": 28,
+      "raw_article_count": 30,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.4403198070583128,
+      "tts_score": 0.027382290413008062,
+      "total_score": 0.0274,
+      "price": 134.7,
+      "ema_trend": "BEARISH",
+      "rsi": 62.46982582642443,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999995223204,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.993,
+      "breakout_low": 128.668,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.07505474999999999,
     "market_reality": "BULLISH"
   },
   {
@@ -1133,16 +1279,18 @@
     "atr": 1.430571428571432,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.229,
+      "ce_score": 0.2359,
       "ce_confidence": 1.0,
-      "article_count": 25,
-      "raw_article_count": 32,
-      "explanation": "skipped"
+      "article_count": 32,
+      "raw_article_count": 49,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5144398208398626,
       "tts_score": 0.00047295184216775144,
       "total_score": 0.0005,
       "price": 136.406,
@@ -1171,7 +1319,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.14157375,
+    "weighted_score": 0.14583449999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -1180,16 +1328,18 @@
     "atr": 1.3175714285714346,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1233,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4536941193513022,
       "tts_score": -0.016676787177808627,
       "total_score": -0.0167,
       "price": 136.166,
@@ -1227,16 +1377,18 @@
     "atr": 1.3346428571428615,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.6666,
-      "ce_confidence": 0.48,
-      "article_count": 12,
+      "ce_score": -0.7008,
+      "ce_confidence": 0.6,
+      "article_count": 15,
       "raw_article_count": 15,
-      "explanation": "skipped"
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4360731108262088,
       "tts_score": -0.016887457054103897,
       "total_score": -0.0169,
       "price": 136.172,
@@ -1265,39 +1417,41 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.32095920999999994,
+    "weighted_score": -0.36039865,
     "market_reality": "BEARISH"
   },
   {
-    "date": "03/02/2023",
+    "date": "03/01/2023",
     "currency_pair": "USDJPY",
-    "atr": 1.2450714285714315,
+    "atr": 1.3157857142857179,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.059,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": -0.1924,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 33,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
-      "tts_score": -0.04124741417753337,
-      "total_score": -0.0412,
-      "price": 136.755,
+      "atr": 1.4220678886243374,
+      "tts_score": -0.019296038089478613,
+      "total_score": -0.0193,
+      "price": 136.182,
       "ema_trend": "BEARISH",
-      "rsi": 69.4037444378128,
+      "rsi": 67.1388105661138,
       "bb_signal": "STABLE",
-      "macd_direction_score": 0.19999999938130192,
+      "macd_direction_score": 0.19999999942407956,
       "is_macd_cross": false,
       "regime": "RANGING",
       "ema_200_confidence": 1.0,
       "ema_200_reliable": true,
       "data_stale": false,
-      "breakout_signal": "BREAKOUT_UP",
-      "breakout_strength": 0.0451,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
       "breakout_high": 136.406,
       "breakout_low": 128.668,
       "explanation": "skipped"
@@ -1311,9 +1465,9 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": -0.04789938,
-    "market_reality": "BEARISH"
+    "verdict": "SELL",
+    "weighted_score": -0.10154416999999999,
+    "market_reality": "BULLISH"
   },
   {
     "date": "03/03/2023",
@@ -1321,16 +1475,18 @@
     "atr": 1.199857142857145,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2511,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": 0.1897,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 33,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3755585366199634,
       "tts_score": 0.0357902817382193,
       "total_score": 0.0358,
       "price": 135.831,
@@ -1359,7 +1515,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.14732239,
+    "weighted_score": 0.11325311,
     "market_reality": "BULLISH"
   },
   {
@@ -1368,16 +1524,18 @@
     "atr": 1.1292857142857164,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3661,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "ce_score": -0.3367,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 18,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3364472125756806,
       "tts_score": 0.03207860743681662,
       "total_score": 0.0321,
       "price": 135.905,
@@ -1406,7 +1564,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.16545922,
+    "weighted_score": -0.14678716,
     "market_reality": "BULLISH"
   },
   {
@@ -1415,16 +1573,18 @@
     "atr": 1.1562142857142865,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1084,
+      "ce_score": -0.1042,
       "ce_confidence": 1.0,
       "article_count": 30,
-      "raw_article_count": 31,
-      "explanation": "skipped"
+      "raw_article_count": 43,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.365288667986171,
       "tts_score": -0.031901219032744614,
       "total_score": -0.0319,
       "price": 137.358,
@@ -1452,8 +1612,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.07754375,
+    "verdict": "HOLD",
+    "weighted_score": -0.07495025,
     "market_reality": "BEARISH"
   },
   {
@@ -1462,16 +1622,18 @@
     "atr": 1.171357142857143,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2527,
-      "ce_confidence": 0.88,
-      "article_count": 22,
-      "raw_article_count": 22,
-      "explanation": "skipped"
+      "ce_score": 0.2366,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 28,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3693394774157301,
       "tts_score": 0.05699999907639928,
       "total_score": 0.057,
       "price": 136.132,
@@ -1500,7 +1662,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.16830180999999997,
+    "weighted_score": 0.15686324000000001,
     "market_reality": "BEARISH"
   },
   {
@@ -1508,17 +1670,19 @@
     "currency_pair": "USDJPY",
     "atr": 1.3330714285714274,
     "ce_output": {
-      "sentiment": "BEARISH",
-      "confidence": "HIGH",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1011,
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": -0.0384,
       "ce_confidence": 1.0,
-      "article_count": 71,
-      "raw_article_count": 89,
-      "explanation": "skipped"
+      "article_count": 80,
+      "raw_article_count": 115,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.477529514743177,
       "tts_score": -0.285,
       "total_score": -0.285,
       "price": 134.962,
@@ -1538,14 +1702,16 @@
       "explanation": "skipped"
     },
     "siv_output": {
-      "signal": "COHERENT",
-      "issues": [],
-      "score_multiplier": 1.0,
-      "risk_penalty": 0.0,
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.165465,
+    "weighted_score": -0.11847450000000001,
     "market_reality": "BEARISH"
   },
   {
@@ -1554,16 +1720,18 @@
     "atr": 1.4549285714285694,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3651,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "ce_score": -0.3436,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5714202636900931,
       "tts_score": -0.05699999980967726,
       "total_score": -0.057,
       "price": 133.196,
@@ -1592,7 +1760,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.21279068999999998,
+    "weighted_score": -0.20498758000000003,
     "market_reality": "BULLISH"
   },
   {
@@ -1601,16 +1769,18 @@
     "atr": 1.6863571428571416,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.0785,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.6898215538960506,
       "tts_score": -0.056999999872311746,
       "total_score": -0.057,
       "price": 133.329,
@@ -1638,7 +1808,7 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
+    "verdict": "HOLD",
     "weighted_score": -0.06423995,
     "market_reality": "BEARISH"
   },
@@ -1648,16 +1818,18 @@
     "atr": 1.831071428571428,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2296,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "ce_score": 0.0894,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 27,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.776516382620127,
       "tts_score": -0.01702354995459538,
       "total_score": -0.017,
       "price": 131.28,
@@ -1685,9 +1857,156 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.10239062,
+    "verdict": "HOLD",
+    "weighted_score": 0.037422399999999995,
     "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/27/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.9556428571428586,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.5632,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.6935832433141236,
+      "tts_score": -0.05699999988559643,
+      "total_score": -0.057,
+      "price": 131.534,
+      "ema_trend": "BEARISH",
+      "rsi": 41.93331695748378,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999999598584,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 137.358,
+      "breakout_low": 130.701,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.2801683,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/31/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.7141428571428605,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1209,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.5851422066923855,
+      "tts_score": -0.05099999904126909,
+      "total_score": -0.051,
+      "price": 132.797,
+      "ema_trend": "BEARISH",
+      "rsi": 49.27479045556411,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999624027093,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 137.358,
+      "breakout_low": 130.701,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.032222669999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/03/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.6896428571428592,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.5158,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 31,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.583203477642929,
+      "tts_score": -0.05099999418187054,
+      "total_score": -0.051,
+      "price": 132.4,
+      "ema_trend": "BEARISH",
+      "rsi": 47.33813807425599,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999997718380602,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 137.358,
+      "breakout_low": 130.701,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.26128192000000006,
+    "market_reality": "BEARISH"
   },
   {
     "date": "04/05/2023",
@@ -1695,16 +2014,18 @@
     "atr": 1.5349285714285739,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.237,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 20,
-      "explanation": "skipped"
+      "ce_score": 0.1693,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 24,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.562685651641098,
       "tts_score": -0.05099999901425048,
       "total_score": -0.051,
       "price": 131.231,
@@ -1732,8 +2053,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.08342519999999999,
+    "verdict": "HOLD",
+    "weighted_score": 0.06749389,
     "market_reality": "BULLISH"
   },
   {
@@ -1742,16 +2063,18 @@
     "atr": 1.463714285714287,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1636,
-      "ce_confidence": 0.48,
-      "article_count": 12,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": -0.255,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 23,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5321366765238762,
       "tts_score": -0.05099999852825431,
       "total_score": -0.051,
       "price": 131.7,
@@ -1780,7 +2103,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.10129318,
+    "weighted_score": -0.1604664,
     "market_reality": "BULLISH"
   },
   {
@@ -1789,16 +2112,18 @@
     "atr": 1.3753571428571425,
     "ce_output": {
       "sentiment": "NEUTRAL",
-      "confidence": "MODERATE",
       "raw_vibe": "NEUTRAL",
-      "ce_score": -0.0265,
-      "ce_confidence": 0.88,
-      "article_count": 22,
-      "raw_article_count": 36,
-      "explanation": "skipped"
+      "ce_score": -0.0373,
+      "ce_confidence": 1.0,
+      "article_count": 32,
+      "raw_article_count": 56,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 1.48548405677217,
       "tts_score": 0.255,
       "total_score": 0.255,
       "price": 132.137,
@@ -1826,8 +2151,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.07805105000000001,
+    "verdict": "HOLD",
+    "weighted_score": 0.06175475000000003,
     "market_reality": "BULLISH"
   },
   {
@@ -1836,16 +2161,18 @@
     "atr": 1.406642857142856,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1442,
+      "ce_score": -0.1238,
       "ce_confidence": 1.0,
-      "article_count": 38,
-      "raw_article_count": 81,
-      "explanation": "skipped"
+      "article_count": 75,
+      "raw_article_count": 98,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5264494812884435,
       "tts_score": 0.050999999624096085,
       "total_score": 0.051,
       "price": 133.59,
@@ -1873,8 +2200,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.07208599999999997,
+    "verdict": "HOLD",
+    "weighted_score": -0.05948899999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -1883,16 +2210,18 @@
     "atr": 1.3219285714285698,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.0554,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 27,
-      "explanation": "skipped"
+      "ce_score": 0.0986,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 56,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.477845946910698,
       "tts_score": 0.05099999976264324,
       "total_score": 0.051,
       "price": 133.644,
@@ -1921,7 +2250,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.05061524,
+    "weighted_score": 0.07404452,
     "market_reality": "BEARISH"
   },
   {
@@ -1930,16 +2259,18 @@
     "atr": 1.317928571428569,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.132,
+      "ce_score": -0.1975,
       "ce_confidence": 1.0,
-      "article_count": 28,
-      "raw_article_count": 49,
-      "explanation": "skipped"
+      "article_count": 47,
+      "raw_article_count": 53,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4663569507027914,
       "tts_score": 0.0509999997716335,
       "total_score": 0.051,
       "price": 133.114,
@@ -1968,7 +2299,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.06455249999999998,
+    "weighted_score": -0.10499874999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -1977,16 +2308,18 @@
     "atr": 1.3218571428571428,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.139,
-      "ce_confidence": 0.84,
-      "article_count": 21,
-      "raw_article_count": 40,
-      "explanation": "skipped"
+      "ce_score": 0.1488,
+      "ce_confidence": 1.0,
+      "article_count": 38,
+      "raw_article_count": 44,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4604743113668788,
       "tts_score": 0.05099999972341304,
       "total_score": 0.051,
       "price": 132.551,
@@ -2015,7 +2348,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.0987772,
+    "weighted_score": 0.10884149999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -2024,16 +2357,18 @@
     "atr": 1.3495000000000001,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.4899,
-      "ce_confidence": 0.4,
-      "article_count": 10,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "ce_score": 0.2539,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 19,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4759404319835299,
       "tts_score": 0.056147808134844886,
       "total_score": 0.0561,
       "price": 133.745,
@@ -2062,7 +2397,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.24698669999999998,
+    "weighted_score": 0.14386762,
     "market_reality": "BULLISH"
   },
   {
@@ -2071,16 +2406,18 @@
     "atr": 1.3267142857142866,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2696,
-      "ce_confidence": 0.36,
-      "article_count": 9,
+      "ce_score": 0.1488,
+      "ce_confidence": 0.56,
+      "article_count": 14,
       "raw_article_count": 14,
-      "explanation": "skipped"
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4323018296989927,
       "tts_score": 0.08455781847377046,
       "total_score": 0.0846,
       "price": 134.426,
@@ -2109,7 +2446,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.1608635,
+    "weighted_score": 0.11196281999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -2118,16 +2455,18 @@
     "atr": 1.261571428571429,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3726,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": -0.3417,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3759643327506619,
       "tts_score": 0.058046979702407006,
       "total_score": 0.058,
       "price": 134.601,
@@ -2156,7 +2495,56 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.14207173999999997,
+    "weighted_score": -0.16437527,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/20/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.2573571428571435,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.263,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 15,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.3466097375541863,
+      "tts_score": 0.050999999823314664,
+      "total_score": 0.051,
+      "price": 134.22,
+      "ema_trend": "BEARISH",
+      "rsi": 56.0849665412069,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999930711632,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.601,
+      "breakout_low": 130.701,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.14310799999999999,
     "market_reality": "BEARISH"
   },
   {
@@ -2165,16 +2553,18 @@
     "atr": 1.2135714285714312,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1812,
-      "ce_confidence": 0.72,
-      "article_count": 18,
+      "ce_score": 0.174,
+      "ce_confidence": 0.96,
+      "article_count": 24,
       "raw_article_count": 24,
-      "explanation": "skipped"
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3179233277288889,
       "tts_score": 0.05099999979460543,
       "total_score": 0.051,
       "price": 134.096,
@@ -2203,8 +2593,155 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.11845853999999999,
+    "weighted_score": 0.12300029999999998,
     "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/24/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.155785714285715,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.064,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 28,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2839288043196813,
+      "tts_score": 0.05699999973478262,
+      "total_score": 0.057,
+      "price": 134.186,
+      "ema_trend": "BEARISH",
+      "rsi": 55.76935190800785,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999990694127,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.601,
+      "breakout_low": 130.834,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.0583927,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/25/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.147428571428573,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1031,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2719338897254193,
+      "tts_score": 0.056999999625769966,
+      "total_score": 0.057,
+      "price": 133.73,
+      "ema_trend": "BEARISH",
+      "rsi": 52.52033617419322,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999868691218,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.601,
+      "breakout_low": 130.834,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.07946350999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/26/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.133500000000002,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.131,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2482243261736035,
+      "tts_score": 0.05699999941032436,
+      "total_score": 0.057,
+      "price": 133.624,
+      "ema_trend": "BEARISH",
+      "rsi": 51.76538070042509,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999793096268,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 134.601,
+      "breakout_low": 131.231,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03622159999999999,
+    "market_reality": "BULLISH"
   },
   {
     "date": "04/28/2023",
@@ -2212,16 +2749,18 @@
     "atr": 1.2257142857142895,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2797,
+      "ce_score": 0.1206,
       "ce_confidence": 1.0,
-      "article_count": 25,
-      "raw_article_count": 43,
-      "explanation": "skipped"
+      "article_count": 42,
+      "raw_article_count": 46,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3732495465476489,
       "tts_score": -0.00012172079673676214,
       "total_score": -0.0001,
       "price": 136.24,
@@ -2249,8 +2788,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.17268149999999996,
+    "verdict": "HOLD",
+    "weighted_score": 0.07443725,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/01/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.264857142857147,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0601,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 75,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.3747317217942456,
+      "tts_score": -0.07279392292128856,
+      "total_score": -0.0728,
+      "price": 137.465,
+      "ema_trend": "BEARISH",
+      "rsi": 70.15040100933851,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999942223512,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.2446,
+      "breakout_high": 136.24,
+      "breakout_low": 131.231,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.06160731,
     "market_reality": "BEARISH"
   },
   {
@@ -2259,16 +2847,18 @@
     "atr": 1.3230714285714302,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.083,
       "ce_confidence": 0.6,
       "article_count": 15,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "raw_article_count": 19,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4289778621593234,
       "tts_score": 0.0569999997364988,
       "total_score": 0.057,
       "price": 134.595,
@@ -2306,16 +2896,18 @@
     "atr": 1.3017857142857179,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1705,
-      "ce_confidence": 0.4,
-      "article_count": 10,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "ce_score": 0.2224,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4254080148622303,
       "tts_score": 0.05699999936489699,
       "total_score": 0.057,
       "price": 134.233,
@@ -2344,7 +2936,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.10482775,
+    "weighted_score": 0.12988666,
     "market_reality": "BULLISH"
   },
   {
@@ -2353,16 +2945,18 @@
     "atr": 1.3289285714285748,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0854,
+      "ce_score": -0.1092,
       "ce_confidence": 1.0,
-      "article_count": 29,
-      "raw_article_count": 29,
-      "explanation": "skipped"
+      "article_count": 25,
+      "raw_article_count": 42,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4125217280863571,
       "tts_score": 0.056999998512205316,
       "total_score": 0.057,
       "price": 134.819,
@@ -2391,7 +2985,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.03378199999999999,
+    "weighted_score": -0.04847849999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -2400,16 +2994,18 @@
     "atr": 1.315571428571433,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.0976,
-      "ce_confidence": 0.8,
-      "article_count": 20,
-      "raw_article_count": 22,
-      "explanation": "skipped"
+      "ce_score": 0.2485,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 29,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3586987475087597,
       "tts_score": 0.05699999597857835,
       "total_score": 0.057,
       "price": 135.054,
@@ -2438,7 +3034,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.0769063,
+    "weighted_score": 0.15930264999999996,
     "market_reality": "BEARISH"
   },
   {
@@ -2447,16 +3043,18 @@
     "atr": 1.276928571428574,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1513,
-      "ce_confidence": 0.8,
-      "article_count": 20,
-      "raw_article_count": 24,
-      "explanation": "skipped"
+      "ce_score": -0.1787,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 25,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3078631226867048,
       "tts_score": 0.056999981124578575,
       "total_score": 0.057,
       "price": 135.205,
@@ -2484,8 +3082,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.06260214999999998,
+    "verdict": "HOLD",
+    "weighted_score": -0.08870776999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -2494,16 +3092,18 @@
     "atr": 1.3058571428571457,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1027,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 34,
-      "explanation": "skipped"
+      "ce_score": 0.2643,
+      "ce_confidence": 1.0,
+      "article_count": 31,
+      "raw_article_count": 38,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.3123014710662262,
       "tts_score": -0.285,
       "total_score": -0.285,
       "price": 134.283,
@@ -2532,7 +3132,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.05572753000000001,
+    "weighted_score": 0.06123824999999996,
     "market_reality": "BULLISH"
   },
   {
@@ -2540,17 +3140,19 @@
     "currency_pair": "USDJPY",
     "atr": 1.3204285714285706,
     "ce_output": {
-      "sentiment": "NEUTRAL",
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0765,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 22,
       "confidence": "MODERATE",
-      "raw_vibe": "NEUTRAL",
-      "ce_score": -0.0007,
-      "ce_confidence": 0.6,
-      "article_count": 15,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 1.2547625116372063,
       "tts_score": 0.285,
       "total_score": 0.285,
       "price": 136.078,
@@ -2572,14 +3174,14 @@
     "siv_output": {
       "signal": "PARTIAL",
       "issues": [
-        "one_signal_neutral"
+        "signal_mismatch"
       ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.12690004999999996,
+    "verdict": "HOLD",
+    "weighted_score": 0.07201964999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -2588,16 +3190,18 @@
     "atr": 1.2218571428571425,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1529,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": -0.1077,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2669360447436044,
       "tts_score": 0.016807658939303707,
       "total_score": 0.0168,
       "price": 137.878,
@@ -2625,8 +3229,106 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.07528768999999999,
+    "verdict": "HOLD",
+    "weighted_score": -0.04956435,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/22/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.2020714285714291,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2781,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2619406129762043,
+      "tts_score": -0.007029354391208102,
+      "total_score": -0.007,
+      "price": 138.564,
+      "ema_trend": "BULLISH",
+      "rsi": 66.06842920023468,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999935700385,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 138.671,
+      "breakout_low": 133.624,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.15314855,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/23/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.1039999999999992,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.061,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2195877120493313,
+      "tts_score": -0.00432594099843641,
+      "total_score": -0.0043,
+      "price": 138.524,
+      "ema_trend": "BULLISH",
+      "rsi": 65.78571930236163,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999933488882,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 138.671,
+      "breakout_low": 133.624,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.025815869999999994,
     "market_reality": "BULLISH"
   },
   {
@@ -2635,16 +3337,18 @@
     "atr": 1.0946428571428544,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.2286,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 10,
-      "explanation": "skipped"
+      "raw_article_count": 11,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2216171611886641,
       "tts_score": -0.012579180237404414,
       "total_score": -0.0126,
       "price": 139.353,
@@ -2682,16 +3386,18 @@
     "atr": 1.1069285714285684,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.6307,
+      "ce_score": -0.541,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 18,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.235573078246617,
       "tts_score": -0.03556832722546664,
       "total_score": -0.0356,
       "price": 140.055,
@@ -2720,7 +3426,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.29953215,
+    "weighted_score": -0.25948109999999996,
     "market_reality": "BULLISH"
   },
   {
@@ -2729,16 +3435,18 @@
     "atr": 1.1589999999999958,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1014,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": -0.1953,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.216233255432876,
       "tts_score": -0.006891343306602557,
       "total_score": -0.0069,
       "price": 139.773,
@@ -2766,8 +3474,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": -0.05521305000000001,
+    "verdict": "SELL",
+    "weighted_score": -0.11000544,
     "market_reality": "BEARISH"
   },
   {
@@ -2776,16 +3484,18 @@
     "atr": 1.1648571428571384,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2724,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "ce_score": 0.2867,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 24,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.214073737187669,
       "tts_score": 0.023374420529421513,
       "total_score": 0.0234,
       "price": 139.299,
@@ -2814,7 +3524,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.1504401,
+    "weighted_score": 0.16080479000000003,
     "market_reality": "BULLISH"
   },
   {
@@ -2823,16 +3533,18 @@
     "atr": 1.1752857142857107,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2628,
-      "ce_confidence": 0.48,
-      "article_count": 12,
-      "raw_article_count": 27,
-      "explanation": "skipped"
+      "ce_score": -0.1734,
+      "ce_confidence": 1.0,
+      "article_count": 25,
+      "raw_article_count": 38,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2358541845314075,
       "tts_score": 0.04499999896380429,
       "total_score": 0.045,
       "price": 138.815,
@@ -2860,8 +3572,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.10170053999999999,
+    "verdict": "HOLD",
+    "weighted_score": -0.09211199999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -2870,16 +3582,18 @@
     "atr": 1.235285714285711,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1792,
+      "ce_score": -0.0668,
       "ce_confidence": 0.6,
       "article_count": 15,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "raw_article_count": 31,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.252578885636307,
       "tts_score": 0.010178418826845094,
       "total_score": 0.0102,
       "price": 139.947,
@@ -2907,8 +3621,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.08567290000000001,
+    "verdict": "HOLD",
+    "weighted_score": -0.029079499999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -2916,17 +3630,19 @@
     "currency_pair": "USDJPY",
     "atr": 1.2482857142857102,
     "ce_output": {
-      "sentiment": "NEUTRAL",
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0794,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 21,
       "confidence": "MODERATE",
-      "raw_vibe": "NEUTRAL",
-      "ce_score": 0.0453,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.2497518223765705,
       "tts_score": -0.23151570102612,
       "total_score": -0.2315,
       "price": 139.536,
@@ -2948,6 +3664,55 @@
     "siv_output": {
       "signal": "PARTIAL",
       "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04720101000000002,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/06/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.2112142857142811,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.6972,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2249838350639577,
+      "tts_score": -0.058234893167092995,
+      "total_score": -0.0582,
+      "price": 139.624,
+      "ema_trend": "BULLISH",
+      "rsi": 61.568580018159594,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999672831745,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 140.595,
+      "breakout_low": 134.283,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
         "one_signal_neutral"
       ],
       "score_multiplier": 0.95,
@@ -2955,7 +3720,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.07424515999999999,
+    "weighted_score": -0.3551727,
     "market_reality": "BEARISH"
   },
   {
@@ -2964,16 +3729,18 @@
     "atr": 1.2056428571428504,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.3459,
       "ce_confidence": 0.44,
       "article_count": 11,
       "raw_article_count": 11,
-      "explanation": "skipped"
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2394044292133095,
       "tts_score": -0.044999999696388675,
       "total_score": -0.045,
       "price": 138.887,
@@ -3006,68 +3773,23 @@
     "market_reality": "BULLISH"
   },
   {
-    "date": "06/09/2023",
-    "currency_pair": "USDJPY",
-    "atr": 1.1893571428571355,
-    "ce_output": {
-      "sentiment": "BEARISH",
-      "confidence": "LOW",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1236,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 12,
-      "explanation": "skipped"
-    },
-    "tts_output": {
-      "decision": "HOLD",
-      "tts_score": -0.044999999745643074,
-      "total_score": -0.045,
-      "price": 139.355,
-      "ema_trend": "BULLISH",
-      "rsi": 57.4091640462774,
-      "bb_signal": "STABLE",
-      "macd_direction_score": -0.1999999988695248,
-      "is_macd_cross": false,
-      "regime": "TRENDING",
-      "ema_200_confidence": 1.0,
-      "ema_200_reliable": true,
-      "data_stale": false,
-      "breakout_signal": "NONE",
-      "breakout_strength": 0.0,
-      "breakout_high": 140.595,
-      "breakout_low": 135.745,
-      "explanation": "skipped"
-    },
-    "siv_output": {
-      "signal": "PARTIAL",
-      "issues": [
-        "one_signal_neutral"
-      ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
-      "explanation": "skipped"
-    },
-    "verdict": "SELL",
-    "weighted_score": -0.07874094,
-    "market_reality": "BULLISH"
-  },
-  {
     "date": "06/12/2023",
     "currency_pair": "USDJPY",
     "atr": 1.1926428571428491,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1123,
+      "ce_score": 0.1018,
       "ce_confidence": 1.0,
-      "article_count": 28,
-      "raw_article_count": 31,
-      "explanation": "skipped"
+      "article_count": 31,
+      "raw_article_count": 34,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1840119823318822,
       "tts_score": -0.044999999752116146,
       "total_score": -0.045,
       "price": 139.592,
@@ -3096,7 +3818,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.05438274999999999,
+    "weighted_score": 0.04789899999999999,
     "market_reality": "BULLISH"
   },
   {
@@ -3105,16 +3827,18 @@
     "atr": 1.196785714285708,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.0694,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 22,
-      "explanation": "skipped"
+      "ce_score": 0.3122,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 24,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1927254121653201,
       "tts_score": -0.05875586508588705,
       "total_score": -0.0588,
       "price": 140.2,
@@ -3142,8 +3866,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": 0.011611660000000008,
+    "verdict": "BUY",
+    "weighted_score": 0.15631489999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -3152,16 +3876,18 @@
     "atr": 1.1671428571428513,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.1545,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1791021684392267,
       "tts_score": -0.047798447753213937,
       "total_score": -0.0478,
       "price": 140.033,
@@ -3189,7 +3915,7 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
+    "verdict": "HOLD",
     "weighted_score": -0.09548431,
     "market_reality": "BULLISH"
   },
@@ -3199,16 +3925,18 @@
     "atr": 1.1910714285714212,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.0662,
       "ce_confidence": 0.92,
       "article_count": 23,
-      "raw_article_count": 23,
-      "explanation": "skipped"
+      "raw_article_count": 27,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2068091564078518,
       "tts_score": -0.057685163333231565,
       "total_score": -0.0577,
       "price": 140.257,
@@ -3246,16 +3974,18 @@
     "atr": 1.2812142857142785,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1124,
+      "ce_score": 0.0863,
       "ce_confidence": 1.0,
-      "article_count": 28,
-      "raw_article_count": 36,
-      "explanation": "skipped"
+      "article_count": 36,
+      "raw_article_count": 57,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2685370738072907,
       "tts_score": -0.03660187325535652,
       "total_score": -0.0366,
       "price": 141.825,
@@ -3284,7 +4014,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.05723749999999998,
+    "weighted_score": 0.04112074999999999,
     "market_reality": "BEARISH"
   },
   {
@@ -3293,16 +4023,18 @@
     "atr": 1.2246428571428518,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.2393,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "raw_article_count": 22,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 1.2187844256781988,
       "tts_score": 0.16955808680307,
       "total_score": 0.1696,
       "price": 141.914,
@@ -3338,16 +4070,18 @@
     "atr": 1.1971428571428544,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1342,
-      "ce_confidence": 0.84,
-      "article_count": 21,
-      "raw_article_count": 24,
-      "explanation": "skipped"
+      "ce_score": -0.113,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 28,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2304385507343318,
       "tts_score": 0.024136163304783007,
       "total_score": 0.0241,
       "price": 143.072,
@@ -3375,8 +4109,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
+    "verdict": "HOLD",
+    "weighted_score": -0.057075429999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/23/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.195999999999998,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2703,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 44,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.228050082824737,
+      "tts_score": -0.04769791169167437,
+      "total_score": -0.0477,
+      "price": 143.655,
+      "ema_trend": "BULLISH",
+      "rsi": 73.1261376113979,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999898602605,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.137,
+      "breakout_high": 143.072,
+      "breakout_low": 138.815,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
     "verdict": "SELL",
-    "weighted_score": -0.06763677000000001,
+    "weighted_score": -0.14978117999999999,
     "market_reality": "BULLISH"
   },
   {
@@ -3385,16 +4168,18 @@
     "atr": 1.1873571428571421,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.4074,
       "ce_confidence": 0.44,
       "article_count": 11,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.196189362622971,
       "tts_score": -0.05069816751190156,
       "total_score": -0.0507,
       "price": 143.456,
@@ -3432,16 +4217,18 @@
     "atr": 1.1254285714285734,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0858,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "ce_score": -0.25,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 19,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1543367463432779,
       "tts_score": -0.0614303551338386,
       "total_score": -0.0614,
       "price": 144.373,
@@ -3470,7 +4257,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.07005908,
+    "weighted_score": -0.15544014,
     "market_reality": "BULLISH"
   },
   {
@@ -3479,16 +4266,18 @@
     "atr": 1.1112857142857158,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3388,
+      "ce_score": -0.2548,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1269555501758999,
       "tts_score": -0.07132150343138823,
       "total_score": -0.0713,
       "price": 144.733,
@@ -3517,7 +4306,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.18717375,
+    "weighted_score": -0.14966775,
     "market_reality": "BEARISH"
   },
   {
@@ -3526,16 +4315,18 @@
     "atr": 0.9957142857142917,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.4933,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": -0.5191,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 30,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.0260313012435955,
       "tts_score": -0.046398316482683645,
       "total_score": -0.0464,
       "price": 144.546,
@@ -3564,7 +4355,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.27928347000000003,
+    "weighted_score": -0.29825078999999993,
     "market_reality": "BEARISH"
   },
   {
@@ -3573,16 +4364,18 @@
     "atr": 0.9264285714285775,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.5233,
       "ce_confidence": 0.6,
       "article_count": 15,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "raw_article_count": 18,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.0313862082976244,
       "tts_score": -0.25622610035048893,
       "total_score": -0.2562,
       "price": 144.041,
@@ -3618,16 +4411,18 @@
     "atr": 1.0388571428571478,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.107,
+      "ce_score": -0.0857,
       "ce_confidence": 1.0,
-      "article_count": 30,
-      "raw_article_count": 43,
-      "explanation": "skipped"
+      "article_count": 34,
+      "raw_article_count": 63,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1110014791335074,
       "tts_score": -0.044999999785521896,
       "total_score": -0.045,
       "price": 142.083,
@@ -3655,8 +4450,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.08103499999999998,
+    "verdict": "HOLD",
+    "weighted_score": -0.06788224999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/10/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.0893571428571474,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1368,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.1580013734811145,
+      "tts_score": -0.044999999880986574,
+      "total_score": -0.045,
+      "price": 141.319,
+      "ema_trend": "BULLISH",
+      "rsi": 45.454518338729024,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999947105146,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 144.733,
+      "breakout_low": 139.592,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.09106434,
     "market_reality": "BEARISH"
   },
   {
@@ -3665,16 +4509,18 @@
     "atr": 1.1460000000000048,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1773,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": 0.2942,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 24,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2432511842770846,
       "tts_score": -0.05012739879027879,
       "total_score": -0.0501,
       "price": 138.414,
@@ -3703,32 +4549,34 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.06949326000000002,
+    "weighted_score": 0.13753511,
     "market_reality": "BEARISH"
   },
   {
-    "date": "07/14/2023",
+    "date": "07/17/2023",
     "currency_pair": "USDJPY",
-    "atr": 1.2158571428571463,
+    "atr": 1.253071428571431,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0849,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 21,
-      "explanation": "skipped"
+      "ce_score": -0.29,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
-      "tts_score": -0.013993945316652635,
-      "total_score": -0.014,
-      "price": 138.743,
+      "atr": 1.2878454270614996,
+      "tts_score": -0.012474039894121831,
+      "total_score": -0.0125,
+      "price": 138.698,
       "ema_trend": "BULLISH",
-      "rsi": 36.32520833999925,
+      "rsi": 36.14507140132905,
       "bb_signal": "STABLE",
-      "macd_direction_score": -0.19999999976848432,
+      "macd_direction_score": -0.19999999975736887,
       "is_macd_cross": false,
       "regime": "TRENDING",
       "ema_200_confidence": 1.0,
@@ -3749,8 +4597,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": -0.05142292999999999,
+    "verdict": "SELL",
+    "weighted_score": -0.13577874999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -3759,16 +4607,18 @@
     "atr": 1.2935000000000005,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.079,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "ce_score": 0.0679,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2997850394142485,
       "tts_score": -0.01954142100821681,
       "total_score": -0.0195,
       "price": 138.81,
@@ -3797,7 +4647,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.02882395,
+    "weighted_score": 0.027473620000000004,
     "market_reality": "BULLISH"
   },
   {
@@ -3806,16 +4656,18 @@
     "atr": 1.3645714285714274,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.2289,
       "ce_confidence": 0.56,
       "article_count": 14,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3024626105153458,
       "tts_score": -0.04499999990586152,
       "total_score": -0.045,
       "price": 140.036,
@@ -3852,17 +4704,19 @@
     "currency_pair": "USDJPY",
     "atr": 1.4560714285714258,
     "ce_output": {
-      "sentiment": "BEARISH",
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1248,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 24,
       "confidence": "MODERATE",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0557,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3674295669071062,
       "tts_score": -0.04499999982164647,
       "total_score": -0.045,
       "price": 141.77,
@@ -3891,32 +4745,34 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.04825942999999999,
+    "weighted_score": 0.046615739999999996,
     "market_reality": "BEARISH"
   },
   {
-    "date": "07/24/2023",
+    "date": "07/26/2023",
     "currency_pair": "USDJPY",
-    "atr": 1.496142857142855,
+    "atr": 1.523999999999997,
     "ce_output": {
-      "sentiment": "BULLISH",
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0523,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 20,
       "confidence": "MODERATE",
-      "raw_vibe": "POSITIVE",
-      "ce_score": 0.0577,
-      "ce_confidence": 0.84,
-      "article_count": 21,
-      "raw_article_count": 23,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
-      "tts_score": -0.044999999617224534,
+      "atr": 1.3101952472649099,
+      "tts_score": -0.044999999302646386,
       "total_score": -0.045,
-      "price": 141.442,
+      "price": 140.194,
       "ema_trend": "BULLISH",
-      "rsi": 53.43435337985584,
+      "rsi": 46.425274928999265,
       "bb_signal": "STABLE",
-      "macd_direction_score": -0.19999999829877574,
+      "macd_direction_score": -0.19999999690065062,
       "is_macd_cross": false,
       "regime": "TRENDING",
       "ema_200_confidence": 1.0,
@@ -3938,25 +4794,76 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.01598413,
-    "market_reality": "BEARISH"
+    "weighted_score": -0.04684165,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/28/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.650428571428569,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0608,
+      "ce_confidence": 1.0,
+      "article_count": 34,
+      "raw_article_count": 55,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.5227193713661724,
+      "tts_score": -0.04499999816984883,
+      "total_score": -0.045,
+      "price": 141.14,
+      "ema_trend": "BULLISH",
+      "rsi": 52.08128329977818,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999186599482,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 144.655,
+      "breakout_low": 138.057,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.022581499999999987,
+    "market_reality": "BULLISH"
   },
   {
     "date": "07/31/2023",
     "currency_pair": "USDJPY",
     "atr": 1.699142857142854,
     "ce_output": {
-      "sentiment": "NEUTRAL",
-      "confidence": "MODERATE",
-      "raw_vibe": "NEUTRAL",
-      "ce_score": 0.0273,
-      "ce_confidence": 0.96,
-      "article_count": 24,
-      "raw_article_count": 28,
-      "explanation": "skipped"
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0524,
+      "ce_confidence": 1.0,
+      "article_count": 27,
+      "raw_article_count": 33,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 1.5568822734114462,
       "tts_score": 0.22499999999999998,
       "total_score": 0.225,
       "price": 142.25,
@@ -3978,6 +4885,55 @@
     "siv_output": {
       "signal": "PARTIAL",
       "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.03798650000000002,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/01/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.6377857142857104,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1719,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 29,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.5416049681677708,
+      "tts_score": 0.04499999978960711,
+      "total_score": 0.045,
+      "price": 142.76,
+      "ema_trend": "BULLISH",
+      "rsi": 59.10708537642403,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999990649205,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 144.546,
+      "breakout_low": 138.057,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
         "one_signal_neutral"
       ],
       "score_multiplier": 0.95,
@@ -3985,8 +4941,8 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.09392403000000002,
-    "market_reality": "BULLISH"
+    "weighted_score": 0.11098412999999999,
+    "market_reality": "BEARISH"
   },
   {
     "date": "08/02/2023",
@@ -3994,16 +4950,18 @@
     "atr": 1.65285714285714,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.3898,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 25,
-      "explanation": "skipped"
+      "ce_score": 0.5067,
+      "ce_confidence": 1.0,
+      "article_count": 25,
+      "raw_article_count": 30,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5206331847272152,
       "tts_score": 0.034822169060530345,
       "total_score": 0.0348,
       "price": 143.288,
@@ -4032,7 +4990,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.2198965,
+    "weighted_score": 0.32445824999999995,
     "market_reality": "BEARISH"
   },
   {
@@ -4041,16 +4999,18 @@
     "atr": 1.6466428571428529,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1838,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "ce_score": 0.089,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5429451001038426,
       "tts_score": 0.04499999984936056,
       "total_score": 0.045,
       "price": 142.511,
@@ -4078,8 +5038,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.10630651999999999,
+    "verdict": "HOLD",
+    "weighted_score": 0.06339919999999999,
     "market_reality": "BEARISH"
   },
   {
@@ -4088,16 +5048,18 @@
     "atr": 1.6422142857142805,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2987,
-      "ce_confidence": 1.0,
-      "article_count": 26,
-      "raw_article_count": 29,
-      "explanation": "skipped"
+      "ce_score": -0.2837,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 37,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5295204500964246,
       "tts_score": 0.04499999980180559,
       "total_score": 0.045,
       "price": 141.71,
@@ -4126,7 +5088,56 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.16948474999999996,
+    "weighted_score": -0.15272789,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/07/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.614857142857139,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1096,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.49684041794668,
+      "tts_score": 0.04499999979442849,
+      "total_score": 0.045,
+      "price": 142.485,
+      "ema_trend": "BULLISH",
+      "rsi": 55.789437750520456,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999908634886,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 143.288,
+      "breakout_low": 138.057,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03332866000000001,
     "market_reality": "BULLISH"
   },
   {
@@ -4135,16 +5146,18 @@
     "atr": 1.6054999999999962,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.295,
       "ce_confidence": 0.52,
       "article_count": 13,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4693518166647739,
       "tts_score": 0.047485184300627994,
       "total_score": 0.0475,
       "price": 143.34,
@@ -4182,16 +5195,18 @@
     "atr": 1.5127142857142835,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.353,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 10,
-      "explanation": "skipped"
+      "raw_article_count": 12,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.4275635562058508,
       "tts_score": 0.05169795730320915,
       "total_score": 0.0517,
       "price": 144.68,
@@ -4229,16 +5244,18 @@
     "atr": 1.4810000000000005,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1898,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 10,
-      "explanation": "skipped"
+      "raw_article_count": 11,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.3362104132591277,
       "tts_score": 0.005565927978030068,
       "total_score": 0.0056,
       "price": 145.534,
@@ -4266,9 +5283,107 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
+    "verdict": "HOLD",
     "weighted_score": 0.08756529999999998,
     "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/18/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.1082142857142867,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0871,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 18,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2334781500701277,
+      "tts_score": 0.016593867428967443,
+      "total_score": 0.0166,
+      "price": 145.38,
+      "ema_trend": "BULLISH",
+      "rsi": 63.36665273119175,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999993262126,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 146.248,
+      "breakout_low": 139.416,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.048051949999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/22/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.0784285714285744,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2345,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.2123969763359779,
+      "tts_score": 0.010576776758086284,
+      "total_score": 0.0106,
+      "price": 145.858,
+      "ema_trend": "BULLISH",
+      "rsi": 64.07978939587156,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999904778915,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 146.248,
+      "breakout_low": 139.416,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.09936714999999999,
+    "market_reality": "BEARISH"
   },
   {
     "date": "08/25/2023",
@@ -4276,16 +5391,18 @@
     "atr": 1.0342142857142886,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0817,
-      "ce_confidence": 0.92,
-      "article_count": 23,
-      "raw_article_count": 27,
-      "explanation": "skipped"
+      "ce_score": -0.198,
+      "ce_confidence": 1.0,
+      "article_count": 27,
+      "raw_article_count": 28,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2104996927879523,
       "tts_score": 0.021590191342228532,
       "total_score": 0.0216,
       "price": 146.404,
@@ -4313,34 +5430,36 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": -0.04091250999999999,
+    "verdict": "SELL",
+    "weighted_score": -0.11508299999999998,
     "market_reality": "BULLISH"
   },
   {
-    "date": "08/30/2023",
+    "date": "08/29/2023",
     "currency_pair": "USDJPY",
-    "atr": 1.0167857142857193,
+    "atr": 1.0567857142857195,
     "ce_output": {
-      "sentiment": "NEUTRAL",
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1927,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 26,
       "confidence": "MODERATE",
-      "raw_vibe": "NEUTRAL",
-      "ce_score": -0.0125,
-      "ce_confidence": 0.84,
-      "article_count": 21,
-      "raw_article_count": 24,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
-      "decision": "SELL",
-      "tts_score": -0.23000996971251106,
-      "total_score": -0.23,
-      "price": 146.162,
+      "decision": "HOLD",
+      "atr": 1.1975941228630826,
+      "tts_score": 0.0449999922939897,
+      "total_score": 0.045,
+      "price": 145.907,
       "ema_trend": "BULLISH",
-      "rsi": 60.890661282224194,
+      "rsi": 59.67426663307294,
       "bb_signal": "STABLE",
-      "macd_direction_score": -0.6,
-      "is_macd_cross": true,
+      "macd_direction_score": 0.19999996575106538,
+      "is_macd_cross": false,
       "regime": "TRENDING",
       "ema_200_confidence": 1.0,
       "ema_200_reliable": true,
@@ -4360,8 +5479,55 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
+    "verdict": "HOLD",
+    "weighted_score": -0.07693195000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/30/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.0167857142857193,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1337,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 31,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "atr": 1.1822659712300057,
+      "tts_score": -0.23000996971251106,
+      "total_score": -0.23,
+      "price": 146.162,
+      "ema_trend": "BULLISH",
+      "rsi": 60.890661282224194,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 146.528,
+      "breakout_low": 141.71,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
     "verdict": "SELL",
-    "weighted_score": -0.09411175000000001,
+    "weighted_score": -0.1697162,
     "market_reality": "BEARISH"
   },
   {
@@ -4370,16 +5536,18 @@
     "atr": 1.1040714285714341,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3015,
-      "ce_confidence": 0.96,
-      "article_count": 24,
-      "raw_article_count": 47,
-      "explanation": "skipped"
+      "ce_score": -0.2105,
+      "ce_confidence": 1.0,
+      "article_count": 39,
+      "raw_article_count": 80,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.2104691282544455,
       "tts_score": -0.044999999528304156,
       "total_score": -0.045,
       "price": 146.193,
@@ -4408,54 +5576,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.19821464999999996,
-    "market_reality": "BULLISH"
-  },
-  {
-    "date": "09/04/2023",
-    "currency_pair": "USDJPY",
-    "atr": 1.0835000000000048,
-    "ce_output": {
-      "sentiment": "BULLISH",
-      "confidence": "LOW",
-      "raw_vibe": "POSITIVE",
-      "ce_score": 0.0889,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 14,
-      "explanation": "skipped"
-    },
-    "tts_output": {
-      "decision": "HOLD",
-      "tts_score": -0.05312743802205446,
-      "total_score": -0.0531,
-      "price": 146.451,
-      "ema_trend": "BULLISH",
-      "rsi": 60.963251975326465,
-      "bb_signal": "STABLE",
-      "macd_direction_score": -0.19999999768994411,
-      "is_macd_cross": false,
-      "regime": "TRENDING",
-      "ema_200_confidence": 1.0,
-      "ema_200_reliable": true,
-      "data_stale": false,
-      "breakout_signal": "NONE",
-      "breakout_strength": 0.0,
-      "breakout_high": 146.528,
-      "breakout_low": 142.485,
-      "explanation": "skipped"
-    },
-    "siv_output": {
-      "signal": "PARTIAL",
-      "issues": [
-        "one_signal_neutral"
-      ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
-      "explanation": "skipped"
-    },
-    "verdict": "HOLD",
-    "weighted_score": 0.017814400000000005,
+    "weighted_score": -0.14494624999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -4463,17 +5584,19 @@
     "currency_pair": "USDJPY",
     "atr": 1.091857142857147,
     "ce_output": {
-      "sentiment": "BEARISH",
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": -0.0377,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 21,
       "confidence": "MODERATE",
-      "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2328,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 1.1464554208363773,
       "tts_score": 0.1885680263235281,
       "total_score": 0.1886,
       "price": 147.608,
@@ -4495,14 +5618,14 @@
     "siv_output": {
       "signal": "PARTIAL",
       "issues": [
-        "signal_mismatch"
+        "one_signal_neutral"
       ],
-      "score_multiplier": 0.85,
-      "risk_penalty": 0.5,
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.03382898000000001,
+    "weighted_score": 0.05748849,
     "market_reality": "BEARISH"
   },
   {
@@ -4511,16 +5634,18 @@
     "atr": 1.0860714285714315,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1839,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": -0.0911,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 19,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1242800336337777,
       "tts_score": 0.01908208474715509,
       "total_score": 0.0191,
       "price": 147.273,
@@ -4548,8 +5673,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.0817513,
+    "verdict": "HOLD",
+    "weighted_score": -0.041109539999999986,
     "market_reality": "BEARISH"
   },
   {
@@ -4558,16 +5683,18 @@
     "atr": 1.1592142857142886,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1559,
-      "ce_confidence": 0.92,
-      "article_count": 23,
-      "raw_article_count": 26,
-      "explanation": "skipped"
+      "ce_score": 0.1577,
+      "ce_confidence": 1.0,
+      "article_count": 25,
+      "raw_article_count": 31,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 1.191266967776064,
       "tts_score": -0.22499999999999998,
       "total_score": -0.225,
       "price": 146.547,
@@ -4596,7 +5723,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.011426890000000007,
+    "weighted_score": 0.020191749999999963,
     "market_reality": "BULLISH"
   },
   {
@@ -4605,16 +5732,18 @@
     "atr": 1.1218571428571462,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.101,
-      "ce_confidence": 0.88,
-      "article_count": 22,
-      "raw_article_count": 23,
-      "explanation": "skipped"
+      "ce_score": -0.1197,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 27,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1650336129349175,
       "tts_score": -0.04499999934927244,
       "total_score": -0.045,
       "price": 147.107,
@@ -4642,8 +5771,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.07541479999999999,
+    "verdict": "HOLD",
+    "weighted_score": -0.08717409,
     "market_reality": "BULLISH"
   },
   {
@@ -4652,16 +5781,18 @@
     "atr": 0.9229999999999998,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1043,
-      "ce_confidence": 0.96,
-      "article_count": 24,
-      "raw_article_count": 36,
-      "explanation": "skipped"
+      "ce_score": 0.228,
+      "ce_confidence": 1.0,
+      "article_count": 36,
+      "raw_article_count": 39,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9607793133888675,
       "tts_score": -0.04846918547133659,
       "total_score": -0.0485,
       "price": 148.192,
@@ -4689,8 +5820,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": 0.04653707999999998,
+    "verdict": "BUY",
+    "weighted_score": 0.12466374999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -4699,16 +5830,18 @@
     "atr": 0.8719285714285689,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1615,
-      "ce_confidence": 0.88,
-      "article_count": 22,
-      "raw_article_count": 29,
-      "explanation": "skipped"
+      "ce_score": -0.1565,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 33,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9735807910039473,
       "tts_score": -0.04499999943534469,
       "total_score": -0.045,
       "price": 147.561,
@@ -4737,7 +5870,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.11070445,
+    "weighted_score": -0.11160124999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -4746,16 +5879,18 @@
     "atr": 0.9032142857142844,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.3719,
+      "ce_score": 0.3406,
       "ce_confidence": 1.0,
-      "article_count": 32,
-      "raw_article_count": 42,
-      "explanation": "skipped"
+      "article_count": 42,
+      "raw_article_count": 49,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9693964487893811,
       "tts_score": -0.05223909287370049,
       "total_score": -0.0522,
       "price": 148.36,
@@ -4784,7 +5919,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.21229174999999997,
+    "weighted_score": 0.19296399999999997,
     "market_reality": "BULLISH"
   },
   {
@@ -4793,16 +5928,18 @@
     "atr": 0.8577857142857133,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2245,
-      "ce_confidence": 0.88,
-      "article_count": 22,
-      "raw_article_count": 22,
-      "explanation": "skipped"
+      "ce_score": 0.2038,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 25,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9520109881615682,
       "tts_score": -0.04713825964128679,
       "total_score": -0.0471,
       "price": 148.828,
@@ -4830,8 +5967,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.11367927999999998,
+    "verdict": "HOLD",
+    "weighted_score": 0.09588444999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -4840,16 +5977,18 @@
     "atr": 0.834857142857142,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1609,
-      "ce_confidence": 0.8,
-      "article_count": 20,
-      "raw_article_count": 23,
-      "explanation": "skipped"
+      "ce_score": -0.2559,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 26,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 0.9186530604357428,
       "tts_score": 0.20431166843718052,
       "total_score": 0.2043,
       "price": 149.0,
@@ -4878,7 +6017,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.009492799999999985,
+    "weighted_score": -0.06652338,
     "market_reality": "BULLISH"
   },
   {
@@ -4887,16 +6026,18 @@
     "atr": 0.7737857142857142,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.4581,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "ce_score": -0.4999,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.8783284041512274,
       "tts_score": -0.008142324140049846,
       "total_score": -0.0081,
       "price": 149.279,
@@ -4925,7 +6066,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.21375,
+    "weighted_score": -0.23849673999999996,
     "market_reality": "BEARISH"
   },
   {
@@ -4933,17 +6074,19 @@
     "currency_pair": "USDJPY",
     "atr": 0.6877142857142827,
     "ce_output": {
-      "sentiment": "BULLISH",
-      "confidence": "HIGH",
-      "raw_vibe": "POSITIVE",
-      "ce_score": 0.0714,
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0645,
       "ce_confidence": 1.0,
-      "article_count": 26,
-      "raw_article_count": 33,
-      "explanation": "skipped"
+      "article_count": 30,
+      "raw_article_count": 38,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.8616096954161074,
       "tts_score": -0.003887750065434792,
       "total_score": -0.0039,
       "price": 149.824,
@@ -4972,7 +6115,56 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.04279275,
+    "weighted_score": -0.041125499999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/03/2023",
+    "currency_pair": "USDJPY",
+    "atr": 0.8410714285714249,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2529,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.0059947171721006,
+      "tts_score": 0.036516068065431194,
+      "total_score": 0.0365,
+      "price": 149.044,
+      "ema_trend": "BULLISH",
+      "rsi": 61.00550255488001,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999998165436128,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 149.824,
+      "breakout_low": 146.547,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13376456,
     "market_reality": "BEARISH"
   },
   {
@@ -4981,16 +6173,18 @@
     "atr": 0.8434999999999978,
     "ce_output": {
       "sentiment": "NEUTRAL",
-      "confidence": "MODERATE",
       "raw_vibe": "NEUTRAL",
-      "ce_score": 0.0149,
-      "ce_confidence": 0.68,
-      "article_count": 17,
-      "raw_article_count": 17,
-      "explanation": "skipped"
+      "ce_score": 0.0159,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 25,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 0.9761379516598093,
       "tts_score": -0.22864272798363827,
       "total_score": -0.2286,
       "price": 149.008,
@@ -5018,8 +6212,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.08901594999999998,
+    "verdict": "HOLD",
+    "weighted_score": -0.09127695,
     "market_reality": "BEARISH"
   },
   {
@@ -5028,16 +6222,18 @@
     "atr": 0.8610000000000001,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1701,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 12,
-      "explanation": "skipped"
+      "ce_score": -0.1871,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 20,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9679138122555386,
       "tts_score": -0.044999999558786835,
       "total_score": -0.045,
       "price": 148.485,
@@ -5066,8 +6262,57 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.10003329,
+    "weighted_score": -0.10619764999999998,
     "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/06/2023",
+    "currency_pair": "USDJPY",
+    "atr": 0.9219285714285722,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1163,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 54,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 0.9832056828087136,
+      "tts_score": -0.05251509639876476,
+      "total_score": -0.0525,
+      "price": 149.274,
+      "ema_trend": "BULLISH",
+      "rsi": 60.89067814628741,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999795317677,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 149.824,
+      "breakout_low": 146.547,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05051036,
+    "market_reality": "BEARISH"
   },
   {
     "date": "10/11/2023",
@@ -5075,16 +6320,18 @@
     "atr": 0.9377142857142928,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1386,
-      "ce_confidence": 0.52,
-      "article_count": 13,
+      "ce_score": 0.056,
+      "ce_confidence": 0.44,
+      "article_count": 11,
       "raw_article_count": 13,
-      "explanation": "skipped"
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9662273633858434,
       "tts_score": -0.04499999970825966,
       "total_score": -0.045,
       "price": 149.07,
@@ -5113,7 +6360,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.04550652,
+    "weighted_score": 0.003497899999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -5122,16 +6369,18 @@
     "atr": 0.9250714285714342,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1134,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "ce_score": -0.2059,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.8657974698667601,
       "tts_score": -0.06040957783285653,
       "total_score": -0.0604,
       "price": 149.782,
@@ -5160,7 +6409,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.0834613,
+    "weighted_score": -0.13229795000000003,
     "market_reality": "NEUTRAL"
   },
   {
@@ -5169,16 +6418,18 @@
     "atr": 0.8764285714285762,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0944,
+      "ce_score": -0.1438,
       "ce_confidence": 0.76,
       "article_count": 19,
-      "raw_article_count": 21,
-      "explanation": "skipped"
+      "raw_article_count": 26,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.8254547934477049,
       "tts_score": -0.05772163748084303,
       "total_score": -0.0577,
       "price": 149.756,
@@ -5207,7 +6458,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.07496697,
+    "weighted_score": -0.10209251000000001,
     "market_reality": "BEARISH"
   },
   {
@@ -5216,16 +6467,18 @@
     "atr": 0.68828571428572,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2979,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 21,
-      "explanation": "skipped"
+      "ce_score": -0.1223,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 23,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.766866633125827,
       "tts_score": -0.04730718917683446,
       "total_score": -0.0473,
       "price": 149.696,
@@ -5253,9 +6506,58 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.17396894000000002,
+    "verdict": "HOLD",
+    "weighted_score": -0.0878275,
     "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/25/2023",
+    "currency_pair": "USDJPY",
+    "atr": 0.6660714285714298,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1255,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 12,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 0.7393952091748187,
+      "tts_score": -0.026291857527239962,
+      "total_score": -0.0263,
+      "price": 150.137,
+      "ema_trend": "BULLISH",
+      "rsi": 64.19740086589468,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999565158824,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.2165,
+      "breakout_high": 149.843,
+      "breakout_low": 148.485,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.0692778,
+    "market_reality": "BEARISH"
   },
   {
     "date": "10/26/2023",
@@ -5263,16 +6565,18 @@
     "atr": 0.6493571428571434,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.1416,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": 0.2438,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 22,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.7542955513766159,
       "tts_score": -0.06176922521577639,
       "total_score": -0.0618,
       "price": 150.368,
@@ -5300,9 +6604,58 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": 0.046020660000000005,
+    "verdict": "BUY",
+    "weighted_score": 0.10909495999999999,
     "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/27/2023",
+    "currency_pair": "USDJPY",
+    "atr": 0.6570714285714294,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1169,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 0.7686315834211441,
+      "tts_score": -0.04499999931036888,
+      "total_score": -0.045,
+      "price": 149.599,
+      "ema_trend": "BULLISH",
+      "rsi": 55.405276716341504,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999693497283,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 150.368,
+      "breakout_low": 148.485,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.03876665000000001,
+    "market_reality": "BULLISH"
   },
   {
     "date": "10/30/2023",
@@ -5310,16 +6663,18 @@
     "atr": 0.6652857142857138,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.065,
-      "ce_confidence": 0.76,
-      "article_count": 19,
-      "raw_article_count": 24,
-      "explanation": "skipped"
+      "ce_score": -0.1482,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 25,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.7890150417482054,
       "tts_score": -0.04499999964834796,
       "total_score": -0.045,
       "price": 149.047,
@@ -5347,8 +6702,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": -0.053731999999999995,
+    "verdict": "SELL",
+    "weighted_score": -0.10529951999999998,
     "market_reality": "BULLISH"
   },
   {
@@ -5357,16 +6712,18 @@
     "atr": 0.8033571428571398,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.3182,
-      "ce_confidence": 0.92,
-      "article_count": 23,
-      "raw_article_count": 43,
-      "explanation": "skipped"
+      "ce_score": 0.2734,
+      "ce_confidence": 1.0,
+      "article_count": 41,
+      "raw_article_count": 49,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 0.9317527655890141,
       "tts_score": 0.22013908070037536,
       "total_score": 0.2201,
       "price": 150.903,
@@ -5393,7 +6750,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.2815106,
+    "weighted_score": 0.254745,
     "market_reality": "BEARISH"
   },
   {
@@ -5402,16 +6759,18 @@
     "atr": 0.8543571428571397,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.4079,
-      "ce_confidence": 0.72,
-      "article_count": 18,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": 0.3536,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 28,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.943341853761227,
       "tts_score": 0.04499999378222057,
       "total_score": 0.045,
       "price": 150.43,
@@ -5440,7 +6799,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.23788132999999997,
+    "weighted_score": 0.21220226,
     "market_reality": "BEARISH"
   },
   {
@@ -5449,16 +6808,18 @@
     "atr": 0.9217142857142814,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "HIGH",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3136,
-      "ce_confidence": 1.0,
-      "article_count": 25,
-      "raw_article_count": 27,
-      "explanation": "skipped"
+      "ce_score": -0.4013,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 42,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "SELL",
+      "atr": 0.9713888642068526,
       "tts_score": -0.22499999999999998,
       "total_score": -0.225,
       "price": 149.333,
@@ -5485,7 +6846,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.28259,
+    "weighted_score": -0.3311326,
     "market_reality": "BULLISH"
   },
   {
@@ -5494,16 +6855,18 @@
     "atr": 0.8981428571428519,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.0575,
-      "ce_confidence": 0.92,
-      "article_count": 23,
-      "raw_article_count": 29,
-      "explanation": "skipped"
+      "ce_score": -0.1241,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 38,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9577896596206472,
       "tts_score": -0.04499999949891593,
       "total_score": -0.045,
       "price": 150.071,
@@ -5532,7 +6895,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": -0.05018374999999999,
+    "weighted_score": -0.09069250999999999,
     "market_reality": "BULLISH"
   },
   {
@@ -5541,16 +6904,18 @@
     "atr": 0.9224285714285665,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.186,
+      "ce_score": -0.1847,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "raw_article_count": 20,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9461618267906021,
       "tts_score": -0.04499999942390829,
       "total_score": -0.045,
       "price": 150.348,
@@ -5579,7 +6944,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.10892129999999998,
+    "weighted_score": -0.10831120999999999,
     "market_reality": "BULLISH"
   },
   {
@@ -5587,17 +6952,19 @@
     "currency_pair": "USDJPY",
     "atr": 0.9742857142857133,
     "ce_output": {
-      "sentiment": "NEUTRAL",
-      "confidence": "MODERATE",
-      "raw_vibe": "NEUTRAL",
-      "ce_score": 0.0081,
-      "ce_confidence": 0.92,
-      "article_count": 23,
-      "raw_article_count": 31,
-      "explanation": "skipped"
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2755,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 38,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "BUY",
+      "atr": 0.9105885139163885,
       "tts_score": 0.2200879758436886,
       "total_score": 0.2201,
       "price": 151.341,
@@ -5617,16 +6984,14 @@
       "explanation": "skipped"
     },
     "siv_output": {
-      "signal": "PARTIAL",
-      "issues": [
-        "one_signal_neutral"
-      ],
-      "score_multiplier": 0.95,
-      "risk_penalty": 0.2,
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.08301859999999998,
+    "weighted_score": 0.25611,
     "market_reality": "BEARISH"
   },
   {
@@ -5635,16 +7000,18 @@
     "atr": 0.9700714285714278,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3328,
-      "ce_confidence": 0.76,
-      "article_count": 19,
-      "raw_article_count": 19,
-      "explanation": "skipped"
+      "ce_score": -0.3379,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 21,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.8729750486366475,
       "tts_score": 0.03166082994104592,
       "total_score": 0.0317,
       "price": 151.472,
@@ -5673,7 +7040,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.17003194999999996,
+    "weighted_score": -0.16019203999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -5682,16 +7049,18 @@
     "atr": 1.0557142857142858,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2414,
-      "ce_confidence": 0.6,
-      "article_count": 15,
-      "raw_article_count": 23,
-      "explanation": "skipped"
+      "ce_score": 0.335,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 28,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9160448123448638,
       "tts_score": 0.04499998899608959,
       "total_score": 0.045,
       "price": 150.378,
@@ -5720,7 +7089,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.1416374,
+    "weighted_score": 0.208601,
     "market_reality": "BEARISH"
   },
   {
@@ -5729,16 +7098,18 @@
     "atr": 1.0867142857142877,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.289,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "ce_score": 0.2344,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 25,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 0.9493273257488025,
       "tts_score": 0.04499999618726584,
       "total_score": 0.045,
       "price": 151.335,
@@ -5767,7 +7138,56 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.16004079999999998,
+    "weighted_score": 0.13163542,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/16/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.1006428571428586,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0191,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 8,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "atr": 0.963661088195317,
+      "tts_score": -0.22499999999999998,
+      "total_score": -0.225,
+      "price": 150.723,
+      "ema_trend": "BULLISH",
+      "rsi": 53.430696181987095,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 151.719,
+      "breakout_low": 149.047,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11867305000000003,
     "market_reality": "BEARISH"
   },
   {
@@ -5776,16 +7196,18 @@
     "atr": 1.1380714285714302,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.134,
       "ce_confidence": 0.4,
       "article_count": 10,
-      "raw_article_count": 10,
-      "explanation": "skipped"
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.0075424390385088,
       "tts_score": -0.044999999656364746,
       "total_score": -0.045,
       "price": 149.562,
@@ -5813,7 +7235,7 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
+    "verdict": "HOLD",
     "weighted_score": -0.08248849999999999,
     "market_reality": "BEARISH"
   },
@@ -5823,16 +7245,18 @@
     "atr": 1.077928571428572,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.2182,
-      "ce_confidence": 0.24,
-      "article_count": 6,
-      "raw_article_count": 6,
-      "explanation": "skipped"
+      "ce_score": 0.0789,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 10,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.0704322648214708,
       "tts_score": -0.10019690921658911,
       "total_score": -0.1002,
       "price": 148.344,
@@ -5861,7 +7285,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.03245655999999999,
+    "weighted_score": -0.025430550000000007,
     "market_reality": "BULLISH"
   },
   {
@@ -5870,16 +7294,18 @@
     "atr": 1.1108571428571423,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.3162,
+      "ce_score": 0.3143,
       "ce_confidence": 0.56,
       "article_count": 14,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "raw_article_count": 21,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.097258531619937,
       "tts_score": -0.04499999987014234,
       "total_score": -0.045,
       "price": 148.379,
@@ -5908,7 +7334,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.13499651999999998,
+    "weighted_score": 0.13406153,
     "market_reality": "BULLISH"
   },
   {
@@ -5917,16 +7343,18 @@
     "atr": 1.156642857142856,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.3274,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 15,
-      "explanation": "skipped"
+      "ce_score": 0.2636,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 18,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1428114936470832,
       "tts_score": -0.044999999852668636,
       "total_score": -0.045,
       "price": 149.533,
@@ -5955,7 +7383,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.13626268,
+    "weighted_score": 0.1126301,
     "market_reality": "BEARISH"
   },
   {
@@ -5964,16 +7392,18 @@
     "atr": 1.1000714285714293,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "MODERATE",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.0516,
-      "ce_confidence": 0.84,
-      "article_count": 21,
-      "raw_article_count": 25,
-      "explanation": "skipped"
+      "ce_score": 0.2099,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 44,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.075903787889576,
       "tts_score": -0.04499999981031352,
       "total_score": -0.045,
       "price": 149.403,
@@ -6001,8 +7431,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "HOLD",
-    "weighted_score": 0.01249554,
+    "verdict": "BUY",
+    "weighted_score": 0.11174488999999999,
     "market_reality": "BEARISH"
   },
   {
@@ -6011,16 +7441,18 @@
     "atr": 1.1241428571428551,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1006,
       "ce_confidence": 0.44,
       "article_count": 11,
-      "raw_article_count": 11,
-      "explanation": "skipped"
+      "raw_article_count": 15,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.079910660183176,
       "tts_score": -0.0449999998242546,
       "total_score": -0.045,
       "price": 148.669,
@@ -6058,16 +7490,18 @@
     "atr": 1.1779285714285683,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.1249,
       "ce_confidence": 0.36,
       "article_count": 9,
-      "raw_article_count": 9,
-      "explanation": "skipped"
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1108456130272355,
       "tts_score": -0.08014478628219218,
       "total_score": -0.0801,
       "price": 147.478,
@@ -6100,21 +7534,121 @@
     "market_reality": "BULLISH"
   },
   {
+    "date": "11/30/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.3152857142857113,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3251,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.1606372887836893,
+      "tts_score": -0.04499999986154896,
+      "total_score": -0.045,
+      "price": 148.176,
+      "ema_trend": "BULLISH",
+      "rsi": 43.03363685125284,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999993846621,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 151.719,
+      "breakout_low": 147.235,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.16781464999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/01/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.3855714285714262,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4158,
+      "ce_confidence": 1.0,
+      "article_count": 28,
+      "raw_article_count": 30,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.1984489110134258,
+      "tts_score": -0.04355403459604833,
+      "total_score": -0.0436,
+      "price": 146.772,
+      "ema_trend": "BULLISH",
+      "rsi": 36.769188666451754,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999945001445,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1033,
+      "breakout_high": 151.719,
+      "breakout_low": 147.235,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.2712534999999999,
+    "market_reality": "BULLISH"
+  },
+  {
     "date": "12/05/2023",
     "currency_pair": "USDJPY",
     "atr": 1.317785714285711,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.1283,
-      "ce_confidence": 0.48,
-      "article_count": 12,
-      "raw_article_count": 21,
-      "explanation": "skipped"
+      "ce_score": -0.1377,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 27,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1745044181697393,
       "tts_score": -0.040039794564840206,
       "total_score": -0.04,
       "price": 147.145,
@@ -6142,8 +7676,8 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "SELL",
-    "weighted_score": -0.07943919,
+    "verdict": "HOLD",
+    "weighted_score": -0.08719195,
     "market_reality": "BEARISH"
   },
   {
@@ -6152,16 +7686,18 @@
     "atr": 1.2790714285714253,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.3503,
+      "ce_score": -0.2814,
       "ce_confidence": 0.48,
       "article_count": 12,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.1340398168719013,
       "tts_score": -0.044999999824232084,
       "total_score": -0.045,
       "price": 147.308,
@@ -6190,7 +7726,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.18602728999999998,
+    "weighted_score": -0.15369251999999997,
     "market_reality": "BEARISH"
   },
   {
@@ -6199,16 +7735,18 @@
     "atr": 1.5743571428571386,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.112,
-      "ce_confidence": 0.56,
-      "article_count": 14,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "ce_score": 0.2036,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 36,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.461036972809622,
       "tts_score": -0.06447578858671285,
       "total_score": -0.0645,
       "price": 144.098,
@@ -6237,7 +7775,7 @@
       "explanation": "skipped"
     },
     "verdict": "HOLD",
-    "weighted_score": 0.025580650000000003,
+    "weighted_score": 0.07982603,
     "market_reality": "BULLISH"
   },
   {
@@ -6246,16 +7784,18 @@
     "atr": 1.6340714285714273,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "HIGH",
       "raw_vibe": "POSITIVE",
-      "ce_score": 0.186,
+      "ce_score": 0.1639,
       "ce_confidence": 1.0,
-      "article_count": 34,
-      "raw_article_count": 40,
-      "explanation": "skipped"
+      "article_count": 36,
+      "raw_article_count": 58,
+      "confidence": "HIGH",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5512486176089362,
       "tts_score": 0.006834244421697042,
       "total_score": 0.0068,
       "price": 144.893,
@@ -6284,7 +7824,7 @@
       "explanation": "skipped"
     },
     "verdict": "BUY",
-    "weighted_score": 0.11711599999999998,
+    "weighted_score": 0.10346924999999998,
     "market_reality": "BEARISH"
   },
   {
@@ -6293,16 +7833,18 @@
     "atr": 1.6382142857142838,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.15,
-      "ce_confidence": 0.52,
-      "article_count": 13,
-      "raw_article_count": 14,
-      "explanation": "skipped"
+      "ce_score": -0.2051,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 21,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.5598164100811729,
       "tts_score": -0.032980799383128034,
       "total_score": -0.033,
       "price": 145.449,
@@ -6331,7 +7873,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.08759189999999999,
+    "weighted_score": -0.11604041000000001,
     "market_reality": "BEARISH"
   },
   {
@@ -6340,16 +7882,18 @@
     "atr": 1.8204285714285706,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "LOW",
       "raw_vibe": "NEGATIVE",
-      "ce_score": -0.2964,
-      "ce_confidence": 0.44,
-      "article_count": 11,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "ce_score": -0.2807,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 14,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.688329523646804,
       "tts_score": 0.0019542318138700138,
       "total_score": 0.002,
       "price": 142.879,
@@ -6378,7 +7922,7 @@
       "explanation": "skipped"
     },
     "verdict": "SELL",
-    "weighted_score": -0.13473735999999997,
+    "weighted_score": -0.13399389,
     "market_reality": "BEARISH"
   },
   {
@@ -6387,16 +7931,18 @@
     "atr": 1.9231428571428555,
     "ce_output": {
       "sentiment": "BULLISH",
-      "confidence": "LOW",
       "raw_vibe": "POSITIVE",
       "ce_score": 0.6194,
       "ce_confidence": 0.52,
       "article_count": 13,
-      "raw_article_count": 13,
-      "explanation": "skipped"
+      "raw_article_count": 24,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.7073774148148886,
       "tts_score": 0.03409229991914772,
       "total_score": 0.0341,
       "price": 141.859,
@@ -6434,16 +7980,18 @@
     "atr": 1.8877857142857144,
     "ce_output": {
       "sentiment": "BEARISH",
-      "confidence": "MODERATE",
       "raw_vibe": "NEGATIVE",
       "ce_score": -0.0969,
       "ce_confidence": 0.64,
       "article_count": 16,
-      "raw_article_count": 16,
-      "explanation": "skipped"
+      "raw_article_count": 18,
+      "confidence": "MODERATE",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
+      "atr": 1.6204529750189605,
       "tts_score": 0.008974516999849726,
       "total_score": 0.009,
       "price": 142.737,
@@ -6476,28 +8024,30 @@
     "market_reality": "BULLISH"
   },
   {
-    "date": "12/22/2023",
+    "date": "12/20/2023",
     "currency_pair": "USDJPY",
-    "atr": 1.8917857142857133,
+    "atr": 1.9324999999999986,
     "ce_output": {
-      "sentiment": "BULLISH",
-      "confidence": "MODERATE",
-      "raw_vibe": "POSITIVE",
-      "ce_score": 0.1405,
-      "ce_confidence": 0.64,
-      "article_count": 16,
-      "raw_article_count": 18,
-      "explanation": "skipped"
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0523,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 24,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
     },
     "tts_output": {
       "decision": "HOLD",
-      "tts_score": -0.008491489896142568,
-      "total_score": -0.0085,
-      "price": 142.401,
+      "atr": 1.6372426162153284,
+      "tts_score": -0.03214037295033541,
+      "total_score": -0.0321,
+      "price": 143.543,
       "ema_trend": "BULLISH",
-      "rsi": 35.673065500901984,
+      "rsi": 38.47589607899991,
       "bb_signal": "STABLE",
-      "macd_direction_score": -0.1999999988101426,
+      "macd_direction_score": -0.19999999903899413,
       "is_macd_cross": false,
       "regime": "TRENDING",
       "ema_200_confidence": 1.0,
@@ -6505,7 +8055,7 @@
       "data_stale": false,
       "breakout_signal": "NONE",
       "breakout_strength": 0.0,
-      "breakout_high": 149.403,
+      "breakout_high": 149.561,
       "breakout_low": 141.859,
       "explanation": "skipped"
     },
@@ -6518,8 +8068,57 @@
       "risk_penalty": 0.2,
       "explanation": "skipped"
     },
-    "verdict": "BUY",
-    "weighted_score": 0.06864510000000001,
+    "verdict": "HOLD",
+    "weighted_score": -0.04020513999999999,
     "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/28/2023",
+    "currency_pair": "USDJPY",
+    "atr": 1.4638571428571427,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1453,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 18,
+      "confidence": "LOW",
+      "explanation": "skipped",
+      "error": null
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "atr": 1.4275840510134632,
+      "tts_score": 0.00022371725780805096,
+      "total_score": 0.0002,
+      "price": 141.399,
+      "ema_trend": "BULLISH",
+      "rsi": 32.67758540400999,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999964272655,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0662,
+      "breakout_high": 148.176,
+      "breakout_low": 141.82,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.06497715,
+    "market_reality": "BULLISH"
   }
 ]

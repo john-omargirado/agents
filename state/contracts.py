@@ -57,6 +57,10 @@ class SIVOutput(TypedDict):
     tts_insufficient: bool
     data_quality_ok: bool
     explanation: str
+    # calibration keys
+    risk_penalty: float        # ← ADD
+    score_multiplier: float    # ← ADD
+
 
 
 class VerdictOutput(TypedDict):

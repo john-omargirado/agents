@@ -5,11 +5,14 @@ import pandas as pd
 from typing import cast
 import os
 
+
 current_dir = Path(__file__).resolve().parent
 project_root = current_dir.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+from tools.tts_tools import precompute_indicators
+from utils.trade_config import ATR_LOOKBACK, get_pair_config    
 from graph.build_graph import build_graph
 from state.trading_state import TradingState
 
@@ -32,17 +35,25 @@ ALLOWED_MONTHS = set(range(1, 13))
 # =========================
 # STATE NORMALIZER
 # =========================
-def normalize_initial_state(state: dict):
+def normalize_initial_state(state: dict) -> dict:
     return {
         **state,
-        "raw_article_count": 0,
-        "ce_output": state.get("ce_output") or {},
-        "tts_output": state.get("tts_output") or {},
-        "siv_output": state.get("siv_output") or {},
-        "debug_log": state.get("debug_log") or [],
-        "retry_count": state.get("retry_count", 0),
-        "action": state.get("action", "NONE"),
-        "skip_llm": state.get("skip_llm", False),
+        "live_mode":       False,
+        "backtest_mode":   True,
+        "calibration_mode": True,
+        "skip_llm":        True,
+        "account_capital": 10_000.0,
+        "risk_per_trade":  1,
+        "leverage":        "1:100",
+        "debug_log":       [],
+        "tts_output":      {},
+        "ce_output":       {},
+        "siv_output": {
+            "signal":           "COHERENT",
+            "risk_penalty":     0.0,
+            "issues":           [],
+            "score_multiplier": 1.0,
+        },
     }
 
 
@@ -109,6 +120,9 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
     tr = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
     full_df["atr14"] = tr.ewm(span=14, adjust=False).mean()
 
+    precomputed = precompute_indicators(full_df).reset_index().set_index("timestamp")
+
+
     mask = (
         (full_df["timestamp"].dt.year == target_year) &
         (full_df["timestamp"].dt.month.isin(target_months))
@@ -162,30 +176,12 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 market_label = "BEARISH"
 
         initial_state = cast(TradingState, normalize_initial_state({
-            "target_date": current_date,
-            "currency_pair": target_pair,
-            "price": current_price,
-            "calibration_threshold": CURRENT_TEST_THRESHOLD,
-            "backtest_mode": False,
-            "skip_llm": True,
-            "atr": atr_val,
-            "ce_output": {
-                "ce_score": 0.0,
-                "ce_confidence": 0.0
-            },
-            "tts_output": {
-                "tts_score": 0.0,
-                "price": current_price
-            },
-            "siv_output": {
-                "signal": "COHERENT",
-                "risk_penalty": 0.0,
-                "issues": [],
-                "score_multiplier": 1.0
-            },
-            "verdict": "HOLD",
-            "weighted_score": 0.0,
-            "risk_multiplier": 0.0,
+            "target_date":            current_date,
+            "currency_pair":          target_pair,
+            "price":                  current_price,
+            "atr":                    atr_val,
+            "calibration_threshold":  CURRENT_TEST_THRESHOLD,
+            "precomputed_indicators": precomputed,
         }))
 
         try:
@@ -222,11 +218,7 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
                 })
                 continue
 
-            # =========================
-            # ACCURACY LOGIC
-            # =========================
-            correct = False
-
+            # ── enhanced signal agreement check ──────────────────────────
             ce_raw = float(ce_data.get("ce_score", 0.0))
             tts_raw = float(tts_data.get("tts_score", 0.0))
             ce_score = abs(ce_raw)
@@ -237,15 +229,31 @@ def run_calibration(target_pair: str, target_months: list, target_year: int):
 
             signals_agree = (ce_raw * tts_raw) > 0.0
             trend_ok = True
-            siv_ok = True
+            siv_ok = siv_data.get("signal", "COHERENT") != "INCOHERENT"
+
+            breakout_signal = tts_data.get("breakout_signal", "NONE")
+
+            # block contradictory breakout signals
+            breakout_ok = not (
+                (verdict == "BUY"  and breakout_signal == "BREAKOUT_DOWN") or
+                (verdict == "SELL" and breakout_signal == "BREAKOUT_UP")
+            )
+
+            # cap CE score: extreme values (>0.5 abs) are noisy — treat as moderate
+            ce_effective = min(abs(ce_raw), 0.45)
+            tts_effective = abs(tts_raw)
+            effective_confidence = (ce_effective + tts_effective) / 2.0
 
             trade_allowed = (
                 verdict in ["BUY", "SELL"]
                 and is_strong_verdict
-                and (combined_confidence >= MIN_SIGNAL_CONFIDENCE)
+                and signals_agree                                    # require agreement
+                and (effective_confidence >= MIN_SIGNAL_CONFIDENCE)
+                and breakout_ok                                      # no contradictory breakout
                 and trend_ok
                 and siv_ok
             )
+
             if verdict in ["BUY", "SELL"] and not trade_allowed:
                 verdict = "HOLD"
 

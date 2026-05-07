@@ -23,7 +23,9 @@ function mulberry32(seed) {
     };
 }
 
-function generateSyntheticCandles(pair, days = 450, basePrice = 1.085) {
+// FIX 1: days bumped from 450 → 1461 to cover the full 2022-2025 range
+// (3 regular years + 1 leap year = 1461 days)
+function generateSyntheticCandles(pair, days = 1461, basePrice = 1.085) {
     const candles = [];
     const random = mulberry32(createSeedFromText(pair || 'EUR/USD'));
     // Anchor synthetic candles starting from MIN_DATE
@@ -198,10 +200,19 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
 
     // ── Price stats — derived from the last candle on/before selected date ───
     const visibleCandleData = useMemo(() => {
+        if (!allCandleData?.length) return [];
+
         if (!selectedDate) return allCandleData;
+
         const cutoff = dateStrToEndOfDayTs(selectedDate);
+
         const sliced = allCandleData.filter((c) => c.time <= cutoff);
-        return sliced.length > 0 ? sliced : allCandleData.slice(0, 1);
+
+        // FIX: if cutoff is invalid or too early, DO NOT fallback to synthetic logic
+        // instead clamp to first available candle before crashing logic
+        if (sliced.length === 0) return [allCandleData[0]];
+
+        return sliced;
     }, [allCandleData, selectedDate]);
 
     const currentCandle = visibleCandleData[visibleCandleData.length - 1] || null;
@@ -319,37 +330,33 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
     }, [allCandleData, chartPalette, candlePalette]);
 
     // ── Effect 2: Pan the time scale to the selected date ────────────────────
-    // Runs whenever selectedDate changes, or after the chart is first built.
+    // FIX 2: explicit deps listed — React will never skip this when date changes
     useEffect(() => {
-        if (!chartRef.current || allCandleData.length === 0) return;
+        if (!chartRef.current || !allCandleData.length) return;
 
         const cutoff = selectedDate
             ? dateStrToEndOfDayTs(selectedDate)
             : allCandleData[allCandleData.length - 1].time;
 
-        // Find the index of the last candle that falls on/before the selected date
-        let lastIdx = -1;
-        for (let i = allCandleData.length - 1; i >= 0; i--) {
-            if (allCandleData[i].time <= cutoff) { lastIdx = i; break; }
-        }
-        if (lastIdx < 0) return;
+        const filtered = allCandleData.filter((c) => c.time <= cutoff);
 
-        // Show a rolling window of ~60 candles ending on that date
+        if (!filtered.length) {
+            chartRef.current.timeScale().fitContent();
+            return;
+        }
+
         const WINDOW = 60;
-        const startIdx = Math.max(0, lastIdx - WINDOW + 1);
-        const from = allCandleData[startIdx].time;
-        const to = allCandleData[lastIdx].time;
+        const startIdx = Math.max(0, filtered.length - WINDOW);
 
-        // Half-day padding on the right so the last candle isn't flush to the edge
-        const padding = 43200;
+        const from = filtered[startIdx].time;
+        const to = filtered[filtered.length - 1].time;
 
-        try {
-            chartRef.current.timeScale().setVisibleRange({ from, to: to + padding });
-        } catch {
-            // Ignore if the chart is mid-teardown
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedDate, allCandleData]);
+        chartRef.current.timeScale().setVisibleRange({
+            from,
+            to: to + 43200,
+        });
+
+    }, [selectedDate, allCandleData]); // explicit deps — no eslint-disable needed
 
     // ── Data source label ────────────────────────────────────────────────────
     const dataSourceLabel = useMemo(() => {
@@ -466,14 +473,14 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                     )}
                 </div>
 
-                {/* Quick shortcuts */}
+                {/* FIX 3: Quick shortcuts — 2025 now points to Jan 2 2025 (safe for all data sources) */}
                 <div className="date-shortcuts">
                     <span className="date-shortcuts-label">Quick select:</span>
                     {[
                         { label: '2022', date: '2022-01-01' },
                         { label: '2023', date: '2023-01-02' },
-                        { label: '2024', date: '2024-02-01' },
-                        { label: '2025', date: '2025-05-07' },
+                        { label: '2024', date: '2024-01-02' },
+                        { label: '2025', date: '2025-01-02' },
                     ].map(({ label, date }) => (
                         <button
                             key={label}

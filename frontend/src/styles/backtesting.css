@@ -1,0 +1,228 @@
+/* ─── Date Picker Section (inside chart card) ────────────────────────── */
+
+.date-picker-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0 4px 0;
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.date-picker-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.date-picker-range-hint {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    opacity: 0.65;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ── Input row ── */
+.date-picker-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-step-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.date-step-btn:hover:not(:disabled) {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.date-step-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.date-input-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+/* Override the existing readonly .date-input rule for the interactive picker */
+.date-input-wrap .date-input {
+    width: 100%;
+    padding: 7px 32px 7px 30px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: border-color 0.15s;
+    min-width: unset;
+}
+
+.date-input-wrap .date-input:hover,
+.date-input-wrap .date-input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.date-clear-btn {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    padding: 0;
+}
+
+.date-clear-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+/* ── Status line ── */
+.date-picker-display {
+    min-height: 20px;
+}
+
+.date-selected-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+.date-selected-label.muted {
+    color: var(--text-secondary);
+    opacity: 0.75;
+}
+
+.date-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.date-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* ── Quick shortcuts ── */
+.date-shortcuts {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.date-shortcuts-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-right: 2px;
+    white-space: nowrap;
+}
+
+.date-shortcut-btn {
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.date-shortcut-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.date-shortcut-btn.active {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── Range bar ── */
+.date-range-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.date-range-start,
+.date-range-end {
+    font-size: 10px;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.date-range-track {
+    flex: 1;
+    height: 4px;
+    background: var(--bg-input);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.date-range-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+    min-width: 0;
+}

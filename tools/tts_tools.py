@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 from typing import Optional
 
+
 def precompute_indicators(full_df: pd.DataFrame) -> pd.DataFrame:
     df = full_df.copy()
     df = df.sort_values("timestamp").reset_index(drop=True)
@@ -27,9 +28,14 @@ def precompute_indicators(full_df: pd.DataFrame) -> pd.DataFrame:
     df["upper_bb"] = df["sma_20"] + 2 * df["std_20"]
     df["lower_bb"] = df["sma_20"] - 2 * df["std_20"]
 
-    # ── Breakout: rolling high/low over the previous N candles (excluding current)
-    # Uses shift(1) so the current bar is NOT included in its own reference window,
-    # which matches the strict formula:  max(P_{t-n}, …, P_{t-1})
+    # ── ATR (14-period) ──────────────────────────────────────────────────────
+    high_low   = df["high"] - df["low"]
+    high_close = (df["high"] - df["close"].shift(1)).abs()
+    low_close  = (df["low"]  - df["close"].shift(1)).abs()
+    true_range = pd.concat([high_low, high_close, low_close], axis=1).max(axis=1)
+    df["atr_14"] = true_range.ewm(alpha=1/14, adjust=False).mean()
+    # ────────────────────────────────────────────────────────────────────────
+
     BREAKOUT_PERIOD = 20
     df["breakout_high"] = df["close"].shift(1).rolling(BREAKOUT_PERIOD).max()
     df["breakout_low"]  = df["close"].shift(1).rolling(BREAKOUT_PERIOD).min()
@@ -45,16 +51,20 @@ def precompute_indicators(full_df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def calculate_technical_indicators(full_df, target_date, precomputed=None):
 
-    target_dt = pd.to_datetime(target_date)
+
+def calculate_technical_indicators(full_df, target_date, precomputed=None, live_mode=False):
+    
 
     if precomputed is None:
-        raise ValueError("Precomputed required for performance")
+        return None
+
+    target_dt = pd.to_datetime(target_date)
 
     try:
         row = precomputed.loc[:target_dt].iloc[-1]
     except Exception:
+        print(f"[TTS WARNING] No data available for target_date={target_date}")
         return None
 
     last_close = float(row["close"])
@@ -155,8 +165,11 @@ def calculate_technical_indicators(full_df, target_date, precomputed=None):
         bb_signal = "OVERSOLD"
         bb_strength = abs(lower_bb - last_close) / band_width
 
+    atr_14 = float(row["atr_14"]) if not pd.isna(row["atr_14"]) else None
+
     return {
         "price": last_close,
+        'atr': atr_14,
         "trend": trend,
         "trend_strength": trend_strength,
         "adx_proxy": min(abs(trend_diff) / 0.02, 1.0) * ema_200_conf,

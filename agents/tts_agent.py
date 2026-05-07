@@ -10,9 +10,8 @@ from datetime import datetime
 from typing import Optional
 
 from state.trading_state import TradingState
-from tools.tts_tools import calculate_technical_indicators
+from tools.tts_tools import calculate_technical_indicators, precompute_indicators
 from utils.credentials import get_do_model_key
-
 
 URL = "https://inference.do-ai.run/v1/chat/completions"
 
@@ -21,25 +20,40 @@ _indicator_cache: dict = {}
 
 
 # =========================
-# SIMPLE LOGGER
+# DATE NORMALIZER
+# =========================
+def normalize_date(date_str: Optional[str]) -> Optional[str]:
+    if not date_str:
+        return None
+
+    date_str = str(date_str).strip()
+
+    for fmt in ("%m-%d-%Y", "%m/%d/%Y", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(date_str, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+
+    print(f"[TTS WARNING] Invalid date format: {date_str}")
+    return None
+
+
+# =========================
+# LOGGER
 # =========================
 def log(stage: str, start: float):
     elapsed = (time.perf_counter() - start) * 1000
     print(f"[TTS TIMER] {stage}: {elapsed:.2f} ms")
 
 
+# =========================
+# LOAD OHLCV
+# =========================
 def _load_ohlcv(file_path: Path):
-    from tools.tts_tools import precompute_indicators
-
     key = str(file_path)
 
     if key in _ohlcv_cache:
-        print("[TTS CACHE] OHLCV HIT")
         return _ohlcv_cache[key].copy(), _indicator_cache[key].copy()
-
-    print("[TTS CACHE] OHLCV MISS - LOADING FILE")
-
-    t0 = time.perf_counter()
 
     with open(file_path, "r") as f:
         raw_data = json.load(f)
@@ -52,13 +66,11 @@ def _load_ohlcv(file_path: Path):
     _ohlcv_cache[key] = df
     _indicator_cache[key] = precompute_indicators(df)
 
-    log("OHLCV LOAD + PRECOMPUTE", t0)
-
     return _ohlcv_cache[key].copy(), _indicator_cache[key].copy()
 
 
 # =========================
-# EXPLANATION (UNCHANGED)
+# EXPLANATION
 # =========================
 def call_tts_explanation(tts_data: dict, state: Optional[TradingState] = None) -> str:
     key = get_do_model_key()
@@ -84,21 +96,15 @@ INPUT:
         "temperature": 0.2
     }
 
-    attempt = 0
     while True:
-        attempt += 1
         try:
-            t0 = time.perf_counter()
             resp = requests.post(URL, headers=headers, json=data, timeout=90)
-            log("LLM REQUEST", t0)
 
             if resp.status_code == 429:
-                print(f"[TTS] Rate limited on attempt {attempt}. Waiting 15s...")
                 time.sleep(15)
                 continue
 
             if resp.status_code != 200:
-                print(f"[TTS ERROR] HTTP {resp.status_code} on attempt {attempt} — retrying in 10s...")
                 time.sleep(10)
                 continue
 
@@ -107,14 +113,12 @@ INPUT:
             content = message.get("content") or message.get("reasoning_content")
 
             if not content:
-                print(f"[TTS ERROR] Empty content on attempt {attempt} — retrying in 10s...")
                 time.sleep(10)
                 continue
 
             return str(content).strip()
 
-        except Exception as e:
-            print(f"[TTS ERROR] Attempt {attempt}: {e} — retrying in 10s...")
+        except Exception:
             time.sleep(10)
             continue
 
@@ -122,175 +126,159 @@ INPUT:
 
 
 # =========================
-# MAIN AGENT WITH FULL TIMING
+# MAIN AGENT
 # =========================
 def tts_agent(state: TradingState):
-
-    total_start = time.perf_counter()
 
     pair = state.get("currency_pair", "USDJPY").upper()
     target_date = state.get("target_date")
     backtest_mode = state.get("backtest_mode", False)
+    live_mode = state.get("live_mode", False)
     skip_llm = state.get("skip_llm", False)
 
-    project_root = Path(__file__).resolve().parents[1]
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    pair_safe = pair.replace("/", "").upper().strip()
 
-    if backtest_mode:
-        file_path = project_root / "data" / "backtesting" / "forex_pairs" / f"{pair}.json"
-    else:
-        file_path = project_root / "data" / "calibration" / "forex_pair" / f"{pair}.json"
+    file_path = BASE_DIR / "data" / "backtesting" / "forex_pairs" / f"{pair_safe}.json"
 
-    # =========================
-    # LOAD DATA
-    # =========================
-    t0 = time.perf_counter()
     full_df, precomputed = _load_ohlcv(file_path)
-    log("DATA LOAD", t0)
+
+    # normalize date
+    normalized_date = normalize_date(target_date)
+
+    if not normalized_date:
+        target_date = str(full_df.iloc[-1]["timestamp"].date())
+    else:
+        target_date = normalized_date
 
     # =========================
     # INDICATORS
     # =========================
-    t1 = time.perf_counter()
-    tech = calculate_technical_indicators(full_df, target_date, precomputed)
-    log("INDICATORS", t1)
+    tech = calculate_technical_indicators(
+        full_df,
+        target_date,
+        precomputed,
+        live_mode=False
+    )
 
     if not tech:
         return {"tts_output": {"decision": "HOLD"}}
 
-    atr_val = state.get("atr", 0.0)
+    # =========================
+    # ATR FIX (IMPORTANT)
+    # =========================
+    atr = tech.get("atr", None)
+
+    if atr is None or atr <= 0:
+        # fallback safety (prevents verdict crash)
+        high = tech.get("breakout_high", 0)
+        low = tech.get("breakout_low", 0)
+        atr = abs(high - low) if high and low else 0.0
 
     # =========================
-    # REGIME DETECTION
+    # REGIME
     # =========================
     adx_proxy = tech.get("adx_proxy", 0.0)
 
     if adx_proxy > 0.4:
         regime = "TRENDING"
-        trend_weight, mr_weight = 0.75, 0.25
     elif adx_proxy < 0.15:
         regime = "RANGING"
-        trend_weight, mr_weight = 0.30, 0.70
     else:
         regime = "TRANSITIONAL"
-        trend_weight, mr_weight = 0.55, 0.45
 
     # =========================
     # SIGNALS
     # =========================
-
     rsi = tech["rsi"]
     macd_score = tech.get("macd_direction_score", 0.0)
     is_macd_cross = abs(macd_score) >= 0.6
 
     if rsi > 60:
-        rsi_score = -1.0 * min((rsi - 60) / 40, 1.0)   # overbought → SELL
+        rsi_score = -1.0 * min((rsi - 60) / 40, 1.0)
     elif rsi < 40:
-        rsi_score = 1.0 * min((40 - rsi) / 40, 1.0)    # oversold  → BUY
+        rsi_score = 1.0 * min((40 - rsi) / 40, 1.0)
     else:
         rsi_score = 0.0
 
+    bb_score = 0.0
     if tech["bb_signal"] == "OVERSOLD":
-        bb_score = min(tech["bb_strength"], 1.0)              # below lower band → BUY
+        bb_score = min(tech["bb_strength"], 1.0)
     elif tech["bb_signal"] == "OVERBOUGHT":
-        bb_score = -1.0 * min(tech["bb_strength"], 1.0)      # above upper band → SELL
-    else:
-        bb_score = 0.0
+        bb_score = -min(tech["bb_strength"], 1.0)
 
-    ema_context = tech["trend"]
-
-    # ── Breakout score ───────────────────────────────────────────────────────
-    # BREAKOUT_UP   → positive score (momentum BUY)
-    # BREAKOUT_DOWN → negative score (momentum SELL)
-    # NONE          → 0.0 (no breakout, ignored)
-    #
-    # Regime weighting:
-    #   TRENDING     → breakout is a strong confirmation signal  (weight 0.25)
-    #   TRANSITIONAL → moderate confirmation                     (weight 0.15)
-    #   RANGING      → breakout is less reliable / fakeout-prone (weight 0.05)
-    breakout_signal   = tech.get("breakout_signal", "NONE")
+    breakout_signal = tech.get("breakout_signal", "NONE")
     breakout_strength = tech.get("breakout_strength", 0.0)
 
-    if breakout_signal == "BREAKOUT_UP":
-        breakout_raw_score = breakout_strength          # +ve → BUY momentum
-    elif breakout_signal == "BREAKOUT_DOWN":
-        breakout_raw_score = -breakout_strength         # -ve → SELL momentum
-    else:
-        breakout_raw_score = 0.0
-
-    breakout_weight = {"TRENDING": 0.25, "TRANSITIONAL": 0.15, "RANGING": 0.05}[regime]
-
-    print(
-        f"[TTS DEBUG] breakout_signal={breakout_signal} | "
-        f"raw_score={breakout_raw_score:.4f} | weight={breakout_weight} | regime={regime}"
+    breakout_raw_score = (
+        breakout_strength if breakout_signal == "BREAKOUT_UP"
+        else -breakout_strength if breakout_signal == "BREAKOUT_DOWN"
+        else 0.0
     )
-    # ────────────────────────────────────────────────────────────────────────
 
-    # =========================
-    # SCORING
-    # =========================
-    # Weights are redistributed to make room for breakout_weight.
-    # The leftover (1.0 - breakout_weight) is split among existing signals
-    # using the same proportions as before so existing behaviour is preserved
-    # when there is no breakout (breakout_raw_score == 0).
+    breakout_weight = {
+        "TRENDING": 0.25,
+        "TRANSITIONAL": 0.15,
+        "RANGING": 0.05
+    }[regime]
 
     remaining = 1.0 - breakout_weight
 
     if is_macd_cross:
         total_score = (
-            macd_score          * (0.50 * remaining) +
-            rsi_score           * (0.30 * remaining) +
-            bb_score            * (0.20 * remaining) +
-            breakout_raw_score  * breakout_weight
+            macd_score * (0.50 * remaining) +
+            rsi_score * (0.30 * remaining) +
+            bb_score * (0.20 * remaining) +
+            breakout_raw_score * breakout_weight
         )
     else:
         total_score = (
-            rsi_score           * (0.45 * remaining) +
-            bb_score            * (0.25 * remaining) +
-            macd_score          * (0.30 * remaining) +
-            breakout_raw_score  * breakout_weight
+            rsi_score * (0.45 * remaining) +
+            bb_score * (0.25 * remaining) +
+            macd_score * (0.30 * remaining) +
+            breakout_raw_score * breakout_weight
         )
 
     total_score = max(-1.0, min(total_score, 1.0))
 
-    # =========================
-    # DECISION
-    # =========================
-    if total_score > 0.15:
-        decision = "BUY"
-    elif total_score < -0.15:
-        decision = "SELL"
-    else:
-        decision = "HOLD"
+    decision = (
+        "BUY" if total_score > 0.15
+        else "SELL" if total_score < -0.15
+        else "HOLD"
+    )
 
+    # =========================
+    # OUTPUT
+    # =========================
     tts_result = {
-        "decision":             decision,
-        "tts_score":            total_score,
-        "total_score":          round(total_score, 4),
-        "price":                tech["price"],
-        "ema_trend":            tech["trend"],
-        "rsi":                  rsi,
-        "bb_signal":            tech["bb_signal"],
+        "decision": decision,
+        "atr": float(atr),
+        "tts_score": total_score,
+        "total_score": round(total_score, 4),
+        "price": tech["price"],
+        "ema_trend": tech["trend"],
+        "rsi": rsi,
+        "bb_signal": tech["bb_signal"],
         "macd_direction_score": macd_score,
-        "is_macd_cross":        is_macd_cross,
-        "regime":               regime,
-        "ema_200_confidence":   tech["ema_200_confidence"],
-        "ema_200_reliable":     tech["ema_200_reliable"],
-        "data_stale":           tech["data_stale"],
-        # ── breakout keys ──────────────────────────────
-        "breakout_signal":      breakout_signal,
-        "breakout_strength":    round(breakout_strength, 4),
-        "breakout_high":        tech.get("breakout_high"),
-        "breakout_low":         tech.get("breakout_low"),
-        # ───────────────────────────────────────────────
-        "explanation":          "pending"
+        "is_macd_cross": is_macd_cross,
+        "regime": regime,
+        "ema_200_confidence": tech["ema_200_confidence"],
+        "ema_200_reliable": tech["ema_200_reliable"],
+        "data_stale": tech["data_stale"],
+        "breakout_signal": breakout_signal,
+        "breakout_strength": round(breakout_strength, 4),
+        "breakout_high": tech.get("breakout_high"),
+        "breakout_low": tech.get("breakout_low"),
+        "explanation": "pending"
     }
 
-    if not backtest_mode and not skip_llm:
+    if not skip_llm:
         tts_result["explanation"] = call_tts_explanation(tts_result, state=state)
-        print(f"\n[TTS EXPLANATION]\n{tts_result['explanation']}")
     else:
         tts_result["explanation"] = "skipped"
 
-    log("TOTAL TTS PIPELINE", total_start)
-
-    return {"tts_output": tts_result}
+    return {
+        "tts_output": tts_result,
+        "atr": float(atr),        # ← populate TradingState.atr from real ATR
+        "price": tech["price"],   # ← populate TradingState.price too
+    }

@@ -1,0 +1,5947 @@
+[
+  {
+    "date": "01/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.30400000000000055,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2636,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.04499999962611826,
+      "total_score": 0.045,
+      "price": 55.82,
+      "ema_trend": "BULLISH",
+      "rsi": 48.048875212149,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999983383034,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.12,
+      "breakout_low": 55.08,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10911205999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.31685714285714334,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1898,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.044999999510130485,
+      "total_score": 0.045,
+      "price": 55.512,
+      "ema_trend": "BULLISH",
+      "rsi": 42.25400512797243,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999782280217,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.12,
+      "breakout_low": 55.08,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12225967999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/09/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3420000000000008,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1242,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.06017987393485208,
+      "total_score": 0.0602,
+      "price": 54.93,
+      "ema_trend": "BULLISH",
+      "rsi": 33.92739940542002,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999418268724,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1442,
+      "breakout_high": 56.12,
+      "breakout_low": 55.08,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09087320000000002,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/10/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.33771428571428636,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2975,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.2124573306338135,
+      "total_score": -0.2125,
+      "price": 54.78,
+      "ema_trend": "BULLISH",
+      "rsi": 32.167951221027224,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1261,
+      "breakout_high": 56.12,
+      "breakout_low": 54.93,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.25551,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/11/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.34692857142857136,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.147,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.025864200344347298,
+      "total_score": -0.0259,
+      "price": 55.02,
+      "ema_trend": "BULLISH",
+      "rsi": 37.73205362941291,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999042744834,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.12,
+      "breakout_low": 54.78,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07867615,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/16/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3703571428571425,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0831,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.021175023444753742,
+      "total_score": -0.0212,
+      "price": 54.5,
+      "ema_trend": "BULLISH",
+      "rsi": 30.985033283408995,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999963769997,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.209,
+      "breakout_high": 56.12,
+      "breakout_low": 54.78,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04918966999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.37371428571428517,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2311,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.03622299903649352,
+      "total_score": -0.0362,
+      "price": 54.635,
+      "ema_trend": "BULLISH",
+      "rsi": 38.454692825008536,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999567588,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.12,
+      "breakout_low": 54.43,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12807843,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/23/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.37278571428571333,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2481,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.03482669457049681,
+      "total_score": -0.0348,
+      "price": 54.55,
+      "ema_trend": "BULLISH",
+      "rsi": 38.308674091369376,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999439912608,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.12,
+      "breakout_low": 54.43,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.13073006999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/30/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.33621428571428524,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1177,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.28925250408501313,
+      "total_score": 0.2893,
+      "price": 54.53,
+      "ema_trend": "BULLISH",
+      "rsi": 39.403157321401665,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.93,
+      "breakout_low": 54.42,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07085429999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/31/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.33307142857142835,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0564,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999830121699,
+      "total_score": 0.057,
+      "price": 54.71,
+      "ema_trend": "BULLISH",
+      "rsi": 43.9458256266873,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999940393579,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.93,
+      "breakout_low": 54.42,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.006825179999999993,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/01/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.31314285714285717,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.126,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 34,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.06556159069804551,
+      "total_score": 0.0656,
+      "price": 54.44,
+      "ema_trend": "BULLISH",
+      "rsi": 39.198915319693995,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.199999993604474,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.85,
+      "breakout_low": 54.42,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04725604,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/02/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3296428571428573,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1276,
+      "ce_confidence": 1.0,
+      "article_count": 27,
+      "raw_article_count": 29,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.22230744350543907,
+      "total_score": -0.2223,
+      "price": 53.84,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 31.147256472848866,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.4143,
+      "breakout_high": 55.82,
+      "breakout_low": 54.42,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.160745,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/03/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.31964285714285723,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2534,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 28,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.09304013516464447,
+      "total_score": 0.093,
+      "price": 53.645,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 29.058209470158516,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999502145938,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1166,
+      "breakout_high": 55.512,
+      "breakout_low": 53.84,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12160303999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3478571428571432,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3176,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999986805296485,
+      "total_score": -0.057,
+      "price": 54.45,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 45.352766052117104,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999537027947,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.02,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.19130378,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3592857142857144,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1058,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.29009090908720636,
+      "total_score": 0.2901,
+      "price": 55.16,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 55.139756765976266,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1018,
+      "breakout_high": 55.02,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07227023,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3635714285714283,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4635,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 23,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999934191521,
+      "total_score": 0.057,
+      "price": 54.78,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 49.9804528478337,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999769093058,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.16,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.24352395000000002,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3950000000000006,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0809,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999933489465,
+      "total_score": 0.057,
+      "price": 54.81,
+      "ema_trend": "BEARISH",
+      "rsi": 50.93856706726913,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999766629703,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.16,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.010566469999999993,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/14/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.40214285714285786,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1068,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999938799796,
+      "total_score": 0.057,
+      "price": 54.8,
+      "ema_trend": "BEARISH",
+      "rsi": 50.79812021153216,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999785262446,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.16,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07979201999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/17/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.44428571428571423,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1665,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.06304229569898069,
+      "total_score": 0.063,
+      "price": 55.5,
+      "ema_trend": "BEARISH",
+      "rsi": 58.96173364336086,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999870218937,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1208,
+      "breakout_high": 55.3,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06878474999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/20/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.4671428571428571,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1373,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999954747885,
+      "total_score": 0.057,
+      "price": 54.96,
+      "ema_trend": "BEARISH",
+      "rsi": 51.21313698246742,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999984122065,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.5,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09091937,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/21/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.46142857142857147,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4388,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 23,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999946403847,
+      "total_score": 0.057,
+      "price": 55.02,
+      "ema_trend": "BEARISH",
+      "rsi": 51.96844076747593,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999811943325,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.5,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.18418106,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/22/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.42964285714285666,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0914,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999941444217,
+      "total_score": 0.057,
+      "price": 55.15,
+      "ema_trend": "BEARISH",
+      "rsi": 53.643038572042784,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999794541115,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.5,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06990176,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/03/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.36107142857142854,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0647,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999426308746,
+      "total_score": 0.057,
+      "price": 54.75,
+      "ema_trend": "BEARISH",
+      "rsi": 46.8970161025804,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999979870482316,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 53.645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.004351189999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.36321428571428527,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.43,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 55.05,
+      "ema_trend": "BEARISH",
+      "rsi": 51.1489847532794,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.45,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.35489,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.336785714285714,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "HIGH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1458,
+      "ce_confidence": 1.0,
+      "article_count": 26,
+      "raw_article_count": 29,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0569999677417354,
+      "total_score": -0.057,
+      "price": 55.05,
+      "ema_trend": "BEARISH",
+      "rsi": 51.14898473857757,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999988681310668,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.45,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07107899999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3396428571428573,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "HIGH",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0005,
+      "ce_confidence": 1.0,
+      "article_count": 34,
+      "raw_article_count": 34,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.285,
+      "total_score": 0.285,
+      "price": 55.35,
+      "ema_trend": "BEARISH",
+      "rsi": 55.29994479540633,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.45,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09507125000000002,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/09/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3239285714285722,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2931,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999617533535,
+      "total_score": 0.057,
+      "price": 55.17,
+      "ema_trend": "BEARISH",
+      "rsi": 52.42173599383832,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999998658012405,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.45,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17302635,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/10/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2925000000000009,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.209,
+      "ce_confidence": 1.0,
+      "article_count": 45,
+      "raw_article_count": 46,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999525581324,
+      "total_score": 0.057,
+      "price": 55.16,
+      "ema_trend": "BEARISH",
+      "rsi": 52.25900474664407,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999833537307,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.465,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11010499999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3067857142857144,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3648,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 54.98,
+      "ema_trend": "BEARISH",
+      "rsi": 49.29280602853834,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.75,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.3282516,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/14/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3096428571428577,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1345,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699999302647723,
+      "total_score": -0.057,
+      "price": 55.04,
+      "ema_trend": "BEARISH",
+      "rsi": 50.30534604990457,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999997553149906,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.51,
+      "breakout_low": 54.75,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.033537849999999994,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/20/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2906428571428568,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1543,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.016826923470201954,
+      "total_score": -0.0168,
+      "price": 54.316,
+      "ema_trend": "BEARISH",
+      "rsi": 38.43594767463275,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.1999999973855939,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.4741,
+      "breakout_high": 55.51,
+      "breakout_low": 54.7,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.08832625,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/04/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.31235714285714267,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0698,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999990773594045,
+      "total_score": -0.051,
+      "price": 54.355,
+      "ema_trend": "BEARISH",
+      "rsi": 44.20175085955085,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999996381801585,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.35,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.05705852,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3072857142857143,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": -0.0008,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 22,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 54.43,
+      "ema_trend": "BEARISH",
+      "rsi": 46.022073955808075,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.35,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.1134547,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.28385714285714364,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0779,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 28,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099999818800789,
+      "total_score": 0.051,
+      "price": 54.584,
+      "ema_trend": "BEARISH",
+      "rsi": 49.82936387503214,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999928941486,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.16,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06168749,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/10/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.29578571428571515,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1853,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 63,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.050999998924556145,
+      "total_score": 0.051,
+      "price": 54.754,
+      "ema_trend": "BEARISH",
+      "rsi": 53.79566559884833,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999957825731,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.04,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.09207761,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/11/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2932857142857149,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1379,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 22,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.046376053263293956,
+      "total_score": 0.0464,
+      "price": 55.052,
+      "ema_trend": "BEARISH",
+      "rsi": 59.7957833351753,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.1999999974100317,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0133,
+      "breakout_high": 55.04,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09015024999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/12/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2911428571428582,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0828,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 42,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.025750516063045358,
+      "total_score": 0.0258,
+      "price": 55.22,
+      "ema_trend": "BEARISH",
+      "rsi": 62.73389787336515,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999806913513,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1842,
+      "breakout_high": 55.052,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.037598339999999994,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.28935714285714403,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1974,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 29,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0002922301218123719,
+      "total_score": 0.0003,
+      "price": 55.32,
+      "ema_trend": "BEARISH",
+      "rsi": 64.40154318484355,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999835832633,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0926,
+      "breakout_high": 55.22,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09727791,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/18/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3266428571428572,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2255,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 9,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.10032074679531443,
+      "total_score": -0.1003,
+      "price": 56.15,
+      "ema_trend": "BEARISH",
+      "rsi": 75.26578813480268,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999895343054,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1292,
+      "breakout_high": 55.92,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1440504,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.35049999999999976,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2889,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.14338064559967278,
+      "total_score": -0.1434,
+      "price": 56.4,
+      "ema_trend": "BEARISH",
+      "rsi": 77.6070338073435,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999906462798,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1244,
+      "breakout_high": 56.15,
+      "breakout_low": 54.14,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.20285444999999996,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/26/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3680714285714285,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0987,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999998607572065,
+      "total_score": 0.057,
+      "price": 55.66,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 58.249136044078895,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999511428795,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 54.266,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07419519,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/28/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.37235714285714244,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1522,
+      "ce_confidence": 0.32,
+      "article_count": 8,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 55.47,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 53.59692486838432,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 54.266,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.2257712,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/04/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.33892857142857125,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1705,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999999145447164,
+      "total_score": -0.057,
+      "price": 55.37,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 51.22434919328105,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999997001569,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 54.48,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.04742874999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.30271428571428566,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0848,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 32,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0569999992302369,
+      "total_score": -0.057,
+      "price": 55.29,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 49.27474547963793,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999729907686,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 54.584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07131649999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.28857142857142903,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1408,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699999926761307,
+      "total_score": -0.057,
+      "price": 55.27,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 48.774951012276674,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999743022132,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 54.754,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.09443266,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/15/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26128571428571334,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1807,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 5,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.25961584386187964,
+      "total_score": 0.2596,
+      "price": 56.0,
+      "ema_trend": "BULLISH",
+      "rsi": 63.56268858078882,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.4,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.22725100000000004,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/18/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26407142857142823,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.5036,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999675232117,
+      "total_score": 0.057,
+      "price": 55.78,
+      "ema_trend": "BULLISH",
+      "rsi": 55.125546542563434,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999886046357,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.13,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.25355690000000003,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.27478571428571386,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": -0.014,
+      "ce_confidence": 0.32,
+      "article_count": 8,
+      "raw_article_count": 8,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 55.639,
+      "ema_trend": "BULLISH",
+      "rsi": 51.47061550630361,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.13,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1559273,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/22/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2654999999999994,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3081,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999997241135414,
+      "total_score": -0.057,
+      "price": 55.683,
+      "ema_trend": "BULLISH",
+      "rsi": 52.528355173182206,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999903197734,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.13,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.16626615,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/24/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26178571428571323,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.226,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999840990186,
+      "total_score": -0.051,
+      "price": 55.72,
+      "ema_trend": "BULLISH",
+      "rsi": 53.46594955066626,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999993764321,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.13,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12658749999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/29/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2779285714285698,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0602,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 5,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 56.066,
+      "ema_trend": "BULLISH",
+      "rsi": 59.4611717408511,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.13,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.175132,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/31/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.28064285714285575,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1246,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.014352632397323302,
+      "total_score": 0.0144,
+      "price": 56.353,
+      "ema_trend": "BULLISH",
+      "rsi": 64.63956210612933,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999389308334,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0515,
+      "breakout_high": 56.3,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06665313999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/01/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2934285714285707,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3292,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099999732006151,
+      "total_score": 0.051,
+      "price": 56.06,
+      "ema_trend": "BULLISH",
+      "rsi": 56.25107504543434,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999894904373,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.13431214,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/02/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2983571428571428,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1432,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099998955410946,
+      "total_score": 0.051,
+      "price": 56.013,
+      "ema_trend": "BULLISH",
+      "rsi": 55.01767934598363,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999995903572337,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.049329700000000004,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.30792857142857144,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0867,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099998949156083,
+      "total_score": 0.051,
+      "price": 56.18,
+      "ema_trend": "BULLISH",
+      "rsi": 58.4996613871007,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999587904346,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.27,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06805286999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.30621428571428566,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3925,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099998303710211,
+      "total_score": 0.051,
+      "price": 56.18,
+      "ema_trend": "BULLISH",
+      "rsi": 58.49966135789913,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999334788318,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.17485225000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2989999999999995,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1088,
+      "ce_confidence": 0.36,
+      "article_count": 9,
+      "raw_article_count": 9,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.255,
+      "total_score": -0.255,
+      "price": 56.108,
+      "ema_trend": "BULLISH",
+      "rsi": 56.31978887653999,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1880404,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2972142857142858,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.4013,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0509999971435047,
+      "total_score": -0.051,
+      "price": 55.993,
+      "ema_trend": "BULLISH",
+      "rsi": 52.92738024117976,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999998879805764,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.15865816999999996,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/12/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.28492857142857125,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.09,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 23,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999804345803,
+      "total_score": -0.051,
+      "price": 56.05,
+      "ema_trend": "BULLISH",
+      "rsi": 54.25508407609698,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999232728638,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.0707541,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3025000000000005,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0797,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999881093167,
+      "total_score": -0.051,
+      "price": 55.828,
+      "ema_trend": "BULLISH",
+      "rsi": 47.69330675281992,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999533698692,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.061918909999999994,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/14/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2846428571428576,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0761,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999998963242664,
+      "total_score": -0.051,
+      "price": 55.88,
+      "ema_trend": "BULLISH",
+      "rsi": 49.2418449349479,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999593428494,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.060229429999999994,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/16/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2630000000000007,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0626,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999999257009446,
+      "total_score": -0.051,
+      "price": 55.69,
+      "ema_trend": "BULLISH",
+      "rsi": 43.99253558034967,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999708631155,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.0022724000000000017,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.25642857142857217,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0955,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.051671641081428625,
+      "total_score": -0.0517,
+      "price": 55.68,
+      "ema_trend": "BULLISH",
+      "rsi": 43.71482728357346,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999722112263,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0045,
+      "breakout_high": 56.353,
+      "breakout_low": 55.683,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06917102,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/21/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.24564285714285766,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1408,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.07328826078708298,
+      "total_score": -0.0733,
+      "price": 55.58,
+      "ema_trend": "BULLISH",
+      "rsi": 40.82901599139799,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999727293616,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1486,
+      "breakout_high": 56.353,
+      "breakout_low": 55.68,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.030842129999999995,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/22/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22357142857142875,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1546,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999928035374,
+      "total_score": -0.051,
+      "price": 55.594,
+      "ema_trend": "BULLISH",
+      "rsi": 41.42365371204086,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999971778578,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.58,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11006091999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/23/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2192142857142859,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4096,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999999098164356,
+      "total_score": -0.051,
+      "price": 55.74,
+      "ema_trend": "BULLISH",
+      "rsi": 47.36429869476179,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999646338962,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.353,
+      "breakout_low": 55.58,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.20856489999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/03/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26100000000000023,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1038,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0491571527341675,
+      "total_score": -0.0492,
+      "price": 55.29,
+      "ema_trend": "BULLISH",
+      "rsi": 39.80728403292459,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999674245525,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.18,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07174134,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.25785714285714284,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1924,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999827912146,
+      "total_score": -0.051,
+      "price": 55.531,
+      "ema_trend": "BULLISH",
+      "rsi": 47.94289163198662,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999932514567,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.108,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12931665999999997,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26399999999999985,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.5234,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099997719733548,
+      "total_score": -0.051,
+      "price": 55.669,
+      "ema_trend": "BULLISH",
+      "rsi": 51.72434305054694,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999105777862,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.2863034,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.25921428571428506,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2056,
+      "ce_confidence": 1.0,
+      "article_count": 32,
+      "raw_article_count": 44,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 55.52,
+      "ema_trend": "BULLISH",
+      "rsi": 47.69577874899793,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03773149999999996,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/10/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2540714285714282,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1073,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099999650475476,
+      "total_score": 0.051,
+      "price": 55.55,
+      "ema_trend": "BULLISH",
+      "rsi": 48.56441638346772,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999862931559,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.05,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.027644810000000002,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/11/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2710714285714282,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.405,
+      "ce_confidence": 0.2,
+      "article_count": 5,
+      "raw_article_count": 5,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.255,
+      "total_score": -0.255,
+      "price": 55.23,
+      "ema_trend": "BULLISH",
+      "rsi": 40.78396537794548,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.88,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.3165,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/12/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.29964285714285666,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.075,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.010445655096551688,
+      "total_score": -0.0104,
+      "price": 54.75,
+      "ema_trend": "BULLISH",
+      "rsi": 32.39910932121634,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.1999999949722433,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.4562,
+      "breakout_high": 55.88,
+      "breakout_low": 55.104,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04166966,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.31107142857142833,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4595,
+      "ce_confidence": 0.24,
+      "article_count": 6,
+      "raw_article_count": 6,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.10927087694724202,
+      "total_score": 0.1093,
+      "price": 54.38,
+      "ema_trend": "BULLISH",
+      "rsi": 27.675752357849518,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999764216145,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.37,
+      "breakout_high": 55.75,
+      "breakout_low": 54.75,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12419692,
+    "market_reality": "NEUTRAL"
+  },
+  {
+    "date": "07/14/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3192142857142858,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1395,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.10073332095220246,
+      "total_score": 0.1007,
+      "price": 54.34,
+      "ema_trend": "BULLISH",
+      "rsi": 27.213849513916642,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999818067707,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0294,
+      "breakout_high": 55.74,
+      "breakout_low": 54.38,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.01979914000000001,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/20/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2699285714285722,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2843,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0036239524294681136,
+      "total_score": 0.0036,
+      "price": 54.53,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 34.32758346612317,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999974608438,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.74,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12840941,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/24/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2759285714285724,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1772,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.013619170358345686,
+      "total_score": -0.0136,
+      "price": 54.483,
+      "ema_trend": "BEARISH",
+      "rsi": 35.9409751630991,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999404464594,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.72,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.08969748,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/27/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.25692857142857256,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0533,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.285,
+      "total_score": 0.285,
+      "price": 54.702,
+      "ema_trend": "BEARISH",
+      "rsi": 42.93026335442758,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.669,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.10709914999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/31/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.24650000000000105,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2208,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999999088492605,
+      "total_score": 0.057,
+      "price": 54.91,
+      "ema_trend": "BEARISH",
+      "rsi": 48.898391072957985,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999680172845,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 55.669,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.14035794,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/04/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2433571428571431,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3397,
+      "ce_confidence": 1.0,
+      "article_count": 30,
+      "raw_article_count": 33,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.010909689170830714,
+      "total_score": -0.0109,
+      "price": 55.68,
+      "ema_trend": "BEARISH",
+      "rsi": 66.28317530823034,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999866768162,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1074,
+      "breakout_high": 55.55,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.21338899999999997,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.27835714285714275,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0272,
+      "ce_confidence": 0.32,
+      "article_count": 8,
+      "raw_article_count": 8,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.10663368839333486,
+      "total_score": -0.1066,
+      "price": 56.173,
+      "ema_trend": "BEARISH",
+      "rsi": 73.06284505422475,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999896309795,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.3679,
+      "breakout_high": 55.68,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.0469252,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2909285714285709,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4996,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.13717308817743284,
+      "total_score": -0.1372,
+      "price": 56.432,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 75.81427526410624,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999999911913063,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1413,
+      "breakout_high": 56.173,
+      "breakout_low": 54.34,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.2921516,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/15/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.35885714285714243,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3301,
+      "ce_confidence": 0.12,
+      "article_count": 3,
+      "raw_article_count": 3,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.08535789187137142,
+      "total_score": -0.0854,
+      "price": 56.75,
+      "ema_trend": "BULLISH",
+      "rsi": 73.52433194777844,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999989751822,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0437,
+      "breakout_high": 56.65,
+      "breakout_low": 54.36,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.17086149,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/18/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3860714285714276,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.096,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099999941296498,
+      "total_score": 0.051,
+      "price": 56.142,
+      "ema_trend": "BULLISH",
+      "rsi": 56.77756521718777,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999976979019,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.75,
+      "breakout_low": 54.483,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06854249999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/22/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3807857142857135,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2677,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099999788544589,
+      "total_score": 0.051,
+      "price": 56.291,
+      "ema_trend": "BULLISH",
+      "rsi": 58.93817521946621,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999170763094,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.75,
+      "breakout_low": 54.5,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10111590999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/25/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.3704285714285704,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1423,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.028101875004761755,
+      "total_score": 0.0281,
+      "price": 56.596,
+      "ema_trend": "BULLISH",
+      "rsi": 62.39457470114067,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999998268399768,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.75,
+      "breakout_low": 54.9,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04938859999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/29/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.34307142857142736,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2268,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.006924643695817398,
+      "total_score": 0.0069,
+      "price": 56.74,
+      "ema_trend": "BULLISH",
+      "rsi": 64.60918630692171,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999995198335802,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.75,
+      "breakout_low": 54.9,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10312041,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/31/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.29664285714285554,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2408,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.2633301518910853,
+      "total_score": -0.2633,
+      "price": 56.64,
+      "ema_trend": "BULLISH",
+      "rsi": 61.306690492719255,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.76,
+      "breakout_low": 55.48,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.01357569000000002,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/01/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.272357142857141,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2468,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 45,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099999836527295,
+      "total_score": -0.051,
+      "price": 56.53,
+      "ema_trend": "BULLISH",
+      "rsi": 58.10325473837398,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999358930567,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.76,
+      "breakout_low": 55.68,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.16489225999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2741428571428552,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2371,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.07769014223483044,
+      "total_score": -0.0777,
+      "price": 57.0,
+      "ema_trend": "BULLISH",
+      "rsi": 66.73715379533485,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999998413111345,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0966,
+      "breakout_high": 56.92,
+      "breakout_low": 56.092,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.14862142,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/11/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.24285714285714124,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3098,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999893255096,
+      "total_score": -0.045,
+      "price": 56.72,
+      "ema_trend": "BULLISH",
+      "rsi": 57.95453228215034,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999525578205,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.142,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.11566820000000001,
+    "market_reality": "NEUTRAL"
+  },
+  {
+    "date": "09/12/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.21214285714285605,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4673,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999914032734,
+      "total_score": -0.045,
+      "price": 56.63,
+      "ema_trend": "BULLISH",
+      "rsi": 55.35140954195961,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999617923264,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.142,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.24093539,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/20/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2039999999999986,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0524,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 37,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999916053811,
+      "total_score": -0.045,
+      "price": 56.64,
+      "ema_trend": "BULLISH",
+      "rsi": 52.98867247125444,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999962690583,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.53,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.016284139999999992,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/21/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2128571428571416,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3699,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999892252416,
+      "total_score": -0.045,
+      "price": 56.85,
+      "ema_trend": "BULLISH",
+      "rsi": 57.77049911581814,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999952112185,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.53,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.18781784999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/26/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.20371428571428446,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3732,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.033305502514299395,
+      "total_score": -0.0333,
+      "price": 57.12,
+      "ema_trend": "BULLISH",
+      "rsi": 63.3342649874146,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": -0.19999998074103742,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.2553,
+      "breakout_high": 57.0,
+      "breakout_low": 56.53,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.19889979,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/02/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22271428571428434,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1354,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.044999998920725585,
+      "total_score": -0.045,
+      "price": 56.69,
+      "ema_trend": "BULLISH",
+      "rsi": 50.84354019864431,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999520322484,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.6,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.039855159999999994,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/04/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22735714285714184,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2827,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999904916937,
+      "total_score": -0.045,
+      "price": 56.68,
+      "ema_trend": "BULLISH",
+      "rsi": 50.548636943495474,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999577408611,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.63,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.14888305,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.21607142857142797,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4024,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999904031824,
+      "total_score": -0.045,
+      "price": 56.68,
+      "ema_trend": "BULLISH",
+      "rsi": 50.54863690949206,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999573474775,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.63,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.21455217999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.20821428571428463,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0767,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0449999990040898,
+      "total_score": -0.045,
+      "price": 56.68,
+      "ema_trend": "BULLISH",
+      "rsi": 50.548636872873,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999557373246,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.63,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06196336999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/18/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.15092857142857038,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1795,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999753617792,
+      "total_score": -0.045,
+      "price": 56.75,
+      "ema_trend": "BULLISH",
+      "rsi": 51.91680066303631,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999998904967967,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10280424999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.1471428571428563,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0674,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499999719277373,
+      "total_score": -0.045,
+      "price": 56.755,
+      "ema_trend": "BULLISH",
+      "rsi": 52.12499367844056,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999875234388,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.05377304,
+    "market_reality": "NEUTRAL"
+  },
+  {
+    "date": "10/23/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.14249999999999932,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3236,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.044999994360402744,
+      "total_score": -0.045,
+      "price": 56.83,
+      "ema_trend": "BULLISH",
+      "rsi": 55.47852989317232,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999997493512334,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.12,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.17032093999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/30/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.14857142857142794,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1576,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.044999995887741485,
+      "total_score": 0.045,
+      "price": 56.88,
+      "ema_trend": "BULLISH",
+      "rsi": 55.35975540900881,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999817232955,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.05233017999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/01/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.14964285714285705,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0322,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.22499999999999998,
+      "total_score": -0.225,
+      "price": 56.8,
+      "ema_trend": "BULLISH",
+      "rsi": 50.988823816076156,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.09011395999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/02/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.1385714285714284,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1578,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.044999991875460964,
+      "total_score": -0.045,
+      "price": 56.8,
+      "ema_trend": "BULLISH",
+      "rsi": 50.98882376114671,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999996389093763,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.0593598,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/03/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.19142857142857142,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3092,
+      "ce_confidence": 1.0,
+      "article_count": 28,
+      "raw_article_count": 30,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.10704018887950631,
+      "total_score": -0.107,
+      "price": 56.07,
+      "ema_trend": "BULLISH",
+      "rsi": 27.60762224737813,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999639436605,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 1.0,
+      "breakout_high": 57.0,
+      "breakout_low": 56.62,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.22650849999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2078571428571426,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0648,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.09223868534277196,
+      "total_score": 0.0922,
+      "price": 55.97,
+      "ema_trend": "BULLISH",
+      "rsi": 25.85836108455257,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999779132224,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1075,
+      "breakout_high": 57.0,
+      "breakout_low": 56.07,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07410645999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/07/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22571428571428548,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1166,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.04723500421007959,
+      "total_score": 0.0472,
+      "price": 56.054,
+      "ema_trend": "BULLISH",
+      "rsi": 29.877622425730152,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999999804956897,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 55.97,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07661826,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/09/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.23571428571428552,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0914,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 22,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.054381545890291844,
+      "total_score": 0.0544,
+      "price": 55.9,
+      "ema_trend": "BULLISH",
+      "rsi": 28.221446458632514,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999982888726,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 55.86,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.01840606,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/10/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.24099999999999966,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.5009,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05901172325731757,
+      "total_score": 0.059,
+      "price": 55.833,
+      "ema_trend": "BULLISH",
+      "rsi": 26.970930312280473,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999825080308,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0237,
+      "breakout_high": 57.0,
+      "breakout_low": 55.86,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.23224251,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/16/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2647142857142854,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1389,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.04755606487523516,
+      "total_score": 0.0476,
+      "price": 55.7,
+      "ema_trend": "BULLISH",
+      "rsi": 29.693483483810624,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999972973559,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 55.7,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04230445,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/17/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.26614285714285707,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.134,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05517857707616202,
+      "total_score": 0.0552,
+      "price": 55.56,
+      "ema_trend": "BULLISH",
+      "rsi": 27.207066923211684,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999999736943538,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1077,
+      "breakout_high": 57.0,
+      "breakout_low": 55.7,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03203779999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/21/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2672142857142857,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1647,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0779850956913547,
+      "total_score": 0.078,
+      "price": 55.42,
+      "ema_trend": "BULLISH",
+      "rsi": 26.51136260973972,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999974627813,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.11874182999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/22/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.27649999999999963,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2276,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0023785861675466313,
+      "total_score": -0.0024,
+      "price": 55.62,
+      "ema_trend": "BULLISH",
+      "rsi": 34.91540779779032,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999964752026,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 57.0,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.10303699999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/29/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.19935714285714262,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2933,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.022665389471862876,
+      "total_score": 0.0227,
+      "price": 55.42,
+      "ema_trend": "BULLISH",
+      "rsi": 32.29643042841805,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999978652508,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.8,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11952899999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/01/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.18892857142857114,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.262,
+      "ce_confidence": 0.32,
+      "article_count": 8,
+      "raw_article_count": 26,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.11835142284508679,
+      "total_score": 0.1184,
+      "price": 55.46,
+      "ema_trend": "BULLISH",
+      "rsi": 34.259515588222385,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999998489197732,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04869547999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/04/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.19250000000000003,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0165,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.11835142481932945,
+      "total_score": 0.1184,
+      "price": 55.46,
+      "ema_trend": "BULLISH",
+      "rsi": 34.25951555942069,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999073908103,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.065,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.0692842,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/05/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.17857142857142907,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0062,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.11835142577478659,
+      "total_score": 0.1184,
+      "price": 55.46,
+      "ema_trend": "BULLISH",
+      "rsi": 34.25951552840347,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999292841641,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.065,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.0643196,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/06/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.1750000000000007,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1709,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.1627266756493861,
+      "total_score": 0.1627,
+      "price": 55.3,
+      "ema_trend": "BULLISH",
+      "rsi": 29.636243339219504,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999914142812,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1007,
+      "breakout_high": 56.065,
+      "breakout_low": 55.37,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.005021800000000021,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/08/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.172857142857143,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1215,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 23,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.07779311425054466,
+      "total_score": 0.0778,
+      "price": 55.44,
+      "ema_trend": "BULLISH",
+      "rsi": 38.054445278199864,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999935484411,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.065,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09989839,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/11/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.17857142857142858,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0672,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999862961883,
+      "total_score": 0.057,
+      "price": 55.51,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 41.830651249025436,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999519164505,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.065,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05916941999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/12/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.1728571428571435,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3946,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999998819861786,
+      "total_score": 0.057,
+      "price": 55.51,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 41.830651209794674,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999585916417,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.065,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.15263764,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/13/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.19357142857142964,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2164,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.01659913471513825,
+      "total_score": -0.0166,
+      "price": 56.07,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 62.84519203654832,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.1999999977232223,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.925,
+      "breakout_high": 55.7,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11636930000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/14/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.21500000000000088,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3007,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699999935418925,
+      "total_score": 0.057,
+      "price": 55.73,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 50.83692020050614,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999773399738,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17963113,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/19/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.2160714285714295,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2431,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999999385598216,
+      "total_score": 0.057,
+      "price": 55.95,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 57.16929917851245,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999784420427,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.08668693,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/20/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22178571428571558,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1631,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999999268769426,
+      "total_score": 0.057,
+      "price": 55.72,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 49.72873479527457,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999999974342787,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.04663378999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/21/2023",
+    "currency_pair": "USDPHP",
+    "atr": 0.22678571428571612,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.367,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999998906478645,
+      "total_score": 0.057,
+      "price": 55.51,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 44.086803831029975,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999999616308298,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 56.07,
+      "breakout_low": 55.3,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1399996,
+    "market_reality": "BULLISH"
+  }
+]

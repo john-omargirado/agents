@@ -7,6 +7,8 @@ from utils.trade_config import get_pair_config
 URL = "https://inference.do-ai.run/v1/chat/completions"
 
 
+
+
 def call_qwen(prompt):
     key = get_do_model_key()
     headers = {"Content-Type": "application/json"}
@@ -63,6 +65,20 @@ def call_qwen(prompt):
             time.sleep(backoff)
             backoff = min(backoff * 2, max_backoff)
 
+def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.10) -> tuple[str, str]:
+    if weighted_score >= threshold:
+        verdict = "BUY"
+    elif weighted_score <= -threshold:
+        verdict = "SELL"
+    else:
+        verdict = "HOLD"
+
+    reasoning = (
+        f"[deterministic] weighted_score={round(weighted_score, 4)} → {verdict} "
+        f"(thresholds: >={threshold} BUY, <=-{threshold} SELL)"
+    )
+    return verdict, reasoning
+
 
 def parse_llm_output(raw):
     if raw is None:
@@ -88,7 +104,6 @@ def parse_llm_output(raw):
     return verdict, reasoning
 
 
-
 def verdict_agent(state):
     state["debug_log"].append("VERDICT agent: LLM decision mode")
 
@@ -96,7 +111,8 @@ def verdict_agent(state):
     ce   = state.get("ce_output", {})
     siv  = state.get("siv_output", {})
     pair = str(state.get("currency_pair", "")).upper()
-    atr  = float(state.get("atr", 0.0))
+    atr_raw = tts.get("atr") or state.get("atr") or 0.0
+    atr = max(float(atr_raw), 0.0001)
 
     backtest_mode = bool(state.get("backtest_mode", False))
     skip_llm      = bool(state.get("skip_llm", False))
@@ -105,12 +121,25 @@ def verdict_agent(state):
     sl_mult     = float(pair_cfg.get("sl_mult", 1.0))
     rr_ratio    = float(pair_cfg.get("rr_ratio", 2.0))
 
+
+    capital = float(state["account_capital"])
+
+    risk_pct = float(state.get("risk_per_trade", 1)) / 100
+
+    leverage_str = state.get("leverage", "1:1")
+    leverage = float(leverage_str.split(":")[1])
+
+    risk_amount = 0.0
+    position_size = 0.0
+    max_exposure = capital * leverage
+
     # =========================
     # HARD BLOCK (SIV INCOHERENT)
     # =========================
     if siv.get("signal") == "INCOHERENT":
         sl_distance = round(atr * sl_mult, 5)
         tp_distance = round(sl_distance * rr_ratio, 5)
+
         return {
             "verdict": "HOLD",
             "weighted_score": 0.0,
@@ -119,17 +148,21 @@ def verdict_agent(state):
             "atr": atr,
             "sl_distance": sl_distance,
             "tp_distance": tp_distance,
+            "position_size": 0.0,
+            "risk_amount": 0.0,
+            "max_exposure": max_exposure,
             "action": "NONE"
         }
 
     # =========================
-    # SCORE COMPUTATION — continuous ce_score + adaptive weight
+    # SCORE COMPUTATION
     # =========================
+    siv_multiplier = float(siv.get("score_multiplier", 1.0))
     ce_score_raw = float(ce.get("ce_score", 0.0))
     ce_conf      = float(ce.get("ce_confidence", 0.0))
     tts_score    = float(tts.get("total_score", 0.0))
 
-    ce_weight  = 0.35 + (0.30 * ce_conf)   # 0.35 → 0.65 based on data quality
+    ce_weight  = 0.35 + (0.30 * ce_conf)
     tts_weight = 1.0 - ce_weight
 
     weighted_score = (ce_weight * ce_score_raw) + (tts_weight * tts_score)
@@ -143,9 +176,7 @@ def verdict_agent(state):
     siv_issues = siv.get("issues", [])
 
     if siv.get("signal") == "PARTIAL" and "signal_mismatch" in siv_issues:
-        # ✅ FIX: was (ce_strong and tts_strong) — TTS is 0 for 83% of days
-        # so this gate was blocking almost every PARTIAL trade
-        tradeable   = ce_strong          # ← only require CE when TTS is unavailable
+        tradeable   = ce_strong
         skip_reason = "signal_mismatch — need CE strong (TTS unreliable)"
     elif not ce_strong and not tts_strong:
         tradeable   = False
@@ -155,78 +186,163 @@ def verdict_agent(state):
         skip_reason = None
 
     if not tradeable:
-        print(f"\n[VERDICT] SKIP — {skip_reason}")
         return {
-            "verdict":           "HOLD",
-            "weighted_score":    0.0,
+            "verdict": "HOLD",
+            "weighted_score": 0.0,
             "verdict_reasoning": f"SKIP: {skip_reason}",
-            "risk_multiplier":   0.0,
-            "atr":               atr,
-            "sl_distance":       round(atr * sl_mult, 5),
-            "tp_distance":       0.0,
-            "action":            "SKIP"
+            "risk_multiplier": 0.0,
+            "atr": atr,
+            "sl_distance": round(atr * sl_mult, 5),
+            "tp_distance": 0.0,
+            "position_size": 0.0,
+            "risk_amount": 0.0,
+            "max_exposure": max_exposure,
+            "action": "SKIP"
         }
 
     # Apply SIV score multiplier
-    siv_multiplier = float(siv.get("score_multiplier", 1.0))
+    
     weighted_score = weighted_score * siv_multiplier
     weighted_score = max(-1.0, min(weighted_score, 1.0))
 
     # =========================
     # DYNAMIC SL/TP
     # =========================
-    price = float(tts.get("price", 1e-9))
-    atr_pct = atr / price if price > 0 else 0
-
-    if atr_pct < 0.002:
-        vol_mult = 1.6
-    elif atr_pct < 0.005:
-        vol_mult = 2.2
-    else:
-        vol_mult = 3.0
-
     ema_trend    = tts.get("ema_trend", "NEUTRAL")
     trend_regime = "TRENDING" if ema_trend in ["BULLISH", "BEARISH"] else "RANGING"
 
+    price = float(tts.get("price", 1e-9))
+
     sl_distance = round(atr * sl_mult, 5)
-    base_tp     = sl_distance * rr_ratio * vol_mult
-    base_tp    *= 1.15 if trend_regime == "TRENDING" else 0.9
+    if sl_distance <= 0:
+        return {
+            "verdict": "HOLD",
+            "weighted_score": 0.0,
+            "verdict_reasoning": "Invalid SL distance (ATR too small)",
+            "risk_multiplier": 0.0,
+            "atr": atr,
+            "sl_distance": 0,
+            "tp_distance": 0,
+            "position_size": 0.0,
+            "risk_amount": 0.0,
+            "max_exposure": max_exposure,
+            "action": "NONE"
+        }
+    
+    risk_amount = capital * risk_pct
+    print(f"\n[VERDICT] risk_amount={risk_amount} | capital={capital} risk_pct={risk_pct*100}%")
+    position_size = risk_amount / (sl_distance * 100000)
+    base_tp  = sl_distance * rr_ratio
+    base_tp *= 1.15 if trend_regime == "TRENDING" else 0.9
     tp_distance = round(base_tp, 5)
+    print(f"[SANITY] ATR={atr:.5f} | SL={sl_distance:.5f} | TP={tp_distance:.5f} | price={price:.5f}")
+
+    max_exposure = capital * leverage
+    trade_exposure = position_size * price * 100000
+
+    if trade_exposure > max_exposure:
+        position_size = max_exposure / (price * 100000)
+    
+    max_allowed_lot = max_exposure / (price * 100000)
+    position_size = min(position_size, max_allowed_lot)
 
     # =========================
-    # VERDICT
+    # MODE SWITCH (UPDATED)
     # =========================
-    if backtest_mode or skip_llm:
-        deterministic_threshold = float(state.get("calibration_threshold", 0.20))
+    use_deterministic = backtest_mode or skip_llm
+    if use_deterministic:
+        deterministic_threshold = float(state.get("calibration_threshold", 0.10))
         verdict, reasoning = compute_verdict_deterministic(weighted_score, deterministic_threshold)
         print(f"\n[VERDICT] {verdict} | DETERMINISTIC | score={round(weighted_score, 4)}")
     else:
-        prompt = f"""
-You are an expert forex trading decision engine.
+        experience_level = str(state.get("experience_level", "intermediate") or "intermediate").lower()
 
-OUTPUT FORMAT (STRICT):
-First line: BUY or SELL or HOLD (one word only)
-Second line onwards: your reasoning
+        if experience_level == "beginner":
+            tone_instruction = """\
+STYLE — BEGINNER (MANDATORY, NO EXCEPTIONS):
+You are explaining this to someone who has NEVER heard of forex trading before.
+Write exactly 2-3 plain, warm sentences — like texting a friend who asked what happened.
 
-DECISION RULE (NON-NEGOTIABLE):
-weighted_score >= 0.20  → BUY
-weighted_score <= -0.20 → SELL
-between -0.20 and 0.20  → HOLD
+FORBIDDEN — never use these in your reasoning:
+weighted_score, ce_weight, tts_score, ce_score, siv_multiplier, score_multiplier,
+atr, sl, tp, COHERENT, INCOHERENT, PARTIAL, EMA, RSI, BB, MACD, regime, adx,
+ema_trend, bb_signal, ce_confidence, article_count, threshold
 
-weighted_score: {round(weighted_score, 4)}
-ce_weight used: {round(ce_weight, 2)} (based on ce_confidence={ce_conf})
-atr: {round(atr, 5)} | sl: {sl_distance} | tp: {tp_distance}
+INSTEAD say things like:
+"the charts", "the news", "market conditions", "price direction", "both sides agreed",
+"conditions look good", "signals weren't strong enough", "the system wasn't sure"
 
-TTS: decision={tts.get("decision")} score={tts.get("total_score")} ema={tts.get("ema_trend")} rsi={tts.get("rsi")} bb={tts.get("bb_signal")} regime={tts.get("regime", "UNKNOWN")}
-CE:  sentiment={ce.get("sentiment")} confidence={ce.get("confidence")} articles={ce.get("article_count")} ce_score={ce_score_raw}
-SIV: signal={siv.get("signal")} issues={siv.get("issues")} multiplier={siv_multiplier}
+EXAMPLE — correct beginner BUY reasoning:
+"Both the news and the charts were pointing upward today, and they agreed with each other — so the system flagged this as a potential buying opportunity. Think of it like a green light: most signals lined up in the same direction. Just keep in mind this is for learning, not a guarantee — always be careful with real money."
+
+EXAMPLE — correct beginner HOLD reasoning:
+"The system decided to sit this one out. The news and the charts weren't sending a strong enough signal in either direction, so it chose to wait rather than guess. That's actually healthy — not every moment is the right time to trade, and patience is part of learning."""
+
+        elif experience_level == "basic":
+            tone_instruction = """\
+STYLE — BASIC (MANDATORY):
+Write 2-3 conversational sentences for someone who knows pips, charts, and basic indicators.
+You may mention RSI, EMA trend, and news sentiment — but explain what each contributed, don't just list them.
+Do not use raw field names like weighted_score, siv_multiplier, ce_weight, or atr.
+Keep it readable, not like a data dump."""
+
+        else:
+            tone_instruction = """\
+STYLE — INTERMEDIATE:
+Write 2-3 concise technical sentences.
+You may reference weighted_score, ce_weight, SIV signal, regime, and indicator values directly.
+Cover what drove the decision and any relevant risk factors."""
+
+        decision_word = "BUY" if weighted_score >= 0.10 else "SELL" if weighted_score <= -0.10 else "HOLD"
+        ce_direction  = ce.get("sentiment", "NEUTRAL")
+        tts_direction = tts.get("decision", "HOLD")
+        siv_status    = siv.get("signal", "UNKNOWN")
+        market_regime = tts.get("regime", "UNKNOWN")
+        ema_dir       = tts.get("ema_trend", "NEUTRAL")
+        rsi_val       = tts.get("rsi", "N/A")
+        bb_val        = tts.get("bb_signal", "N/A")
+        art_count     = ce.get("article_count", 0)
+        ce_conf_tier  = ce.get("confidence", "LOW")
+
+        prompt = f"""/no_think
+{tone_instruction}
+
+Now apply the style above to write the reasoning for this decision.
+
+DECISION (already computed — do not change it): {decision_word}
+
+OUTPUT FORMAT:
+Line 1: {decision_word}
+Line 2 onwards: your reasoning using ONLY the style described above
+
+CONTEXT FOR YOUR REASONING (use to inform your words, do not copy these field names):
+- Overall direction: news was {ce_direction}, charts said {tts_direction}
+- News confidence: {ce_conf_tier} ({art_count} articles)
+- Chart market condition: {market_regime} (trend direction: {ema_dir})
+- Price momentum (RSI): {rsi_val} — above 60 means overbought, below 40 means oversold, middle is neutral
+- Bollinger Bands: {bb_val}
+- Signal agreement check: {siv_status}
+- Combined score: {round(weighted_score, 4)} (above 0.10 = buy, below -0.10 = sell, in between = hold)
 """
         raw = call_qwen(prompt)
         verdict, reasoning = parse_llm_output(raw)
+
+        # Safety: if model still returns technical output for beginners, replace it
+        if experience_level == "beginner":
+            forbidden = ["weighted_score", "ce_weight", "siv_multiplier", "atr=", "ce_score=",
+                         "tts_score", "COHERENT", "INCOHERENT", "ema=", "bb=", "regime="]
+            if any(term in reasoning for term in forbidden):
+                direction_map = {
+                    "BUY":  "Both the charts and the news were leaning upward today and agreed with each other, so the system flagged a potential buying opportunity. Think of it like a green light — most signals pointed the same way. Remember, this is for learning purposes only, so always be careful before making any real decisions.",
+                    "SELL": "Both the charts and the news were leaning downward today, so the system flagged a potential selling opportunity. Think of it like a red light — the signals suggested caution about the price going higher. This is for learning only, so always do your own research before acting.",
+                    "HOLD": "The system decided to sit this one out — the signals weren't strong or clear enough in either direction to feel confident. Think of it like a yellow light: it's saying wait and see. That's perfectly normal, and patience is an important part of learning to trade.",
+                }
+                reasoning = direction_map.get(verdict, direction_map["HOLD"])
+
         print(f"\n[VERDICT] {verdict} | LLM | score={round(weighted_score, 4)}")
 
     # =========================
-    # RISK MULTIPLIER (clean, no variable collision)
+    # RISK MULTIPLIER
     # =========================
     if atr == 0.0:
         risk = 0.4
@@ -237,28 +353,21 @@ SIV: signal={siv.get("signal")} issues={siv.get("issues")} multiplier={siv_multi
     else:
         risk = 0.4
 
-    return {
-        "verdict":           verdict,
-        "weighted_score":    weighted_score,
-        "verdict_reasoning": reasoning,
-        "risk_multiplier":   risk,
-        "atr":               atr,
-        "sl_distance":       sl_distance,
-        "tp_distance":       tp_distance,
-        "action":            verdict if verdict in ["BUY", "SELL"] else "NONE"
+    trade_output = {
+        "position_size": position_size,
+        "risk_amount": risk_amount,
+        "max_exposure": max_exposure,
+        "sl_distance": sl_distance,
+        "tp_distance": tp_distance,
+        "atr": atr
     }
 
-
-def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.10) -> tuple[str, str]:
-    if weighted_score >= threshold:
-        verdict = "BUY"
-    elif weighted_score <= -threshold:
-        verdict = "SELL"
-    else:
-        verdict = "HOLD"
-
-    reasoning = (
-        f"[deterministic] weighted_score={round(weighted_score, 4)} → {verdict} "
-        f"(thresholds: >={threshold} BUY, <=-{threshold} SELL)"
-    )
-    return verdict, reasoning
+    return {
+        "verdict": verdict,
+        "weighted_score": weighted_score,
+        "risk_multiplier": risk,
+        "verdict_reasoning": reasoning,
+        "trade_output": trade_output,
+        "atr": atr,                    
+        "action": verdict if verdict in ["BUY", "SELL"] else "NONE"
+    }

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Trading Parameters Explained</title>
+  <desc id="desc">Beginner guide to forex pair, capital, leverage, and risk threshold fields.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b1324"/>
+      <stop offset="100%" stop-color="#153047"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#10243a"/>
+      <stop offset="100%" stop-color="#153b55"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <rect x="52" y="52" width="856" height="436" rx="24" fill="url(#panel)" stroke="#2dd4bf" stroke-opacity="0.35"/>
+
+  <text x="480" y="104" text-anchor="middle" fill="#99f6e4" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Inside the System</text>
+  <text x="480" y="132" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Trading Parameters Panel</text>
+
+  <rect x="88" y="156" width="532" height="292" rx="16" fill="#0f172a" stroke="#1e4b63"/>
+
+  <rect x="108" y="182" width="492" height="66" rx="12" fill="#0b2331" stroke="#2d6d86"/>
+  <text x="130" y="212" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Forex Pair</text>
+  <text x="130" y="234" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="15">Choose the market to analyze, like EUR/USD.</text>
+
+  <rect x="108" y="260" width="492" height="66" rx="12" fill="#0b2331" stroke="#2d6d86"/>
+  <text x="130" y="290" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Account Capital</text>
+  <text x="130" y="312" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="15">Used for position sizing and safer risk guidance.</text>
+
+  <rect x="108" y="338" width="492" height="66" rx="12" fill="#0b2331" stroke="#2d6d86"/>
+  <text x="130" y="368" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Leverage and Risk Threshold</text>
+  <text x="130" y="390" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="15">Controls exposure and strictness of risk warnings.</text>
+
+  <rect x="648" y="156" width="224" height="292" rx="16" fill="#0f172a" stroke="#2dd4bf" stroke-opacity="0.45"/>
+  <text x="760" y="190" text-anchor="middle" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700">What this does</text>
+  <text x="676" y="226" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">1. Stores your context</text>
+  <text x="676" y="252" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">2. Sets caution level</text>
+  <text x="676" y="278" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="15">3. Feeds all modules</text>
+  <rect x="670" y="306" width="180" height="92" rx="12" fill="#0a2f2c" stroke="#2dd4bf"/>
+  <text x="760" y="338" text-anchor="middle" fill="#99f6e4" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Beginner tip</text>
+  <text x="760" y="362" text-anchor="middle" fill="#ccfbf1" font-family="Segoe UI, Arial, sans-serif" font-size="14">Start with low leverage</text>
+  <text x="760" y="382" text-anchor="middle" fill="#ccfbf1" font-family="Segoe UI, Arial, sans-serif" font-size="14">while learning signals.</text>
+</svg>

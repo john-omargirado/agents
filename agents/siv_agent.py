@@ -30,7 +30,7 @@ Agent definitions:
 Do NOT output structured format.
 
 Explain briefly:
-- CE (Comparative Economic Agent) vs TTS (Traditional Trading Strategies Agent) alignment
+- CE vs TTS alignment
 - price mismatch if any
 - data quality issues
 - why signals conflict or align
@@ -85,6 +85,7 @@ INPUT:
 # =========================
 # PURE DETERMINISTIC CORE
 # =========================
+
 def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list, float]:
     ce = payload.get("ce_signal")
     tts = payload.get("tts_signal")
@@ -92,7 +93,6 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list, float]:
     actual_price = payload.get("actual_price")
     tts_price = payload.get("tts_price")
 
-    # PRICE INTEGRITY (HIGHEST PRIORITY)
     if actual_price is None or tts_price is None:
         return "INCOHERENT", ["missing_price"], 0.0
 
@@ -102,18 +102,13 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list, float]:
     except Exception:
         return "INCOHERENT", ["price_parse_error"], 0.0
 
-    # =========================
-    # NORMALIZE TO DIRECTION
-    # CE uses BULLISH/BEARISH/NEUTRAL
-    # TTS uses BUY/SELL/HOLD
-    # =========================
     direction_map = {
-        "BULLISH": "UP", "BUY":  "UP",
+        "BULLISH": "UP", "BUY": "UP",
         "BEARISH": "DOWN", "SELL": "DOWN",
         "NEUTRAL": "FLAT", "HOLD": "FLAT",
     }
 
-    ce_dir  = direction_map.get(str(ce).upper(),  "UNKNOWN")
+    ce_dir = direction_map.get(str(ce).upper(), "UNKNOWN")
     tts_dir = direction_map.get(str(tts).upper(), "UNKNOWN")
 
     if "UNKNOWN" in (ce_dir, tts_dir):
@@ -131,15 +126,21 @@ def compute_siv(payload: Dict[str, Any]) -> Tuple[str, list, float]:
 # =========================
 # SIV AGENT
 # =========================
+
 def siv_agent(state):
     state.setdefault("debug_log", [])
     state["debug_log"].append("SIV agent running")
 
-    llm_input     = prepare_siv_payload(state)
-    backtest_mode = state.get("backtest_mode", False)
-    force_skip    = state.get("skip_llm", False)
+    # Sync state price from TTS output so actual_price == tts_price
+    tts_price = state.get("tts_output", {}).get("price")
+    if tts_price is not None:
+        state["price"] = tts_price   # ← prevents price_mismatch in compute_siv
 
-    # UPDATED: unpack 3 values
+    llm_input = prepare_siv_payload(state)
+
+    live_mode   = state.get("live_mode", False)
+    force_skip  = state.get("skip_llm", False)
+
     signal, issues, score_multiplier = compute_siv(llm_input)
 
     risk_penalty = 0.0
@@ -150,16 +151,20 @@ def siv_agent(state):
     elif "one_signal_neutral" in issues:
         risk_penalty = 0.2
 
-    explanation = "skipped" if (backtest_mode or force_skip) else call_qwen(llm_input)
+    # ONLY RUN LLM IN LIVE MODE
+    if live_mode and not force_skip:
+        explanation = call_qwen(llm_input)
+    else:
+        explanation = "skipped"
 
     print(f"\n[SIV] {signal} | multiplier={score_multiplier} | issues={issues}")
 
     return {
         "siv_output": {
-            "signal":           signal,
-            "issues":           issues,
-            "score_multiplier": score_multiplier,   # NEW
-            "risk_penalty":     risk_penalty,
-            "explanation":      explanation
+            "signal": signal,
+            "issues": issues,
+            "score_multiplier": score_multiplier,
+            "risk_penalty": risk_penalty,
+            "explanation": explanation
         }
     }

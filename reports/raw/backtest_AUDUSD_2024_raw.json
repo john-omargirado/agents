@@ -1,0 +1,6004 @@
+[
+  {
+    "date": "01/03/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005549285714285709,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1751,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999945335874756,
+      "total_score": -0.051,
+      "price": 0.67309,
+      "ema_trend": "BULLISH",
+      "rsi": 53.762959496804534,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999997856308814,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.65486,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06539135,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005537142857142852,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.5684,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099996563107138,
+      "total_score": -0.051,
+      "price": 0.67067,
+      "ema_trend": "BULLISH",
+      "rsi": 50.473513742496706,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999986521988775,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.65594,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.24223442,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0059835714285714214,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0855,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999971405126535,
+      "total_score": -0.051,
+      "price": 0.6711,
+      "ema_trend": "BULLISH",
+      "rsi": 51.04665082884487,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998878632413,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.65594,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06700065000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005877142857142851,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3181,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099997573972068,
+      "total_score": -0.051,
+      "price": 0.66868,
+      "ema_trend": "BULLISH",
+      "rsi": 47.491127105469594,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999999048616497,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.65594,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.17380002999999997,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/10/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005540714285714288,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4733,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099997566608242,
+      "total_score": -0.051,
+      "price": 0.66994,
+      "ema_trend": "BULLISH",
+      "rsi": 49.398328293437096,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999990457287223,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.6661,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.27070648999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/11/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005730714285714288,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2316,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05128122576525112,
+      "total_score": -0.0513,
+      "price": 0.66865,
+      "ema_trend": "BULLISH",
+      "rsi": 47.49625319306402,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999990503069975,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0019,
+      "breakout_high": 0.68468,
+      "breakout_low": 0.66868,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09370515000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/29/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005415000000000011,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.4463,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099993458242274,
+      "total_score": -0.051,
+      "price": 0.66111,
+      "ema_trend": "BULLISH",
+      "rsi": 45.61203783734035,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999974346048133,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6806,
+      "breakout_low": 0.6552,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.23028664999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/30/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005525000000000002,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0836,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999893826330245,
+      "total_score": -0.051,
+      "price": 0.6602,
+      "ema_trend": "BULLISH",
+      "rsi": 44.23371318711362,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999958363266762,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67604,
+      "breakout_low": 0.6552,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06560737999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/31/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005473571428571434,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3065,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04899187660272536,
+      "total_score": -0.049,
+      "price": 0.65665,
+      "ema_trend": "BULLISH",
+      "rsi": 39.25071317044946,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999957752121675,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67309,
+      "breakout_low": 0.6552,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.19674974999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/01/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0056150000000000045,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1026,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 46,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699985567989736,
+      "total_score": -0.057,
+      "price": 0.65708,
+      "ema_trend": "BULLISH",
+      "rsi": 40.13047934186591,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999949361367497,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6719,
+      "breakout_low": 0.6552,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.0797088,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0059971428571428675,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1064,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 31,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.006596396435065089,
+      "total_score": 0.0066,
+      "price": 0.65099,
+      "ema_trend": "BULLISH",
+      "rsi": 32.87007217673573,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999997105673257,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.2521,
+      "breakout_high": 0.6719,
+      "breakout_low": 0.6552,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06350749999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/07/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005415714285714294,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1566,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.032916064159505806,
+      "total_score": -0.0329,
+      "price": 0.65193,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 37.74653994554319,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999997140053086,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66994,
+      "breakout_low": 0.64824,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07063914999999997,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005512857142857145,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.058,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.001285809365012748,
+      "total_score": 0.0013,
+      "price": 0.64905,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 34.54636435279143,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999972496325916,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66865,
+      "breakout_low": 0.64824,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.02659449,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005512857142857153,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1211,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 28,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699988081000128,
+      "total_score": -0.057,
+      "price": 0.65213,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 40.36889989158234,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999995817894782,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66856,
+      "breakout_low": 0.64824,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.04161436999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "02/14/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005620000000000006,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1813,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05161849048669187,
+      "total_score": -0.0516,
+      "price": 0.64878,
+      "ema_trend": "BEARISH",
+      "rsi": 39.496480979311855,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999947375542607,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66111,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.060279969999999995,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00557500000000002,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0705,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.056999892868084524,
+      "total_score": 0.057,
+      "price": 0.65397,
+      "ema_trend": "BEARISH",
+      "rsi": 47.296240379442054,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999962409854222,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66111,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.060177749999999995,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "02/28/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004775000000000021,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.5004,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099990051715222,
+      "total_score": 0.051,
+      "price": 0.64953,
+      "ema_trend": "BEARISH",
+      "rsi": 40.15715077670653,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999960987118517,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.65708,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.22289393999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004377857142857163,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3075,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.050999772329376095,
+      "total_score": 0.051,
+      "price": 0.65086,
+      "ema_trend": "BEARISH",
+      "rsi": 43.61276579167274,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999991071740239,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.65619,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11570714999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/06/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00460214285714288,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3715,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 26,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05319367926006696,
+      "total_score": 0.0532,
+      "price": 0.65635,
+      "ema_trend": "BEARISH",
+      "rsi": 53.7789834090401,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999958895183212,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0146,
+      "breakout_high": 0.65619,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.19718750999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/07/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0047178571428571625,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.178,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.08625286099684595,
+      "total_score": 0.0863,
+      "price": 0.66189,
+      "ema_trend": "BEARISH",
+      "rsi": 61.14895703193947,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999980928029512,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.4991,
+      "breakout_high": 0.65635,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.042050989999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0049107142857143,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2962,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.031705967477307515,
+      "total_score": 0.0317,
+      "price": 0.66218,
+      "ema_trend": "BEARISH",
+      "rsi": 61.49506646380527,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.1999998548847364,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0174,
+      "breakout_high": 0.66189,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.16329075,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/11/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004712857142857145,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2471,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099996497454973,
+      "total_score": 0.051,
+      "price": 0.66113,
+      "ema_trend": "BEARISH",
+      "rsi": 59.43063771619506,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999986264529304,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.14718635,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/12/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004817142857142861,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.092,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699995919478826,
+      "total_score": 0.057,
+      "price": 0.66052,
+      "ema_trend": "BEARISH",
+      "rsi": 58.20808263657911,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999985682381846,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64525,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.01237849999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00478857142857142,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1179,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0569998430439678,
+      "total_score": 0.057,
+      "price": 0.65583,
+      "ema_trend": "BEARISH",
+      "rsi": 48.819236421353644,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999944927708002,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08620167,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004782142857142846,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1961,
+      "ce_confidence": 1.0,
+      "article_count": 47,
+      "raw_article_count": 52,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 0.65312,
+      "ema_trend": "BEARISH",
+      "rsi": 44.34285344357056,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.227215,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/20/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005005714285714272,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0692,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.285,
+      "total_score": 0.285,
+      "price": 0.65795,
+      "ema_trend": "BEARISH",
+      "rsi": 52.67226362410291,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07184438,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/21/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00521285714285713,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0751,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05699686977954133,
+      "total_score": 0.057,
+      "price": 0.65696,
+      "ema_trend": "BEARISH",
+      "rsi": 50.98790810376247,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999890167703205,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.013868290000000005,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/22/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0054828571428571305,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.222,
+      "ce_confidence": 0.24,
+      "article_count": 6,
+      "raw_article_count": 9,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 0.6514,
+      "ema_trend": "BEARISH",
+      "rsi": 42.724603817422654,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.25841400000000003,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "03/25/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005435714285714274,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2463,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699986490436356,
+      "total_score": -0.057,
+      "price": 0.65388,
+      "ema_trend": "BEARISH",
+      "rsi": 46.86134587438978,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999952598022303,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08127344999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "03/27/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004744999999999984,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4808,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999897996765506,
+      "total_score": -0.051,
+      "price": 0.65316,
+      "ema_trend": "BEARISH",
+      "rsi": 45.81569483396017,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999995999873157,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64953,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.25995458,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/01/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004765714285714278,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2645,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 28,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.06425041245346182,
+      "total_score": -0.0643,
+      "price": 0.64889,
+      "ema_trend": "BEARISH",
+      "rsi": 39.64129469625507,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999997306216943,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1112,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.65022,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.15275658,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004807857142857134,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1228,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999916624394334,
+      "total_score": -0.051,
+      "price": 0.65186,
+      "ema_trend": "BEARISH",
+      "rsi": 45.545737573074284,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999967303684052,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64889,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05094622000000001,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0050342857142857056,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2103,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 0.6587,
+      "ema_trend": "BEARISH",
+      "rsi": 56.425607795897996,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64889,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.23184539999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005174999999999993,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1297,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 26,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099987476903428,
+      "total_score": 0.051,
+      "price": 0.6577,
+      "ema_trend": "BEARISH",
+      "rsi": 54.627371159036244,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999950889817364,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66218,
+      "breakout_low": 0.64889,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09256135,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/10/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005317142857142854,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2221,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099986502253275,
+      "total_score": 0.051,
+      "price": 0.6513,
+      "ema_trend": "BEARISH",
+      "rsi": 44.38847546028916,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.199999470676599,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.64889,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12874723,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/12/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005567857142857148,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1821,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.2805552355054705,
+      "total_score": -0.2806,
+      "price": 0.6463,
+      "ema_trend": "BEARISH",
+      "rsi": 39.81832866930355,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.188,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.64889,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03950272999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/17/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005890714285714289,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2314,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.046574948100768905,
+      "total_score": -0.0466,
+      "price": 0.64355,
+      "ema_trend": "BEARISH",
+      "rsi": 39.53725294794146,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999986974932815,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12678319999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00598428571428572,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1476,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.03319586222292867,
+      "total_score": -0.0332,
+      "price": 0.64201,
+      "ema_trend": "BEARISH",
+      "rsi": 38.13813282022218,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999987109629042,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06361504000000001,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/24/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0058728571428571475,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2224,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099969386355445,
+      "total_score": -0.051,
+      "price": 0.64956,
+      "ema_trend": "BEARISH",
+      "rsi": 49.03637284269306,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999987994649194,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.13865782,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/25/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00594928571428572,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2051,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 0.65176,
+      "ema_trend": "BEARISH",
+      "rsi": 51.891759775751034,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.2297506,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "04/26/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005861428571428573,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3394,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099992314639817,
+      "total_score": 0.051,
+      "price": 0.6532,
+      "ema_trend": "BEARISH",
+      "rsi": 53.719550790812356,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999969861332614,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.19694715999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "04/29/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0059507142857142935,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0845,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099995362636047,
+      "total_score": 0.051,
+      "price": 0.65654,
+      "ema_trend": "BEARISH",
+      "rsi": 57.730970884212795,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999981814259007,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.03213185,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005669285714285718,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3435,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.050999953739724234,
+      "total_score": 0.051,
+      "price": 0.65645,
+      "ema_trend": "BEARISH",
+      "rsi": 55.902099385313555,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999981858715385,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17905125,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/03/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0058750000000000035,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1882,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099996616559462,
+      "total_score": 0.051,
+      "price": 0.66084,
+      "ema_trend": "BEARISH",
+      "rsi": 59.91466632192214,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999986731605734,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.06107968,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/06/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00571500000000001,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2069,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.03923732157759186,
+      "total_score": 0.0392,
+      "price": 0.66236,
+      "ema_trend": "BEARISH",
+      "rsi": 61.230081032776866,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999988805302213,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66267,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13505941,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005786428571428581,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1044,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099996476314909,
+      "total_score": 0.051,
+      "price": 0.65798,
+      "ema_trend": "BEARISH",
+      "rsi": 55.4199308875701,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999986181627094,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66236,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.02802234000000001,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005682142857142866,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3411,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099996507162769,
+      "total_score": 0.051,
+      "price": 0.6619,
+      "ema_trend": "BEARISH",
+      "rsi": 59.31249840879247,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999986302599093,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66236,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17797965,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/14/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005556428571428573,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1576,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05153590494006665,
+      "total_score": 0.0515,
+      "price": 0.66244,
+      "ema_trend": "BEARISH",
+      "rsi": 59.355211852763276,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999980946396478,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0036,
+      "breakout_high": 0.66236,
+      "breakout_low": 0.63997,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09629864999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/17/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00581071428571428,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1844,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.006854901841155343,
+      "total_score": 0.0069,
+      "price": 0.6692,
+      "ema_trend": "BEARISH",
+      "rsi": 64.71921428554762,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999985733005587,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0058,
+      "breakout_high": 0.66904,
+      "breakout_low": 0.6416,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08580874999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/21/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005140714285714284,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0501,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.050746310521970144,
+      "total_score": 0.0507,
+      "price": 0.66664,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 60.58513467924955,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999978037350774,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.64751,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.0002895600000000008,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "05/23/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005076428571428569,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0345,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.285,
+      "total_score": -0.285,
+      "price": 0.66046,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 51.274506032679305,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.64751,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12445094999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/30/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005243571428571419,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2876,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699989886105964,
+      "total_score": -0.057,
+      "price": 0.66312,
+      "ema_trend": "BULLISH",
+      "rsi": 53.55524953668487,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999964512652507,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.65645,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12328454000000003,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "05/31/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005262857142857125,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.4334,
+      "ce_confidence": 1.0,
+      "article_count": 41,
+      "raw_article_count": 69,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999873382617305,
+      "total_score": -0.057,
+      "price": 0.6652,
+      "ema_trend": "BULLISH",
+      "rsi": 56.273157829959615,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999995557284818,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.65798,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.28657699999999997,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005161428571428555,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1742,
+      "ce_confidence": 0.76,
+      "article_count": 19,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999808162727594,
+      "total_score": -0.057,
+      "price": 0.66483,
+      "ema_trend": "BULLISH",
+      "rsi": 54.265734034375,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999993268867635,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.65798,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07280191999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/07/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005549999999999984,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "HIGH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0785,
+      "ce_confidence": 1.0,
+      "article_count": 37,
+      "raw_article_count": 41,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.06643157903432642,
+      "total_score": -0.0664,
+      "price": 0.6582,
+      "ema_trend": "BULLISH",
+      "rsi": 44.86674241582202,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999972356510157,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.2088,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.6601,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.026395749999999985,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/10/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005569285714285698,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1783,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999933402500626,
+      "total_score": -0.057,
+      "price": 0.66087,
+      "ema_trend": "BULLISH",
+      "rsi": 48.49526192432862,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999976632456362,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05359386999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/11/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005194999999999982,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1019,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999939086883875,
+      "total_score": -0.057,
+      "price": 0.66051,
+      "ema_trend": "BULLISH",
+      "rsi": 48.03621000777681,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999786269768,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.03129052999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/13/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005599999999999986,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1516,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999894837233174,
+      "total_score": -0.057,
+      "price": 0.66337,
+      "ema_trend": "BULLISH",
+      "rsi": 51.43872845106307,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999963100783572,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05325814000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/14/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005686428571428552,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2423,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.056999907993542556,
+      "total_score": -0.057,
+      "price": 0.6614,
+      "ema_trend": "BULLISH",
+      "rsi": 48.89218188821069,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999967717032477,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6692,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08631148999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/17/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005652857142857126,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2403,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05699991524415872,
+      "total_score": -0.057,
+      "price": 0.66102,
+      "ema_trend": "BULLISH",
+      "rsi": 48.39449030797335,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999970261108324,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.13808307,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005634285714285695,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3308,
+      "ce_confidence": 1.0,
+      "article_count": 25,
+      "raw_article_count": 35,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099987090405357,
+      "total_score": -0.051,
+      "price": 0.66551,
+      "ema_trend": "BULLISH",
+      "rsi": 54.312364485320686,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999949374138654,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.22122649999999996,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005384999999999989,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0659,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999558669901246,
+      "total_score": -0.051,
+      "price": 0.667,
+      "ema_trend": "BULLISH",
+      "rsi": 56.111025881855014,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999826929373038,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.055102849999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "06/25/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004917857142857133,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.132,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999281880737095,
+      "total_score": -0.051,
+      "price": 0.66464,
+      "ema_trend": "BULLISH",
+      "rsi": 52.25736042475007,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999718384602783,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.037431900000000004,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/26/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004940714285714283,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2968,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999347698259916,
+      "total_score": -0.051,
+      "price": 0.66485,
+      "ema_trend": "BULLISH",
+      "rsi": 52.58263761332647,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999744195396044,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13063222000000002,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "06/27/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00443071428571428,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2924,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099950518058713,
+      "total_score": -0.051,
+      "price": 0.66461,
+      "ema_trend": "BULLISH",
+      "rsi": 52.145373668333754,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999805953171423,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6687,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12053713999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004275714285714279,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.141,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 27,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099899088861288,
+      "total_score": 0.051,
+      "price": 0.66648,
+      "ema_trend": "BULLISH",
+      "rsi": 55.03782361308081,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999604270044266,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.667,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.05916599999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/03/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004413571428571421,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1941,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.09204827000147747,
+      "total_score": 0.092,
+      "price": 0.67042,
+      "ema_trend": "BULLISH",
+      "rsi": 61.29497951247442,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999936366607832,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.3886,
+      "breakout_high": 0.667,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13880735,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004258571428571429,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.242,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.01875852116326096,
+      "total_score": 0.0188,
+      "price": 0.6726,
+      "ema_trend": "BULLISH",
+      "rsi": 64.25874716896374,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999966242313058,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1784,
+      "breakout_high": 0.67042,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12260776,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004335714285714284,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2314,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.020764190262897952,
+      "total_score": -0.0208,
+      "price": 0.6749,
+      "ema_trend": "BULLISH",
+      "rsi": 67.1194447651356,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.1999997704749596,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1597,
+      "breakout_high": 0.6726,
+      "breakout_low": 0.6582,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.10434762,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00413571428571429,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0583,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.010982559560820442,
+      "total_score": 0.011,
+      "price": 0.67368,
+      "ema_trend": "BULLISH",
+      "rsi": 64.18482450867447,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999978009811778,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6749,
+      "breakout_low": 0.66051,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.026022589999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/10/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004068571428571429,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2261,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0013762051499861608,
+      "total_score": -0.0014,
+      "price": 0.6746,
+      "ema_trend": "BULLISH",
+      "rsi": 65.477243950463,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999976520124052,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6749,
+      "breakout_low": 0.66102,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10678170999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "07/12/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004163571428571441,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2048,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 27,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.021794375185255902,
+      "total_score": -0.0218,
+      "price": 0.6783,
+      "ema_trend": "BULLISH",
+      "rsi": 70.45380563643818,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999978371572574,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1811,
+      "breakout_high": 0.67565,
+      "breakout_low": 0.66102,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09079986000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004002857142857141,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1258,
+      "ce_confidence": 0.32,
+      "article_count": 8,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.22499999999999998,
+      "total_score": -0.225,
+      "price": 0.67061,
+      "ema_trend": "BULLISH",
+      "rsi": 51.65380512479864,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.6639,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1807568,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/29/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004327857142857138,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.3146,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 20,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.039028587256797455,
+      "total_score": 0.039,
+      "price": 0.65483,
+      "ema_trend": "BULLISH",
+      "rsi": 30.585247935760876,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999991904897713,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.65371,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17581460000000002,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/30/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004420714285714278,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0969,
+      "ce_confidence": 0.64,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05072953139799799,
+      "total_score": 0.0507,
+      "price": 0.6537,
+      "ema_trend": "BULLISH",
+      "rsi": 29.355240759036718,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999991544911497,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0004,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.65371,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.027834240000000007,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "07/31/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004587857142857128,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.248,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 26,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0341239180529734,
+      "total_score": 0.0341,
+      "price": 0.65436,
+      "ema_trend": "BULLISH",
+      "rsi": 31.098154870635625,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999990586891547,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.6537,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.13858580999999998,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004982142857142847,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "HIGH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2483,
+      "ce_confidence": 1.0,
+      "article_count": 25,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05382981318928752,
+      "total_score": 0.0538,
+      "price": 0.6509,
+      "ema_trend": "BULLISH",
+      "rsi": 29.037407896710874,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998972486853,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.64986,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17121375,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/06/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006071428571428561,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.181,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 47,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.01066110779091231,
+      "total_score": 0.0107,
+      "price": 0.65181,
+      "ema_trend": "BULLISH",
+      "rsi": 33.6691398409948,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998602051079,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10820974999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006397142857142856,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "HIGH",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0191,
+      "ce_confidence": 1.0,
+      "article_count": 39,
+      "raw_article_count": 52,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.285,
+      "total_score": 0.285,
+      "price": 0.6572,
+      "ema_trend": "BULLISH",
+      "rsi": 45.99678346091841,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6783,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.10655675,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006933571428571428,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1292,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.023336001963117838,
+      "total_score": -0.0233,
+      "price": 0.67301,
+      "ema_trend": "BULLISH",
+      "rsi": 66.13086575355572,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.1999999088273957,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.3727,
+      "breakout_high": 0.6666,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.04595625,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/20/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006646428571428569,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.092,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.02531588318926964,
+      "total_score": -0.0253,
+      "price": 0.67425,
+      "ema_trend": "BULLISH",
+      "rsi": 67.26108990930848,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999992035335232,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0525,
+      "breakout_high": 0.67301,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.02833944999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/21/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006354285714285717,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.141,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.017131974334660724,
+      "total_score": -0.0171,
+      "price": 0.67418,
+      "ema_trend": "BULLISH",
+      "rsi": 67.12491028426588,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999992258286964,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67425,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.08569094999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/22/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006319285714285717,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.4205,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099997727423797,
+      "total_score": 0.051,
+      "price": 0.67022,
+      "ema_trend": "BULLISH",
+      "rsi": 59.75445586997843,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999991087936458,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67425,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.22185634999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/23/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005819285714285717,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2168,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0018514946298193204,
+      "total_score": 0.0019,
+      "price": 0.6792,
+      "ema_trend": "BULLISH",
+      "rsi": 68.26434084202174,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999991952985852,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1992,
+      "breakout_high": 0.67425,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.10020770999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "08/26/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005542142857142861,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2843,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 10,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.005721431629504975,
+      "total_score": 0.0057,
+      "price": 0.67705,
+      "ema_trend": "BULLISH",
+      "rsi": 64.73501142772001,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999991532187283,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6792,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12406999999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "08/27/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005319999999999999,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2806,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.01212004538216343,
+      "total_score": -0.0121,
+      "price": 0.67922,
+      "ema_trend": "BULLISH",
+      "rsi": 66.61131442774118,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999991253156907,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.0007,
+      "breakout_high": 0.6792,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.15280655,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005103571428571422,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0666,
+      "ce_confidence": 0.96,
+      "article_count": 24,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.019328648291465328,
+      "total_score": 0.0193,
+      "price": 0.679,
+      "ema_trend": "BULLISH",
+      "rsi": 63.312032230148446,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999982938141114,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.6494,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.047003529999999995,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005463571428571409,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0926,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.255,
+      "total_score": -0.255,
+      "price": 0.6723,
+      "ema_trend": "BULLISH",
+      "rsi": 53.10495976936616,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.65179,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07079276000000001,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/06/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0054828571428571305,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "HIGH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2629,
+      "ce_confidence": 1.0,
+      "article_count": 29,
+      "raw_article_count": 33,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0509999364754196,
+      "total_score": -0.051,
+      "price": 0.667,
+      "ema_trend": "BULLISH",
+      "rsi": 46.34694298698172,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999975088399843,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.6572,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.14538324999999996,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005519285714285711,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0898,
+      "ce_confidence": 0.72,
+      "article_count": 18,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099995835074185,
+      "total_score": -0.051,
+      "price": 0.66608,
+      "ema_trend": "BULLISH",
+      "rsi": 45.328457069846166,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999983666957588,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.65854,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.027258159999999997,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/13/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005412857142857124,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0661,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099994757774632,
+      "total_score": -0.051,
+      "price": 0.6703,
+      "ema_trend": "BULLISH",
+      "rsi": 51.07000455747314,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999979442253457,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.055536430000000005,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/16/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00553428571428569,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1797,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05099990655192336,
+      "total_score": -0.051,
+      "price": 0.67492,
+      "ema_trend": "BULLISH",
+      "rsi": 56.49831828103448,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999963353695435,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10591454999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005632857142857114,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0122,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 26,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.22499999999999998,
+      "total_score": 0.225,
+      "price": 0.67605,
+      "ema_trend": "BULLISH",
+      "rsi": 57.776684106870945,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08719784,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005892857142857112,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2712,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.04325533906856034,
+      "total_score": 0.0433,
+      "price": 0.68117,
+      "ema_trend": "BULLISH",
+      "rsi": 63.25356394006832,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999995652621997,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.1028,
+      "breakout_high": 0.67968,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.16107876999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/20/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005947142857142825,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1489,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.025720736391674517,
+      "total_score": 0.0257,
+      "price": 0.6806,
+      "ema_trend": "BULLISH",
+      "rsi": 62.2849417928412,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999970119454297,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68117,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08363724,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "09/24/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005842142857142828,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "HIGH",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0657,
+      "ce_confidence": 1.0,
+      "article_count": 30,
+      "raw_article_count": 35,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.023955711888283722,
+      "total_score": 0.024,
+      "price": 0.68916,
+      "ema_trend": "BULLISH",
+      "rsi": 70.06975489567957,
+      "bb_signal": "OVERBOUGHT",
+      "macd_direction_score": 0.19999985644498802,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_UP",
+      "breakout_strength": 0.3041,
+      "breakout_high": 0.68357,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.048549749999999996,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "09/25/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006284285714285679,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2806,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.04499996098699568,
+      "total_score": 0.045,
+      "price": 0.68243,
+      "ema_trend": "BULLISH",
+      "rsi": 59.421010333204336,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999998266088697,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.68916,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11005408,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/01/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006564285714285689,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1189,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 17,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.029116763385768494,
+      "total_score": 0.0291,
+      "price": 0.68811,
+      "ema_trend": "BULLISH",
+      "rsi": 61.8824530355645,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999982610375108,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.0677407,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00660071428571427,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0711,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.22499999999999998,
+      "total_score": -0.225,
+      "price": 0.6794,
+      "ema_trend": "BULLISH",
+      "rsi": 49.80494033394793,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1286586,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/07/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006882142857142852,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1743,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 16,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0449999560814049,
+      "total_score": -0.045,
+      "price": 0.67588,
+      "ema_trend": "BULLISH",
+      "rsi": 45.81231550586496,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999980480624402,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.06516753,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00671357142857143,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2261,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499997028310889,
+      "total_score": -0.045,
+      "price": 0.67459,
+      "ema_trend": "BULLISH",
+      "rsi": 44.40732736478261,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998679249284,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66519,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.12980476999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006374285714285721,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.5439,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.044999977288218716,
+      "total_score": -0.045,
+      "price": 0.67137,
+      "ema_trend": "BULLISH",
+      "rsi": 41.025186998367474,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999989905874987,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66736,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.24033423000000007,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/15/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0055957142857142915,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1249,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.06194274781241396,
+      "total_score": -0.0619,
+      "price": 0.67002,
+      "ema_trend": "BULLISH",
+      "rsi": 40.483326583971035,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999990034940585,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0678,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.67137,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.030989760000000005,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/16/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005300714285714293,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1497,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.06021964217144068,
+      "total_score": -0.0602,
+      "price": 0.66653,
+      "ema_trend": "BULLISH",
+      "rsi": 36.942156852670514,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999990839350426,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1641,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.67002,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.03892320999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "10/21/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004987857142857139,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1136,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.036885681977158684,
+      "total_score": -0.0369,
+      "price": 0.6657,
+      "ema_trend": "BULLISH",
+      "rsi": 38.04506735032746,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998853544457,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0335,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.66653,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.035574650000000006,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "10/23/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005154285714285707,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1561,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.043199153754069984,
+      "total_score": -0.0432,
+      "price": 0.66352,
+      "ema_trend": "BULLISH",
+      "rsi": 37.262435715982136,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998730798379,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0852,
+      "breakout_high": 0.69129,
+      "breakout_low": 0.6657,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.09273690999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/01/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004681428571428559,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1598,
+      "ce_confidence": 0.6,
+      "article_count": 15,
+      "raw_article_count": 33,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.02127922065445602,
+      "total_score": 0.0213,
+      "price": 0.6559,
+      "ema_trend": "BULLISH",
+      "rsi": 32.44139303521678,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999998370442492,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.6794,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07094885,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004854285714285708,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1675,
+      "ce_confidence": 0.84,
+      "article_count": 21,
+      "raw_article_count": 23,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.02160532780321127,
+      "total_score": -0.0216,
+      "price": 0.6582,
+      "ema_trend": "BULLISH",
+      "rsi": 36.92605333747955,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999977554338455,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67588,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.10396021,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.004993571428571415,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.2152,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 33,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.050999796189055445,
+      "total_score": -0.051,
+      "price": 0.66359,
+      "ema_trend": "BULLISH",
+      "rsi": 45.97662860264207,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999992007413939,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.675,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.14422785999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/07/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006281428571428557,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "LOW",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": 0.0362,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.255,
+      "total_score": 0.255,
+      "price": 0.66759,
+      "ema_trend": "BULLISH",
+      "rsi": 51.898459021324015,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.675,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13956716,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/08/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006648571428571416,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2706,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 25,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099987436893376,
+      "total_score": 0.051,
+      "price": 0.65811,
+      "ema_trend": "BULLISH",
+      "rsi": 43.00794393968085,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.199999507329152,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.675,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17654268,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/11/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00658785714285713,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2518,
+      "ce_confidence": 0.4,
+      "article_count": 10,
+      "raw_article_count": 11,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099982907133367,
+      "total_score": 0.051,
+      "price": 0.65735,
+      "ema_trend": "BULLISH",
+      "rsi": 42.38113453704,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999932969150458,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.67246,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.13810719999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/12/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006517857142857131,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1138,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.28699573904473064,
+      "total_score": -0.287,
+      "price": 0.65316,
+      "ema_trend": "BULLISH",
+      "rsi": 39.00591563142503,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1816,
+      "breakout_high": 0.6706,
+      "breakout_low": 0.65584,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "score_multiplier": 0.85,
+      "risk_penalty": 0.5,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.07974223999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00698642857142856,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.1396,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 15,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.0569999217461629,
+      "total_score": -0.057,
+      "price": 0.6507,
+      "ema_trend": "SIDEWAYS",
+      "rsi": 40.47500426632501,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.199999725425133,
+      "is_macd_cross": false,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66827,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.09385581999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/21/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.007027142857142851,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.4238,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 12,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "BUY",
+      "tts_score": 0.285,
+      "total_score": 0.285,
+      "price": 0.65102,
+      "ema_trend": "BEARISH",
+      "rsi": 41.71761321445351,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.6,
+      "is_macd_cross": true,
+      "regime": "RANGING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "score_multiplier": 1.0,
+      "risk_penalty": 0.0,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.3519016,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/26/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.00653214285714286,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0828,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.06592746289159045,
+      "total_score": 0.0659,
+      "price": 0.64739,
+      "ema_trend": "BEARISH",
+      "rsi": 38.43893079708584,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999989750538187,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07053617,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "11/27/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005942857142857146,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0841,
+      "ce_confidence": 0.44,
+      "article_count": 11,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.0509998406410636,
+      "total_score": 0.051,
+      "price": 0.64957,
+      "ema_trend": "BEARISH",
+      "rsi": 41.74119005488731,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999993750629945,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.013412289999999993,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "11/28/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005295714285714285,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.0662,
+      "ce_confidence": 0.8,
+      "article_count": 20,
+      "raw_article_count": 21,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05099988316970286,
+      "total_score": 0.051,
+      "price": 0.64975,
+      "ema_trend": "BEARISH",
+      "rsi": 42.01775625349876,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.199999541841972,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.05696959999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/02/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005347857142857142,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0591,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05516203524101196,
+      "total_score": 0.0552,
+      "price": 0.6472,
+      "ema_trend": "BEARISH",
+      "rsi": 39.564743458557295,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999958652339644,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.007716090000000006,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/04/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005456428571428561,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.0712,
+      "ce_confidence": 0.52,
+      "article_count": 13,
+      "raw_article_count": 14,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.07510955096999186,
+      "total_score": 0.0751,
+      "price": 0.64293,
+      "ema_trend": "BEARISH",
+      "rsi": 35.8264120494339,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.1999988436486092,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1053,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64528,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "HOLD",
+    "weighted_score": 0.0010185899999999957,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/05/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005420714285714279,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1208,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.05557164392327885,
+      "total_score": 0.0556,
+      "price": 0.64516,
+      "ema_trend": "BEARISH",
+      "rsi": 39.52188058094148,
+      "bb_signal": "STABLE",
+      "macd_direction_score": 0.19999853717071267,
+      "is_macd_cross": false,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.66759,
+      "breakout_low": 0.64293,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.08713475999999999,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/06/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005561428571428574,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "confidence": "MODERATE",
+      "raw_vibe": "NEUTRAL",
+      "ce_score": -0.0341,
+      "ce_confidence": 0.68,
+      "article_count": 17,
+      "raw_article_count": 18,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "tts_score": -0.2337928157693531,
+      "total_score": -0.2338,
+      "price": 0.6386,
+      "ema_trend": "BEARISH",
+      "rsi": 33.424278698155945,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.6,
+      "is_macd_cross": true,
+      "regime": "TRANSITIONAL",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.2852,
+      "breakout_high": 0.65811,
+      "breakout_low": 0.64293,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.11700788999999999,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/09/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005846428571428578,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2322,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 19,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.04499967137357803,
+      "total_score": -0.045,
+      "price": 0.64394,
+      "ema_trend": "BEARISH",
+      "rsi": 41.35599325251689,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.1999985394381246,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.65735,
+      "breakout_low": 0.6386,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.09366012,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/10/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005967142857142861,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "HIGH",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.222,
+      "ce_confidence": 1.0,
+      "article_count": 31,
+      "raw_article_count": 49,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.010872870248300477,
+      "total_score": -0.0109,
+      "price": 0.63754,
+      "ema_trend": "BEARISH",
+      "rsi": 35.844192540331576,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999951621265175,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.0728,
+      "breakout_high": 0.65316,
+      "breakout_low": 0.6386,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.14070924999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/17/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.005775714285714296,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "LOW",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.1743,
+      "ce_confidence": 0.48,
+      "article_count": 12,
+      "raw_article_count": 13,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.019791025114399827,
+      "total_score": -0.0198,
+      "price": 0.63357,
+      "ema_trend": "BEARISH",
+      "rsi": 33.38103098622503,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999961243847986,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.1226,
+      "breakout_high": 0.65308,
+      "breakout_low": 0.6357,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.07228113,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "12/18/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006450000000000019,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2465,
+      "ce_confidence": 0.92,
+      "article_count": 23,
+      "raw_article_count": 24,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": -0.05765061675724738,
+      "total_score": -0.0577,
+      "price": 0.62162,
+      "ema_trend": "BEARISH",
+      "rsi": 25.1679890652036,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.1999998387550298,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "BREAKOUT_DOWN",
+      "breakout_strength": 0.6848,
+      "breakout_high": 0.65102,
+      "breakout_low": 0.63357,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.12609273999999998,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/19/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.0066414285714285915,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "confidence": "MODERATE",
+      "raw_vibe": "POSITIVE",
+      "ce_score": 0.2646,
+      "ce_confidence": 0.88,
+      "article_count": 22,
+      "raw_article_count": 22,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.054456606397792144,
+      "total_score": 0.0545,
+      "price": 0.62372,
+      "ema_trend": "BEARISH",
+      "rsi": 28.497361031759837,
+      "bb_signal": "OVERSOLD",
+      "macd_direction_score": -0.19999986169778708,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.65102,
+      "breakout_low": 0.62162,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.17432633,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "12/24/2024",
+    "currency_pair": "AUDUSD",
+    "atr": 0.006090000000000024,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "confidence": "LOW",
+      "raw_vibe": "NEGATIVE",
+      "ce_score": -0.3418,
+      "ce_confidence": 0.56,
+      "article_count": 14,
+      "raw_article_count": 37,
+      "explanation": "skipped"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "tts_score": 0.045449863806789906,
+      "total_score": 0.0454,
+      "price": 0.6236,
+      "ema_trend": "BEARISH",
+      "rsi": 29.28002117487557,
+      "bb_signal": "STABLE",
+      "macd_direction_score": -0.19999981124532207,
+      "is_macd_cross": false,
+      "regime": "TRENDING",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "breakout_signal": "NONE",
+      "breakout_strength": 0.0,
+      "breakout_high": 0.651,
+      "breakout_low": 0.62162,
+      "explanation": "skipped"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "score_multiplier": 0.95,
+      "risk_penalty": 0.2,
+      "explanation": "skipped"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.14741111999999998,
+    "market_reality": "BEARISH"
+  }
+]

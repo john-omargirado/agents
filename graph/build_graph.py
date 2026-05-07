@@ -7,20 +7,27 @@ from agents.siv_agent import siv_agent
 from agents.verdict_agent import verdict_agent
 
 
-USE_PARALLEL = False
-
-
 # =========================
 # RETRY LOGIC
 # =========================
 def retry_fanout(state):
     state["retry_count"] = state.get("retry_count", 0) + 1
-    state["debug_log"].append(f"Retry fanout triggered ({state['retry_count']})")
+    state.setdefault("debug_log", []).append(
+        f"Retry fanout triggered ({state['retry_count']})"
+    )
 
+    # hard stop after 2 retries
     if state["retry_count"] >= 2:
         state["action"] = "NONE"
 
     state["backtest_mode"] = True
+
+    # IMPORTANT FIX:
+    # reset only decision-related outputs, not full state
+    state["verdict"] = ""
+    state["verdict_reasoning"] = ""
+    state["siv_output"] = {}
+
     return state
 
 
@@ -34,22 +41,29 @@ def route_after_verdict(state):
 def build_graph():
     graph = StateGraph(TradingState)
 
-    graph.add_node("ce", ce_agent)
     graph.add_node("tts", tts_agent)
+    graph.add_node("ce", ce_agent)
     graph.add_node("siv", siv_agent)
     graph.add_node("verdict", verdict_agent)
     graph.add_node("retry_fanout", retry_fanout)
 
     # =========================
-    # MAIN FLOW (SEQUENTIAL SAFE)
+    # MAIN FLOW (FIXED ORDER)
     # =========================
+    # TTS first (technical base)
     graph.add_edge(START, "tts")
+
+    # CE runs AFTER TTS (uses price/regime alignment)
     graph.add_edge("tts", "ce")
+
+    # SIV validates BOTH outputs
     graph.add_edge("ce", "siv")
+
+    # final decision
     graph.add_edge("siv", "verdict")
 
     # =========================
-    # RETRY FLOW (SAFE ISOLATED PATH)
+    # RETRY FLOW
     # =========================
     graph.add_conditional_edges(
         "verdict",
@@ -60,8 +74,7 @@ def build_graph():
         }
     )
 
-    # 🔥 CRITICAL FIX:
-    # Retry does NOT re-run CE or SIV anymore
+    # retry only re-runs TTS → CE → SIV → verdict
     graph.add_edge("retry_fanout", "tts")
 
     return graph.compile()

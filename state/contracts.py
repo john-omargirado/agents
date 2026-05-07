@@ -35,17 +35,19 @@ class TTSOutput(TypedDict):
     data_stale: bool
     error: Optional[str]
 
+    atr: float
+
 
 class CEOutput(TypedDict):
     sentiment: Literal["BULLISH", "BEARISH", "NEUTRAL"]
     raw_vibe: Literal["POSITIVE", "NEGATIVE", "NEUTRAL"]
-    sentiment_score: float
-    mean_score: float
+    ce_score: float
+    ce_confidence: float
     article_count: int
+    raw_article_count: int
     confidence: Literal["HIGH", "MODERATE", "LOW"]
-    error: Optional[str]
     explanation: str
-
+    error: Optional[str]
 
 class SIVOutput(TypedDict):
     signal: Literal["COHERENT", "PARTIAL", "INCOHERENT"]
@@ -61,8 +63,13 @@ class VerdictOutput(TypedDict):
     verdict: Literal["BUY", "SELL", "HOLD"]
     weighted_score: float
     risk_multiplier: float
-    atr: float
+    verdict_reasoning: str
+
+class TradeOutput(TypedDict):
+    account_capital: float
+    position_size: float
+    risk_amount: float
+    max_exposure: float
     sl_distance: float
     tp_distance: float
-    verdict_reasoning: str
-    action: str
+    atr: float

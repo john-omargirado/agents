@@ -17,6 +17,8 @@ venv/
 env/
 ENV/
 .env
+.env.*
+!.env.example
 
 # Pytest
 .pytest_cache/

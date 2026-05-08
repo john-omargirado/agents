@@ -6,13 +6,18 @@ import os
 import uuid
 import logging
 import traceback
+import hmac
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, cast
+
 
 import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_core.runnables import RunnableConfig
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from flask_talisman import Talisman
 
 from graph.build_graph import build_graph
 from agents.chat_agent import live_chat_agent
@@ -37,7 +42,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"]  # global fallback
+)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["https://yourdomain.com"]
+    }
+})
+
+app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
+
+Talisman(app, force_https=True, content_security_policy=False)
+
 
 # ---------------------------------------------------------------------------
 # Cache
@@ -45,6 +64,26 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 _run_cache: Dict[str, Dict[str, Any]] = {}
 _MAX_CACHE = 50
+
+@app.before_request
+def basic_abuse_protection():
+    ip = get_remote_address()
+
+@app.before_request
+def check_api_key():
+    PUBLIC_ROUTES = ["/api/health", "/api/pairs", "/api/strategies"]
+
+    if request.path.startswith("/api/") and request.path not in PUBLIC_ROUTES:
+        key = request.headers.get("X-API-KEY")
+
+        if not key or not hmac.compare_digest(key, os.environ.get("API_KEY", "")):
+            return jsonify({"error": "Unauthorized"}), 401
+
+def validate_payload(body, required_fields):
+    for field in required_fields:
+        if field not in body:
+            return False
+    return True
 
 
 def _cache_run(analysis_id: str, state: Dict[str, Any]):
@@ -213,7 +252,8 @@ def strategies():
 # ---------------------------------------------------------------------------
 
 @app.route("/api/analyze", methods=["POST"])
-def analyze():
+@limiter.limit("10 per minute")
+def analyze(): 
     try:
         body = request.get_json(force=True) or {}
         pair = str(body.get("currency_pair", "EUR/USD")).upper()
@@ -233,7 +273,8 @@ def analyze():
         return jsonify(_serialize_state(final_state, analysis_id, pair))
 
     except Exception as e:
-        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
+        logger.error(traceback.format_exc())  # log server-side only
+        return jsonify({"error": "Internal server error"}), 500
 
 
 # ---------------------------------------------------------------------------
@@ -241,6 +282,7 @@ def analyze():
 # ---------------------------------------------------------------------------
 
 @app.route("/api/backtest/analyze", methods=["POST"])
+@limiter.limit("5 per minute")
 def backtest_analyze():
     try:
         body = request.get_json(force=True) or {}
@@ -265,7 +307,8 @@ def backtest_analyze():
         return jsonify(_serialize_state(final_state, analysis_id, pair))
 
     except Exception as e:
-        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
+        logger.error(traceback.format_exc())  # log server-side only
+        return jsonify({"error": "Internal server error"}), 500
 
 
 # ---------------------------------------------------------------------------
@@ -273,6 +316,7 @@ def backtest_analyze():
 # ---------------------------------------------------------------------------
 
 @app.route("/api/chat", methods=["POST"])
+@limiter.limit("30 per minute")
 def chat():
     try:
         body = request.get_json(force=True) or {}
@@ -314,7 +358,8 @@ def chat():
         return jsonify({"response": response})
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        logger.error(traceback.format_exc())  # log server-side only
+        return jsonify({"error": "Internal server error"}), 500 
 
 
 # ---------------------------------------------------------------------------
@@ -443,6 +488,7 @@ def _simulate_outcome(action, entry, sl_dist, tp_dist, candles, pair):
 # ---------------------------------------------------------------------------
 
 @app.route("/api/simulate-trade", methods=["POST"])
+@limiter.limit("20 per minute")
 def simulate_trade():
     try:
         body = request.get_json(force=True) or {}
@@ -475,13 +521,10 @@ def simulate_trade():
         return jsonify(result)
 
     except Exception as e:
-        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
-
-
-# ---------------------------------------------------------------------------
-# RUN
-# ---------------------------------------------------------------------------
+        logger.error(traceback.format_exc())  # log server-side only
+        return jsonify({"error": "Internal server error"}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True, use_reloader=False)
+    debug = os.environ.get("FLASK_ENV") == "development"
+    app.run(host="0.0.0.0", port=port, debug=debug, use_reloader=False)

@@ -1088,11 +1088,6 @@ class LiveChatAgent:
 
         intent = self.detect_intent(message)
 
-        if self._should_use_grounded_response(message, intent):
-            grounded = self._try_grounded_response(message, state)
-            if grounded:
-                logger.info("[LiveChatAgent] Grounded response (intent=%s)", intent)
-                return self.clean_response(grounded)
 
         filtered     = self.filter_state(state)
         pair         = (state or {}).get("currency_pair", "")

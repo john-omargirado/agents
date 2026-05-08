@@ -252,11 +252,11 @@ export default function App() {
                 <div className="app-header-actions">
                     <button className="header-action-btn" onClick={openTutorial}>
                         <BookOpen size={15} />
-                        Inside the System
+                        <span>Inside the System</span>
                     </button>
                     <button className="header-action-btn header-theme-btn" onClick={toggleTheme}>
                         {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-                        {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                        <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
                     </button>
                 </div>
             </header>

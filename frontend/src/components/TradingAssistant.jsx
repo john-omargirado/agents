@@ -132,9 +132,9 @@ function SkipExplanation({ reasoning, ce, tts, verdict }) {
     } else if (r.includes('atr') || r.includes('invalid sl')) {
         title = '⚠️ Volatility too low to size a position';
         body = 'ATR was near zero. Without a measurable volatility range, the system cannot calculate a safe stop-loss distance, so no trade was placed.';
-    } else if (verdict?.decision === 'HOLD' && Math.abs(wscore) < 0.20) {
+    } else if (verdict?.decision === 'HOLD' && Math.abs(wscore) < 0.10) {
         title = '⏸ Score below action threshold';
-        body = `The combined score (${wscore >= 0 ? '+' : ''}${wscore.toFixed(4)}) didn't reach the ±0.20 threshold needed for a BUY or SELL. `
+        body = `The combined score (${wscore >= 0 ? '+' : ''}${wscore.toFixed(4)}) didn't reach the ±0.10 threshold needed for a BUY or SELL. `
             + `Signals exist but aren't strong or aligned enough yet.`;
     } else {
         title = 'ℹ️ No trade taken this run';
@@ -167,7 +167,7 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
 
     const confLabel = articles >= 25 ? 'HIGH' : articles >= 15 ? 'MODERATE' : 'LOW';
     const confColor = articles >= 25 ? 'var(--buy-green)' : articles >= 15 ? 'var(--hold-yellow)' : 'var(--text-muted)';
-    const wColor = wscore >= 0.20 ? 'var(--buy-green)' : wscore <= -0.20 ? 'var(--sell-red)' : 'var(--hold-yellow)';
+    const wColor = wscore >= 0.10 ? 'var(--buy-green)' : wscore <= -0.10 ? 'var(--sell-red)' : 'var(--hold-yellow)';
 
     return (
         <div style={{
@@ -212,7 +212,7 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
                 <strong style={{ color: wColor, fontVariantNumeric: 'tabular-nums' }}>
                     {wscore >= 0 ? '+' : ''}{wscore.toFixed(4)}
                 </strong>
-                {' '}— needs to reach <strong>±0.20</strong> to trigger a trade.
+                {' '}— needs to reach <strong>±0.10</strong> to trigger a trade.
             </div>
         </div>
     );
@@ -375,7 +375,7 @@ function CandleTimeline({ candles, action, entryPrice, tpPrice, slPrice, exitCan
 }
 
 // ─── Simulation Result Card ───────────────────────────────────────────────────
-function SimTradeResult({ simResult, analysisResult }) {
+function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner' }) {
     if (!simResult) return null;
 
     const { outcome, action, entry_price, exit_price, exit_candle,
@@ -387,44 +387,52 @@ function SimTradeResult({ simResult, analysisResult }) {
                 margin: '10px 0', padding: '14px',
                 borderRadius: 'var(--radius-sm)',
                 border: '1px solid rgba(234,179,8,0.3)',
-                background: 'rgba(234,179,8,0.06)',
-                fontSize: 12,
+                background: 'rgba(234,179,8,0.06)', fontSize: 12,
             }}>
                 <div style={{ fontWeight: 700, color: '#d4a017', marginBottom: 4, fontSize: 13 }}>
                     ⏸ You chose to HOLD
                 </div>
-                <div style={{ color: 'var(--text-secondary)' }}>
-                    {message || 'No trade was placed. Shelly chose to sit this one out.'}
-                </div>
+                <div style={{ color: 'var(--text-secondary)' }}>{message}</div>
             </div>
         );
     }
 
     const isWin = outcome === 'TAKE_PROFIT';
     const isLoss = outcome === 'STOP_LOSS';
-    const isTimeExit = outcome === 'TIME_EXIT';
-
     const pnlColor = pnl_pips > 0 ? '#2EA84A' : pnl_pips < 0 ? '#dc3545' : 'var(--text-muted)';
-    const borderColor = isWin ? 'rgba(46,168,74,0.4)'
-        : isLoss ? 'rgba(220,53,69,0.4)'
-            : 'rgba(234,179,8,0.3)';
-    const bgColor = isWin ? 'rgba(46,168,74,0.06)'
-        : isLoss ? 'rgba(220,53,69,0.06)'
-            : 'rgba(234,179,8,0.05)';
-
-    const outcomeLabel = isWin ? '✅ Take Profit Hit'
-        : isLoss ? '❌ Stop Loss Hit'
-            : '⏱ Time Exit (5 candles)';
+    const borderColor = isWin ? 'rgba(46,168,74,0.4)' : isLoss ? 'rgba(220,53,69,0.4)' : 'rgba(234,179,8,0.3)';
+    const bgColor = isWin ? 'rgba(46,168,74,0.06)' : isLoss ? 'rgba(220,53,69,0.06)' : 'rgba(234,179,8,0.05)';
+    const outcomeLabel = isWin ? '✅ Take Profit Hit' : isLoss ? '❌ Stop Loss Hit' : '⏱ Time Exit (5 candles)';
     const outcomeColor = isWin ? '#2EA84A' : isLoss ? '#dc3545' : '#d4a017';
 
-    const narrative = isWin
-        ? `The ${action} trade worked out — price reached your take profit target on candle ${exit_candle}. `
-        + `You gained ${Math.abs(pnl_pips).toFixed(1)} pips.`
-        : isLoss
-            ? `The ${action} trade hit the stop loss on candle ${exit_candle}. `
-            + `You lost ${Math.abs(pnl_pips).toFixed(1)} pips — but the stop loss did its job and limited further drawdown.`
-            : `Neither TP nor SL was hit within 5 candles. The trade was automatically closed at the end of candle ${exit_candle}. `
-            + `Result: ${pnl_pips >= 0 ? '+' : ''}${pnl_pips?.toFixed(1)} pips at exit price ${exit_price?.toFixed(4)}.`;
+    const getNarrative = () => {
+        const lvl = experienceLevel || 'beginner';
+        const pips = Math.abs(pnl_pips ?? 0).toFixed(1);
+        const pnlSigned = `${(pnl_pips ?? 0) >= 0 ? '+' : ''}${(pnl_pips ?? 0).toFixed(1)}`;
+
+        if (isWin) {
+            if (lvl === 'intermediate')
+                return `${action} closed TP on C${exit_candle}. +${pips} pips.`;
+            if (lvl === 'basic')
+                return `The ${action} trade hit take profit on candle ${exit_candle}, banking ${pips} pips. Price moved cleanly in the expected direction without triggering the stop.`;
+            return `Your ${action} trade worked out — price reached the take profit target on candle ${exit_candle} and closed in profit. You gained ${pips} pips. A pip is just a tiny unit of price movement, so gaining ${pips} of them means price traveled that far in your favor. Nice one!`;
+        }
+
+        if (isLoss) {
+            if (lvl === 'intermediate')
+                return `${action} stopped out on C${exit_candle}. −${pips} pips.`;
+            if (lvl === 'basic')
+                return `Stop loss triggered on candle ${exit_candle}, costing ${pips} pips. The SL did its job — it capped the loss and prevented further drawdown.`;
+            return `Price moved against the trade and hit the stop loss on candle ${exit_candle}. You lost ${pips} pips — but that's exactly what the stop loss (SL) is there for. It's a safety net that automatically closes the trade to limit how much you can lose, no matter how far price keeps moving.`;
+        }
+
+        // time exit
+        if (lvl === 'intermediate')
+            return `Time exit C${exit_candle}. ${pnlSigned} pips at ${exit_price?.toFixed(4)}.`;
+        if (lvl === 'basic')
+            return `Neither TP nor SL was hit within 5 candles. Trade closed at candle ${exit_candle} for ${pnlSigned} pips. Price lacked follow-through in either direction.`;
+        return `Neither the take profit nor the stop loss was reached within the 5 candles we followed. The trade was automatically closed at the end of candle ${exit_candle} with a result of ${pnlSigned} pips. This happens when price moves sideways or doesn't push far enough — it's a common outcome and totally normal.`;
+    };
 
     return (
         <div style={{
@@ -436,55 +444,48 @@ function SimTradeResult({ simResult, analysisResult }) {
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
                 <div>
-                    <div style={{ fontWeight: 700, color: outcomeColor, fontSize: 13 }}>
-                        {outcomeLabel}
-                    </div>
+                    <div style={{ fontWeight: 700, color: outcomeColor, fontSize: 13 }}>{outcomeLabel}</div>
                     <div style={{ color: 'var(--text-muted)', fontSize: 11, marginTop: 2 }}>
                         {action} · exited on candle {exit_candle}
                     </div>
                 </div>
                 <div style={{
-                    textAlign: 'right',
-                    padding: '4px 10px',
-                    background: pnl_pips >= 0 ? 'rgba(46,168,74,0.15)' : 'rgba(220,53,69,0.15)',
+                    textAlign: 'right', padding: '4px 10px',
+                    background: (pnl_pips ?? 0) >= 0 ? 'rgba(46,168,74,0.15)' : 'rgba(220,53,69,0.15)',
                     borderRadius: 6,
                 }}>
                     <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>P&L</div>
                     <div style={{ fontWeight: 800, fontSize: 15, color: pnlColor, fontVariantNumeric: 'tabular-nums' }}>
-                        {pnl_pips >= 0 ? '+' : ''}{pnl_pips?.toFixed(1)} pips
+                        {(pnl_pips ?? 0) >= 0 ? '+' : ''}{(pnl_pips ?? 0).toFixed(1)} pips
                     </div>
                 </div>
             </div>
 
-            {/* Price grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6, marginBottom: 10 }}>
+            {/* Price grid — 2×2 */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, marginBottom: 10 }}>
                 {[
                     { label: 'Entry', value: entry_price?.toFixed(4), color: 'var(--text-secondary)' },
+                    { label: 'Exit Price', value: exit_price?.toFixed(4), color: outcomeColor },
                     { label: 'Take Profit', value: tp_price?.toFixed(4), color: '#2EA84A' },
                     { label: 'Stop Loss', value: sl_price?.toFixed(4), color: '#dc3545' },
-                    { label: 'Exit Price', value: exit_price?.toFixed(4), color: outcomeColor },
                 ].map(({ label, value, color }) => (
-                    <div key={label} style={{
-                        background: 'var(--bg-input)', borderRadius: 6, padding: '5px 8px',
-                    }}>
+                    <div key={label} style={{ background: 'var(--bg-input)', borderRadius: 6, padding: '5px 8px' }}>
                         <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 1 }}>{label}</div>
                         <div style={{ fontWeight: 700, color, fontVariantNumeric: 'tabular-nums', fontSize: 12 }}>{value || '—'}</div>
                     </div>
                 ))}
             </div>
 
-            {/* Narrative */}
+            {/* Level-aware narrative */}
             <div style={{
-                color: 'var(--text-secondary)', lineHeight: 1.65,
+                color: 'var(--text-secondary)', lineHeight: 1.7,
                 padding: '8px 10px',
                 background: 'var(--bg-input)',
-                borderRadius: 6,
-                marginBottom: 10,
+                borderRadius: 6, marginBottom: 10,
             }}>
-                {narrative}
+                {getNarrative()}
             </div>
 
-            {/* Candle replay */}
             <CandleTimeline
                 candles={candles}
                 action={action}
@@ -684,7 +685,7 @@ function AnalysisCard({ result, pairLabel }) {
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
-export default function TradingAssistant({ analysisResult, loading, pair, chatHistory, chatRef }) {
+export default function TradingAssistant({ analysisResult, loading, pair, chatHistory, chatRef, experienceLevel = 'beginner' }) {
     const [chatInput, setChatInput] = useState('');
     const [chatMessages, setChatMessages] = useState([]);
     const [chatLoading, setChatLoading] = useState(false);
@@ -729,12 +730,13 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
         setSimAction(action);
 
         if (action === 'HOLD') {
-            setSimResult({
-                outcome: 'HOLD',
-                action: 'HOLD',
-                message: 'No trade was placed. You chose to wait for a better opportunity.',
-                candles: [],
-            });
+            const holdMsg = {
+                beginner: "No trade placed — you chose to wait. In forex, sitting out is a completely valid call. The signals are still worth studying even when no trade is taken.",
+                basic: "You held — no position opened. Sometimes the best trade is no trade at all.",
+                intermediate: "Standing aside. No position opened.",
+            }[experienceLevel] ?? "No trade was placed. You chose to wait for a better opportunity.";
+
+            setSimResult({ outcome: 'HOLD', action: 'HOLD', message: holdMsg, candles: [] });
             return;
         }
 
@@ -1059,7 +1061,7 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
                                                 {simResult.message}
                                             </div>
                                         ) : (
-                                            <SimTradeResult simResult={simResult} analysisResult={analysisResult} />
+                                            <SimTradeResult simResult={simResult} analysisResult={analysisResult} experienceLevel={experienceLevel} />
                                         )}
 
                                         {/* Reset button to try a different action */}

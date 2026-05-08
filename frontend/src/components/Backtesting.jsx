@@ -1,52 +1,181 @@
-import React, { useState, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, BarChart3 } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, BarChart3, RefreshCw, AlertCircle } from 'lucide-react';
 import CandlestickChart from './CandlestickChart';
 import BacktestingMetrics from './BacktestingMetrics';
-import { generateBacktestDay, generateBacktestStats, BACKTEST_PAIRS } from '../utils/backtestingData';
+import { getBacktestDates, runBacktestAnalysis, simulateTrade } from '../services/api';
 
-const TOTAL_BACKTEST_DAYS = 64;
+const BACKTEST_PAIRS = [
+    { value: 'EUR/USD', label: 'EUR/USD' },
+    { value: 'USD/JPY', label: 'USD/JPY' },
+    { value: 'GBP/USD', label: 'GBP/USD' },
+    { value: 'AUD/USD', label: 'AUD/USD' },
+    { value: 'USD/CAD', label: 'USD/CAD' },
+    { value: 'USD/CHF', label: 'USD/CHF' },
+    { value: 'USD/PHP', label: 'USD/PHP' },
+];
 
 /**
  * Backtesting view: Historical strategy performance analysis
- * Displays daily signals, entry/exit prices, P&L, and cumulative performance
- * Navigable by day (1-64) with pair selector
+ * Displays real daily signals, entry/exit prices, P&L, and cumulative performance
  */
 export default function Backtesting() {
     const [pair, setPair] = useState('EUR/USD');
-    const [currentDay, setCurrentDay] = useState(1);
+    const [availableDates, setAvailableDates] = useState([]);
+    const [currentDateIndex, setCurrentDateIndex] = useState(-1);
+    
+    const [loading, setLoading] = useState(false);
+    const [analysisResult, setAnalysisResult] = useState(null);
+    const [simResult, setSimResult] = useState(null);
+    const [error, setError] = useState(null);
 
-    // Generate data for current day and cumulative stats
-    const dayData = useMemo(
-        () => generateBacktestDay(pair, currentDay, TOTAL_BACKTEST_DAYS),
-        [pair, currentDay]
-    );
+    // Track session stats
+    const [sessionResults, setSessionResults] = useState({}); // { [date]: dayData }
 
-    const stats = useMemo(
-        () => generateBacktestStats(pair, TOTAL_BACKTEST_DAYS),
-        [pair]
-    );
+    // Fetch dates when pair changes
+    useEffect(() => {
+        async function loadDates() {
+            setLoading(true);
+            setAnalysisResult(null);
+            setSimResult(null);
+            setError(null);
+            setSessionResults({});
+            
+            try {
+                const data = await getBacktestDates(pair);
+                if (data && data.dates && data.dates.length > 0) {
+                    setAvailableDates(data.dates);
+                    // Start from the most recent available backtest date
+                    setCurrentDateIndex(data.dates.length - 1);
+                } else {
+                    setAvailableDates([]);
+                    setCurrentDateIndex(-1);
+                    setError("No backtest data available for this pair.");
+                }
+            } catch (err) {
+                console.error("Failed to load backtest dates", err);
+                setError("Failed to connect to backend. Make sure the server is running.");
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadDates();
+    }, [pair]);
+
+    // Run analysis when date changes
+    useEffect(() => {
+        if (currentDateIndex >= 0 && availableDates[currentDateIndex]) {
+            runAnalysis(availableDates[currentDateIndex]);
+        }
+    }, [currentDateIndex, availableDates]);
+
+    async function runAnalysis(date) {
+        setLoading(true);
+        setError(null);
+        setAnalysisResult(null);
+        setSimResult(null);
+
+        try {
+            // Use skip_llm=true for faster backtesting unless specific analysis is needed
+            const result = await runBacktestAnalysis(pair, date, true);
+            setAnalysisResult(result);
+
+            let dayData = {
+                date: new Date(date),
+                signal: result.verdict.decision,
+                entry: result.tts.price || 0,
+                exit: result.tts.price || 0,
+                pips: 0,
+                pnl: 0,
+                win: false,
+                tradeTaken: result.verdict.decision !== 'HOLD'
+            };
+
+            if (result.verdict.decision !== 'HOLD' && result.tts.price && result.trade.sl_distance) {
+                try {
+                    const sim = await simulateTrade({
+                        currencyPair: pair,
+                        action: result.verdict.decision,
+                        entryPrice: result.tts.price,
+                        slDistance: result.trade.sl_distance,
+                        tpDistance: result.trade.tp_distance,
+                        targetDate: date
+                    });
+                    setSimResult(sim);
+                    
+                    dayData.exit = sim.exit_price;
+                    dayData.pips = sim.pnl_pips;
+                    dayData.win = sim.pnl_pips > 0;
+                    
+                    const pipsPerPoint = pair.includes('JPY') ? 100 : 10000;
+                    dayData.pnl = (sim.pnl_pips / pipsPerPoint) * 1000; // Mock $1000 basis
+                } catch (simErr) {
+                    console.error("Simulation failed", simErr);
+                }
+            }
+            
+            setSessionResults(prev => ({
+                ...prev,
+                [date]: dayData
+            }));
+
+        } catch (err) {
+            console.error("Backtest analysis failed", err);
+            setError("Failed to analyze data for " + date);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     // Navigation handlers
     const goToPreviousDay = () => {
-        setCurrentDay((prev) => Math.max(1, prev - 1));
+        setCurrentDateIndex((prev) => Math.max(0, prev - 1));
     };
 
     const goToNextDay = () => {
-        setCurrentDay((prev) => Math.min(TOTAL_BACKTEST_DAYS, prev + 1));
+        setCurrentDateIndex((prev) => Math.min(availableDates.length - 1, prev + 1));
     };
 
     const handlePairChange = (e) => {
         setPair(e.target.value);
-        setCurrentDay(1); // Reset to first day when switching pairs
     };
 
-    // Format date for display
-    const displayDate = dayData.date
-        .toLocaleDateString('en-CA', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
+    const dayData = useMemo(() => {
+        if (!analysisResult) return null;
+        return sessionResults[availableDates[currentDateIndex]];
+    }, [analysisResult, sessionResults, currentDateIndex, availableDates]);
+
+    const stats = useMemo(() => {
+        const results = Object.values(sessionResults);
+        let totalPnl = 0;
+        let wins = 0;
+        let losses = 0;
+        let holds = 0;
+        let totalTrades = 0;
+
+        results.forEach(r => {
+            totalPnl += r.pnl;
+            if (r.tradeTaken) {
+                totalTrades++;
+                if (r.win) wins++;
+                else losses++;
+            } else {
+                holds++;
+            }
         });
+
+        const winRate = totalTrades > 0 ? ((wins / totalTrades) * 100).toFixed(1) : 0;
+
+        return {
+            totalPnl: Number(totalPnl.toFixed(2)),
+            wins,
+            losses,
+            holds,
+            totalTrades,
+            winRate: parseFloat(winRate),
+        };
+    }, [sessionResults]);
+
+    const displayDate = availableDates[currentDateIndex] || '';
 
     return (
         <div className="backtesting-container">
@@ -85,7 +214,7 @@ export default function Backtesting() {
                             <button
                                 className="nav-btn"
                                 onClick={goToPreviousDay}
-                                disabled={currentDay === 1}
+                                disabled={currentDateIndex <= 0 || loading}
                                 aria-label="Previous day"
                             >
                                 <ChevronLeft size={18} />
@@ -95,33 +224,23 @@ export default function Backtesting() {
                                 id="date-picker"
                                 type="date"
                                 value={displayDate}
-                                onChange={(e) => {
-                                    // Allow manual date input (simplified)
-                                    const selected = new Date(e.target.value);
-                                    const baseDate = new Date(2024, 11, 31);
-                                    const dayDiff = Math.floor(
-                                        (baseDate - selected) / (1000 * 60 * 60 * 24)
-                                    );
-                                    const newDay = TOTAL_BACKTEST_DAYS - dayDiff;
-                                    if (newDay >= 1 && newDay <= TOTAL_BACKTEST_DAYS) {
-                                        setCurrentDay(newDay);
-                                    }
-                                }}
-                                disabled
+                                readOnly
                                 className="date-input"
                             />
 
                             <button
                                 className="nav-btn"
                                 onClick={goToNextDay}
-                                disabled={currentDay === TOTAL_BACKTEST_DAYS}
+                                disabled={currentDateIndex >= availableDates.length - 1 || loading}
                                 aria-label="Next day"
                             >
                                 <ChevronRight size={18} />
                             </button>
 
                             <span className="day-counter">
-                                Day {currentDay} / {TOTAL_BACKTEST_DAYS}
+                                {availableDates.length > 0 
+                                    ? `Day ${currentDateIndex + 1} / ${availableDates.length}`
+                                    : 'No data'}
                             </span>
                         </div>
                     </div>
@@ -134,15 +253,33 @@ export default function Backtesting() {
                 <div className="backtesting-chart-area">
                     <div className="chart-header">
                         <h2>
-                            {pair} — {displayDate}
+                            {pair} — {displayDate || '...'}
                         </h2>
                         <p>Backtest Candlestick View</p>
                     </div>
+                    
                     <CandlestickChart
                         pair={pair}
-                        ohlcvData={dayData.ohlcv}
+                        date={displayDate}
                         theme="dark"
                     />
+
+                    {loading && (
+                        <div className="chart-overlay-loading">
+                            <RefreshCw className="spinner" size={32} />
+                            <p>Analyzing historical data...</p>
+                        </div>
+                    )}
+                    
+                    {error && (
+                        <div className="chart-overlay-error">
+                            <AlertCircle size={32} />
+                            <p>{error}</p>
+                            <button onClick={() => runAnalysis(displayDate)} className="btn-retry">
+                                <RefreshCw size={14} /> Retry
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* RIGHT: Metrics Sidebar */}
@@ -151,3 +288,4 @@ export default function Backtesting() {
         </div>
     );
 }
+

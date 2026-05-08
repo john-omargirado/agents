@@ -1,3 +1,208 @@
+/* ─── Backtesting View Layout ────────────────────────────────────────── */
+
+.backtesting-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 16px;
+    width: 100%;
+}
+
+.backtesting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-left h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.header-left p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.date-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.day-counter {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 80px;
+    text-align: center;
+}
+
+/* ─── Backtesting Content ─── */
+
+.backtesting-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+}
+
+.backtesting-chart-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    min-height: 0;
+}
+
+.chart-overlay-loading,
+.chart-overlay-error {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 14, 23, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-radius: var(--radius-lg);
+}
+
+.chart-overlay-error {
+    color: var(--danger);
+}
+
+.btn-retry {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.btn-retry:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ─── Backtesting Metrics ─── */
+
+.backtest-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.metrics-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+}
+
+.metrics-section.cumulative {
+    background: var(--bg-input);
+    border-color: var(--bg-input-border);
+}
+
+.metrics-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.metrics-row:last-child {
+    margin-bottom: 0;
+}
+
+.metrics-value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.pips-positive, .pnl-positive, .win { color: var(--buy-green); }
+.pips-negative, .pnl-negative, .loss { color: var(--sell-red); }
+.hold { color: var(--hold-yellow); }
+
+
 /* ─── Date Picker Section (inside chart card) ────────────────────────── */
 
 .date-picker-section {
@@ -225,4 +430,47 @@
     border-radius: 999px;
     transition: width 0.25s ease;
     min-width: 0;
+}
+
+/* ─── Responsive Backtesting ─── */
+
+@media (max-width: 1100px) {
+    .backtesting-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 950px) {
+    .backtesting-content {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .backtest-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        overflow-y: visible;
+    }
+    .metrics-section.cumulative {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .backtest-metrics {
+        grid-template-columns: 1fr;
+    }
+    .metrics-section.cumulative {
+        grid-column: span 1;
+    }
 }

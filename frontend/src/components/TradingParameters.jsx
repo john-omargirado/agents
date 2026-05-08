@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { TrendingUp, DollarSign, Scaling, AlertTriangle, Info } from 'lucide-react';
 
+// ── Pairs ─────────────────────────────────────────────────────────────────────
+// Kept in sync with PAIR_CONFIG in CandlestickChart.jsx.
+// Every pair here has a matching /data/backtesting/forex_pairs/{SYMBOL}.json file.
+// PHP exotics are listed separately — real data exists but spreads are wide.
 const PAIRS = [
     // Major pairs — most liquid, tightest spreads, best for beginners
     { value: 'EUR/USD', label: 'EUR/USD', category: 'Major' },
@@ -25,9 +29,14 @@ const LEVERAGE_OPTIONS = [
     { value: '1:100', label: '1:100 — Extreme risk ⚠⚠', risk: 'danger' },
 ];
 
+// Hint copy per category
+const CATEGORY_HINTS = {
+    Major: 'Major pairs are the most liquid and beginner-friendly.',
+    Exotic: '⚠ Exotic pairs have higher volatility, wider spreads, and lower liquidity.',
+};
+
 function Tooltip({ text }) {
     const [visible, setVisible] = useState(false);
-
     return (
         <span
             className="tooltip-wrap"
@@ -65,7 +74,8 @@ export default function TradingParameters({
         : null;
 
     const selectedPair = PAIRS.find((p) => p.value === pair);
-    const isExotic = selectedPair?.category === 'Exotic';
+    const category = selectedPair?.category ?? 'Major';
+    const isExotic = category === 'Exotic';
 
     return (
         <form className="card" onSubmit={handleSubmit}>
@@ -86,7 +96,7 @@ export default function TradingParameters({
                 <label className="form-label">
                     <TrendingUp size={14} />
                     Forex Pair
-                    <Tooltip text="Major pairs are more stable. Exotic pairs are volatile and riskier." />
+                    <Tooltip text="Major pairs are the most liquid. Exotics are volatile and riskier." />
                 </label>
 
                 <select
@@ -108,9 +118,7 @@ export default function TradingParameters({
                 </select>
 
                 <p className={`form-hint ${isExotic ? 'form-hint-warn' : ''}`}>
-                    {isExotic
-                        ? '⚠ Exotic pairs have higher volatility and wider spreads.'
-                        : 'Major pairs are more liquid and beginner-friendly.'}
+                    {CATEGORY_HINTS[category]}
                 </p>
             </div>
 
@@ -131,9 +139,7 @@ export default function TradingParameters({
                     placeholder="1000"
                 />
 
-                <p className="form-hint">
-                    Total capital allocated for trading.
-                </p>
+                <p className="form-hint">Total capital allocated for trading.</p>
             </div>
 
             {/* LEVERAGE */}
@@ -150,9 +156,7 @@ export default function TradingParameters({
                     onChange={(e) => setLeverage(e.target.value)}
                 >
                     {LEVERAGE_OPTIONS.map((lev) => (
-                        <option key={lev.value} value={lev.value}>
-                            {lev.label}
-                        </option>
+                        <option key={lev.value} value={lev.value}>{lev.label}</option>
                     ))}
                 </select>
 
@@ -186,8 +190,7 @@ export default function TradingParameters({
                 />
 
                 {riskThreshold && (
-                    <p className={`form-hint ${parseFloat(riskThreshold) > 5 ? 'form-hint-warn' : ''
-                        }`}>
+                    <p className={`form-hint ${parseFloat(riskThreshold) > 5 ? 'form-hint-warn' : ''}`}>
                         {parseFloat(riskThreshold) > 5
                             ? '⚠ High risk. Can quickly drain your account.'
                             : parseFloat(riskThreshold) <= 2
@@ -198,16 +201,10 @@ export default function TradingParameters({
             </div>
 
             {/* DISCLAIMER */}
-            <p className="form-disclaimer">
-                Educational tool only. Not financial advice.
-            </p>
+            <p className="form-disclaimer">Educational tool only. Not financial advice.</p>
 
             {/* BUTTON */}
-            <button
-                type="submit"
-                className="btn-primary"
-                disabled={loading}
-            >
+            <button type="submit" className="btn-primary" disabled={loading}>
                 {loading ? (
                     <span className="loading-message">
                         <span className="spinner" />

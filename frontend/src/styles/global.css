@@ -1,1780 +1,2301 @@
 /* ─── Global Styles ──────────────────────────────────────────────────── */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-
-
 *,
-
 *::before,
-
 *::after {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
-
-
 
 :root {
-
     /* Background colors */
-
     --bg-primary: #0a0e17;
-
     --bg-card: #111827;
-
     --bg-card-hover: #1a2235;
-
     --bg-input: #0d1320;
-
     --bg-input-border: #1e293b;
 
-
-
     /* Accent colors */
-
     --accent: #2dd4bf;
-
     --accent-hover: #14b8a6;
-
     --accent-glow: rgba(45, 212, 191, 0.15);
-
     --on-accent: #0a0e17;
 
-
-
     /* Signal colors */
-
     --buy-green: #22c55e;
-
     --sell-red: #ef4444;
-
     --hold-yellow: #eab308;
-
     --candle-green: #22c55e;
-
     --candle-red: #ef4444;
 
-
-
     /* Text colors */
-
     --text-primary: #f1f5f9;
-
     --text-secondary: #94a3b8;
-
     --text-muted: #64748b;
 
-
-
     /* Border */
-
     --border: #1e293b;
-
     --border-light: #334155;
 
-
-
     /* Overlay & modal */
-
     --overlay-bg: rgba(2, 6, 23, 0.72);
-
     --modal-bg-start: rgba(17, 24, 39, 0.98);
-
     --modal-bg-end: rgba(13, 19, 32, 0.98);
-
     --modal-shadow: rgba(2, 6, 23, 0.55);
 
-
-
     /* Semantic interactive colors */
-
     --signal-buy-bg: rgba(34, 197, 94, 0.15);
-
     --signal-buy-border: rgba(34, 197, 94, 0.3);
-
     --signal-sell-bg: rgba(239, 68, 68, 0.15);
-
     --signal-sell-border: rgba(239, 68, 68, 0.3);
-
     --signal-hold-bg: rgba(234, 179, 8, 0.15);
-
     --signal-hold-border: rgba(234, 179, 8, 0.3);
 
-
-
     --chat-user-icon-bg: rgba(99, 102, 241, 0.2);
-
     --chat-user-icon-fg: #818cf8;
-
     --chat-user-bubble-bg: rgba(99, 102, 241, 0.12);
-
     --chat-user-bubble-border: rgba(99, 102, 241, 0.2);
-
     --chat-assistant-bubble-bg: rgba(45, 212, 191, 0.08);
-
     --chat-assistant-bubble-border: rgba(45, 212, 191, 0.15);
 
-
-
     --warn: #f59e0b;
-
     --warn-soft: #fbbf24;
-
     --warn-bg: rgba(245, 158, 11, 0.08);
-
     --warn-border: rgba(245, 158, 11, 0.3);
 
-
-
     --danger: #ef4444;
-
     --danger-bg: rgba(239, 68, 68, 0.1);
-
     --danger-border: rgba(239, 68, 68, 0.3);
-
     --danger-toast-bg: rgba(239, 68, 68, 0.9);
-
     --on-danger: #ffffff;
 
-
-
     /* Radius */
-
     --radius-sm: 8px;
-
     --radius-md: 12px;
-
     --radius-lg: 16px;
 
-
-
     /* Font */
-
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
 }
-
-
 
 :root[data-theme='light'] {
-
     --bg-primary: #f1f5f9;
-
     --bg-card: #ffffff;
-
     --bg-card-hover: #f8fafc;
-
     --bg-input: #f8fafc;
-
     --bg-input-border: #dbe2ea;
-
-
-
     --accent: #0e6a63;
-
     --accent-hover: #0d5f59;
-
     --accent-glow: rgba(14, 106, 99, 0.12);
-
     --on-accent: #ffffff;
-
-
-
     --text-primary: #0f172a;
-
     --text-secondary: #334155;
-
     --text-muted: #5b6b82;
-
-
-
     --border: #d5dde8;
-
     --border-light: #bfd0e0;
-
-
-
     --overlay-bg: rgba(15, 23, 42, 0.38);
-
     --modal-bg-start: rgba(255, 255, 255, 0.98);
-
     --modal-bg-end: rgba(248, 250, 252, 0.98);
-
     --modal-shadow: rgba(15, 23, 42, 0.2);
-
-
-
     --signal-buy-bg: rgba(22, 163, 74, 0.12);
-
     --signal-buy-border: rgba(22, 163, 74, 0.28);
-
     --signal-sell-bg: rgba(220, 38, 38, 0.12);
-
     --signal-sell-border: rgba(220, 38, 38, 0.28);
-
     --signal-hold-bg: rgba(202, 138, 4, 0.13);
-
     --signal-hold-border: rgba(202, 138, 4, 0.28);
-
-
-
     --chat-user-icon-bg: rgba(79, 70, 229, 0.14);
-
     --chat-user-icon-fg: #4f46e5;
-
     --chat-user-bubble-bg: rgba(79, 70, 229, 0.08);
-
     --chat-user-bubble-border: rgba(79, 70, 229, 0.2);
-
     --chat-assistant-bubble-bg: rgba(15, 118, 110, 0.08);
-
     --chat-assistant-bubble-border: rgba(15, 118, 110, 0.2);
-
-
-
     --warn: #9a3412;
-
     --warn-soft: #7c2d12;
-
     --warn-bg: rgba(217, 119, 6, 0.12);
-
     --warn-border: rgba(217, 119, 6, 0.28);
-
-
-
     --danger: #b91c1c;
-
     --danger-bg: rgba(220, 38, 38, 0.1);
-
     --danger-border: rgba(220, 38, 38, 0.26);
-
     --danger-toast-bg: rgba(185, 28, 28, 0.92);
-
 }
-
-
 
 html,
-
 body,
-
 #root {
-
     height: 100%;
-
     width: 100%;
-
 }
-
-
 
 body {
-
     font-family: var(--font);
-
     background-color: var(--bg-primary);
-
     color: var(--text-primary);
-
     -webkit-font-smoothing: antialiased;
-
     -moz-osx-font-smoothing: grayscale;
-
 }
-
-
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────── */
-
 ::-webkit-scrollbar {
-
     width: 6px;
-
 }
-
-
 
 ::-webkit-scrollbar-track {
-
     background: var(--bg-card);
-
 }
-
-
 
 ::-webkit-scrollbar-thumb {
-
     background: var(--border-light);
-
     border-radius: 3px;
-
 }
-
-
 
 ::-webkit-scrollbar-thumb:hover {
-
     background: var(--text-muted);
-
 }
-
-
 
 /* ─── App Layout ─────────────────────────────────────────────────────── */
-
 .app {
-
     display: flex;
-
     flex-direction: column;
-
     height: 100vh;
-
     height: 100dvh;
-
     min-height: 100vh;
-
     overflow: hidden;
-
 }
-
-
 
 .app-header {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 12px;
-
     padding: 16px 24px;
-
     border-bottom: 1px solid var(--border);
-
     background: var(--bg-primary);
-
 }
-
-
 
 .app-header-brand {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     min-width: 0;
-
 }
-
-
 
 .app-header-actions {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     flex-shrink: 0;
-
 }
-
-
 
 .app-header-icon {
-
     width: 40px;
-
     height: 40px;
-
     background: var(--accent-glow);
-
     color: var(--accent);
-
     border-radius: var(--radius-sm);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
-
-
 
 .app-header h1 {
-
     font-size: 18px;
-
     font-weight: 600;
-
     color: var(--text-primary);
-
     line-height: 1.2;
-
 }
-
-
 
 .app-header p {
-
     font-size: 12px;
-
     color: var(--accent);
-
     font-weight: 400;
-
 }
-
-
 
 .header-action-btn {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 8px;
-
     border: 1px solid var(--bg-input-border);
-
     background: var(--bg-input);
-
     color: var(--text-secondary);
-
     border-radius: var(--radius-sm);
-
     padding: 9px 12px;
-
     font-size: 12px;
-
     font-weight: 600;
-
     font-family: var(--font);
-
     cursor: pointer;
-
     transition: all 0.2s;
-
     flex-shrink: 0;
-
 }
-
-
 
 .header-action-btn:hover {
-
     border-color: var(--accent);
-
     color: var(--accent);
-
     background: var(--accent-glow);
-
 }
-
-
 
 .header-theme-btn {
-
     min-width: 108px;
-
 }
-
-
 
 /* ─── Tutorial Modal ────────────────────────────────────────────────── */
-
 .tutorial-overlay {
-
     position: fixed;
-
     inset: 0;
-
     z-index: 120;
-
     background: var(--overlay-bg);
-
     backdrop-filter: blur(6px);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
-
 }
-
-
 
 .tutorial-modal {
-
     width: min(760px, 100%);
-
     max-height: min(86dvh, 760px);
-
     background: linear-gradient(180deg, var(--modal-bg-start) 0%, var(--modal-bg-end) 100%);
-
     border: 1px solid var(--border-light);
-
     border-radius: var(--radius-lg);
-
     box-shadow: 0 18px 50px var(--modal-shadow);
-
     overflow: hidden;
-
     display: flex;
-
     flex-direction: column;
-
 }
-
-
 
 .tutorial-modal-header {
-
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
-
     gap: 16px;
-
     padding: 20px 22px 16px;
-
     border-bottom: 1px solid var(--bg-input-border);
-
 }
-
-
 
 .tutorial-title-wrap h2 {
-
     font-size: 20px;
-
     line-height: 1.25;
-
     margin-bottom: 8px;
-
 }
-
-
 
 .tutorial-title-wrap p {
-
     font-size: 13px;
-
     line-height: 1.6;
-
     color: var(--text-secondary);
-
 }
-
-
 
 .tutorial-close-btn {
-
     width: 34px;
-
     height: 34px;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: 8px;
-
     background: var(--bg-input);
-
     color: var(--text-muted);
-
     font-size: 20px;
-
     line-height: 1;
-
     cursor: pointer;
-
     flex-shrink: 0;
-
     transition: all 0.2s;
-
 }
-
-
 
 .tutorial-close-btn:hover {
-
     color: var(--text-primary);
-
     border-color: var(--text-muted);
-
 }
-
-
 
 .tutorial-modal-body {
-
     padding: 18px 22px;
-
     overflow-y: auto;
-
     display: flex;
-
     flex-direction: column;
-
     gap: 14px;
-
 }
-
-
 
 .tutorial-carousel {
-
     display: grid;
-
     grid-template-columns: auto minmax(0, 1fr) auto;
-
     gap: 12px;
-
     align-items: center;
-
 }
-
-
 
 .tutorial-slide-frame {
-
     margin: 0;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-md);
-
     overflow: hidden;
-
     background: var(--bg-input);
-
     padding: 10px;
-
 }
-
-
 
 .tutorial-slide-image {
-
     width: 100%;
-
     aspect-ratio: 16 / 9;
-
     object-fit: contain;
-
     border-radius: 10px;
-
     background: color-mix(in srgb, var(--bg-card) 80%, #0b1220 20%);
-
     display: block;
-
 }
-
-
 
 .tutorial-slide-frame figcaption {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 12px;
-
     border-top: 1px solid var(--bg-input-border);
-
     padding: 10px 14px;
-
 }
-
-
 
 .tutorial-slide-step {
-
     font-size: 12px;
-
     font-weight: 700;
-
     color: var(--accent);
-
     letter-spacing: 0.4px;
-
     text-transform: uppercase;
-
 }
-
-
 
 .tutorial-slide-title {
-
     font-size: 13px;
-
     font-weight: 600;
-
     color: var(--text-primary);
-
 }
-
-
 
 .tutorial-nav-btn {
-
     width: 34px;
-
     height: 34px;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: 999px;
-
     background: var(--bg-input);
-
     color: var(--text-secondary);
-
     cursor: pointer;
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     transition: all 0.2s;
-
 }
-
-
 
 .tutorial-nav-btn:hover {
-
     color: var(--accent);
-
     border-color: var(--accent);
-
     background: var(--accent-glow);
-
 }
-
-
 
 .tutorial-pagination {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 8px;
-
 }
-
-
 
 .tutorial-dot {
-
     width: 8px;
-
     height: 8px;
-
     border: 0;
-
     border-radius: 999px;
-
     background: var(--border-light);
-
     cursor: pointer;
-
     transition: all 0.2s;
-
 }
-
-
 
 .tutorial-dot.is-active {
-
     width: 26px;
-
     background: var(--accent);
-
 }
-
-
 
 .tutorial-narrator {
-
     display: grid;
-
     grid-template-columns: 132px minmax(0, 1fr);
-
     gap: 12px;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-md);
-
     padding: 12px;
-
     background: var(--bg-input);
-
 }
-
-
 
 .tutorial-mascot {
-
     border-radius: 12px;
-
     overflow: hidden;
-
     border: 1px solid var(--border-light);
-
     background: color-mix(in srgb, var(--accent) 10%, var(--bg-card));
-
 }
-
-
 
 .tutorial-mascot-video,
-
 .tutorial-mascot-fallback {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
     display: block;
-
     aspect-ratio: 1 / 1;
-
 }
-
-
 
 .tutorial-mascot-fallback {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     text-align: center;
-
     font-size: 12px;
-
     font-weight: 600;
-
     color: var(--text-secondary);
-
     padding: 10px;
-
 }
-
-
 
 .tutorial-narration-box {
-
     min-width: 0;
-
 }
-
-
 
 .tutorial-narration-label {
-
     font-size: 11px;
-
     color: var(--accent);
-
     text-transform: uppercase;
-
     letter-spacing: 0.5px;
-
     font-weight: 700;
-
     margin-bottom: 8px;
-
 }
-
-
 
 .tutorial-narration-text {
-
     color: var(--text-secondary);
-
     font-size: 14px;
-
     line-height: 1.65;
-
     min-height: 92px;
-
 }
-
-
 
 .type-cursor {
-
     margin-left: 2px;
-
     color: var(--accent);
-
     opacity: 0;
-
 }
-
-
 
 .type-cursor.is-active {
-
     opacity: 1;
-
     animation: blink-cursor 0.95s steps(1, end) infinite;
-
 }
-
-
 
 @keyframes blink-cursor {
 
     0%,
-
     49% {
-
         opacity: 1;
-
     }
 
     50%,
-
     100% {
-
         opacity: 0;
-
     }
-
 }
-
-
 
 .tutorial-modal-footer {
-
     border-top: 1px solid var(--bg-input-border);
-
     padding: 14px 22px 18px;
-
     display: flex;
-
     justify-content: flex-end;
-
 }
-
-
 
 .tutorial-primary-btn {
-
     background: var(--accent);
-
     color: var(--on-accent);
-
     border: none;
-
     border-radius: var(--radius-sm);
-
     padding: 10px 14px;
-
     font-size: 13px;
-
     font-weight: 700;
-
     cursor: pointer;
-
     transition: background 0.2s;
-
 }
-
-
 
 .tutorial-primary-btn:hover {
-
     background: var(--accent-hover);
-
 }
 
-
-
-@media (max-width: 720px) {
-
-    .tutorial-overlay {
-
-        padding: 12px;
-
-    }
-
-
-
-    .tutorial-modal {
-
-        width: 100%;
-
-        max-height: min(92dvh, 920px);
-
-    }
-
-
-
-    .tutorial-modal-header {
-
-        padding: 16px 16px 12px;
-
-    }
-
-
-
-    .tutorial-modal-body {
-
-        padding: 14px 16px;
-
-    }
-
-
-
-    .tutorial-carousel {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-
-    .tutorial-nav-btn {
-
-        display: none;
-
-    }
-
-
-
-    .tutorial-narrator {
-
-        grid-template-columns: 96px minmax(0, 1fr);
-
-    }
-
-
-
-    .tutorial-narration-text {
-
-        min-height: 118px;
-
-        font-size: 13px;
-
-    }
-
-}
-
-
-
+/* ─── App Body (FIXED: Fluid heights & auto-fit grids) ───────────────── */
 .app-body {
-
     display: grid;
-
     grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) minmax(300px, 380px);
-
     gap: 16px;
-
     padding: 16px 24px;
-
     flex: 1;
-
     overflow: hidden;
-
     min-height: 0;
-
 }
-
-
 
 .app-body>* {
-
     min-width: 0;
-
 }
 
+/* ─── RESPONSIVE BREAKPOINTS (Consolidated & Fixed) ─────────────────── */
+@media (max-width: 1280px) {
+    .app-body {
+        grid-template-columns: 280px minmax(0, 1fr);
+        overflow-y: auto;
+    }
 
+    .assistant-card {
+        grid-column: 1 / -1;
+        min-height: clamp(300px, 40vh, 500px);
+        max-height: clamp(400px, 60vh, 700px);
+    }
+}
+
+@media (min-width: 1280px) {
+    .tutorial-modal {
+        width: min(840px, 95%);
+        max-height: min(90dvh, 820px);
+    }
+
+    .tutorial-modal-header {
+        padding: 24px 28px 20px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 22px;
+    }
+
+    .tutorial-modal-body {
+        padding: 22px 28px;
+        gap: 18px;
+    }
+
+    .tutorial-carousel {
+        gap: 16px;
+    }
+
+    .tutorial-slide-frame {
+        padding: 12px;
+        border-radius: var(--radius-lg);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 12px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 12px 16px;
+        gap: 14px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 13px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 14px;
+    }
+
+    .tutorial-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 140px minmax(0, 1fr);
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .tutorial-mascot {
+        border-radius: 14px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 15px;
+        min-height: 100px;
+    }
+
+    .tutorial-primary-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+}
+
+/* ─── Tutorial Modal: Tablet Landscape (1024px - 768px) ─────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .tutorial-overlay {
+        padding: 16px;
+    }
+
+    .tutorial-modal {
+        width: min(95%, 800px);
+        max-height: min(88dvh, 780px);
+    }
+
+    .tutorial-modal-header {
+        padding: 18px 20px 14px;
+        gap: 12px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 19px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 12px;
+    }
+
+    .tutorial-close-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .tutorial-modal-body {
+        padding: 16px 20px;
+        gap: 12px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 10px;
+    }
+
+    .tutorial-slide-frame {
+        padding: 9px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 9px 12px;
+        gap: 10px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 11px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 12px;
+    }
+
+    .tutorial-nav-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tutorial-pagination {
+        gap: 6px;
+    }
+
+    .tutorial-dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 22px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .tutorial-mascot-video,
+    .tutorial-mascot-fallback {
+        aspect-ratio: 1 / 1;
+    }
+
+    .tutorial-narration-label {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 13px;
+        line-height: 1.6;
+        min-height: 95px;
+    }
+
+    .tutorial-modal-footer {
+        padding: 12px 20px 16px;
+    }
+
+    .tutorial-primary-btn {
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+
+    /* Touch-friendly targets */
+    .tutorial-nav-btn,
+    .tutorial-close-btn,
+    .tutorial-dot {
+        min-width: 40px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tutorial-dot {
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        min-height: 8px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 24px;
+        min-width: 24px;
+    }
+}
+
+/* ─── Tutorial Modal: Tablet Portrait (767px - 600px) ───────────────── */
+@media (min-width: 600px) and (max-width: 767px) {
+    .tutorial-overlay {
+        padding: 14px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(90dvh, 850px);
+        border-radius: var(--radius-lg);
+    }
+
+    .tutorial-modal-header {
+        padding: 16px 18px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .tutorial-title-wrap {
+        width: 100%;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 12px;
+    }
+
+    .tutorial-close-btn {
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 14px 18px;
+        gap: 10px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+        /* Hide arrows, rely on dots */
+    }
+
+    .tutorial-slide-frame {
+        padding: 8px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 8px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .tutorial-pagination {
+        margin-top: 4px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 100px minmax(0, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .tutorial-mascot {
+        width: 100%;
+        height: auto;
+    }
+
+    .tutorial-mascot-video,
+    .tutorial-mascot-fallback {
+        aspect-ratio: 1 / 1;
+    }
+
+    .tutorial-narration-text {
+        font-size: 12px;
+        min-height: 110px;
+    }
+
+    .type-cursor {
+        margin-left: 1px;
+    }
+
+    .tutorial-modal-footer {
+        padding: 10px 18px 14px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ─── Tutorial Modal: Mobile (599px - 480px) ────────────────────────── */
+@media (max-width: 599px) and (min-width: 480px) {
+    .tutorial-overlay {
+        padding: 12px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(92dvh, 900px);
+        border-radius: var(--radius-md);
+    }
+
+    .tutorial-modal-header {
+        padding: 14px 16px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 17px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 11px;
+    }
+
+    .tutorial-close-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame {
+        padding: 6px;
+        border-radius: var(--radius-sm);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 8px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 6px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 10px;
+        letter-spacing: 0.3px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 11px;
+    }
+
+    .tutorial-pagination {
+        gap: 5px;
+        margin-top: 2px;
+    }
+
+    .tutorial-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 20px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .tutorial-mascot {
+        border-radius: 10px;
+    }
+
+    .tutorial-narration-label {
+        font-size: 9px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 12px;
+        line-height: 1.55;
+        min-height: 100px;
+    }
+
+    .type-cursor {
+        animation-duration: 0.85s;
+    }
+
+    .tutorial-modal-footer {
+        padding: 8px 16px 12px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 9px;
+        font-size: 12px;
+    }
+}
+
+/* ─── Tutorial Modal: Small Mobile (<480px) ─────────────────────────── */
+@media (max-width: 479px) {
+    .tutorial-overlay {
+        padding: 8px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(95dvh, 100%);
+        border-radius: var(--radius-sm);
+        border: none;
+    }
+
+    .tutorial-modal-header {
+        padding: 12px 14px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        border-bottom-width: 1px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .tutorial-close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 10px 14px;
+        gap: 6px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame {
+        padding: 4px;
+        border-radius: var(--radius-sm);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 6px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 4px 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        border-top-width: 1px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 9px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 10px;
+    }
+
+    .tutorial-pagination {
+        gap: 4px;
+    }
+
+    .tutorial-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 18px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .tutorial-mascot {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    .tutorial-mascot-video,
+    .tutorial-mascot-fallback {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+    }
+
+    .tutorial-narration-box {
+        text-align: center;
+    }
+
+    .tutorial-narration-label {
+        font-size: 9px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 11px;
+        line-height: 1.5;
+        min-height: 90px;
+    }
+
+    .type-cursor {
+        margin-left: 1px;
+        animation-duration: 0.8s;
+    }
+
+    .tutorial-modal-footer {
+        padding: 6px 14px 10px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+        border-radius: var(--radius-sm);
+    }
+
+    /* Extra small: mascot fallback text */
+    .tutorial-mascot-fallback {
+        font-size: 10px;
+        padding: 8px;
+    }
+}
+
+/* ─── iPhone SE / Small Mobile (≤375px) ─────────────────────────────── */
+@media (max-width: 375px) {
+
+    /* App Header - Ultra Compact */
+    .app-header {
+        padding: 8px 12px;
+        min-height: 56px;
+        gap: 8px;
+    }
+
+    .app-header-brand h1 {
+        font-size: 16px;
+    }
+
+    .app-header-brand p {
+        display: none;
+    }
+
+    .app-header-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Header Actions - Icon Only */
+    .header-action-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-action-btn svg {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+
+    .header-theme-btn {
+        min-width: 36px;
+        width: 36px;
+        padding: 0;
+    }
+
+    /* App Body - Single Column, Fluid */
+    .app-body {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    /* Cards - Compact Padding */
+    .card {
+        padding: 14px;
+        border-radius: var(--radius-md);
+    }
+
+    .card-header {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    .card-header p {
+        font-size: 11px;
+    }
+
+    /* Chart Card - Minimum Viable Height */
+    .chart-card {
+        padding: 14px;
+        min-height: auto;
+    }
+
+    .chart-container {
+        min-height: clamp(220px, 35vh, 280px);
+    }
+
+    .chart-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .chart-pair h2 {
+        font-size: 16px;
+    }
+
+    .chart-price {
+        font-size: 18px;
+    }
+
+    .chart-change {
+        font-size: 12px;
+    }
+
+    .chart-legend-item {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .legend-swatch {
+        width: 12px;
+        height: 8px;
+    }
+
+    /* Assistant Card - Compact Chat */
+    .assistant-card {
+        padding: 14px;
+    }
+
+    .assistant-messages {
+        margin-bottom: 12px;
+    }
+
+    .chat-msg {
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .chat-msg-icon {
+        width: 26px;
+        height: 26px;
+        margin-top: 1px;
+    }
+
+    .chat-msg-bubble {
+        max-width: 92%;
+        padding: 8px 11px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .chat-input-row {
+        gap: 8px;
+    }
+
+    .chat-input {
+        padding: 10px 13px;
+        font-size: 14px;
+        /* Maintain readability */
+    }
+
+    .chat-send-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-send-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Stats & Risk Grids - 2 Columns Max */
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .stat-item {
+        padding: 9px 11px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .stat-value {
+        font-size: 14px;
+    }
+
+    .risk-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .risk-item {
+        padding: 8px 10px;
+    }
+
+    .risk-label {
+        font-size: 9px;
+    }
+
+    .risk-value {
+        font-size: 12px;
+    }
+
+    /* Form Elements - Full Width, Larger Tap */
+    .form-input,
+    .form-select {
+        padding: 10px 13px;
+        font-size: 14px;
+    }
+
+    .form-label {
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .btn-primary {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Signal Badge - Compact */
+    .signal-badge {
+        padding: 4px 12px;
+        font-size: 12px;
+        gap: 4px;
+    }
+
+    .signal-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Orchestrator Info - Tight */
+    .orchestrator-info {
+        padding: 6px 10px;
+        font-size: 10px;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .orchestrator-info svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .agent-detail-row {
+        padding: 4px 0;
+        font-size: 11px;
+    }
+
+    /* Tutorial Modal - Ultra Compact */
+    .tutorial-overlay {
+        padding: 8px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(96dvh, 100%);
+        border-radius: var(--radius-sm);
+        border: none;
+    }
+
+    .tutorial-modal-header {
+        padding: 10px 12px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 15px;
+        line-height: 1.3;
+        margin-bottom: 2px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .tutorial-close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame {
+        padding: 4px;
+        border-radius: var(--radius-sm);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 6px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 4px 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 9px;
+        letter-spacing: 0.2px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 10px;
+    }
+
+    .tutorial-pagination {
+        gap: 4px;
+    }
+
+    .tutorial-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 16px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .tutorial-mascot {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    .tutorial-mascot-video,
+    .tutorial-mascot-fallback {
+        border-radius: 50%;
+    }
+
+    .tutorial-mascot-fallback {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    .tutorial-narration-label {
+        font-size: 9px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 11px;
+        line-height: 1.5;
+        min-height: 80px;
+    }
+
+    .type-cursor {
+        margin-left: 1px;
+        animation-duration: 0.75s;
+    }
+
+    .tutorial-modal-footer {
+        padding: 6px 12px 10px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 240px;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    /* Tooltip - Narrow */
+    .tooltip-box {
+        width: 200px;
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    /* History Panel - Compact */
+    .history-toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .history-session-item {
+        padding: 10px 12px;
+    }
+
+    .history-session-pair {
+        font-size: 13px;
+    }
+
+    .history-session-meta {
+        font-size: 10px;
+        gap: 8px;
+    }
+
+    .history-session-preview {
+        font-size: 11px;
+    }
+
+    /* Leverage Exposure - Centered */
+    .leverage-exposure {
+        padding: 6px 8px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* Ensure touch targets stay ≥44px */
+    .header-action-btn,
+    .chat-send-btn,
+    .tutorial-close-btn,
+    .tutorial-primary-btn,
+    .history-toggle-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tutorial-dot {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    .tutorial-dot.is-active {
+        width: auto;
+    }
+}
+
+/* ─── Very Small Screens (≤320px) ───────────────────────────────────── */
+@media (max-width: 320px) {
+
+    /* Further compress everything */
+    .app-header {
+        padding: 6px 10px;
+        min-height: 52px;
+    }
+
+    .app-header h1 {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .chart-container {
+        min-height: clamp(200px, 30vh, 240px);
+    }
+
+    .chart-price {
+        font-size: 16px;
+    }
+
+    .chat-msg-bubble {
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+
+    .chat-input {
+        font-size: 13px;
+    }
+
+    .stat-value,
+    .risk-value {
+        font-size: 13px;
+    }
+
+    .tutorial-modal-header {
+        padding: 8px 10px 6px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 14px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 10px;
+        min-height: 70px;
+    }
+
+    .tutorial-mascot {
+        width: 56px;
+        height: 56px;
+    }
+
+    .btn-primary,
+    .tutorial-primary-btn {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* Hide non-essential elements */
+    .chart-timeframe,
+    .agent-detail-extra,
+    .history-panel-time {
+        display: none;
+    }
+}
+
+/* ─── iPhone SE: Landscape Mode ─────────────────────────────────────── */
+@media (max-height: 320px) and (orientation: landscape) and (max-width: 568px) {
+    .tutorial-modal {
+        max-height: 98dvh;
+    }
+
+    .tutorial-modal-body {
+        max-height: 50dvh;
+        overflow-y: auto;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .tutorial-mascot {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tutorial-narration-text {
+        min-height: 50px;
+        font-size: 10px;
+    }
+
+    .tutorial-slide-image {
+        aspect-ratio: 16 / 6;
+    }
+
+    .app-body {
+        padding: 8px;
+    }
+
+    .chart-container {
+        min-height: 180px;
+    }
+
+    .assistant-messages {
+        max-height: 40dvh;
+    }
+}
+
+/* ─── Small Screen Accessibility ────────────────────────────────────── */
+@media (max-width: 375px) and (prefers-reduced-motion: reduce) {
+    .type-cursor.is-active {
+        animation: none;
+        opacity: 1;
+    }
+
+    .chat-typing .dot {
+        animation: none;
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 375px) and (prefers-contrast: high) {
+
+    .card,
+    .tutorial-modal,
+    .tutorial-slide-frame,
+    .tutorial-narrator {
+        border-width: 2px;
+    }
+
+    .tutorial-dot {
+        border: 1px solid currentColor;
+    }
+}
+
+/* ─── Tutorial: Orientation Changes (Landscape Mobile) ──────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+    .tutorial-modal {
+        max-height: 95dvh;
+    }
+
+    .tutorial-modal-body {
+        max-height: 60dvh;
+        overflow-y: auto;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 80px minmax(0, 1fr);
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .tutorial-mascot {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tutorial-narration-text {
+        min-height: 70px;
+        font-size: 11px;
+    }
+
+    .tutorial-slide-image {
+        aspect-ratio: 16 / 7;
+    }
+}
+
+/* ─── Tutorial: Reduced Motion Preference ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .type-cursor.is-active {
+        animation: none;
+        opacity: 1;
+    }
+
+    .tutorial-nav-btn,
+    .tutorial-close-btn,
+    .tutorial-primary-btn,
+    .header-action-btn {
+        transition: none;
+    }
+
+    .tutorial-dot {
+        transition: none;
+    }
+}
+
+/* ─── Tutorial: High Contrast Mode ──────────────────────────────────── */
+@media (prefers-contrast: high) {
+    .tutorial-modal {
+        border-width: 2px;
+    }
+
+    .tutorial-slide-frame,
+    .tutorial-narrator {
+        border-width: 2px;
+    }
+
+    .tutorial-dot {
+        border: 1px solid currentColor;
+    }
+
+    .tutorial-primary-btn {
+        border: 2px solid var(--on-accent);
+    }
+}
+
+@media (max-width: 900px) {
+    .app-body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .chart-card {
+        order: -1;
+        min-height: clamp(350px, 45vh, 550px);
+    }
+
+    .assistant-card {
+        min-height: clamp(300px, 40vh, 500px);
+        max-height: none;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .chart-right-controls {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chart-price-info {
+        text-align: left;
+    }
+}
+
+@media (max-width: 640px) {
+    .app-header {
+        padding: 10px 16px;
+        height: auto;
+        min-height: 64px;
+    }
+
+    .app-header-brand p {
+        display: none;
+    }
+
+    .header-action-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-action-btn svg {
+        margin: 0;
+    }
+
+    .chart-container {
+        min-height: clamp(250px, 35vh, 300px);
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .risk-row {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 8px;
+    }
+
+    .stat-item,
+    .risk-item {
+        padding: 10px 12px;
+    }
+
+    .chat-msg-bubble {
+        max-width: 90%;
+        padding: 8px 12px;
+    }
+
+    .chat-input {
+        font-size: 14px;
+    }
+
+    .chart-right-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .chart-legend {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .chart-price-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-price {
+        font-size: 20px;
+    }
+
+    .leverage-exposure {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .form-hint {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .tutorial-overlay {
+        padding: 12px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(92dvh, 920px);
+    }
+
+    .tutorial-modal-header {
+        padding: 16px 16px 12px;
+    }
+
+    .tutorial-modal-body {
+        padding: 14px 16px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 96px minmax(0, 1fr);
+    }
+
+    .tutorial-narration-text {
+        min-height: 118px;
+        font-size: 13px;
+    }
+
+    .date-shortcuts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .date-shortcuts-label {
+        grid-column: span 2;
+        text-align: center;
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .tutorial-narrator {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .tutorial-mascot {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+}
 
 /* ─── Card ───────────────────────────────────────────────────────────── */
-
 .card {
-
     background: var(--bg-card);
-
     border: 1px solid var(--border);
-
     border-radius: var(--radius-lg);
-
     padding: 24px;
-
     display: flex;
-
     flex-direction: column;
-
-    overflow: hidden;
-
+    overflow: inherit;
+    min-height: 400px;
 }
-
-
 
 .card-header {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     margin-bottom: 20px;
-
 }
-
-
 
 .card-header-icon {
-
     width: 32px;
-
     height: 32px;
-
     background: var(--accent-glow);
-
     color: var(--accent);
-
     border-radius: var(--radius-sm);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
-
-
 
 .card-header h2 {
-
     font-size: 16px;
-
     font-weight: 600;
-
 }
-
-
 
 .card-header p {
-
     font-size: 12px;
-
     color: var(--text-secondary);
-
 }
-
-
 
 /* ─── Form Elements ──────────────────────────────────────────────────── */
-
 .form-group {
-
     margin-bottom: 18px;
-
 }
-
-
 
 .form-label {
-
     display: flex;
-
     align-items: center;
-
     gap: 6px;
-
     font-size: 12px;
-
     color: var(--text-secondary);
-
     margin-bottom: 8px;
-
     font-weight: 400;
-
 }
-
-
 
 .form-label svg {
-
     width: 14px;
-
     height: 14px;
-
     color: var(--accent);
-
 }
-
-
 
 .form-input,
-
 .form-select {
-
     width: 100%;
-
     padding: 12px 16px;
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     color: var(--text-primary);
-
     font-size: 14px;
-
     font-family: var(--font);
-
     outline: none;
-
     transition: border-color 0.2s;
-
 }
-
-
 
 .form-input:focus,
-
 .form-select:focus {
-
     border-color: var(--accent);
-
     box-shadow: 0 0 0 2px var(--accent-glow);
-
 }
-
-
 
 .form-select {
-
     appearance: none;
-
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-
     background-repeat: no-repeat;
-
     background-position: right 14px center;
-
     padding-right: 36px;
-
 }
-
-
 
 .form-select option {
-
     background: var(--bg-card);
-
     color: var(--text-primary);
-
 }
-
-
 
 /* ─── Primary Button ─────────────────────────────────────────────────── */
-
 .btn-primary {
-
     width: 100%;
-
     padding: 14px;
-
     background: var(--accent);
-
     color: var(--on-accent);
-
     border: none;
-
     border-radius: var(--radius-sm);
-
     font-size: 15px;
-
     font-weight: 600;
-
     font-family: var(--font);
-
     cursor: pointer;
-
     transition: background 0.2s, transform 0.1s;
-
     margin-top: auto;
-
 }
-
-
 
 .btn-primary:hover {
-
     background: var(--accent-hover);
-
 }
-
-
 
 .btn-primary:active {
-
     transform: scale(0.98);
-
 }
-
-
 
 .btn-primary:disabled {
-
     opacity: 0.6;
-
     cursor: not-allowed;
-
     transform: none;
-
 }
-
-
 
 /* ─── Chart Card ─────────────────────────────────────────────────────── */
-
 .chart-card {
-
     padding: 20px;
-
+    min-height: 400px;
 }
-
-
 
 .chart-header {
-
     display: flex;
-
     align-items: flex-start;
-
     justify-content: space-between;
-
     margin-bottom: 16px;
-
+    gap: 12px;
 }
 
+@media (max-width: 500px) {
+    .chart-right-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
 
+    .chart-legend {
+        align-self: flex-start;
+    }
+
+    .chart-price {
+        font-size: 20px;
+    }
+}
 
 .chart-pair {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
 }
-
-
 
 .chart-pair-icon {
-
     width: 32px;
-
     height: 32px;
-
     background: var(--accent-glow);
-
     color: var(--accent);
-
     border-radius: var(--radius-sm);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
-
-
 
 .chart-pair h2 {
-
     font-size: 18px;
-
     font-weight: 700;
-
 }
-
-
 
 .chart-pair .chart-timeframe {
-
     font-size: 12px;
-
     color: var(--text-secondary);
-
     font-weight: 400;
-
 }
-
-
 
 .chart-price-info {
-
     text-align: right;
-
 }
-
-
 
 .chart-right-controls {
-
     display: flex;
-
     align-items: flex-start;
-
     gap: 14px;
-
 }
-
-
 
 .chart-legend {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     align-self: center;
-
 }
-
-
 
 .chart-legend-item {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 6px;
-
     font-size: 11px;
-
     color: var(--text-secondary);
-
     padding: 4px 8px;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: 999px;
-
     background: var(--bg-input);
-
 }
-
-
 
 .legend-swatch {
-
     width: 14px;
-
     height: 10px;
-
     border-radius: 3px;
-
     border: 1px solid currentColor;
-
 }
-
-
 
 .chart-legend-item.default-up {
-
     color: var(--buy-green);
-
 }
-
-
 
 .chart-legend-item.default-down {
-
     color: var(--sell-red);
-
 }
-
-
 
 .chart-legend-item.accessible-up {
-
     color: #2563eb;
-
 }
-
-
 
 .chart-legend-item.accessible-down {
-
     color: #ea580c;
-
 }
-
-
 
 .chart-legend-item.default-up .legend-swatch,
-
 .chart-legend-item.default-down .legend-swatch {
-
     background: currentColor;
-
 }
-
-
 
 .chart-legend-item.accessible-up .legend-swatch {
-
     background: repeating-linear-gradient(45deg, currentColor 0, currentColor 2px, transparent 2px, transparent 4px);
-
 }
-
-
 
 .chart-legend-item.accessible-down .legend-swatch {
-
     background: repeating-linear-gradient(-45deg, currentColor 0, currentColor 2px, transparent 2px, transparent 4px);
-
 }
-
-
 
 .chart-a11y-btn {
-
     margin-bottom: 6px;
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     color: var(--text-secondary);
-
     border-radius: 999px;
-
     padding: 5px 10px;
-
     font-size: 11px;
-
     font-weight: 600;
-
     font-family: var(--font);
-
     cursor: pointer;
-
     transition: all 0.2s;
-
 }
-
-
 
 .chart-a11y-btn:hover {
-
     border-color: var(--accent);
-
     color: var(--accent);
-
     background: var(--accent-glow);
-
 }
-
-
 
 .chart-price {
-
     font-size: 24px;
-
     font-weight: 700;
-
     font-variant-numeric: tabular-nums;
-
 }
-
-
 
 .chart-change {
-
     font-size: 13px;
-
     font-weight: 500;
-
     font-variant-numeric: tabular-nums;
-
 }
-
-
 
 .chart-change.positive {
-
     color: var(--buy-green);
-
 }
-
-
 
 .chart-change.negative {
-
     color: var(--sell-red);
-
 }
-
-
 
 .chart-container {
-
     flex: 1;
-
     min-height: 0;
-
     border-radius: var(--radius-sm);
-
     overflow: hidden;
-
 }
-
-
 
 /* ─── Assistant Card ─────────────────────────────────────────────────── */
-
 .assistant-card {
-
     padding: 20px;
-
     display: flex;
-
     flex-direction: column;
-
     position: relative;
-
 }
-
-
 
 .assistant-header-main {
-
     flex: 1;
-
 }
-
-
 
 .assistant-empty-state {
-
     padding: 40px 0;
-
     text-align: center;
-
 }
-
-
 
 .assistant-empty-icon {
-
     margin: 0 auto 12px;
-
     color: var(--border-light);
-
 }
-
-
 
 .assistant-empty-text {
-
     color: var(--text-muted);
-
     font-size: 13px;
-
 }
-
-
 
 .assistant-messages {
-
     flex: 1;
-
     overflow-y: auto;
-
     margin-bottom: 16px;
-
     min-height: 0;
-
 }
-
-
 
 .assistant-message {
-
     margin-bottom: 16px;
-
 }
-
-
 
 .message-header {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     margin-bottom: 12px;
-
 }
 
-.chat-msg-assistant .chat-msg-icon {
-    background: none;
-    border-radius: 0;
-    overflow: visible;
-    width: 32px;
-    height: 32px;
-}
-
-
-
-
+.chat-msg-assistant .chat-msg-icon,
 .message-bot-icon {
     background: none;
     border: none;
@@ -1784,1624 +2305,1675 @@ body {
     height: 32px;
 }
 
-
-
-
-
 .message-header span {
-
     font-size: 13px;
-
     color: var(--text-secondary);
-
 }
-
-
 
 /* ─── Signal Badge ───────────────────────────────────────────────────── */
-
 .signal-row {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     margin-bottom: 14px;
-
 }
-
-
 
 .signal-badge {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 6px;
-
     padding: 6px 16px;
-
     border-radius: 20px;
-
     font-size: 14px;
-
     font-weight: 700;
-
     letter-spacing: 0.5px;
-
 }
-
-
 
 .signal-badge.buy {
-
     background: var(--signal-buy-bg);
-
     color: var(--buy-green);
-
     border: 1px solid var(--signal-buy-border);
-
 }
-
-
 
 .signal-badge.sell {
-
     background: var(--signal-sell-bg);
-
     color: var(--sell-red);
-
     border: 1px solid var(--signal-sell-border);
-
 }
-
-
 
 .signal-badge.hold {
-
     background: var(--signal-hold-bg);
-
     color: var(--hold-yellow);
-
     border: 1px solid var(--signal-hold-border);
-
 }
-
-
 
 .signal-badge svg {
-
     width: 16px;
-
     height: 16px;
-
 }
-
-
 
 /* ─── Analysis Text ──────────────────────────────────────────────────── */
-
 .analysis-text {
-
     font-size: 13px;
-
     line-height: 1.7;
-
     color: var(--text-secondary);
-
     margin-bottom: 16px;
-
 }
 
-
-
-/* ─── Stats Row ──────────────────────────────────────────────────────── */
-
+/* ─── Stats Row (FIXED: Auto-fit grid) ───────────────────────────────── */
 .stats-row {
-
     display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
-
     margin-bottom: 12px;
-
 }
-
-
 
 .stat-item {
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     padding: 12px 14px;
-
 }
-
-
 
 .stat-label {
-
     display: flex;
-
     align-items: center;
-
     gap: 5px;
-
     font-size: 11px;
-
     color: var(--text-muted);
-
     margin-bottom: 4px;
-
     font-weight: 400;
-
 }
-
-
 
 .stat-label svg {
-
     width: 12px;
-
     height: 12px;
-
 }
-
-
 
 .stat-value {
-
     font-size: 16px;
-
     font-weight: 700;
-
     font-variant-numeric: tabular-nums;
-
     color: var(--text-primary);
-
 }
-
-
 
 /* ─── Chat Input ─────────────────────────────────────────────────────── */
-
 .chat-input-row {
-
     display: flex;
-
     gap: 10px;
-
     margin-top: auto;
-
 }
-
-
 
 .chat-input {
-
     flex: 1;
-
     padding: 12px 16px;
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     color: var(--text-primary);
-
     font-size: 13px;
-
     font-family: var(--font);
-
     outline: none;
-
     transition: border-color 0.2s;
-
 }
-
-
 
 .chat-input:focus {
-
     border-color: var(--accent);
-
 }
-
-
 
 .chat-input::placeholder {
-
     color: var(--text-muted);
-
 }
-
-
 
 .chat-input:disabled {
-
     opacity: 0.5;
-
     cursor: not-allowed;
-
 }
-
-
 
 .chat-send-btn {
-
     width: 44px;
-
     height: 44px;
-
     background: var(--accent);
-
     border: none;
-
     border-radius: var(--radius-sm);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     cursor: pointer;
-
     transition: background 0.2s, opacity 0.2s;
-
     flex-shrink: 0;
-
 }
-
-
 
 .chat-send-btn:hover:not(:disabled) {
-
     background: var(--accent-hover);
-
 }
-
-
 
 .chat-send-btn:disabled {
-
     opacity: 0.4;
-
     cursor: not-allowed;
-
 }
-
-
 
 .chat-send-btn svg {
-
     width: 18px;
-
     height: 18px;
-
     color: var(--on-accent);
-
 }
-
-
 
 /* ─── Chat Messages ──────────────────────────────────────────────────── */
-
 .chat-msg {
-
     display: flex;
-
     gap: 10px;
-
     margin-bottom: 12px;
-
     align-items: flex-start;
-
 }
-
-
 
 .chat-msg-icon {
-
     width: 28px;
-
     height: 28px;
-
     border-radius: 50%;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     flex-shrink: 0;
-
     margin-top: 2px;
-
 }
-
-
 
 .chat-msg-user .chat-msg-icon {
-
     background: var(--chat-user-icon-bg);
-
     color: var(--chat-user-icon-fg);
-
 }
-
-
 
 .chat-msg-assistant .chat-msg-icon {
-
     background: rgba(45, 212, 191, 0.15);
-
     color: var(--accent);
-
 }
-
-
 
 .chat-msg-bubble {
-
     padding: 10px 14px;
-
     border-radius: 12px;
-
     font-size: 13px;
-
     line-height: 1.5;
-
     max-width: 85%;
-
     white-space: pre-wrap;
-
     word-break: break-word;
-
 }
-
-
 
 .chat-msg-user .chat-msg-bubble {
-
     background: var(--chat-user-bubble-bg);
-
     color: var(--text-primary);
-
     border: 1px solid var(--chat-user-bubble-border);
-
 }
-
-
 
 .chat-msg-assistant .chat-msg-bubble {
-
     background: var(--chat-assistant-bubble-bg);
-
     color: var(--text-secondary);
-
     border: 1px solid var(--chat-assistant-bubble-border);
-
 }
 
-
-
-/* Typing indicator dots */
-
+/* Typing indicator */
 .chat-typing {
-
     display: flex;
-
     align-items: center;
-
     gap: 4px;
-
     padding: 12px 18px;
-
 }
-
-
 
 .chat-typing .dot {
-
     width: 6px;
-
     height: 6px;
-
     background: var(--accent);
-
     border-radius: 50%;
-
     animation: chatBounce 1.2s infinite ease-in-out;
-
 }
-
-
 
 .chat-typing .dot:nth-child(2) {
-
     animation-delay: 0.15s;
-
 }
-
-
 
 .chat-typing .dot:nth-child(3) {
-
     animation-delay: 0.3s;
-
 }
-
-
 
 @keyframes chatBounce {
 
-
-
     0%,
-
     60%,
-
     100% {
-
         transform: translateY(0);
-
         opacity: 0.4;
-
     }
-
-
 
     30% {
-
         transform: translateY(-5px);
-
         opacity: 1;
-
     }
-
 }
-
-
 
 /* ─── Loading Spinner ────────────────────────────────────────────────── */
-
 .spinner {
-
     width: 20px;
-
     height: 20px;
-
     border: 2px solid var(--bg-input-border);
-
     border-top-color: var(--accent);
-
     border-radius: 50%;
-
     animation: spin 0.8s linear infinite;
-
     margin: 0 auto;
-
 }
-
-
 
 @keyframes spin {
-
     to {
-
         transform: rotate(360deg);
-
     }
-
 }
-
-
 
 .loading-message {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     padding: 12px;
-
     color: var(--text-secondary);
-
     font-size: 13px;
-
 }
-
-
 
 /* ─── SIV Retry Badge ────────────────────────────────────────────────── */
-
 .retry-badge {
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 4px;
-
     padding: 3px 8px;
-
     border-radius: 10px;
-
     font-size: 11px;
-
     font-weight: 500;
-
     background: var(--signal-hold-bg);
-
     color: var(--hold-yellow);
-
     border: 1px solid var(--signal-hold-border);
-
     margin-left: 8px;
-
 }
 
-
-
-/* ─── Orchestrator Info ──────────────────────────────────────────────── */
-
+/* ─── Orchestrator Info (FIXED: Removed duplicate) ───────────────────── */
 .orchestrator-info {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 8px 12px;
-
     background: var(--accent-glow);
-
     border: 1px solid rgba(45, 212, 191, 0.2);
-
     border-radius: var(--radius-sm);
-
     margin-bottom: 12px;
-
     font-size: 11px;
-
     color: var(--accent);
-
 }
-
-
 
 .orchestrator-info svg {
-
     width: 14px;
-
     height: 14px;
-
     flex-shrink: 0;
-
 }
-
-
 
 .orchestrator-info-danger {
-
     border-color: var(--danger-border);
-
     background: var(--danger-bg);
-
     color: var(--danger);
-
 }
-
-
-
-/* NEW: Warning variant for CE no_news banner */
 
 .orchestrator-info-warn {
-
     border-color: var(--warn-border);
-
     background: var(--warn-bg);
-
     color: var(--warn);
-
 }
-
-
 
 .agent-details {
-
     margin-top: 8px;
-
 }
-
-
 
 .agent-detail-row {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     padding: 6px 0;
-
     border-bottom: 1px solid var(--bg-input-border);
-
     font-size: 12px;
-
 }
-
-
 
 .agent-detail-label {
-
     color: var(--text-muted);
-
 }
-
-
 
 .agent-detail-value-wrap {
-
     display: flex;
-
     align-items: center;
-
     gap: 4px;
-
 }
-
-
 
 .agent-detail-value {
-
     font-weight: 600;
-
 }
-
-
 
 .agent-detail-value.positive {
-
     color: var(--buy-green);
-
 }
-
-
 
 .agent-detail-value.negative {
-
     color: var(--sell-red);
-
 }
-
-
 
 .agent-detail-value.neutral {
-
     color: var(--hold-yellow);
-
 }
-
-
 
 .agent-detail-extra {
-
     color: var(--text-muted);
-
     font-size: 11px;
-
 }
 
-
-
-/* ─── Risk Parameters ────────────────────────────────────────────────── */
-
+/* ─── Risk Parameters (FIXED: Auto-fit grid) ─────────────────────────── */
 .risk-params {
-
     margin-top: 4px;
-
 }
-
-
 
 .risk-row {
-
     display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 8px;
-
     margin-bottom: 8px;
-
 }
-
-
 
 .risk-item {
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     padding: 10px 12px;
-
 }
-
-
 
 .risk-label {
-
     font-size: 10px;
-
     color: var(--text-muted);
-
     margin-bottom: 3px;
-
     text-transform: uppercase;
-
     letter-spacing: 0.5px;
-
 }
-
-
 
 .risk-value {
-
     font-size: 13px;
-
     font-weight: 600;
-
     font-variant-numeric: tabular-nums;
-
 }
-
-
 
 .risk-value.green {
-
     color: var(--buy-green);
-
 }
-
-
 
 .risk-value.red {
-
     color: var(--sell-red);
-
 }
 
-
-
-/* ─── News / Context Engine Enhancements ───────────────────────────── */
-
-
-
-/* Warning banner for "no significant news" */
-
-.orchestrator-info-warn {
-
-    border-color: var(--warn-border);
-
-    background: var(--warn-bg);
-
-    color: var(--warn);
-
-}
-
-
-
-/* ─── Form Hints (used for macro/news inputs) ───────────────────────── */
-
+/* ─── Form Hints & Tooltips ──────────────────────────────────────────── */
 .form-hint {
-
     font-size: 11px;
-
     color: var(--text-muted);
-
     margin-top: 5px;
-
     line-height: 1.4;
-
 }
-
-
 
 .form-hint-warn {
-
     color: var(--warn);
-
 }
-
-
-
-/* ─── Trading Disclaimer (important for news-driven signals) ─────────── */
 
 .form-disclaimer {
-
     font-size: 10px;
-
     color: var(--text-muted);
-
     line-height: 1.5;
-
     padding: 8px 10px;
-
     background: rgba(100, 116, 139, 0.08);
-
     border-radius: var(--radius-sm);
-
     border-left: 2px solid var(--border-light);
-
     margin-bottom: 12px;
-
 }
-
-
-
-/* ─── Tooltip System (for news explanations) ─────────────────────────── */
 
 .tooltip-wrap {
-
     position: relative;
-
     display: inline-flex;
-
     align-items: center;
-
     margin-left: 4px;
-
     cursor: help;
-
 }
-
-
 
 .tooltip-icon {
-
     color: var(--text-muted);
-
     transition: color 0.2s;
-
 }
-
-
 
 .tooltip-wrap:hover .tooltip-icon,
-
 .tooltip-wrap:focus .tooltip-icon {
-
     color: var(--accent);
-
 }
-
-
 
 .tooltip-box {
-
     position: absolute;
-
-    bottom: calc(100% + 6px);
-
+    bottom: calc(100% + 8px);
     left: 50%;
-
     transform: translateX(-50%);
-
     background: var(--bg-card);
-
     color: var(--text-primary);
-
     font-size: 11px;
-
     line-height: 1.5;
-
-    padding: 8px 10px;
-
+    padding: 8px 12px;
     border-radius: var(--radius-sm);
-
     border: 1px solid var(--border-light);
-
-    width: 220px;
-
-    z-index: 50;
-
+    width: 240px;
+    max-width: 80vw;
+    z-index: 100;
     pointer-events: none;
-
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
-
-
 
 .tooltip-box::after {
-
     content: '';
-
     position: absolute;
-
     top: 100%;
-
     left: 50%;
-
     transform: translateX(-50%);
-
     border: 5px solid transparent;
-
     border-top-color: var(--border-light);
-
 }
 
-
-
-/* ─── Leverage Risk (used with news volatility) ─────────────────────── */
-
+/* ─── Leverage Risk ──────────────────────────────────────────────────── */
 .leverage-select.leverage-safe {
-
     border-color: rgba(34, 197, 94, 0.4);
-
 }
-
-
 
 .leverage-select.leverage-moderate {
-
     border-color: rgba(234, 179, 8, 0.4);
-
 }
-
-
 
 .leverage-select.leverage-high {
-
     border-color: rgba(245, 158, 11, 0.5);
-
 }
-
-
 
 .leverage-select.leverage-danger {
-
     border-color: rgba(239, 68, 68, 0.5);
-
 }
-
-
-
-/* ─── Leverage Exposure Callout (news-driven risk insight) ─────────── */
 
 .leverage-exposure {
-
     margin-top: 7px;
-
     padding: 7px 10px;
-
     border-radius: var(--radius-sm);
-
     font-size: 11px;
-
     line-height: 1.5;
-
 }
-
-
 
 .leverage-exposure strong {
-
     font-weight: 700;
-
 }
-
-
 
 .leverage-exposure-safe {
-
     background: rgba(34, 197, 94, 0.08);
-
     border-left: 2px solid rgba(34, 197, 94, 0.4);
-
     color: #86efac;
-
 }
-
-
 
 .leverage-exposure-moderate {
-
     background: rgba(234, 179, 8, 0.08);
-
     border-left: 2px solid rgba(234, 179, 8, 0.4);
-
     color: #fde68a;
-
 }
-
-
 
 .leverage-exposure-high {
-
     background: rgba(245, 158, 11, 0.08);
-
     border-left: 2px solid rgba(245, 158, 11, 0.4);
-
     color: var(--warn);
-
 }
-
-
 
 .leverage-exposure-danger {
-
     background: rgba(239, 68, 68, 0.08);
-
     border-left: 2px solid rgba(239, 68, 68, 0.4);
-
     color: #fca5a5;
-
 }
-
-
 
 /* ─── Chat History ────────────────────────────────────────────────────── */
-
 .history-toggle-btn {
-
     width: 34px;
-
     height: 34px;
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     cursor: pointer;
-
     color: var(--text-secondary);
-
     transition: all 0.2s;
-
     position: relative;
-
     flex-shrink: 0;
-
 }
-
-
 
 .history-toggle-btn:hover:not(.disabled) {
-
     border-color: var(--accent);
-
     color: var(--accent);
-
     background: var(--accent-glow);
-
 }
-
-
 
 .history-toggle-btn.disabled {
-
     opacity: 0.35;
-
     cursor: default;
-
 }
-
-
 
 .history-badge {
-
     position: absolute;
-
     top: -5px;
-
     right: -5px;
-
     background: var(--accent);
-
     color: var(--on-accent);
-
     font-size: 10px;
-
     font-weight: 700;
-
     width: 18px;
-
     height: 18px;
-
     border-radius: 50%;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     line-height: 1;
-
 }
-
-
 
 .history-panel {
-
     position: absolute;
-
     top: 0;
-
     left: 0;
-
     right: 0;
-
     bottom: 0;
-
     background: var(--bg-card);
-
     border-radius: var(--radius-lg);
-
     z-index: 20;
-
     display: flex;
-
     flex-direction: column;
-
     overflow: hidden;
-
 }
-
-
 
 .history-panel-header {
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 14px 16px;
-
     border-bottom: 1px solid var(--bg-input-border);
-
     flex-shrink: 0;
-
 }
-
-
 
 .history-panel-title {
-
     font-size: 14px;
-
     font-weight: 600;
-
     color: var(--text-primary);
-
     flex: 1;
-
 }
 
-
-
-.history-panel-count {
-
-    font-size: 11px;
-
-    color: var(--text-muted);
-
-}
-
-
-
+.history-panel-count,
 .history-panel-time {
-
     font-size: 11px;
-
     color: var(--text-muted);
-
 }
-
-
 
 .history-close-btn {
-
     width: 28px;
-
     height: 28px;
-
     background: none;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: 6px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     cursor: pointer;
-
     color: var(--text-muted);
-
     transition: all 0.2s;
-
     flex-shrink: 0;
-
 }
-
-
 
 .history-close-btn:hover {
-
     color: var(--text-primary);
-
     border-color: var(--text-muted);
-
 }
-
-
 
 .history-back-btn {
-
     display: flex;
-
     align-items: center;
-
     gap: 4px;
-
     background: none;
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: 6px;
-
     color: var(--text-secondary);
-
     font-size: 12px;
-
     padding: 4px 10px;
-
     cursor: pointer;
-
     transition: all 0.2s;
-
 }
-
-
 
 .history-back-btn:hover {
-
     border-color: var(--accent);
-
     color: var(--accent);
-
 }
-
-
 
 .history-back-icon {
-
     transform: rotate(180deg);
-
 }
-
-
 
 .history-panel-body {
-
     flex: 1;
-
     overflow-y: auto;
-
     padding: 10px;
-
 }
-
-
 
 .history-session-item {
-
     width: 100%;
-
     text-align: left;
-
     background: var(--bg-input);
-
     border: 1px solid var(--bg-input-border);
-
     border-radius: var(--radius-sm);
-
     padding: 12px 14px;
-
     margin-bottom: 8px;
-
     cursor: pointer;
-
     transition: all 0.2s;
-
     display: block;
-
     position: relative;
-
     color: var(--text-primary);
-
     font-family: var(--font);
-
 }
-
-
 
 .history-session-item:hover {
-
     border-color: var(--accent);
-
     background: var(--chat-assistant-bubble-bg);
-
 }
-
-
 
 .history-session-pair {
-
     font-size: 14px;
-
     font-weight: 600;
-
     color: var(--text-primary);
-
     margin-bottom: 4px;
-
 }
-
-
 
 .history-session-meta {
-
     display: flex;
-
     gap: 12px;
-
     font-size: 11px;
-
     color: var(--text-muted);
-
     margin-bottom: 6px;
-
 }
-
-
 
 .history-session-preview {
-
     font-size: 12px;
-
     color: var(--text-secondary);
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
     padding-right: 20px;
-
 }
-
-
 
 .history-session-arrow {
-
     position: absolute;
-
     right: 12px;
-
     top: 50%;
-
     transform: translateY(-50%);
-
     color: var(--text-muted);
-
 }
-
-
 
 .history-messages {
-
     padding: 4px 0;
-
 }
-
-
 
 .history-empty-note {
-
     color: var(--text-muted);
-
     font-size: 12px;
-
     text-align: center;
-
     margin-top: 12px;
-
 }
-
-
 
 .history-session-top {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     margin-bottom: 4px;
-
 }
-
-
 
 .history-session-top .signal-badge {
-
     font-size: 11px;
-
     padding: 3px 10px;
-
 }
-
-
 
 .history-divider {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     margin: 14px 0 10px;
-
     font-size: 11px;
-
     color: var(--text-muted);
-
     text-transform: uppercase;
-
     letter-spacing: 0.5px;
-
 }
-
-
 
 .history-divider::before,
-
 .history-divider::after {
-
     content: '';
-
     flex: 1;
-
     height: 1px;
-
     background: var(--bg-input-border);
-
 }
-
-
 
 /* ─── SIV Audit Row ──────────────────────────────────────────────────── */
-
-/* Compact expandable row — amber/caution tone, not alarming red.
-
-   Replaces the overflow red text block from the previous design.
-
-   Click to expand / collapse all issues inline.               */
-
-
-
 .agent-detail-issues {
-
     align-items: flex-start;
-
     padding: 8px 0;
-
 }
-
-
 
 .siv-audit-value {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 3px;
-
     max-width: 220px;
-
     text-align: right;
-
     cursor: pointer;
-
     user-select: none;
-
 }
-
-
 
 .siv-audit-issue {
-
     font-size: 0.70rem;
-
     font-weight: 500;
-
     color: var(--warn);
-
-    /* amber — caution, not error red */
-
     line-height: 1.4;
-
     display: block;
-
 }
-
-
 
 .siv-audit-count {
-
     display: inline-block;
-
     font-size: 0.65rem;
-
     color: var(--text-muted);
-
     background: rgba(148, 163, 184, 0.12);
-
     padding: 1px 6px;
-
     border-radius: 8px;
-
     margin-left: 4px;
-
     font-weight: 500;
+}
 
+.siv-audit-value:hover .siv-audit-issue {
+    color: var(--warn-soft);
+}
+
+/* ─── Candlestick Chart Responsiveness ───────────────────────────── */
+.candle {
+    /* Ensure candles scale with container */
+    width: clamp(4px, 1.2vw, 12px);
+    min-width: 4px;
+}
+
+.candle-body {
+    /* Prevent bodies from collapsing on small screens */
+    min-height: 2px;
+}
+
+@media (max-width: 900px) {
+    .candle {
+        width: clamp(3px, 1.5vw, 10px);
+    }
+
+    .candle-wick {
+        stroke-width: 1px;
+    }
 }
 
 
+@media (max-width: 640px) {
+    .chart-container {
+        min-height: clamp(250px, 40vh, 350px);
+        /* Fluid height instead of fixed 300px */
+    }
 
-.siv-audit-value:hover .siv-audit-issue {
+    .candle {
+        width: clamp(2px, 2vw, 8px);
+    }
 
-    color: var(--warn-soft);
+    .candle-label {
+        font-size: 10px;
+    }
 
+    /* If you have price labels */
+}
+
+@media (max-width: 400px) {
+    .candle {
+        width: 3px;
+    }
+
+    .candle+.candle {
+        margin-left: 1px;
+    }
+
+    /* Reduce gap between candles */
+}
+
+/* ─── Tablet Responsive (768px - 1024px) ────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* App Layout */
+    .app-header {
+        padding: 14px 20px;
+        gap: 10px;
+    }
+
+    .app-body {
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 14px;
+        padding: 14px 20px;
+    }
+
+    .assistant-card {
+        grid-column: 1 / -1;
+        min-height: clamp(350px, 45vh, 550px);
+        max-height: clamp(450px, 60vh, 650px);
+    }
+
+    /* Cards */
+    .card {
+        padding: 20px;
+        border-radius: var(--radius-md);
+    }
+
+    .card-header {
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    /* Chart Card */
+    .chart-card {
+        padding: 16px 20px;
+    }
+
+    .chart-header {
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .chart-pair h2 {
+        font-size: 17px;
+    }
+
+    .chart-price {
+        font-size: 22px;
+    }
+
+    .chart-container {
+        min-height: clamp(300px, 40vh, 450px);
+    }
+
+    .chart-legend-item {
+        font-size: 10px;
+        padding: 3px 7px;
+    }
+
+    /* Assistant Card */
+    .assistant-card {
+        padding: 16px 20px;
+    }
+
+    .assistant-messages {
+        margin-bottom: 14px;
+    }
+
+    .chat-msg-bubble {
+        font-size: 13px;
+        padding: 9px 13px;
+    }
+
+    .chat-input {
+        font-size: 14px;
+        padding: 11px 14px;
+    }
+
+    .chat-send-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Stats & Risk Grids */
+    .stats-row {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 10px;
+    }
+
+    .stat-item {
+        padding: 11px 13px;
+    }
+
+    .stat-value {
+        font-size: 15px;
+    }
+
+    .risk-row {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 7px;
+    }
+
+    .risk-item {
+        padding: 9px 11px;
+    }
+
+    .risk-label {
+        font-size: 9px;
+    }
+
+    .risk-value {
+        font-size: 12px;
+    }
+
+    /* Form Elements */
+    .form-input,
+    .form-select {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    .form-label {
+        font-size: 11px;
+    }
+
+    .btn-primary {
+        padding: 13px;
+        font-size: 14px;
+    }
+
+    /* Signal Badge */
+    .signal-badge {
+        padding: 5px 14px;
+        font-size: 13px;
+    }
+
+    /* Orchestrator Info */
+    .orchestrator-info {
+        padding: 7px 10px;
+        font-size: 10px;
+        gap: 6px;
+    }
+
+    .agent-detail-row {
+        padding: 5px 0;
+        font-size: 11px;
+    }
+
+    /* Tutorial Modal (if open on tablet) */
+    .tutorial-modal {
+        width: min(95%, 820px);
+        max-height: min(90dvh, 800px);
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 13px;
+        min-height: 100px;
+    }
+
+    /* Touch-friendly adjustments */
+    .header-action-btn,
+    .chart-a11y-btn,
+    .history-toggle-btn,
+    .tutorial-nav-btn,
+    .tutorial-close-btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 8px 10px;
+    }
+
+    /* Prevent horizontal scroll on tight content */
+    .agent-detail-value-wrap,
+    .siv-audit-value {
+        max-width: 180px;
+    }
+}
+
+/* ─── Tablet Portrait (600px - 767px) ───────────────────────────────── */
+@media (min-width: 600px) and (max-width: 767px) {
+    .app-body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    .chart-card {
+        order: -1;
+        min-height: clamp(320px, 45vh, 500px);
+    }
+
+    .assistant-card {
+        min-height: clamp(300px, 40vh, 480px);
+        max-height: none;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .chart-right-controls {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .chart-price-info {
+        text-align: left;
+        width: 100%;
+    }
+
+    .stats-row,
+    .risk-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chat-msg-bubble {
+        max-width: 88%;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-action-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+/* ─── iPhone SE / Small Mobile (≤375px) ─────────────────────────────── */
+@media (max-width: 375px) {
+
+    /* App Header - Ultra Compact */
+    .app-header {
+        padding: 8px 12px;
+        min-height: 56px;
+        gap: 8px;
+    }
+
+    .app-header-brand h1 {
+        font-size: 16px;
+    }
+
+    .app-header-brand p {
+        display: none;
+    }
+
+    .app-header-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Header Actions - Icon Only */
+    .header-action-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-action-btn svg {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+
+    .header-theme-btn {
+        min-width: 36px;
+        width: 36px;
+        padding: 0;
+    }
+
+    /* App Body - Single Column, Fluid */
+    .app-body {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    /* Cards - Compact Padding */
+    .card {
+        padding: 14px;
+        border-radius: var(--radius-md);
+    }
+
+    .card-header {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    .card-header p {
+        font-size: 11px;
+    }
+
+    /* Chart Card - Minimum Viable Height */
+    .chart-card {
+        padding: 14px;
+        min-height: auto;
+    }
+
+    .chart-container {
+        min-height: clamp(220px, 35vh, 280px);
+    }
+
+    .chart-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .chart-pair h2 {
+        font-size: 16px;
+    }
+
+    .chart-price {
+        font-size: 18px;
+    }
+
+    .chart-change {
+        font-size: 12px;
+    }
+
+    .chart-legend-item {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+
+    .legend-swatch {
+        width: 12px;
+        height: 8px;
+    }
+
+    /* Assistant Card - Compact Chat */
+    .assistant-card {
+        padding: 14px;
+    }
+
+    .assistant-messages {
+        margin-bottom: 12px;
+    }
+
+    .chat-msg {
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .chat-msg-icon {
+        width: 26px;
+        height: 26px;
+        margin-top: 1px;
+    }
+
+    .chat-msg-bubble {
+        max-width: 92%;
+        padding: 8px 11px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .chat-input-row {
+        gap: 8px;
+    }
+
+    .chat-input {
+        padding: 10px 13px;
+        font-size: 14px;
+        /* Maintain readability */
+    }
+
+    .chat-send-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-send-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Stats & Risk Grids - 2 Columns Max */
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .stat-item {
+        padding: 9px 11px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .stat-value {
+        font-size: 14px;
+    }
+
+    .risk-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .risk-item {
+        padding: 8px 10px;
+    }
+
+    .risk-label {
+        font-size: 9px;
+    }
+
+    .risk-value {
+        font-size: 12px;
+    }
+
+    /* Form Elements - Full Width, Larger Tap */
+    .form-input,
+    .form-select {
+        padding: 10px 13px;
+        font-size: 14px;
+    }
+
+    .form-label {
+        font-size: 11px;
+        gap: 5px;
+    }
+
+    .btn-primary {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    /* Signal Badge - Compact */
+    .signal-badge {
+        padding: 4px 12px;
+        font-size: 12px;
+        gap: 4px;
+    }
+
+    .signal-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Orchestrator Info - Tight */
+    .orchestrator-info {
+        padding: 6px 10px;
+        font-size: 10px;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .orchestrator-info svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .agent-detail-row {
+        padding: 4px 0;
+        font-size: 11px;
+    }
+
+    /* Tutorial Modal - Ultra Compact */
+    .tutorial-overlay {
+        padding: 8px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(96dvh, 100%);
+        border-radius: var(--radius-sm);
+        border: none;
+    }
+
+    .tutorial-modal-header {
+        padding: 10px 12px 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 15px;
+        line-height: 1.3;
+        margin-bottom: 2px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .tutorial-close-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame {
+        padding: 4px;
+        border-radius: var(--radius-sm);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 6px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 4px 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 9px;
+        letter-spacing: 0.2px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 10px;
+    }
+
+    .tutorial-pagination {
+        gap: 4px;
+    }
+
+    .tutorial-dot {
+        width: 5px;
+        height: 5px;
+    }
+
+    .tutorial-dot.is-active {
+        width: 16px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .tutorial-mascot {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    .tutorial-mascot-video,
+    .tutorial-mascot-fallback {
+        border-radius: 50%;
+    }
+
+    .tutorial-mascot-fallback {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    .tutorial-narration-label {
+        font-size: 9px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 11px;
+        line-height: 1.5;
+        min-height: 80px;
+    }
+
+    .type-cursor {
+        margin-left: 1px;
+        animation-duration: 0.75s;
+    }
+
+    .tutorial-modal-footer {
+        padding: 6px 12px 10px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 240px;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    /* Tooltip - Narrow */
+    .tooltip-box {
+        width: 200px;
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    /* History Panel - Compact */
+    .history-toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .history-session-item {
+        padding: 10px 12px;
+    }
+
+    .history-session-pair {
+        font-size: 13px;
+    }
+
+    .history-session-meta {
+        font-size: 10px;
+        gap: 8px;
+    }
+
+    .history-session-preview {
+        font-size: 11px;
+    }
+
+    /* Leverage Exposure - Centered */
+    .leverage-exposure {
+        padding: 6px 8px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* Ensure touch targets stay ≥44px */
+    .header-action-btn,
+    .chat-send-btn,
+    .tutorial-close-btn,
+    .tutorial-primary-btn,
+    .history-toggle-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tutorial-dot {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    .tutorial-dot.is-active {
+        width: auto;
+    }
+}
+
+/* ─── Very Small Screens (≤320px) ───────────────────────────────────── */
+@media (max-width: 320px) {
+
+    /* Further compress everything */
+    .app-header {
+        padding: 6px 10px;
+        min-height: 52px;
+    }
+
+    .app-header h1 {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .chart-container {
+        min-height: clamp(200px, 30vh, 240px);
+    }
+
+    .chart-price {
+        font-size: 16px;
+    }
+
+    .chat-msg-bubble {
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+
+    .chat-input {
+        font-size: 13px;
+    }
+
+    .stat-value,
+    .risk-value {
+        font-size: 13px;
+    }
+
+    .tutorial-modal-header {
+        padding: 8px 10px 6px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 14px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 10px;
+        min-height: 70px;
+    }
+
+    .tutorial-mascot {
+        width: 56px;
+        height: 56px;
+    }
+
+    .btn-primary,
+    .tutorial-primary-btn {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* Hide non-essential elements */
+    .chart-timeframe,
+    .agent-detail-extra,
+    .history-panel-time {
+        display: none;
+    }
+}
+
+/* ─── iPhone SE: Landscape Mode ─────────────────────────────────────── */
+@media (max-height: 320px) and (orientation: landscape) and (max-width: 568px) {
+    .tutorial-modal {
+        max-height: 98dvh;
+    }
+
+    .tutorial-modal-body {
+        max-height: 50dvh;
+        overflow-y: auto;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .tutorial-mascot {
+        width: 40px;
+        height: 40px;
+    }
+
+    .tutorial-narration-text {
+        min-height: 50px;
+        font-size: 10px;
+    }
+
+    .tutorial-slide-image {
+        aspect-ratio: 16 / 6;
+    }
+
+    .app-body {
+        padding: 8px;
+    }
+
+    .chart-container {
+        min-height: 180px;
+    }
+
+    .assistant-messages {
+        max-height: 40dvh;
+    }
+}
+
+/* ─── Small Screen Accessibility ────────────────────────────────────── */
+@media (max-width: 375px) and (prefers-reduced-motion: reduce) {
+    .type-cursor.is-active {
+        animation: none;
+        opacity: 1;
+    }
+
+    .chat-typing .dot {
+        animation: none;
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 375px) and (prefers-contrast: high) {
+
+    .card,
+    .tutorial-modal,
+    .tutorial-slide-frame,
+    .tutorial-narrator {
+        border-width: 2px;
+    }
+
+    .tutorial-dot {
+        border: 1px solid currentColor;
+    }
 }

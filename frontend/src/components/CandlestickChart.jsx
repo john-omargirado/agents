@@ -2,6 +2,64 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, X, BarChart3 } from 'lucide-react';
 import { createChart } from 'lightweight-charts';
 
+const PAIR_CONFIG = {
+    // Major USD pairs
+    EURUSD: { basePrice: 1.085, decimals: 5 },
+    GBPUSD: { basePrice: 1.265, decimals: 5 },
+    AUDUSD: { basePrice: 0.645, decimals: 5 },
+    NZDUSD: { basePrice: 0.595, decimals: 5 },
+    USDCAD: { basePrice: 1.355, decimals: 5 },
+    USDCHF: { basePrice: 0.895, decimals: 5 },
+    // JPY pairs — 3 decimals, price ~100–200 range
+    USDJPY: { basePrice: 149.5, decimals: 3 },
+    EURJPY: { basePrice: 160.0, decimals: 3 },
+    GBPJPY: { basePrice: 189.0, decimals: 3 },
+    AUDJPY: { basePrice: 97.0, decimals: 3 },
+    CADJPY: { basePrice: 110.5, decimals: 3 },
+    CHFJPY: { basePrice: 167.0, decimals: 3 },
+    NZDJPY: { basePrice: 91.0, decimals: 3 },
+    // Cross pairs
+    EURGBP: { basePrice: 0.857, decimals: 5 },
+    EURAUD: { basePrice: 1.680, decimals: 5 },
+    EURCAD: { basePrice: 1.475, decimals: 5 },
+    GBPAUD: { basePrice: 1.960, decimals: 5 },
+    GBPCAD: { basePrice: 1.720, decimals: 5 },
+    AUDCAD: { basePrice: 0.875, decimals: 5 },
+    // ── PHP Exotic pairs ────────────────────────────────────────────────────
+    // USD/PHP: peso trades ~55–58 per dollar; 2 decimal places is standard
+    USDPHP: { basePrice: 56.5, decimals: 2 },
+    // EUR/PHP: real JSON data opens ~58.x (2022-01-03); used only as synthetic fallback
+    EURPHP: { basePrice: 58.1, decimals: 2 },
+    // JPY/PHP: inverted USDJPY × USDPHP — 1 JPY ≈ 0.378 PHP
+    JPYPHP: { basePrice: 0.378, decimals: 4 },
+};
+
+// Category metadata — used for chart header badge and spread warning
+const PAIR_META = {
+    EURUSD: { category: 'Major' }, GBPUSD: { category: 'Major' },
+    AUDUSD: { category: 'Major' }, NZDUSD: { category: 'Major' },
+    USDCAD: { category: 'Major' }, USDCHF: { category: 'Major' },
+    USDJPY: { category: 'Major' }, EURJPY: { category: 'Major' },
+    GBPJPY: { category: 'Major' }, AUDJPY: { category: 'Major' },
+    CADJPY: { category: 'Major' }, CHFJPY: { category: 'Major' },
+    NZDJPY: { category: 'Major' }, EURGBP: { category: 'Cross' },
+    EURAUD: { category: 'Cross' }, EURCAD: { category: 'Cross' },
+    GBPAUD: { category: 'Cross' }, GBPCAD: { category: 'Cross' },
+    AUDCAD: { category: 'Cross' },
+    USDPHP: { category: 'Exotic' },
+    EURPHP: { category: 'Exotic' },
+    JPYPHP: { category: 'Exotic' },
+};
+
+function getPairConfig(pair) {
+    const key = toPairSymbol(pair);
+    return PAIR_CONFIG[key] ?? { basePrice: 1.085, decimals: 5 };
+}
+
+function getPairMeta(pair) {
+    return PAIR_META[toPairSymbol(pair)] ?? { category: 'Major' };
+}
+
 const MIN_DATE = '2022-01-01';
 const MAX_DATE = '2025-12-31';
 
@@ -23,16 +81,23 @@ function mulberry32(seed) {
     };
 }
 
-// FIX 1: days bumped from 450 → 1461 to cover the full 2022-2025 range
-// (3 regular years + 1 leap year = 1461 days)
-function generateSyntheticCandles(pair, days = 1461, basePrice = 1.085) {
+function generateSyntheticCandles(pair, days = 1461) {
+    const { basePrice, decimals } = getPairConfig(pair);
+    const symbol = toPairSymbol(pair);
+    const isJPY = symbol.includes('JPY') && !symbol.endsWith('PHP'); // USDJPY etc.
+    const isPHP = symbol.endsWith('PHP');                             // *PHP exotics
+    const isJPYPHP = symbol === 'JPYPHP';                               // tiny prices
+
     const candles = [];
     const random = mulberry32(createSeedFromText(pair || 'EUR/USD'));
-    // Anchor synthetic candles starting from MIN_DATE
     const start = new Date(MIN_DATE);
     start.setUTCHours(0, 0, 0, 0);
 
-    let price = basePrice + (random() - 0.5) * 0.03;
+    let price = basePrice + (random() - 0.5) * (
+        isJPYPHP ? 0.005 :
+            isPHP ? 0.4 :
+                isJPY ? 3.0 : 0.03
+    );
 
     for (let i = 0; i < days; i += 1) {
         const d = new Date(start);
@@ -40,18 +105,31 @@ function generateSyntheticCandles(pair, days = 1461, basePrice = 1.085) {
         const time = Math.floor(d.getTime() / 1000);
 
         const open = price;
-        const volatility = 0.001 + random() * 0.002;
+
+        // Volatility tuned per pair type
+        let volBase, volRange, wickRange;
+        if (isJPYPHP) {
+            volBase = 0.0005; volRange = 0.001; wickRange = 0.0003;
+        } else if (isPHP) {
+            volBase = 0.04; volRange = 0.08; wickRange = 0.03;
+        } else if (isJPY) {
+            volBase = 0.15; volRange = 0.25; wickRange = 0.12;
+        } else {
+            volBase = 0.0008; volRange = 0.0015; wickRange = 0.0012;
+        }
+
+        const volatility = volBase + random() * volRange;
         const direction = random() > 0.49 ? 1 : -1;
         const close = open + direction * volatility;
-        const high = Math.max(open, close) + random() * 0.0012;
-        const low = Math.min(open, close) - random() * 0.0012;
+        const high = Math.max(open, close) + random() * wickRange;
+        const low = Math.min(open, close) - random() * wickRange;
 
         candles.push({
             time,
-            open: Number(open.toFixed(4)),
-            high: Number(high.toFixed(4)),
-            low: Number(low.toFixed(4)),
-            close: Number(close.toFixed(4)),
+            open: Number(open.toFixed(decimals)),
+            high: Number(high.toFixed(decimals)),
+            low: Number(low.toFixed(decimals)),
+            close: Number(close.toFixed(decimals)),
         });
 
         price = close;
@@ -93,20 +171,23 @@ function toPairSymbol(pair) {
     return (pair || '').replace('/', '').toUpperCase();
 }
 
-/**
- * Convert "YYYY-MM-DD" → Unix seconds at end of that UTC day (23:59:59).
- */
 function dateStrToEndOfDayTs(dateStr) {
     const [y, m, d] = dateStr.split('-').map(Number);
     return Math.floor(Date.UTC(y, m - 1, d + 1) / 1000) - 1;
 }
 
-/**
- * Convert "YYYY-MM-DD" → Unix seconds at the START of that UTC day (00:00:00).
- */
-function dateStrToStartOfDayTs(dateStr) {
+function isWeekend(dateStr) {
     const [y, m, d] = dateStr.split('-').map(Number);
-    return Math.floor(Date.UTC(y, m - 1, d) / 1000);
+    return [0, 6].includes(new Date(Date.UTC(y, m - 1, d)).getUTCDay());
+}
+
+function snapToWeekday(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(Date.UTC(y, m - 1, d));
+    const day = date.getUTCDay();
+    if (day === 6) date.setUTCDate(d - 1);
+    if (day === 0) date.setUTCDate(d - 2);
+    return date.toISOString().split('T')[0];
 }
 
 function formatDisplayDate(dateStr) {
@@ -121,15 +202,24 @@ function formatDisplayDate(dateStr) {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDateChange }) {
+export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDateChange, date }) {
 
     // ── Date picker — starts at Jan 1 2022 ──────────────────────────────────
-    const [selectedDate, setSelectedDate] = useState(MIN_DATE);
+    const [selectedDate, setSelectedDate] = useState(date || '2022-01-03');
+
+    // Sync internal selectedDate when date prop changes
+    useEffect(() => {
+        if (date && date !== selectedDate) {
+            setSelectedDate(date);
+        }
+    }, [date]);
 
     const handleDateChange = (e) => {
         const val = e.target.value;
-        setSelectedDate(val);
-        if (onDateChange) onDateChange(val || null);
+        if (!val) { setSelectedDate(''); if (onDateChange) onDateChange(null); return; }
+        const safe = isWeekend(val) ? snapToWeekday(val) : val;
+        setSelectedDate(safe);
+        if (onDateChange) onDateChange(safe);
     };
 
     const clearDate = () => {
@@ -138,10 +228,12 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
     };
 
     const stepDate = (direction) => {
-        const base = selectedDate || MIN_DATE;
+        const base = selectedDate || '2022-01-03';
         const [y, m, d] = base.split('-').map(Number);
         const date = new Date(Date.UTC(y, m - 1, d));
-        date.setUTCDate(date.getUTCDate() + direction);
+        do {
+            date.setUTCDate(date.getUTCDate() + direction);
+        } while (isWeekend(date.toISOString().split('T')[0]));
         const newDate = date.toISOString().split('T')[0];
         if (newDate < MIN_DATE || newDate > MAX_DATE) return;
         setSelectedDate(newDate);
@@ -185,7 +277,10 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
     const toggleAccessiblePalette = () => {
         setUseAccessiblePalette((prev) => {
             const next = !prev;
-            window.localStorage.setItem('trading_assistant_candle_palette', next ? 'accessible' : 'default');
+            window.localStorage.setItem(
+                'trading_assistant_candle_palette',
+                next ? 'accessible' : 'default'
+            );
             return next;
         });
     };
@@ -198,20 +293,17 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
         return generateSyntheticCandles(pair);
     }, [jsonCandles, ohlcvData, pair]);
 
-    // ── Price stats — derived from the last candle on/before selected date ───
+    const pairDecimals = useMemo(() => getPairConfig(pair).decimals, [pair]);
+    const pairMeta = useMemo(() => getPairMeta(pair), [pair]);
+    const isExotic = pairMeta.category === 'Exotic';
+
+    // ── Price stats ──────────────────────────────────────────────────────────
     const visibleCandleData = useMemo(() => {
         if (!allCandleData?.length) return [];
-
         if (!selectedDate) return allCandleData;
-
         const cutoff = dateStrToEndOfDayTs(selectedDate);
-
         const sliced = allCandleData.filter((c) => c.time <= cutoff);
-
-        // FIX: if cutoff is invalid or too early, DO NOT fallback to synthetic logic
-        // instead clamp to first available candle before crashing logic
         if (sliced.length === 0) return [allCandleData[0]];
-
         return sliced;
     }, [allCandleData, selectedDate]);
 
@@ -257,8 +349,7 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
         };
     }, [useAccessiblePalette]);
 
-    // ── Effect 1: Build/rebuild chart when data or palette changes ───────────
-    // Does NOT depend on selectedDate — date scrolling is handled by Effect 2.
+    // ── Effect 1: Build/rebuild chart ────────────────────────────────────────
     useEffect(() => {
         if (!chartContainerRef.current) return;
 
@@ -300,7 +391,6 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             handleScale: false,
         });
 
-        // Load ALL candles — the visible window is positioned by Effect 2
         const candleSeries = chart.addCandlestickSeries(candlePalette);
         candleSeries.setData(allCandleData);
 
@@ -329,8 +419,7 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
         };
     }, [allCandleData, chartPalette, candlePalette]);
 
-    // ── Effect 2: Pan the time scale to the selected date ────────────────────
-    // FIX 2: explicit deps listed — React will never skip this when date changes
+    // ── Effect 2: Pan to selected date ───────────────────────────────────────
     useEffect(() => {
         if (!chartRef.current || !allCandleData.length) return;
 
@@ -347,16 +436,11 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
 
         const WINDOW = 60;
         const startIdx = Math.max(0, filtered.length - WINDOW);
-
         const from = filtered[startIdx].time;
         const to = filtered[filtered.length - 1].time;
 
-        chartRef.current.timeScale().setVisibleRange({
-            from,
-            to: to + 43200,
-        });
-
-    }, [selectedDate, allCandleData]); // explicit deps — no eslint-disable needed
+        chartRef.current.timeScale().setVisibleRange({ from, to: to + 43200 });
+    }, [selectedDate, allCandleData]);
 
     // ── Data source label ────────────────────────────────────────────────────
     const dataSourceLabel = useMemo(() => {
@@ -376,7 +460,18 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                         <BarChart3 size={18} />
                     </div>
                     <div>
-                        <h2>{pair}</h2>
+                        <h2>
+                            {pair}
+                            {/* Exotic badge — warns users about wider spreads */}
+                            {isExotic && (
+                                <span
+                                    className="chart-exotic-badge"
+                                    title="Exotic pair — wider spreads, higher volatility, lower liquidity"
+                                >
+                                    Exotic ⚠
+                                </span>
+                            )}
+                        </h2>
                         <span className="chart-timeframe">{dataSourceLabel}</span>
                     </div>
                 </div>
@@ -400,12 +495,16 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                         >
                             {useAccessiblePalette ? 'Use Standard Candles' : 'Use Color-Safe Candles'}
                         </button>
-                        <div className="chart-price">{currentPrice === null ? '--' : currentPrice.toFixed(4)}</div>
+                        <div className="chart-price">
+                            {currentPrice === null ? '--' : currentPrice.toFixed(pairDecimals)}
+                        </div>
                         {currentPrice === null ? (
                             <div className="chart-change">No market data</div>
                         ) : (
                             <div className={`chart-change ${isPositive ? 'positive' : 'negative'}`}>
-                                {isPositive ? '▲ ' : '▼ '}{isPositive ? '+' : ''}{priceChange.toFixed(4)} ({isPositive ? '+' : ''}{priceChangePct.toFixed(2)}%)
+                                {isPositive ? '▲ ' : '▼ '}
+                                {isPositive ? '+' : ''}{priceChange.toFixed(pairDecimals)}{' '}
+                                ({isPositive ? '+' : ''}{priceChangePct.toFixed(2)}%)
                             </div>
                         )}
                     </div>
@@ -473,11 +572,11 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                     )}
                 </div>
 
-                {/* FIX 3: Quick shortcuts — 2025 now points to Jan 2 2025 (safe for all data sources) */}
+                {/* Quick shortcuts */}
                 <div className="date-shortcuts">
                     <span className="date-shortcuts-label">Quick select:</span>
                     {[
-                        { label: '2022', date: '2022-01-01' },
+                        { label: '2022', date: '2022-01-03' },
                         { label: '2023', date: '2023-01-02' },
                         { label: '2024', date: '2024-01-02' },
                         { label: '2025', date: '2025-01-02' },

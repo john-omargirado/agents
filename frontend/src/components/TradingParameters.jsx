@@ -278,7 +278,7 @@ export default function TradingParameters({
             {/* CAPITAL */}
             <div className="form-group">
                 <label className="tp-label">
-                    Account Capital
+                    ($) Account Capital
                     <ContextualHelp
                         topic="capital"
                         experienceLevel={experienceLevel}

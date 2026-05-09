@@ -2106,7 +2106,13 @@ body {
         padding: 20px;
         border-radius: var(--radius-md);
         overflow-y: auto;
-        min-width: fit-content;
+
+        /* 1. REMOVE the 875px min-width to prevent overflow */
+        min-width: 0;
+        width: 100%;
+
+        /* 2. Force every card to span the full width of the grid */
+        grid-column: 1 / -1;
     }
 
     .card-header {

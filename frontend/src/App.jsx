@@ -220,7 +220,8 @@ export default function App() {
                 amount,
                 leverage,
                 riskThreshold,
-                targetDate: currentView === 'backtesting' ? targetDate : null
+                targetDate: currentView === 'backtesting' ? targetDate : null,
+                experienceLevel,
             });
 
             setAnalysisResult(result);

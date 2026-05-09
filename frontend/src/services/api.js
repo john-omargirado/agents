@@ -14,22 +14,24 @@ const api = axios.create({
 /**
  * Run the live MAS pipeline: [TTS + CE] → SIV → Verdict
  */
-export async function runOrchestrator(
-    currencyPair = 'EUR/USD',
-    skipLLM = false,
+export async function runOrchestrator({
+    pair,
+    amount,
+    leverage,
+    riskThreshold,
     targetDate = null,
-    profile = {}
-) {
+    experienceLevel = null,
+} = {}) {
     const { data } = await api.post('/analyze', {
-        currency_pair: currencyPair,
-        skip_llm: skipLLM,
+        currency_pair: pair,
+        skip_llm: false,
         target_date: targetDate || null,
         live_mode: true,
         backtest_mode: false,
-        accountCapital: profile.accountCapital,
-        leverage: profile.leverage,
-        riskThreshold: profile.riskThreshold,
-        experience_level: profile.experienceLevel ?? null,
+        accountCapital: amount,
+        leverage,
+        riskThreshold,
+        experience_level: experienceLevel,
     });
     return data;
 }

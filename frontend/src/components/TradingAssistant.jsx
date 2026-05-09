@@ -786,7 +786,7 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
         try {
             const history = [...chatMessages, newUserMsg].map((m) => ({ role: m.role, content: m.content }));
             const response = await sendChatMessage(
-                userMessage, pair, analysisResult?.analysis_id || null, history,
+                userMessage, pair, analysisResult?.analysis_id || null, history, experienceLevel,
             );
             setChatMessages((prev) => [
                 ...prev,

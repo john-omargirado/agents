@@ -102,6 +102,25 @@ export default function App() {
     const activeTutorialSlide = tutorialSlides[tutorialSlideIndex] || tutorialSlides[0];
 
     useEffect(() => {
+        const loadDefaultDate = async () => {
+            if (selectedPair) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/backtest/dates?currency_pair=${selectedPair}`);
+                    const data = await response.json();
+                    if (data.dates && data.dates.length > 0) {
+                        // Set the state to the latest available date
+                        setSelectedDate(data.dates[data.dates.length - 1]);
+                    }
+                } catch (err) {
+                    console.error("Failed to load default date", err);
+                }
+            }
+        };
+
+        loadDefaultDate();
+    }, [selectedPair]);
+
+    useEffect(() => {
         if (experienceLevel === 'beginner') {
             setPair('EUR/USD');
             setLeverage('1:1');

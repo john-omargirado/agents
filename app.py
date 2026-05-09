@@ -120,6 +120,16 @@ def _cache_run(analysis_id: str, state: Dict[str, Any]):
 def _get_cached_run(analysis_id: Optional[str]) -> Optional[Dict[str, Any]]:
     return _run_cache.get(analysis_id) if analysis_id else None
 
+# ---------------------------------------------------------------------------
+# Helpers 
+# ---------------------------------------------------------------------------
+def get_default_date(pair: str) -> str:
+    """Returns the last available date in the dataset for a given pair."""
+    available_dates = get_available_dates_for_pair(pair)
+    if available_dates:
+        # available_dates is usually sorted, so the last one is the most recent
+        return available_dates[-1] 
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -145,12 +155,12 @@ SUPPORTED_STRATEGIES = [
 # ---------------------------------------------------------------------------
 
 def _build_initial_state(body: dict) -> TradingState:
-    print(f"[STATE_BUILDER] riskThreshold raw='{body.get('riskThreshold')}' → risk_per_trade={float(body.get('riskThreshold') or 1.0)}")
     pair = str(body.get("currency_pair", "EUR/USD")).upper().replace("-", "/")
+    target_date = body.get("target_date") or get_default_date(pair)
 
     return cast(TradingState, {
         "currency_pair": pair,
-        "target_date": body.get("target_date") or datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "target_date": target_date,
 
         # FIX: explicit mode support
         "live_mode": body.get("live_mode", True),
@@ -314,7 +324,7 @@ def backtest_analyze():
     try:
         body = request.get_json(force=True) or {}
         pair = str(body.get("currency_pair", "EUR/USD")).upper()
-        target_date: str = body.get("date") or datetime.now(timezone.utc).strftime("%Y-%m-%d")  # ← typed + fallback
+        target_date = body.get("date") or get_default_date(pair)
 
         initial_state = _build_initial_state(body)
         initial_state["live_mode"] = False      # ← was True (bug)
@@ -526,8 +536,7 @@ def simulate_trade():
         entry_price = float(body.get("entry_price") or 0)
         sl_distance = float(body.get("sl_distance") or 0)
         tp_distance = float(body.get("tp_distance") or 0)
-        target_date = body.get("target_date") or \
-                      datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        target_date = body.get("target_date") or get_default_date(pair)
 
         # REPLACE WITH:
         if entry_price <= 0:

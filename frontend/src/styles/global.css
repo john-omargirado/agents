@@ -10,73 +10,53 @@
 }
 
 :root {
-    /* Background colors */
     --bg-primary: #0a0e17;
     --bg-card: #111827;
     --bg-card-hover: #1a2235;
     --bg-input: #0d1320;
     --bg-input-border: #1e293b;
-
-    /* Accent colors */
     --accent: #2dd4bf;
     --accent-hover: #14b8a6;
     --accent-glow: rgba(45, 212, 191, 0.15);
     --on-accent: #0a0e17;
-
-    /* Signal colors */
     --buy-green: #22c55e;
     --sell-red: #ef4444;
     --hold-yellow: #eab308;
     --candle-green: #22c55e;
     --candle-red: #ef4444;
-
-    /* Text colors */
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
-
-    /* Border */
     --border: #1e293b;
     --border-light: #334155;
-
-    /* Overlay & modal */
     --overlay-bg: rgba(2, 6, 23, 0.72);
     --modal-bg-start: rgba(17, 24, 39, 0.98);
     --modal-bg-end: rgba(13, 19, 32, 0.98);
     --modal-shadow: rgba(2, 6, 23, 0.55);
-
-    /* Semantic interactive colors */
     --signal-buy-bg: rgba(34, 197, 94, 0.15);
     --signal-buy-border: rgba(34, 197, 94, 0.3);
     --signal-sell-bg: rgba(239, 68, 68, 0.15);
     --signal-sell-border: rgba(239, 68, 68, 0.3);
     --signal-hold-bg: rgba(234, 179, 8, 0.15);
     --signal-hold-border: rgba(234, 179, 8, 0.3);
-
     --chat-user-icon-bg: rgba(99, 102, 241, 0.2);
     --chat-user-icon-fg: #818cf8;
     --chat-user-bubble-bg: rgba(99, 102, 241, 0.12);
     --chat-user-bubble-border: rgba(99, 102, 241, 0.2);
     --chat-assistant-bubble-bg: rgba(45, 212, 191, 0.08);
     --chat-assistant-bubble-border: rgba(45, 212, 191, 0.15);
-
     --warn: #f59e0b;
     --warn-soft: #fbbf24;
     --warn-bg: rgba(245, 158, 11, 0.08);
     --warn-border: rgba(245, 158, 11, 0.3);
-
     --danger: #ef4444;
     --danger-bg: rgba(239, 68, 68, 0.1);
     --danger-border: rgba(239, 68, 68, 0.3);
     --danger-toast-bg: rgba(239, 68, 68, 0.9);
     --on-danger: #ffffff;
-
-    /* Radius */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
-
-    /* Font */
     --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -154,16 +134,19 @@ body {
     background: var(--text-muted);
 }
 
-/* ─── App Layout ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   APP LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .app {
     display: flex;
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    min-height: 100vh;
     overflow: hidden;
 }
 
+/* ─── Header ─────────────────────────────────────────────────────────── */
 .app-header {
     display: flex;
     align-items: center;
@@ -172,6 +155,7 @@ body {
     padding: 16px 24px;
     border-bottom: 1px solid var(--border);
     background: var(--bg-primary);
+    flex-shrink: 0;
 }
 
 .app-header-brand {
@@ -197,6 +181,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .app-header h1 {
@@ -204,12 +189,16 @@ body {
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .app-header p {
     font-size: 12px;
     color: var(--accent);
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .header-action-btn {
@@ -227,6 +216,7 @@ body {
     cursor: pointer;
     transition: all 0.2s;
     flex-shrink: 0;
+    min-height: 38px;
 }
 
 .header-action-btn:hover {
@@ -239,274 +229,7 @@ body {
     min-width: 108px;
 }
 
-/* ─── Tutorial Modal ────────────────────────────────────────────────── */
-.tutorial-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 120;
-    background: var(--overlay-bg);
-    backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.tutorial-modal {
-    width: min(760px, 100%);
-    max-height: min(86dvh, 760px);
-    background: linear-gradient(180deg, var(--modal-bg-start) 0%, var(--modal-bg-end) 100%);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 18px 50px var(--modal-shadow);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.tutorial-modal-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 20px 22px 16px;
-    border-bottom: 1px solid var(--bg-input-border);
-}
-
-.tutorial-title-wrap h2 {
-    font-size: 20px;
-    line-height: 1.25;
-    margin-bottom: 8px;
-}
-
-.tutorial-title-wrap p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-}
-
-.tutorial-close-btn {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--bg-input-border);
-    border-radius: 8px;
-    background: var(--bg-input);
-    color: var(--text-muted);
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all 0.2s;
-}
-
-.tutorial-close-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--text-muted);
-}
-
-.tutorial-modal-body {
-    padding: 18px 22px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.tutorial-carousel {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 12px;
-    align-items: center;
-}
-
-.tutorial-slide-frame {
-    margin: 0;
-    border: 1px solid var(--bg-input-border);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: var(--bg-input);
-    padding: 10px;
-}
-
-.tutorial-slide-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
-    border-radius: 10px;
-    background: color-mix(in srgb, var(--bg-card) 80%, #0b1220 20%);
-    display: block;
-}
-
-.tutorial-slide-frame figcaption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    border-top: 1px solid var(--bg-input-border);
-    padding: 10px 14px;
-}
-
-.tutorial-slide-step {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-}
-
-.tutorial-slide-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.tutorial-nav-btn {
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--bg-input-border);
-    border-radius: 999px;
-    background: var(--bg-input);
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-}
-
-.tutorial-nav-btn:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--accent-glow);
-}
-
-.tutorial-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-.tutorial-dot {
-    width: 8px;
-    height: 8px;
-    border: 0;
-    border-radius: 999px;
-    background: var(--border-light);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.tutorial-dot.is-active {
-    width: 26px;
-    background: var(--accent);
-}
-
-.tutorial-narrator {
-    display: grid;
-    grid-template-columns: 132px minmax(0, 1fr);
-    gap: 12px;
-    border: 1px solid var(--bg-input-border);
-    border-radius: var(--radius-md);
-    padding: 12px;
-    background: var(--bg-input);
-}
-
-.tutorial-mascot {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-light);
-    background: color-mix(in srgb, var(--accent) 10%, var(--bg-card));
-}
-
-.tutorial-mascot-video,
-.tutorial-mascot-fallback {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    aspect-ratio: 1 / 1;
-}
-
-.tutorial-mascot-fallback {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    padding: 10px;
-}
-
-.tutorial-narration-box {
-    min-width: 0;
-}
-
-.tutorial-narration-label {
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.tutorial-narration-text {
-    color: var(--text-secondary);
-    font-size: 14px;
-    line-height: 1.65;
-    min-height: 92px;
-}
-
-.type-cursor {
-    margin-left: 2px;
-    color: var(--accent);
-    opacity: 0;
-}
-
-.type-cursor.is-active {
-    opacity: 1;
-    animation: blink-cursor 0.95s steps(1, end) infinite;
-}
-
-@keyframes blink-cursor {
-
-    0%,
-    49% {
-        opacity: 1;
-    }
-
-    50%,
-    100% {
-        opacity: 0;
-    }
-}
-
-.tutorial-modal-footer {
-    border-top: 1px solid var(--bg-input-border);
-    padding: 14px 22px 18px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.tutorial-primary-btn {
-    background: var(--accent);
-    color: var(--on-accent);
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.tutorial-primary-btn:hover {
-    background: var(--accent-hover);
-}
-
-/* ─── App Body (FIXED: Fluid heights & auto-fit grids) ───────────────── */
+/* ─── App Body ───────────────────────────────────────────────────────── */
 .app-body {
     display: grid;
     grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) minmax(300px, 380px);
@@ -521,1442 +244,10 @@ body {
     min-width: 0;
 }
 
-/* ─── RESPONSIVE BREAKPOINTS (Consolidated & Fixed) ─────────────────── */
-@media (max-width: 1280px) {
-    .app-body {
-        grid-template-columns: 280px minmax(0, 1fr);
-        overflow-y: auto;
-    }
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
 
-    .assistant-card {
-        grid-column: 1 / -1;
-        min-height: clamp(300px, 40vh, 500px);
-        max-height: clamp(400px, 60vh, 700px);
-    }
-}
-
-@media (min-width: 1280px) {
-    .tutorial-modal {
-        width: min(840px, 95%);
-        max-height: min(90dvh, 820px);
-    }
-
-    .tutorial-modal-header {
-        padding: 24px 28px 20px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 22px;
-    }
-
-    .tutorial-modal-body {
-        padding: 22px 28px;
-        gap: 18px;
-    }
-
-    .tutorial-carousel {
-        gap: 16px;
-    }
-
-    .tutorial-slide-frame {
-        padding: 12px;
-        border-radius: var(--radius-lg);
-    }
-
-    .tutorial-slide-image {
-        border-radius: 12px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 12px 16px;
-        gap: 14px;
-    }
-
-    .tutorial-slide-step {
-        font-size: 13px;
-    }
-
-    .tutorial-slide-title {
-        font-size: 14px;
-    }
-
-    .tutorial-nav-btn {
-        width: 38px;
-        height: 38px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 140px minmax(0, 1fr);
-        gap: 14px;
-        padding: 14px;
-    }
-
-    .tutorial-mascot {
-        border-radius: 14px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 15px;
-        min-height: 100px;
-    }
-
-    .tutorial-primary-btn {
-        padding: 12px 18px;
-        font-size: 14px;
-    }
-}
-
-/* ─── Tutorial Modal: Tablet Landscape (1024px - 768px) ─────────────── */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .tutorial-overlay {
-        padding: 16px;
-    }
-
-    .tutorial-modal {
-        width: min(95%, 800px);
-        max-height: min(88dvh, 780px);
-    }
-
-    .tutorial-modal-header {
-        padding: 18px 20px 14px;
-        gap: 12px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 19px;
-    }
-
-    .tutorial-title-wrap p {
-        font-size: 12px;
-    }
-
-    .tutorial-close-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
-    }
-
-    .tutorial-modal-body {
-        padding: 16px 20px;
-        gap: 12px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: auto minmax(0, 1fr) auto;
-        gap: 10px;
-    }
-
-    .tutorial-slide-frame {
-        padding: 9px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 9px 12px;
-        gap: 10px;
-    }
-
-    .tutorial-slide-step {
-        font-size: 11px;
-    }
-
-    .tutorial-slide-title {
-        font-size: 12px;
-    }
-
-    .tutorial-nav-btn {
-        width: 32px;
-        height: 32px;
-    }
-
-    .tutorial-pagination {
-        gap: 6px;
-    }
-
-    .tutorial-dot {
-        width: 7px;
-        height: 7px;
-    }
-
-    .tutorial-dot.is-active {
-        width: 22px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 110px minmax(0, 1fr);
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .tutorial-mascot-video,
-    .tutorial-mascot-fallback {
-        aspect-ratio: 1 / 1;
-    }
-
-    .tutorial-narration-label {
-        font-size: 10px;
-        margin-bottom: 6px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 13px;
-        line-height: 1.6;
-        min-height: 95px;
-    }
-
-    .tutorial-modal-footer {
-        padding: 12px 20px 16px;
-    }
-
-    .tutorial-primary-btn {
-        padding: 9px 13px;
-        font-size: 12px;
-    }
-
-    /* Touch-friendly targets */
-    .tutorial-nav-btn,
-    .tutorial-close-btn,
-    .tutorial-dot {
-        min-width: 40px;
-        min-height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .tutorial-dot {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        min-height: 8px;
-    }
-
-    .tutorial-dot.is-active {
-        width: 24px;
-        min-width: 24px;
-    }
-}
-
-/* ─── Tutorial Modal: Tablet Portrait (767px - 600px) ───────────────── */
-@media (min-width: 600px) and (max-width: 767px) {
-    .tutorial-overlay {
-        padding: 14px;
-    }
-
-    .tutorial-modal {
-        width: 100%;
-        max-height: min(90dvh, 850px);
-        border-radius: var(--radius-lg);
-    }
-
-    .tutorial-modal-header {
-        padding: 16px 18px 12px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .tutorial-title-wrap {
-        width: 100%;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 18px;
-        margin-bottom: 4px;
-    }
-
-    .tutorial-title-wrap p {
-        font-size: 12px;
-    }
-
-    .tutorial-close-btn {
-        align-self: flex-end;
-    }
-
-    .tutorial-modal-body {
-        padding: 14px 18px;
-        gap: 10px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .tutorial-nav-btn {
-        display: none;
-        /* Hide arrows, rely on dots */
-    }
-
-    .tutorial-slide-frame {
-        padding: 8px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 8px 10px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .tutorial-pagination {
-        margin-top: 4px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 100px minmax(0, 1fr);
-        gap: 8px;
-        padding: 8px;
-    }
-
-    .tutorial-mascot {
-        width: 100%;
-        height: auto;
-    }
-
-    .tutorial-mascot-video,
-    .tutorial-mascot-fallback {
-        aspect-ratio: 1 / 1;
-    }
-
-    .tutorial-narration-text {
-        font-size: 12px;
-        min-height: 110px;
-    }
-
-    .type-cursor {
-        margin-left: 1px;
-    }
-
-    .tutorial-modal-footer {
-        padding: 10px 18px 14px;
-        justify-content: center;
-    }
-
-    .tutorial-primary-btn {
-        width: 100%;
-        max-width: 280px;
-        padding: 10px;
-        font-size: 13px;
-    }
-}
-
-/* ─── Tutorial Modal: Mobile (599px - 480px) ────────────────────────── */
-@media (max-width: 599px) and (min-width: 480px) {
-    .tutorial-overlay {
-        padding: 12px;
-    }
-
-    .tutorial-modal {
-        width: 100%;
-        max-height: min(92dvh, 900px);
-        border-radius: var(--radius-md);
-    }
-
-    .tutorial-modal-header {
-        padding: 14px 16px 10px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 17px;
-    }
-
-    .tutorial-title-wrap p {
-        font-size: 11px;
-    }
-
-    .tutorial-close-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 16px;
-        align-self: flex-end;
-    }
-
-    .tutorial-modal-body {
-        padding: 12px 16px;
-        gap: 8px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-
-    .tutorial-nav-btn {
-        display: none;
-    }
-
-    .tutorial-slide-frame {
-        padding: 6px;
-        border-radius: var(--radius-sm);
-    }
-
-    .tutorial-slide-image {
-        border-radius: 8px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 6px 8px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-
-    .tutorial-slide-step {
-        font-size: 10px;
-        letter-spacing: 0.3px;
-    }
-
-    .tutorial-slide-title {
-        font-size: 11px;
-    }
-
-    .tutorial-pagination {
-        gap: 5px;
-        margin-top: 2px;
-    }
-
-    .tutorial-dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .tutorial-dot.is-active {
-        width: 20px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 90px minmax(0, 1fr);
-        gap: 6px;
-        padding: 6px;
-    }
-
-    .tutorial-mascot {
-        border-radius: 10px;
-    }
-
-    .tutorial-narration-label {
-        font-size: 9px;
-        margin-bottom: 4px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 12px;
-        line-height: 1.55;
-        min-height: 100px;
-    }
-
-    .type-cursor {
-        animation-duration: 0.85s;
-    }
-
-    .tutorial-modal-footer {
-        padding: 8px 16px 12px;
-        justify-content: center;
-    }
-
-    .tutorial-primary-btn {
-        width: 100%;
-        max-width: 260px;
-        padding: 9px;
-        font-size: 12px;
-    }
-}
-
-/* ─── Tutorial Modal: Small Mobile (<480px) ─────────────────────────── */
-@media (max-width: 479px) {
-    .tutorial-overlay {
-        padding: 8px;
-    }
-
-    .tutorial-modal {
-        width: 100%;
-        max-height: min(95dvh, 100%);
-        border-radius: var(--radius-sm);
-        border: none;
-    }
-
-    .tutorial-modal-header {
-        padding: 12px 14px 8px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        border-bottom-width: 1px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 16px;
-        line-height: 1.3;
-    }
-
-    .tutorial-title-wrap p {
-        font-size: 11px;
-        line-height: 1.5;
-    }
-
-    .tutorial-close-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-        align-self: flex-end;
-    }
-
-    .tutorial-modal-body {
-        padding: 10px 14px;
-        gap: 6px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .tutorial-nav-btn {
-        display: none;
-    }
-
-    .tutorial-slide-frame {
-        padding: 4px;
-        border-radius: var(--radius-sm);
-    }
-
-    .tutorial-slide-image {
-        border-radius: 6px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 4px 6px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-        border-top-width: 1px;
-    }
-
-    .tutorial-slide-step {
-        font-size: 9px;
-    }
-
-    .tutorial-slide-title {
-        font-size: 10px;
-    }
-
-    .tutorial-pagination {
-        gap: 4px;
-    }
-
-    .tutorial-dot {
-        width: 5px;
-        height: 5px;
-    }
-
-    .tutorial-dot.is-active {
-        width: 18px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        gap: 8px;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .tutorial-mascot {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto;
-        border-radius: 50%;
-    }
-
-    .tutorial-mascot-video,
-    .tutorial-mascot-fallback {
-        border-radius: 50%;
-        aspect-ratio: 1 / 1;
-    }
-
-    .tutorial-narration-box {
-        text-align: center;
-    }
-
-    .tutorial-narration-label {
-        font-size: 9px;
-        margin-bottom: 4px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 11px;
-        line-height: 1.5;
-        min-height: 90px;
-    }
-
-    .type-cursor {
-        margin-left: 1px;
-        animation-duration: 0.8s;
-    }
-
-    .tutorial-modal-footer {
-        padding: 6px 14px 10px;
-        justify-content: center;
-    }
-
-    .tutorial-primary-btn {
-        width: 100%;
-        padding: 8px;
-        font-size: 12px;
-        border-radius: var(--radius-sm);
-    }
-
-    /* Extra small: mascot fallback text */
-    .tutorial-mascot-fallback {
-        font-size: 10px;
-        padding: 8px;
-    }
-}
-
-/* ─── iPhone SE / Small Mobile (≤375px) ─────────────────────────────── */
-@media (max-width: 375px) {
-
-    /* App Header - Ultra Compact */
-    .app-header {
-        padding: 8px 12px;
-        min-height: 56px;
-        gap: 8px;
-    }
-
-    .app-header-brand h1 {
-        font-size: 16px;
-    }
-
-    .app-header-brand p {
-        display: none;
-    }
-
-    .app-header-icon {
-        width: 36px;
-        height: 36px;
-    }
-
-    /* Header Actions - Icon Only */
-    .header-action-btn {
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        justify-content: center;
-    }
-
-    .header-action-btn span {
-        display: none;
-    }
-
-    .header-action-btn svg {
-        width: 18px;
-        height: 18px;
-        margin: 0;
-    }
-
-    .header-theme-btn {
-        min-width: 36px;
-        width: 36px;
-        padding: 0;
-    }
-
-    /* App Body - Single Column, Fluid */
-    .app-body {
-        padding: 10px 12px;
-        gap: 10px;
-    }
-
-    /* Cards - Compact Padding */
-    .card {
-        padding: 14px;
-        border-radius: var(--radius-md);
-    }
-
-    .card-header {
-        gap: 8px;
-        margin-bottom: 14px;
-    }
-
-    .card-header h2 {
-        font-size: 15px;
-    }
-
-    .card-header p {
-        font-size: 11px;
-    }
-
-    /* Chart Card - Minimum Viable Height */
-    .chart-card {
-        padding: 14px;
-        min-height: auto;
-    }
-
-    .chart-container {
-        min-height: clamp(220px, 35vh, 280px);
-    }
-
-    .chart-header {
-        gap: 8px;
-        margin-bottom: 12px;
-    }
-
-    .chart-pair h2 {
-        font-size: 16px;
-    }
-
-    .chart-price {
-        font-size: 18px;
-    }
-
-    .chart-change {
-        font-size: 12px;
-    }
-
-    .chart-legend-item {
-        font-size: 10px;
-        padding: 3px 6px;
-    }
-
-    .legend-swatch {
-        width: 12px;
-        height: 8px;
-    }
-
-    /* Assistant Card - Compact Chat */
-    .assistant-card {
-        padding: 14px;
-    }
-
-    .assistant-messages {
-        margin-bottom: 12px;
-    }
-
-    .chat-msg {
-        gap: 8px;
-        margin-bottom: 10px;
-    }
-
-    .chat-msg-icon {
-        width: 26px;
-        height: 26px;
-        margin-top: 1px;
-    }
-
-    .chat-msg-bubble {
-        max-width: 92%;
-        padding: 8px 11px;
-        font-size: 12px;
-        border-radius: 10px;
-    }
-
-    .chat-input-row {
-        gap: 8px;
-    }
-
-    .chat-input {
-        padding: 10px 13px;
-        font-size: 14px;
-        /* Maintain readability */
-    }
-
-    .chat-send-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .chat-send-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    /* Stats & Risk Grids - 2 Columns Max */
-    .stats-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        margin-bottom: 10px;
-    }
-
-    .stat-item {
-        padding: 9px 11px;
-    }
-
-    .stat-label {
-        font-size: 10px;
-        gap: 4px;
-    }
-
-    .stat-value {
-        font-size: 14px;
-    }
-
-    .risk-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-
-    .risk-item {
-        padding: 8px 10px;
-    }
-
-    .risk-label {
-        font-size: 9px;
-    }
-
-    .risk-value {
-        font-size: 12px;
-    }
-
-    /* Form Elements - Full Width, Larger Tap */
-    .form-input,
-    .form-select {
-        padding: 10px 13px;
-        font-size: 14px;
-    }
-
-    .form-label {
-        font-size: 11px;
-        gap: 5px;
-    }
-
-    .btn-primary {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    /* Signal Badge - Compact */
-    .signal-badge {
-        padding: 4px 12px;
-        font-size: 12px;
-        gap: 4px;
-    }
-
-    .signal-badge svg {
-        width: 14px;
-        height: 14px;
-    }
-
-    /* Orchestrator Info - Tight */
-    .orchestrator-info {
-        padding: 6px 10px;
-        font-size: 10px;
-        gap: 6px;
-        margin-bottom: 10px;
-    }
-
-    .orchestrator-info svg {
-        width: 12px;
-        height: 12px;
-    }
-
-    .agent-detail-row {
-        padding: 4px 0;
-        font-size: 11px;
-    }
-
-    /* Tutorial Modal - Ultra Compact */
-    .tutorial-overlay {
-        padding: 8px;
-    }
-
-    .tutorial-modal {
-        width: 100%;
-        max-height: min(96dvh, 100%);
-        border-radius: var(--radius-sm);
-        border: none;
-    }
-
-    .tutorial-modal-header {
-        padding: 10px 12px 8px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 15px;
-        line-height: 1.3;
-        margin-bottom: 2px;
-    }
-
-    .tutorial-title-wrap p {
-        font-size: 11px;
-        line-height: 1.4;
-    }
-
-    .tutorial-close-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
-        align-self: flex-end;
-    }
-
-    .tutorial-modal-body {
-        padding: 10px 12px;
-        gap: 6px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: 1fr;
-        gap: 4px;
-    }
-
-    .tutorial-nav-btn {
-        display: none;
-    }
-
-    .tutorial-slide-frame {
-        padding: 4px;
-        border-radius: var(--radius-sm);
-    }
-
-    .tutorial-slide-image {
-        border-radius: 6px;
-    }
-
-    .tutorial-slide-frame figcaption {
-        padding: 4px 6px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-    }
-
-    .tutorial-slide-step {
-        font-size: 9px;
-        letter-spacing: 0.2px;
-    }
-
-    .tutorial-slide-title {
-        font-size: 10px;
-    }
-
-    .tutorial-pagination {
-        gap: 4px;
-    }
-
-    .tutorial-dot {
-        width: 5px;
-        height: 5px;
-    }
-
-    .tutorial-dot.is-active {
-        width: 16px;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        gap: 8px;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .tutorial-mascot {
-        width: 64px;
-        height: 64px;
-        margin: 0 auto;
-        border-radius: 50%;
-    }
-
-    .tutorial-mascot-video,
-    .tutorial-mascot-fallback {
-        border-radius: 50%;
-    }
-
-    .tutorial-mascot-fallback {
-        font-size: 9px;
-        padding: 6px;
-    }
-
-    .tutorial-narration-label {
-        font-size: 9px;
-        margin-bottom: 4px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 11px;
-        line-height: 1.5;
-        min-height: 80px;
-    }
-
-    .type-cursor {
-        margin-left: 1px;
-        animation-duration: 0.75s;
-    }
-
-    .tutorial-modal-footer {
-        padding: 6px 12px 10px;
-        justify-content: center;
-    }
-
-    .tutorial-primary-btn {
-        width: 100%;
-        max-width: 240px;
-        padding: 8px;
-        font-size: 12px;
-    }
-
-    /* Tooltip - Narrow */
-    .tooltip-box {
-        width: 200px;
-        font-size: 10px;
-        padding: 6px 10px;
-    }
-
-    /* History Panel - Compact */
-    .history-toggle-btn {
-        width: 32px;
-        height: 32px;
-    }
-
-    .history-session-item {
-        padding: 10px 12px;
-    }
-
-    .history-session-pair {
-        font-size: 13px;
-    }
-
-    .history-session-meta {
-        font-size: 10px;
-        gap: 8px;
-    }
-
-    .history-session-preview {
-        font-size: 11px;
-    }
-
-    /* Leverage Exposure - Centered */
-    .leverage-exposure {
-        padding: 6px 8px;
-        font-size: 10px;
-        text-align: center;
-    }
-
-    /* Ensure touch targets stay ≥44px */
-    .header-action-btn,
-    .chat-send-btn,
-    .tutorial-close-btn,
-    .tutorial-primary-btn,
-    .history-toggle-btn {
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .tutorial-dot {
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
-        width: auto;
-        height: auto;
-    }
-
-    .tutorial-dot.is-active {
-        width: auto;
-    }
-}
-
-/* ─── Very Small Screens (≤320px) ───────────────────────────────────── */
-@media (max-width: 320px) {
-
-    /* Further compress everything */
-    .app-header {
-        padding: 6px 10px;
-        min-height: 52px;
-    }
-
-    .app-header h1 {
-        font-size: 14px;
-    }
-
-    .card {
-        padding: 12px;
-    }
-
-    .chart-container {
-        min-height: clamp(200px, 30vh, 240px);
-    }
-
-    .chart-price {
-        font-size: 16px;
-    }
-
-    .chat-msg-bubble {
-        font-size: 11px;
-        padding: 7px 10px;
-    }
-
-    .chat-input {
-        font-size: 13px;
-    }
-
-    .stat-value,
-    .risk-value {
-        font-size: 13px;
-    }
-
-    .tutorial-modal-header {
-        padding: 8px 10px 6px;
-    }
-
-    .tutorial-title-wrap h2 {
-        font-size: 14px;
-    }
-
-    .tutorial-narration-text {
-        font-size: 10px;
-        min-height: 70px;
-    }
-
-    .tutorial-mascot {
-        width: 56px;
-        height: 56px;
-    }
-
-    .btn-primary,
-    .tutorial-primary-btn {
-        font-size: 13px;
-        padding: 10px;
-    }
-
-    /* Hide non-essential elements */
-    .chart-timeframe,
-    .agent-detail-extra,
-    .history-panel-time {
-        display: none;
-    }
-}
-
-/* ─── iPhone SE: Landscape Mode ─────────────────────────────────────── */
-@media (max-height: 320px) and (orientation: landscape) and (max-width: 568px) {
-    .tutorial-modal {
-        max-height: 98dvh;
-    }
-
-    .tutorial-modal-body {
-        max-height: 50dvh;
-        overflow-y: auto;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 50px minmax(0, 1fr);
-        gap: 4px;
-        padding: 4px;
-    }
-
-    .tutorial-mascot {
-        width: 40px;
-        height: 40px;
-    }
-
-    .tutorial-narration-text {
-        min-height: 50px;
-        font-size: 10px;
-    }
-
-    .tutorial-slide-image {
-        aspect-ratio: 16 / 6;
-    }
-
-    .app-body {
-        padding: 8px;
-    }
-
-    .chart-container {
-        min-height: 180px;
-    }
-
-    .assistant-messages {
-        max-height: 40dvh;
-    }
-}
-
-/* ─── Small Screen Accessibility ────────────────────────────────────── */
-@media (max-width: 375px) and (prefers-reduced-motion: reduce) {
-    .type-cursor.is-active {
-        animation: none;
-        opacity: 1;
-    }
-
-    .chat-typing .dot {
-        animation: none;
-        opacity: 0.7;
-    }
-}
-
-@media (max-width: 375px) and (prefers-contrast: high) {
-
-    .card,
-    .tutorial-modal,
-    .tutorial-slide-frame,
-    .tutorial-narrator {
-        border-width: 2px;
-    }
-
-    .tutorial-dot {
-        border: 1px solid currentColor;
-    }
-}
-
-/* ─── Tutorial: Orientation Changes (Landscape Mobile) ──────────────── */
-@media (max-height: 500px) and (orientation: landscape) {
-    .tutorial-modal {
-        max-height: 95dvh;
-    }
-
-    .tutorial-modal-body {
-        max-height: 60dvh;
-        overflow-y: auto;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 80px minmax(0, 1fr);
-        gap: 6px;
-        padding: 6px;
-    }
-
-    .tutorial-mascot {
-        width: 60px;
-        height: 60px;
-    }
-
-    .tutorial-narration-text {
-        min-height: 70px;
-        font-size: 11px;
-    }
-
-    .tutorial-slide-image {
-        aspect-ratio: 16 / 7;
-    }
-}
-
-/* ─── Tutorial: Reduced Motion Preference ───────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-    .type-cursor.is-active {
-        animation: none;
-        opacity: 1;
-    }
-
-    .tutorial-nav-btn,
-    .tutorial-close-btn,
-    .tutorial-primary-btn,
-    .header-action-btn {
-        transition: none;
-    }
-
-    .tutorial-dot {
-        transition: none;
-    }
-}
-
-/* ─── Tutorial: High Contrast Mode ──────────────────────────────────── */
-@media (prefers-contrast: high) {
-    .tutorial-modal {
-        border-width: 2px;
-    }
-
-    .tutorial-slide-frame,
-    .tutorial-narrator {
-        border-width: 2px;
-    }
-
-    .tutorial-dot {
-        border: 1px solid currentColor;
-    }
-
-    .tutorial-primary-btn {
-        border: 2px solid var(--on-accent);
-    }
-}
-
-@media (max-width: 900px) {
-    .app-body {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        padding: 12px;
-        gap: 12px;
-    }
-
-    .chart-card {
-        order: -1;
-        min-height: clamp(350px, 45vh, 550px);
-    }
-
-    .assistant-card {
-        min-height: clamp(300px, 40vh, 500px);
-        max-height: none;
-    }
-
-    .chart-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .chart-right-controls {
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .chart-price-info {
-        text-align: left;
-    }
-}
-
-@media (max-width: 640px) {
-    .app-header {
-        padding: 10px 16px;
-        height: auto;
-        min-height: 64px;
-    }
-
-    .app-header-brand p {
-        display: none;
-    }
-
-    .header-action-btn {
-        width: 36px;
-        height: 36px;
-        padding: 0;
-        justify-content: center;
-    }
-
-    .header-action-btn span {
-        display: none;
-    }
-
-    .header-action-btn svg {
-        margin: 0;
-    }
-
-    .chart-container {
-        min-height: clamp(250px, 35vh, 300px);
-    }
-
-    .card {
-        padding: 16px;
-    }
-
-    .stats-row {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 8px;
-    }
-
-    .risk-row {
-        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-        gap: 8px;
-    }
-
-    .stat-item,
-    .risk-item {
-        padding: 10px 12px;
-    }
-
-    .chat-msg-bubble {
-        max-width: 90%;
-        padding: 8px 12px;
-    }
-
-    .chat-input {
-        font-size: 14px;
-    }
-
-    .chart-right-controls {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .chart-legend {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .chart-price-info {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .chart-price {
-        font-size: 20px;
-    }
-
-    .leverage-exposure {
-        text-align: center;
-        padding: 10px;
-    }
-
-    .form-hint {
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .tutorial-overlay {
-        padding: 12px;
-    }
-
-    .tutorial-modal {
-        width: 100%;
-        max-height: min(92dvh, 920px);
-    }
-
-    .tutorial-modal-header {
-        padding: 16px 16px 12px;
-    }
-
-    .tutorial-modal-body {
-        padding: 14px 16px;
-    }
-
-    .tutorial-carousel {
-        grid-template-columns: 1fr;
-    }
-
-    .tutorial-nav-btn {
-        display: none;
-    }
-
-    .tutorial-narrator {
-        grid-template-columns: 96px minmax(0, 1fr);
-    }
-
-    .tutorial-narration-text {
-        min-height: 118px;
-        font-size: 13px;
-    }
-
-    .date-shortcuts {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .date-shortcuts-label {
-        grid-column: span 2;
-        text-align: center;
-        margin-bottom: 4px;
-    }
-}
-
-@media (max-width: 360px) {
-    .tutorial-narrator {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .tutorial-mascot {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto;
-    }
-}
-
-/* ─── Card ───────────────────────────────────────────────────────────── */
 .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1964,7 +255,9 @@ body {
     padding: 24px;
     display: flex;
     flex-direction: column;
-    overflow: inherit;
+
+    overflow: auto;
+    /* important */
     min-height: 400px;
 }
 
@@ -1984,6 +277,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .card-header h2 {
@@ -1996,7 +290,10 @@ body {
     color: var(--text-secondary);
 }
 
-/* ─── Form Elements ──────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   FORM ELEMENTS
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .form-group {
     margin-bottom: 18px;
 }
@@ -2050,7 +347,6 @@ body {
     color: var(--text-primary);
 }
 
-/* ─── Primary Button ─────────────────────────────────────────────────── */
 .btn-primary {
     width: 100%;
     padding: 14px;
@@ -2080,9 +376,16 @@ body {
     transform: none;
 }
 
-/* ─── Chart Card ─────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CARD
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .chart-card {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: auto;
     min-height: 400px;
 }
 
@@ -2090,30 +393,17 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 16px;
     gap: 12px;
-}
-
-@media (max-width: 500px) {
-    .chart-right-controls {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .chart-legend {
-        align-self: flex-start;
-    }
-
-    .chart-price {
-        font-size: 20px;
-    }
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
 }
 
 .chart-pair {
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
 }
 
 .chart-pair-icon {
@@ -2125,53 +415,106 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .chart-pair h2 {
     font-size: 18px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .chart-pair .chart-timeframe {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
     font-weight: 400;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
-.chart-price-info {
-    text-align: right;
+.chart-exotic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 8px;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--warn-bg);
+    color: var(--warn);
+    border: 1px solid var(--warn-border);
+    border-radius: 999px;
+    vertical-align: middle;
+    cursor: default;
 }
 
 .chart-right-controls {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.chart-price-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.chart-price {
+    font-size: 24px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+}
+
+.chart-change {
+    font-size: 13px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.chart-change.positive {
+    color: var(--buy-green);
+}
+
+.chart-change.negative {
+    color: var(--sell-red);
 }
 
 .chart-legend {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    align-self: center;
+    flex-direction: column;
+    gap: 5px;
+    align-self: flex-start;
+    padding-top: 2px;
 }
 
 .chart-legend-item {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-size: 11px;
     color: var(--text-secondary);
-    padding: 4px 8px;
+    padding: 3px 8px;
     border: 1px solid var(--bg-input-border);
     border-radius: 999px;
     background: var(--bg-input);
+    white-space: nowrap;
 }
 
 .legend-swatch {
-    width: 14px;
-    height: 10px;
-    border-radius: 3px;
+    width: 12px;
+    height: 9px;
+    border-radius: 2px;
     border: 1px solid currentColor;
+    flex-shrink: 0;
 }
 
 .chart-legend-item.default-up {
@@ -2204,17 +547,19 @@ body {
 }
 
 .chart-a11y-btn {
-    margin-bottom: 6px;
+    align-self: flex-end;
     background: var(--bg-input);
     border: 1px solid var(--bg-input-border);
     color: var(--text-secondary);
     border-radius: 999px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     font-size: 11px;
     font-weight: 600;
     font-family: var(--font);
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
+    margin-bottom: 4px;
 }
 
 .chart-a11y-btn:hover {
@@ -2223,34 +568,272 @@ body {
     background: var(--accent-glow);
 }
 
-.chart-price {
-    font-size: 24px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
+.chart-a11y-full {
+    display: inline;
 }
 
-.chart-change {
-    font-size: 13px;
-    font-weight: 500;
-    font-variant-numeric: tabular-nums;
-}
-
-.chart-change.positive {
-    color: var(--buy-green);
-}
-
-.chart-change.negative {
-    color: var(--sell-red);
+.chart-a11y-short {
+    display: none;
 }
 
 .chart-container {
     flex: 1;
-    min-height: 0;
+    min-height: clamp(220px, 30vh, 400px);
     border-radius: var(--radius-sm);
     overflow: hidden;
+    position: relative;
 }
 
-/* ─── Assistant Card ─────────────────────────────────────────────────── */
+.candle {
+    width: clamp(4px, 1.2vw, 12px);
+    min-width: 4px;
+}
+
+.candle-body {
+    min-height: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DATE PICKER SECTION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.date-picker-section {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--bg-input-border);
+    flex-shrink: 0;
+}
+
+.date-picker-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.date-picker-range-hint {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.date-picker-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.date-step-btn {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.date-step-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.date-step-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.date-input-wrap {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.date-input-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--accent);
+    pointer-events: none;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.date-input {
+    width: 100%;
+    padding: 8px 30px 8px 30px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: var(--font);
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+    cursor: pointer;
+    filter: invert(0.4);
+}
+
+[data-theme='light'] .date-input::-webkit-calendar-picker-indicator {
+    filter: none;
+}
+
+.date-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.date-clear-btn {
+    position: absolute;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input-border);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.date-clear-btn:hover {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.date-picker-display {
+    min-height: 18px;
+}
+
+.date-selected-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.date-selected-label.muted {
+    color: var(--text-muted);
+}
+
+.date-selected-label strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.date-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border-light);
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.date-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(45, 212, 191, 0.4);
+}
+
+.date-shortcuts {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.date-shortcuts-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.date-shortcut-btn {
+    padding: 4px 11px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--font);
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.date-shortcut-btn:hover,
+.date-shortcut-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.date-range-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-range-start,
+.date-range-end {
+    font-size: 10px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.date-range-track {
+    flex: 1;
+    height: 4px;
+    background: var(--bg-input-border);
+    border-radius: 2px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.date-range-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 2px;
+    transition: width 0.35s ease;
+    min-width: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ASSISTANT CARD
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .assistant-card {
     padding: 20px;
     display: flex;
@@ -2310,155 +893,6 @@ body {
     color: var(--text-secondary);
 }
 
-/* ─── Signal Badge ───────────────────────────────────────────────────── */
-.signal-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-
-.signal-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.signal-badge.buy {
-    background: var(--signal-buy-bg);
-    color: var(--buy-green);
-    border: 1px solid var(--signal-buy-border);
-}
-
-.signal-badge.sell {
-    background: var(--signal-sell-bg);
-    color: var(--sell-red);
-    border: 1px solid var(--signal-sell-border);
-}
-
-.signal-badge.hold {
-    background: var(--signal-hold-bg);
-    color: var(--hold-yellow);
-    border: 1px solid var(--signal-hold-border);
-}
-
-.signal-badge svg {
-    width: 16px;
-    height: 16px;
-}
-
-/* ─── Analysis Text ──────────────────────────────────────────────────── */
-.analysis-text {
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-}
-
-/* ─── Stats Row (FIXED: Auto-fit grid) ───────────────────────────────── */
-.stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.stat-item {
-    background: var(--bg-input);
-    border: 1px solid var(--bg-input-border);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-}
-
-.stat-label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-    font-weight: 400;
-}
-
-.stat-label svg {
-    width: 12px;
-    height: 12px;
-}
-
-.stat-value {
-    font-size: 16px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    color: var(--text-primary);
-}
-
-/* ─── Chat Input ─────────────────────────────────────────────────────── */
-.chat-input-row {
-    display: flex;
-    gap: 10px;
-    margin-top: auto;
-}
-
-.chat-input {
-    flex: 1;
-    padding: 12px 16px;
-    background: var(--bg-input);
-    border: 1px solid var(--bg-input-border);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-size: 13px;
-    font-family: var(--font);
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.chat-input:focus {
-    border-color: var(--accent);
-}
-
-.chat-input::placeholder {
-    color: var(--text-muted);
-}
-
-.chat-input:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.chat-send-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--accent);
-    border: none;
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s, opacity 0.2s;
-    flex-shrink: 0;
-}
-
-.chat-send-btn:hover:not(:disabled) {
-    background: var(--accent-hover);
-}
-
-.chat-send-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.chat-send-btn svg {
-    width: 18px;
-    height: 18px;
-    color: var(--on-accent);
-}
-
 /* ─── Chat Messages ──────────────────────────────────────────────────── */
 .chat-msg {
     display: flex;
@@ -2510,7 +944,6 @@ body {
     border: 1px solid var(--chat-assistant-bubble-border);
 }
 
-/* Typing indicator */
 .chat-typing {
     display: flex;
     align-items: center;
@@ -2549,7 +982,331 @@ body {
     }
 }
 
-/* ─── Loading Spinner ────────────────────────────────────────────────── */
+.chat-input-row {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: var(--font);
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+}
+
+.chat-input:focus {
+    border-color: var(--accent);
+}
+
+.chat-input::placeholder {
+    color: var(--text-muted);
+}
+
+.chat-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chat-send-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+    flex-shrink: 0;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+.chat-send-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.chat-send-btn svg {
+    width: 18px;
+    height: 18px;
+    color: var(--on-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIGNAL BADGE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.signal-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.signal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.signal-badge.buy {
+    background: var(--signal-buy-bg);
+    color: var(--buy-green);
+    border: 1px solid var(--signal-buy-border);
+}
+
+.signal-badge.sell {
+    background: var(--signal-sell-bg);
+    color: var(--sell-red);
+    border: 1px solid var(--signal-sell-border);
+}
+
+.signal-badge.hold {
+    background: var(--signal-hold-bg);
+    color: var(--hold-yellow);
+    border: 1px solid var(--signal-hold-border);
+}
+
+.signal-badge svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & RISK
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.analysis-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.stat-item {
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 400;
+}
+
+.stat-label svg {
+    width: 12px;
+    height: 12px;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+}
+
+.risk-params {
+    margin-top: 4px;
+}
+
+.risk-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.risk-item {
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+}
+
+.risk-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.risk-value {
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.risk-value.green {
+    color: var(--buy-green);
+}
+
+.risk-value.red {
+    color: var(--sell-red);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FORM HINTS, TOOLTIPS, LEVERAGE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.form-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+.form-hint-warn {
+    color: var(--warn);
+}
+
+.form-disclaimer {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding: 8px 10px;
+    background: rgba(100, 116, 139, 0.08);
+    border-radius: var(--radius-sm);
+    border-left: 2px solid var(--border-light);
+    margin-bottom: 12px;
+}
+
+.tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+    cursor: help;
+}
+
+.tooltip-icon {
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.tooltip-wrap:hover .tooltip-icon,
+.tooltip-wrap:focus .tooltip-icon {
+    color: var(--accent);
+}
+
+.tooltip-box {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
+    width: 240px;
+    max-width: 80vw;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip-box::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--border-light);
+}
+
+.leverage-select.leverage-safe {
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+.leverage-select.leverage-moderate {
+    border-color: rgba(234, 179, 8, 0.4);
+}
+
+.leverage-select.leverage-high {
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+.leverage-select.leverage-danger {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.leverage-exposure {
+    margin-top: 7px;
+    padding: 7px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.leverage-exposure strong {
+    font-weight: 700;
+}
+
+.leverage-exposure-safe {
+    background: rgba(34, 197, 94, 0.08);
+    border-left: 2px solid rgba(34, 197, 94, 0.4);
+    color: #86efac;
+}
+
+.leverage-exposure-moderate {
+    background: rgba(234, 179, 8, 0.08);
+    border-left: 2px solid rgba(234, 179, 8, 0.4);
+    color: #fde68a;
+}
+
+.leverage-exposure-high {
+    background: rgba(245, 158, 11, 0.08);
+    border-left: 2px solid rgba(245, 158, 11, 0.4);
+    color: var(--warn);
+}
+
+.leverage-exposure-danger {
+    background: rgba(239, 68, 68, 0.08);
+    border-left: 2px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LOADING
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .spinner {
     width: 20px;
     height: 20px;
@@ -2575,7 +1332,10 @@ body {
     font-size: 13px;
 }
 
-/* ─── SIV Retry Badge ────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   ORCHESTRATOR / AGENT DETAILS
+   ═══════════════════════════════════════════════════════════════════════ */
+
 .retry-badge {
     display: inline-flex;
     align-items: center;
@@ -2590,7 +1350,6 @@ body {
     margin-left: 8px;
 }
 
-/* ─── Orchestrator Info (FIXED: Removed duplicate) ───────────────────── */
 .orchestrator-info {
     display: flex;
     align-items: center;
@@ -2666,171 +1425,48 @@ body {
     font-size: 11px;
 }
 
-/* ─── Risk Parameters (FIXED: Auto-fit grid) ─────────────────────────── */
-.risk-params {
-    margin-top: 4px;
+.agent-detail-issues {
+    align-items: flex-start;
+    padding: 8px 0;
 }
 
-.risk-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 8px;
-    margin-bottom: 8px;
+.siv-audit-value {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    max-width: 220px;
+    text-align: right;
+    cursor: pointer;
+    user-select: none;
 }
 
-.risk-item {
-    background: var(--bg-input);
-    border: 1px solid var(--bg-input-border);
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
-}
-
-.risk-label {
-    font-size: 10px;
-    color: var(--text-muted);
-    margin-bottom: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.risk-value {
-    font-size: 13px;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-}
-
-.risk-value.green {
-    color: var(--buy-green);
-}
-
-.risk-value.red {
-    color: var(--sell-red);
-}
-
-/* ─── Form Hints & Tooltips ──────────────────────────────────────────── */
-.form-hint {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 5px;
+.siv-audit-issue {
+    font-size: 0.70rem;
+    font-weight: 500;
+    color: var(--warn);
     line-height: 1.4;
+    display: block;
 }
 
-.form-hint-warn {
-    color: var(--warn);
-}
-
-.form-disclaimer {
-    font-size: 10px;
+.siv-audit-count {
+    display: inline-block;
+    font-size: 0.65rem;
     color: var(--text-muted);
-    line-height: 1.5;
-    padding: 8px 10px;
-    background: rgba(100, 116, 139, 0.08);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid var(--border-light);
-    margin-bottom: 12px;
-}
-
-.tooltip-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
+    background: rgba(148, 163, 184, 0.12);
+    padding: 1px 6px;
+    border-radius: 8px;
     margin-left: 4px;
-    cursor: help;
+    font-weight: 500;
 }
 
-.tooltip-icon {
-    color: var(--text-muted);
-    transition: color 0.2s;
+.siv-audit-value:hover .siv-audit-issue {
+    color: var(--warn-soft);
 }
 
-.tooltip-wrap:hover .tooltip-icon,
-.tooltip-wrap:focus .tooltip-icon {
-    color: var(--accent);
-}
+/* ═══════════════════════════════════════════════════════════════════════
+   CHAT HISTORY PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
 
-.tooltip-box {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-card);
-    color: var(--text-primary);
-    font-size: 11px;
-    line-height: 1.5;
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-light);
-    width: 240px;
-    max-width: 80vw;
-    z-index: 100;
-    pointer-events: none;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.tooltip-box::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: var(--border-light);
-}
-
-/* ─── Leverage Risk ──────────────────────────────────────────────────── */
-.leverage-select.leverage-safe {
-    border-color: rgba(34, 197, 94, 0.4);
-}
-
-.leverage-select.leverage-moderate {
-    border-color: rgba(234, 179, 8, 0.4);
-}
-
-.leverage-select.leverage-high {
-    border-color: rgba(245, 158, 11, 0.5);
-}
-
-.leverage-select.leverage-danger {
-    border-color: rgba(239, 68, 68, 0.5);
-}
-
-.leverage-exposure {
-    margin-top: 7px;
-    padding: 7px 10px;
-    border-radius: var(--radius-sm);
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-.leverage-exposure strong {
-    font-weight: 700;
-}
-
-.leverage-exposure-safe {
-    background: rgba(34, 197, 94, 0.08);
-    border-left: 2px solid rgba(34, 197, 94, 0.4);
-    color: #86efac;
-}
-
-.leverage-exposure-moderate {
-    background: rgba(234, 179, 8, 0.08);
-    border-left: 2px solid rgba(234, 179, 8, 0.4);
-    color: #fde68a;
-}
-
-.leverage-exposure-high {
-    background: rgba(245, 158, 11, 0.08);
-    border-left: 2px solid rgba(245, 158, 11, 0.4);
-    color: var(--warn);
-}
-
-.leverage-exposure-danger {
-    background: rgba(239, 68, 68, 0.08);
-    border-left: 2px solid rgba(239, 68, 68, 0.4);
-    color: #fca5a5;
-}
-
-/* ─── Chat History ────────────────────────────────────────────────────── */
 .history-toggle-btn {
     width: 34px;
     height: 34px;
@@ -2877,10 +1513,7 @@ body {
 
 .history-panel {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     z-index: 20;
@@ -2981,6 +1614,18 @@ body {
     background: var(--chat-assistant-bubble-bg);
 }
 
+.history-session-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.history-session-top .signal-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+}
+
 .history-session-pair {
     font-size: 14px;
     font-weight: 600;
@@ -3024,18 +1669,6 @@ body {
     margin-top: 12px;
 }
 
-.history-session-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
-}
-
-.history-session-top .signal-badge {
-    font-size: 11px;
-    padding: 3px 10px;
-}
-
 .history-divider {
     display: flex;
     align-items: center;
@@ -3055,101 +1688,392 @@ body {
     background: var(--bg-input-border);
 }
 
-/* ─── SIV Audit Row ──────────────────────────────────────────────────── */
-.agent-detail-issues {
-    align-items: flex-start;
-    padding: 8px 0;
+/* ═══════════════════════════════════════════════════════════════════════
+   TUTORIAL MODAL
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.tutorial-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.siv-audit-value {
+.tutorial-modal {
+    width: min(760px, 100%);
+    max-height: min(86dvh, 760px);
+    background: linear-gradient(180deg, var(--modal-bg-start) 0%, var(--modal-bg-end) 100%);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 50px var(--modal-shadow);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    max-width: 220px;
-    text-align: right;
-    cursor: pointer;
-    user-select: none;
+    overflow: hidden;
+    display: flex;
 }
 
-.siv-audit-issue {
-    font-size: 0.70rem;
-    font-weight: 500;
-    color: var(--warn);
-    line-height: 1.4;
+.tutorial-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid var(--bg-input-border);
+    flex-shrink: 0;
+}
+
+.tutorial-title-wrap h2 {
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+}
+
+.tutorial-title-wrap p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.tutorial-close-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--bg-input-border);
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-muted);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutorial-close-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+.tutorial-modal-body {
+    padding: 18px 22px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+}
+
+.tutorial-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.tutorial-slide-frame {
+    margin: 0;
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-input);
+    padding: 10px;
+}
+
+.tutorial-slide-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--bg-card) 80%, #0b1220 20%);
     display: block;
 }
 
-.siv-audit-count {
-    display: inline-block;
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    background: rgba(148, 163, 184, 0.12);
-    padding: 1px 6px;
-    border-radius: 8px;
-    margin-left: 4px;
-    font-weight: 500;
+.tutorial-slide-frame figcaption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--bg-input-border);
+    padding: 10px 14px;
 }
 
-.siv-audit-value:hover .siv-audit-issue {
-    color: var(--warn-soft);
+.tutorial-slide-step {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
 }
 
-/* ─── Candlestick Chart Responsiveness ───────────────────────────── */
-.candle {
-    /* Ensure candles scale with container */
-    width: clamp(4px, 1.2vw, 12px);
-    min-width: 4px;
+.tutorial-slide-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
-.candle-body {
-    /* Prevent bodies from collapsing on small screens */
-    min-height: 2px;
+.tutorial-nav-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--bg-input-border);
+    border-radius: 999px;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
 }
 
-@media (max-width: 900px) {
-    .candle {
-        width: clamp(3px, 1.5vw, 10px);
+.tutorial-nav-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.tutorial-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.tutorial-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--border-light);
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.tutorial-dot.is-active {
+    width: 26px;
+    background: var(--accent);
+}
+
+.tutorial-narrator {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: 12px;
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    background: var(--bg-input);
+}
+
+.tutorial-mascot {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    background: color-mix(in srgb, var(--accent) 10%, var(--bg-card));
+}
+
+.tutorial-mascot-video,
+.tutorial-mascot-fallback {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+.tutorial-mascot-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 10px;
+}
+
+.tutorial-narration-box {
+    min-width: 0;
+}
+
+.tutorial-narration-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tutorial-narration-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.65;
+    min-height: 92px;
+}
+
+.type-cursor {
+    margin-left: 2px;
+    color: var(--accent);
+    opacity: 0;
+}
+
+.type-cursor.is-active {
+    opacity: 1;
+    animation: blink-cursor 0.95s steps(1, end) infinite;
+}
+
+@keyframes blink-cursor {
+
+    0%,
+    49% {
+        opacity: 1;
     }
 
-    .candle-wick {
-        stroke-width: 1px;
+    50%,
+    100% {
+        opacity: 0;
     }
 }
 
-
-@media (max-width: 640px) {
-    .chart-container {
-        min-height: clamp(250px, 40vh, 350px);
-        /* Fluid height instead of fixed 300px */
-    }
-
-    .candle {
-        width: clamp(2px, 2vw, 8px);
-    }
-
-    .candle-label {
-        font-size: 10px;
-    }
-
-    /* If you have price labels */
+.tutorial-modal-footer {
+    border-top: 1px solid var(--bg-input-border);
+    padding: 14px 22px 18px;
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
 }
 
-@media (max-width: 400px) {
-    .candle {
-        width: 3px;
-    }
-
-    .candle+.candle {
-        margin-left: 1px;
-    }
-
-    /* Reduce gap between candles */
+.tutorial-primary-btn {
+    background: var(--accent);
+    color: var(--on-accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: var(--font);
 }
 
-/* ─── Tablet Responsive (768px - 1024px) ────────────────────────────── */
+.tutorial-primary-btn:hover {
+    background: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   Strategy: Desktop-first, cascading down.
+   ≥1280px   → 3-col wide desktop
+   900–1279  → 2-col tablet landscape
+   768–899   → 2-col tablet landscape (tight)
+   600–767   → 1-col tablet portrait
+   480–599   → 1-col large phone
+   360–479   → 1-col mid phone
+   <360      → 1-col small phone
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── ≥1280px ────────────────────────────────────────────────────────── */
+@media (min-width: 1280px) {
+    .app-body {
+        grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) minmax(300px, 380px);
+    }
+
+    .tutorial-modal {
+        width: min(840px, 95%);
+        max-height: min(90dvh, 820px);
+    }
+
+    .tutorial-modal-header {
+        padding: 24px 28px 20px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 22px;
+    }
+
+    .tutorial-modal-body {
+        padding: 22px 28px;
+        gap: 18px;
+    }
+
+    .tutorial-carousel {
+        gap: 16px;
+    }
+
+    .tutorial-slide-frame {
+        padding: 12px;
+        border-radius: var(--radius-lg);
+    }
+
+    .tutorial-slide-image {
+        border-radius: 12px;
+    }
+
+    .tutorial-slide-frame figcaption {
+        padding: 12px 16px;
+        gap: 14px;
+    }
+
+    .tutorial-slide-step {
+        font-size: 13px;
+    }
+
+    .tutorial-slide-title {
+        font-size: 14px;
+    }
+
+    .tutorial-nav-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 140px minmax(0, 1fr);
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .tutorial-mascot {
+        border-radius: 14px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 15px;
+        min-height: 100px;
+    }
+
+    .tutorial-primary-btn {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+}
+
+/* ── 900–1279px: 2-col ──────────────────────────────────────────────── */
+@media (max-width: 1279px) {
+    .app-body {
+        grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+        overflow-y: auto;
+    }
+
+    .assistant-card {
+        grid-column: 1 / -1;
+        min-height: clamp(300px, 40vh, 500px);
+        max-height: clamp(400px, 55vh, 650px);
+    }
+}
+
+/* ── 768–1024px: Tablet landscape ───────────────────────────────────── */
 @media (min-width: 768px) and (max-width: 1024px) {
-
-    /* App Layout */
     .app-header {
         padding: 14px 20px;
         gap: 10px;
@@ -3165,12 +2089,13 @@ body {
         grid-column: 1 / -1;
         min-height: clamp(350px, 45vh, 550px);
         max-height: clamp(450px, 60vh, 650px);
+        padding: 16px 20px;
     }
 
-    /* Cards */
     .card {
         padding: 20px;
         border-radius: var(--radius-md);
+        overflow-y: auto;
     }
 
     .card-header {
@@ -3182,9 +2107,8 @@ body {
         font-size: 15px;
     }
 
-    /* Chart Card */
     .chart-card {
-        padding: 16px 20px;
+        padding: 16px;
     }
 
     .chart-header {
@@ -3200,6 +2124,10 @@ body {
         font-size: 22px;
     }
 
+    .chart-change {
+        font-size: 11px;
+    }
+
     .chart-container {
         min-height: clamp(300px, 40vh, 450px);
     }
@@ -3207,11 +2135,6 @@ body {
     .chart-legend-item {
         font-size: 10px;
         padding: 3px 7px;
-    }
-
-    /* Assistant Card */
-    .assistant-card {
-        padding: 16px 20px;
     }
 
     .assistant-messages {
@@ -3233,7 +2156,6 @@ body {
         height: 42px;
     }
 
-    /* Stats & Risk Grids */
     .stats-row {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
         gap: 10px;
@@ -3264,7 +2186,6 @@ body {
         font-size: 12px;
     }
 
-    /* Form Elements */
     .form-input,
     .form-select {
         padding: 11px 14px;
@@ -3280,13 +2201,11 @@ body {
         font-size: 14px;
     }
 
-    /* Signal Badge */
     .signal-badge {
         padding: 5px 14px;
         font-size: 13px;
     }
 
-    /* Orchestrator Info */
     .orchestrator-info {
         padding: 7px 10px;
         font-size: 10px;
@@ -3298,7 +2217,21 @@ body {
         font-size: 11px;
     }
 
-    /* Tutorial Modal (if open on tablet) */
+    .agent-detail-value-wrap,
+    .siv-audit-value {
+        max-width: 180px;
+    }
+
+    /* Touch targets */
+    .header-action-btn,
+    .chart-a11y-btn,
+    .history-toggle-btn,
+    .tutorial-nav-btn,
+    .tutorial-close-btn {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
     .tutorial-modal {
         width: min(95%, 820px);
         max-height: min(90dvh, 800px);
@@ -3315,59 +2248,126 @@ body {
         min-height: 100px;
     }
 
-    /* Touch-friendly adjustments */
-    .header-action-btn,
-    .chart-a11y-btn,
-    .history-toggle-btn,
-    .tutorial-nav-btn,
-    .tutorial-close-btn {
-        min-width: 40px;
-        min-height: 40px;
-        padding: 8px 10px;
+    /* Date picker */
+    .date-picker-section {
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 10px;
     }
 
-    /* Prevent horizontal scroll on tight content */
-    .agent-detail-value-wrap,
-    .siv-audit-value {
-        max-width: 180px;
+    .date-input {
+        font-size: 13px;
+        padding: 7px 28px 7px 28px;
+    }
+
+    .date-step-btn {
+        width: 32px;
+        height: 32px;
     }
 }
 
-/* ─── Tablet Portrait (600px - 767px) ───────────────────────────────── */
-@media (min-width: 600px) and (max-width: 767px) {
+/* ── <900px: 1-col stacked ──────────────────────────────────────────── */
+@media (max-width: 899px) {
     .app-body {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        padding: 12px 16px;
+        overflow-y: auto;
+        padding: 12px;
         gap: 12px;
     }
 
     .chart-card {
         order: -1;
-        min-height: clamp(320px, 45vh, 500px);
+        min-height: clamp(350px, 45vh, 550px);
     }
 
     .assistant-card {
-        min-height: clamp(300px, 40vh, 480px);
+        grid-column: auto;
+        min-height: clamp(300px, 40vh, 500px);
         max-height: none;
     }
 
     .chart-header {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
+        gap: 10px;
     }
 
     .chart-right-controls {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         flex-wrap: wrap;
         gap: 8px;
     }
 
+    .chart-legend {
+        flex-direction: row;
+        gap: 6px;
+        align-self: center;
+        flex-wrap: wrap;
+    }
+
     .chart-price-info {
-        text-align: left;
-        width: 100%;
+        align-items: flex-end;
+        flex-shrink: 0;
+    }
+
+    .chart-container {
+        min-height: clamp(240px, 35vh, 380px);
+    }
+
+    .candle {
+        width: clamp(3px, 1.5vw, 10px);
+    }
+
+    .candle-wick {
+        stroke-width: 1px;
+    }
+}
+
+/* ── 600–767px: Tablet portrait ─────────────────────────────────────── */
+@media (min-width: 600px) and (max-width: 767px) {
+    .app-header {
+        padding: 12px 16px;
+    }
+
+    .header-action-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-action-btn svg {
+        margin: 0;
+    }
+
+    .chart-card {
+        padding: 14px;
+    }
+
+    .chart-pair h2 {
+        font-size: 16px;
+    }
+
+    .chart-price {
+        font-size: 18px;
+    }
+
+    .chart-container {
+        min-height: clamp(280px, 40vh, 420px);
+    }
+
+    .chart-a11y-full {
+        display: none;
+    }
+
+    .chart-a11y-short {
+        display: inline;
     }
 
     .stats-row,
@@ -3379,33 +2379,338 @@ body {
         max-width: 88%;
     }
 
+    .date-picker-section {
+        gap: 7px;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .date-picker-range-hint {
+        display: none;
+    }
+
+    .date-range-bar {
+        display: none;
+    }
+
+    .date-shortcuts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .date-shortcuts-label {
+        grid-column: span 2;
+        text-align: center;
+    }
+
+    /* Tutorial */
+    .tutorial-overlay {
+        padding: 14px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(90dvh, 850px);
+        border-radius: var(--radius-lg);
+    }
+
+    .tutorial-modal-header {
+        padding: 16px 18px 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .tutorial-title-wrap {
+        width: 100%;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 12px;
+    }
+
+    .tutorial-close-btn {
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 14px 18px;
+        gap: 10px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame figcaption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 100px minmax(0, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 12px;
+        min-height: 110px;
+    }
+
+    .tutorial-modal-footer {
+        padding: 10px 18px 14px;
+        justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ── 480–599px: Large phone ──────────────────────────────────────────── */
+@media (min-width: 480px) and (max-width: 599px) {
+    .app-header {
+        padding: 10px 16px;
+        min-height: 60px;
+    }
+
+    .header-action-btn {
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        justify-content: center;
+    }
+
     .header-action-btn span {
         display: none;
     }
 
-    .header-action-btn {
-        width: 40px;
-        height: 40px;
-        padding: 0;
+    .header-action-btn svg {
+        margin: 0;
+    }
+
+    .app-body {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .card {
+        padding: 16px;
+        overflow-y: auto;
+    }
+
+    .chart-card {
+        padding: 12px;
+    }
+
+    .chart-pair h2 {
+        font-size: 15px;
+    }
+
+    .chart-price {
+        font-size: 17px;
+    }
+
+    .chart-change {
+        font-size: 11px;
+    }
+
+    .chart-container {
+        min-height: clamp(200px, 32vh, 300px);
+    }
+
+    .chart-a11y-full {
+        display: none;
+    }
+
+    .chart-a11y-short {
+        display: inline;
+    }
+
+    .chart-legend-item span:last-child {
+        display: none;
+    }
+
+    .chart-legend-item {
+        padding: 3px 6px;
+    }
+
+    .legend-swatch {
+        width: 14px;
+        height: 10px;
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .risk-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .chat-msg-bubble {
+        max-width: 90%;
+        font-size: 12px;
+    }
+
+    .chat-input {
+        font-size: 14px;
+    }
+
+    .candle {
+        width: clamp(2px, 2vw, 8px);
+    }
+
+    /* Date picker */
+    .date-picker-section {
+        gap: 6px;
+        margin-top: 10px;
+        padding-top: 8px;
+    }
+
+    .date-picker-label {
+        font-size: 10px;
+    }
+
+    .date-picker-range-hint {
+        display: none;
+    }
+
+    .date-input {
+        font-size: 12px;
+        padding: 7px 26px;
+    }
+
+    .date-step-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .date-selected-label {
+        font-size: 11px;
+    }
+
+    .date-shortcuts-label {
+        display: none;
+    }
+
+    .date-range-bar {
+        display: none;
+    }
+
+    .date-shortcuts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .date-shortcuts-label {
+        grid-column: span 2;
+    }
+
+    /* Tutorial */
+    .tutorial-overlay {
+        padding: 12px;
+    }
+
+    .tutorial-modal {
+        width: 100%;
+        max-height: min(92dvh, 900px);
+        border-radius: var(--radius-md);
+    }
+
+    .tutorial-modal-header {
+        padding: 14px 16px 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .tutorial-title-wrap h2 {
+        font-size: 17px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 11px;
+    }
+
+    .tutorial-close-btn {
+        align-self: flex-end;
+    }
+
+    .tutorial-modal-body {
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .tutorial-carousel {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .tutorial-nav-btn {
+        display: none;
+    }
+
+    .tutorial-slide-frame figcaption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .tutorial-narration-text {
+        font-size: 12px;
+        min-height: 100px;
+    }
+
+    .tutorial-modal-footer {
+        padding: 8px 16px 12px;
         justify-content: center;
+    }
+
+    .tutorial-primary-btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 9px;
+        font-size: 12px;
     }
 }
 
-/* ─── iPhone SE / Small Mobile (≤375px) ─────────────────────────────── */
-@media (max-width: 375px) {
-
-    /* App Header - Ultra Compact */
+/* ── 360–479px: Mid phone ────────────────────────────────────────────── */
+@media (min-width: 360px) and (max-width: 479px) {
     .app-header {
         padding: 8px 12px;
         min-height: 56px;
         gap: 8px;
     }
 
-    .app-header-brand h1 {
+    .app-header h1 {
         font-size: 16px;
     }
 
-    .app-header-brand p {
+    .app-header p {
         display: none;
     }
 
@@ -3414,7 +2719,6 @@ body {
         height: 36px;
     }
 
-    /* Header Actions - Icon Only */
     .header-action-btn {
         width: 36px;
         height: 36px;
@@ -3435,19 +2739,17 @@ body {
     .header-theme-btn {
         min-width: 36px;
         width: 36px;
-        padding: 0;
     }
 
-    /* App Body - Single Column, Fluid */
     .app-body {
         padding: 10px 12px;
         gap: 10px;
     }
 
-    /* Cards - Compact Padding */
     .card {
         padding: 14px;
         border-radius: var(--radius-md);
+        overflow-y: auto;
     }
 
     .card-header {
@@ -3463,44 +2765,71 @@ body {
         font-size: 11px;
     }
 
-    /* Chart Card - Minimum Viable Height */
     .chart-card {
-        padding: 14px;
+        padding: 12px;
         min-height: auto;
-    }
-
-    .chart-container {
-        min-height: clamp(220px, 35vh, 280px);
+        min-height: 300px;
+        overflow-y: auto;
     }
 
     .chart-header {
-        gap: 8px;
-        margin-bottom: 12px;
+        gap: 6px;
+        margin-bottom: 8px;
     }
 
     .chart-pair h2 {
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .chart-pair .chart-timeframe {
+        max-width: 140px;
+        font-size: 10px;
     }
 
     .chart-price {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .chart-change {
-        font-size: 12px;
+        font-size: 10px;
+    }
+
+    .chart-a11y-full {
+        display: none;
+    }
+
+    .chart-a11y-short {
+        display: inline;
+    }
+
+    .chart-a11y-btn {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+
+    .chart-legend-item span:last-child {
+        display: none;
     }
 
     .chart-legend-item {
-        font-size: 10px;
-        padding: 3px 6px;
+        padding: 3px 5px;
     }
 
     .legend-swatch {
         width: 12px;
-        height: 8px;
+        height: 9px;
     }
 
-    /* Assistant Card - Compact Chat */
+    .chart-container {
+        min-height: clamp(180px, 30vh, 260px);
+    }
+
+    .chart-exotic-badge {
+        font-size: 9px;
+        padding: 1px 5px;
+        margin-left: 5px;
+    }
+
     .assistant-card {
         padding: 14px;
     }
@@ -3534,7 +2863,6 @@ body {
     .chat-input {
         padding: 10px 13px;
         font-size: 14px;
-        /* Maintain readability */
     }
 
     .chat-send-btn {
@@ -3547,7 +2875,6 @@ body {
         height: 16px;
     }
 
-    /* Stats & Risk Grids - 2 Columns Max */
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
@@ -3584,7 +2911,6 @@ body {
         font-size: 12px;
     }
 
-    /* Form Elements - Full Width, Larger Tap */
     .form-input,
     .form-select {
         padding: 10px 13px;
@@ -3601,7 +2927,6 @@ body {
         font-size: 14px;
     }
 
-    /* Signal Badge - Compact */
     .signal-badge {
         padding: 4px 12px;
         font-size: 12px;
@@ -3613,7 +2938,6 @@ body {
         height: 14px;
     }
 
-    /* Orchestrator Info - Tight */
     .orchestrator-info {
         padding: 6px 10px;
         font-size: 10px;
@@ -3631,27 +2955,136 @@ body {
         font-size: 11px;
     }
 
-    /* Tutorial Modal - Ultra Compact */
+    .tooltip-box {
+        width: 200px;
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .leverage-exposure {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .history-toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .history-session-item {
+        padding: 10px 12px;
+    }
+
+    .history-session-pair {
+        font-size: 13px;
+    }
+
+    .history-session-meta {
+        font-size: 10px;
+        gap: 8px;
+    }
+
+    .history-session-preview {
+        font-size: 11px;
+    }
+
+    .candle {
+        width: 3px;
+    }
+
+    /* Date picker — compact */
+    .date-picker-section {
+        gap: 6px;
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
+    .date-picker-label {
+        font-size: 10px;
+    }
+
+    .date-picker-range-hint {
+        display: none;
+    }
+
+    .date-picker-controls {
+        gap: 5px;
+    }
+
+    .date-step-btn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .date-input {
+        font-size: 12px;
+        padding: 6px 24px;
+    }
+
+    .date-input-icon {
+        left: 7px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .date-clear-btn {
+        right: 6px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .date-picker-display {
+        min-height: 16px;
+    }
+
+    .date-selected-label {
+        font-size: 11px;
+        gap: 4px;
+    }
+
+    .date-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .date-shortcuts {
+        gap: 4px;
+    }
+
+    .date-shortcuts-label {
+        display: none;
+    }
+
+    .date-shortcut-btn {
+        padding: 3px 9px;
+        font-size: 10px;
+    }
+
+    .date-range-bar {
+        display: none;
+    }
+
+    /* Tutorial */
     .tutorial-overlay {
         padding: 8px;
     }
 
     .tutorial-modal {
         width: 100%;
-        max-height: min(96dvh, 100%);
+        max-height: min(95dvh, 100%);
         border-radius: var(--radius-sm);
         border: none;
     }
 
     .tutorial-modal-header {
-        padding: 10px 12px 8px;
+        padding: 12px 14px 8px;
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
     }
 
     .tutorial-title-wrap h2 {
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1.3;
         margin-bottom: 2px;
     }
@@ -3662,14 +3095,14 @@ body {
     }
 
     .tutorial-close-btn {
+        align-self: flex-end;
         width: 28px;
         height: 28px;
         font-size: 14px;
-        align-self: flex-end;
     }
 
     .tutorial-modal-body {
-        padding: 10px 12px;
+        padding: 10px 14px;
         gap: 6px;
     }
 
@@ -3745,6 +3178,10 @@ body {
         padding: 6px;
     }
 
+    .tutorial-narration-box {
+        text-align: center;
+    }
+
     .tutorial-narration-label {
         font-size: 9px;
         margin-bottom: 4px;
@@ -3762,7 +3199,7 @@ body {
     }
 
     .tutorial-modal-footer {
-        padding: 6px 12px 10px;
+        padding: 6px 14px 10px;
         justify-content: center;
     }
 
@@ -3773,44 +3210,7 @@ body {
         font-size: 12px;
     }
 
-    /* Tooltip - Narrow */
-    .tooltip-box {
-        width: 200px;
-        font-size: 10px;
-        padding: 6px 10px;
-    }
-
-    /* History Panel - Compact */
-    .history-toggle-btn {
-        width: 32px;
-        height: 32px;
-    }
-
-    .history-session-item {
-        padding: 10px 12px;
-    }
-
-    .history-session-pair {
-        font-size: 13px;
-    }
-
-    .history-session-meta {
-        font-size: 10px;
-        gap: 8px;
-    }
-
-    .history-session-preview {
-        font-size: 11px;
-    }
-
-    /* Leverage Exposure - Centered */
-    .leverage-exposure {
-        padding: 6px 8px;
-        font-size: 10px;
-        text-align: center;
-    }
-
-    /* Ensure touch targets stay ≥44px */
+    /* Touch targets ≥44px */
     .header-action-btn,
     .chat-send-btn,
     .tutorial-close-btn,
@@ -3824,22 +3224,12 @@ body {
     }
 
     .tutorial-dot {
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
-        width: auto;
-        height: auto;
-    }
-
-    .tutorial-dot.is-active {
-        width: auto;
+        touch-action: manipulation;
     }
 }
 
-/* ─── Very Small Screens (≤320px) ───────────────────────────────────── */
-@media (max-width: 320px) {
-
-    /* Further compress everything */
+/* ── <360px: Small phone ─────────────────────────────────────────────── */
+@media (max-width: 359px) {
     .app-header {
         padding: 6px 10px;
         min-height: 52px;
@@ -3849,16 +3239,103 @@ body {
         font-size: 14px;
     }
 
-    .card {
-        padding: 12px;
+    .app-header p {
+        display: none;
     }
 
-    .chart-container {
-        min-height: clamp(200px, 30vh, 240px);
+    .app-header-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header-action-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .header-action-btn span {
+        display: none;
+    }
+
+    .header-theme-btn {
+        min-width: 36px;
+        width: 36px;
+    }
+
+    .app-body {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .card {
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .chart-card {
+        padding: 10px;
+    }
+
+    .chart-header {
+        gap: 5px;
+        margin-bottom: 6px;
+    }
+
+    .chart-pair h2 {
+        font-size: 13px;
+    }
+
+    .chart-pair .chart-timeframe {
+        display: none;
     }
 
     .chart-price {
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .chart-change {
+        font-size: 10px;
+    }
+
+    .chart-pair-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chart-a11y-full {
+        display: none;
+    }
+
+    .chart-a11y-short {
+        display: inline;
+    }
+
+    .chart-a11y-btn {
+        font-size: 10px;
+        padding: 3px 7px;
+    }
+
+    .chart-legend-item span:last-child {
+        display: none;
+    }
+
+    .chart-legend-item {
+        padding: 2px 4px;
+    }
+
+    .legend-swatch {
+        width: 10px;
+        height: 8px;
+    }
+
+    .chart-container {
+        min-height: clamp(160px, 28vh, 220px);
+    }
+
+    .chart-exotic-badge {
+        display: none;
     }
 
     .chat-msg-bubble {
@@ -3875,12 +3352,92 @@ body {
         font-size: 13px;
     }
 
+    .btn-primary,
+    .tutorial-primary-btn {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* Hide non-essential chrome */
+    .chart-timeframe,
+    .agent-detail-extra,
+    .history-panel-time {
+        display: none;
+    }
+
+    /* Date picker — ultra compact */
+    .date-picker-section {
+        gap: 5px;
+        margin-top: 6px;
+        padding-top: 6px;
+    }
+
+    .date-picker-label {
+        font-size: 10px;
+    }
+
+    .date-picker-range-hint {
+        display: none;
+    }
+
+    .date-step-btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .date-input {
+        font-size: 11px;
+        padding: 5px 22px;
+    }
+
+    .date-input-icon {
+        left: 6px;
+        width: 11px;
+        height: 11px;
+    }
+
+    .date-clear-btn {
+        right: 5px;
+        width: 14px;
+        height: 14px;
+    }
+
+    .date-selected-label {
+        font-size: 10px;
+    }
+
+    .date-shortcuts-label {
+        display: none;
+    }
+
+    .date-shortcut-btn {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+
+    .date-range-bar {
+        display: none;
+    }
+
+    /* Tutorial */
+    .tutorial-overlay {
+        padding: 6px;
+    }
+
     .tutorial-modal-header {
         padding: 8px 10px 6px;
     }
 
     .tutorial-title-wrap h2 {
         font-size: 14px;
+    }
+
+    .tutorial-title-wrap p {
+        font-size: 10px;
+    }
+
+    .tutorial-modal-body {
+        padding: 8px 10px;
     }
 
     .tutorial-narration-text {
@@ -3893,22 +3450,172 @@ body {
         height: 56px;
     }
 
-    .btn-primary,
-    .tutorial-primary-btn {
-        font-size: 13px;
-        padding: 10px;
+    .tutorial-dot {
+        touch-action: manipulation;
     }
 
-    /* Hide non-essential elements */
-    .chart-timeframe,
-    .agent-detail-extra,
-    .history-panel-time {
-        display: none;
+    /* Touch targets */
+    .header-action-btn,
+    .chat-send-btn,
+    .tutorial-close-btn,
+    .history-toggle-btn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
-/* ─── iPhone SE: Landscape Mode ─────────────────────────────────────── */
-@media (max-height: 320px) and (orientation: landscape) and (max-width: 568px) {
+/* ═══════════════════════════════════════════════════════════════════════
+   LANDSCAPE SPECIAL CASES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .app-body {
+        overflow-y: auto;
+    }
+
+    .chart-card {
+        min-height: clamp(200px, 55vh, 350px);
+    }
+
+    .chart-container {
+        min-height: clamp(140px, 45vh, 260px);
+    }
+
+    .assistant-card {
+        min-height: 220px;
+    }
+
+    .assistant-messages {
+        max-height: 40dvh;
+    }
+
+    /* Collapse date picker in landscape */
+    .date-picker-label {
+        display: none;
+    }
+
+    .date-picker-display {
+        display: none;
+    }
+
+    .date-shortcuts {
+        display: none;
+    }
+
+    .date-range-bar {
+        display: none;
+    }
+
+    .date-picker-section {
+        margin-top: 6px;
+        padding-top: 6px;
+        gap: 4px;
+    }
+
+    .chart-header {
+        margin-bottom: 6px;
+    }
+
+    .chart-a11y-full {
+        display: none;
+    }
+
+    .chart-a11y-short {
+        display: inline;
+    }
+
+    .tutorial-modal {
+        max-height: 95dvh;
+    }
+
+    .tutorial-modal-body {
+        max-height: 60dvh;
+        overflow-y: auto;
+    }
+
+    .tutorial-narrator {
+        grid-template-columns: 80px minmax(0, 1fr);
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .tutorial-mascot {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tutorial-narration-text {
+        min-height: 70px;
+        font-size: 11px;
+    }
+
+    .tutorial-slide-image {
+        aspect-ratio: 16 / 7;
+    }
+}
+
+@media (max-height: 320px) and (orientation: landscape) {
+    .app-header {
+        padding: 4px 12px;
+        min-height: 44px;
+    }
+
+    .app-header h1 {
+        font-size: 14px;
+    }
+
+    .app-header p {
+        display: none;
+    }
+
+    .app-header-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .app-body {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .chart-container {
+        min-height: 130px;
+    }
+
+    .chart-legend {
+        display: none;
+    }
+
+    .chart-a11y-btn {
+        display: none;
+    }
+
+    .chart-pair .chart-timeframe {
+        display: none;
+    }
+
+    .assistant-messages {
+        max-height: 35dvh;
+    }
+
+    .date-picker-section {
+        margin-top: 4px;
+        padding-top: 4px;
+    }
+
+    .date-step-btn {
+        width: 26px;
+        height: 26px;
+    }
+
+    .date-input {
+        font-size: 11px;
+        padding: 4px 20px;
+    }
+
     .tutorial-modal {
         max-height: 98dvh;
     }
@@ -3937,22 +3644,13 @@ body {
     .tutorial-slide-image {
         aspect-ratio: 16 / 6;
     }
-
-    .app-body {
-        padding: 8px;
-    }
-
-    .chart-container {
-        min-height: 180px;
-    }
-
-    .assistant-messages {
-        max-height: 40dvh;
-    }
 }
 
-/* ─── Small Screen Accessibility ────────────────────────────────────── */
-@media (max-width: 375px) and (prefers-reduced-motion: reduce) {
+/* ═══════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY PREFERENCES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
     .type-cursor.is-active {
         animation: none;
         opacity: 1;
@@ -3962,18 +3660,1509 @@ body {
         animation: none;
         opacity: 0.7;
     }
+
+    .tutorial-nav-btn,
+    .tutorial-close-btn,
+    .tutorial-primary-btn,
+    .header-action-btn,
+    .tutorial-dot {
+        transition: none;
+    }
+
+    .date-range-fill {
+        transition: none;
+    }
+
+    .chart-a11y-btn,
+    .date-step-btn,
+    .date-shortcut-btn,
+    .date-clear-btn {
+        transition: none;
+    }
+
+    .date-dot {
+        transition: none;
+    }
 }
 
-@media (max-width: 375px) and (prefers-contrast: high) {
+@media (prefers-contrast: high) {
 
-    .card,
     .tutorial-modal,
     .tutorial-slide-frame,
-    .tutorial-narrator {
+    .tutorial-narrator,
+    .card {
         border-width: 2px;
     }
 
     .tutorial-dot {
         border: 1px solid currentColor;
+    }
+
+    .tutorial-primary-btn {
+        border: 2px solid var(--on-accent);
+    }
+
+    .chart-exotic-badge,
+    .date-shortcut-btn,
+    .chart-legend-item {
+        border-width: 2px;
+    }
+
+    .date-range-track {
+        border: 1px solid var(--border-light);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GUIDED WORKFLOW  (GuidedWorkflow.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.guided-workflow {
+    padding: 12px 24px 0;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+}
+
+.gw-progress-track {
+    height: 3px;
+    background: var(--bg-input-border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.gw-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.gw-rail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.gw-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0 0 10px;
+    flex: 1;
+    cursor: default;
+    font-family: var(--font);
+    transition: opacity 0.2s;
+}
+
+.gw-step.done {
+    cursor: pointer;
+}
+
+.gw-step.done:hover .gw-circle {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.gw-step.locked {
+    opacity: 0.4;
+}
+
+.gw-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--border-light);
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.gw-step.active .gw-circle {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+.gw-step.done .gw-circle {
+    border-color: var(--buy-green);
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--buy-green);
+}
+
+.gw-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.gw-step.active .gw-label {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.gw-step.done .gw-label {
+    color: var(--text-secondary);
+}
+
+.gw-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--border-light);
+    margin-top: 13px;
+    transition: background 0.3s;
+}
+
+.gw-connector.done {
+    background: var(--buy-green);
+}
+
+.gw-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    margin: 6px 0 12px;
+    background: rgba(45, 212, 191, 0.06);
+    border: 1px solid rgba(45, 212, 191, 0.18);
+    border-radius: var(--radius-sm);
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.gw-tip-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.gw-tip-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LABELS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.tp-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 500;
+    line-height: 1.2;
+    flex-wrap: wrap;
+}
+
+.tp-label svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTEXTUAL HELP
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ctx-help-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.ctx-help-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+
+    background: var(--bg-input);
+    color: var(--text-muted);
+
+    cursor: pointer;
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+
+    padding: 0;
+}
+
+.ctx-help-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+.ctx-help-btn[aria-expanded="true"] {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.ctx-help-panel {
+    z-index: 99999;
+    width: min(320px, calc(100vw - 32px));
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    padding: 14px;
+    backdrop-filter: blur(12px);
+
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+/* small arrow */
+.ctx-help-panel::before {
+    content: '';
+    position: absolute;
+
+    top: -6px;
+    left: 16px;
+
+    width: 10px;
+    height: 10px;
+
+    background: var(--bg-card);
+
+    border-top: 1px solid var(--border-light);
+    border-left: 1px solid var(--border-light);
+
+    transform: rotate(45deg);
+}
+
+.ctx-help-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.ctx-help-headline {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.ctx-help-close {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+
+    color: var(--text-muted);
+
+    cursor: pointer;
+    flex-shrink: 0;
+
+    transition: all 0.15s ease;
+
+    padding: 0;
+}
+
+.ctx-help-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.ctx-help-body {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.65;
+
+    color: var(--text-secondary);
+
+    white-space: pre-line;
+}
+
+.ctx-help-analogy {
+    margin-top: 12px;
+
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    color: var(--accent);
+
+    background: var(--accent-glow);
+
+    border: 1px solid rgba(45, 212, 191, 0.12);
+    border-left: 3px solid rgba(45, 212, 191, 0.45);
+
+    border-radius: 10px;
+
+    padding: 10px 12px;
+
+
+    @keyframes ctxFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .ctx-help-panel {
+        left: -8px;
+        width: min(300px, calc(100vw - 24px));
+    }
+
+    .ctx-help-headline {
+        font-size: 12.5px;
+    }
+
+    .ctx-help-body {
+        font-size: 11.5px;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   EXPERIENCE LEVEL PILLS  (TradingParameters.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.level-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.level-pill {
+    flex: 1;
+    min-width: auto;
+    padding: 8px 10px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.level-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.level-pill.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+    font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONFIRM SCREEN  (TradingParameters.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.confirm-screen {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.confirm-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.confirm-header svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.confirm-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 3px;
+}
+
+.confirm-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.confirm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.confirm-item {
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+}
+
+.ci-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+}
+
+.ci-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.ci-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.ci-warn {
+    font-size: 10px;
+    color: var(--warn);
+    margin-top: 3px;
+}
+
+.confirm-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(45, 212, 191, 0.06);
+    border: 1px solid rgba(45, 212, 191, 0.18);
+    border-radius: var(--radius-sm);
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.confirm-tip span:first-child {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.confirm-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.confirm-actions .btn-primary {
+    flex: 1;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VERDICT SUMMARY  (TradingAssistant.jsx — VerdictSummary)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.verdict-summary {
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    border: 1px solid;
+}
+
+.verdict-summary.buy {
+    background: var(--signal-buy-bg);
+    border-color: var(--signal-buy-border);
+}
+
+.verdict-summary.sell {
+    background: var(--signal-sell-bg);
+    border-color: var(--signal-sell-border);
+}
+
+.verdict-summary.hold {
+    background: var(--signal-hold-bg);
+    border-color: var(--signal-hold-border);
+}
+
+.vs-signal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.vs-body {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.message-date-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: 999px;
+    padding: 2px 9px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AGENT DETAILS TOGGLE  (TradingAssistant.jsx — AgentDetailsToggle)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.agent-toggle-wrap {
+    margin: 8px 0;
+}
+
+.agent-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 500;
+    font-family: var(--font);
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    width: 100%;
+    text-align: left;
+}
+
+.agent-toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.agent-toggle-btn[aria-expanded="true"] {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.agent-details-panel {
+    margin-top: 8px;
+    padding: 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+}
+
+/* Ensemble weight bar */
+.ensemble-bar-wrap {
+    margin-bottom: 12px;
+}
+
+.ensemble-bar-track {
+    display: flex;
+    height: 8px;
+    gap: 2px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-input-border);
+    margin-bottom: 6px;
+}
+
+.ensemble-bar-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    gap: 8px;
+}
+
+/* Agent rows */
+.agent-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.agent-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--bg-input-border);
+    font-size: 11.5px;
+}
+
+.agent-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.ar-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-muted);
+    min-width: 0;
+    flex: 1;
+}
+
+.ar-label svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+.ar-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.ar-decision {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.ar-decision.positive {
+    color: var(--buy-green);
+}
+
+.ar-decision.negative {
+    color: var(--sell-red);
+}
+
+.ar-decision.neutral {
+    color: var(--hold-yellow);
+}
+
+.ar-score {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.siv-issues-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 7px 9px;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    color: var(--warn);
+    line-height: 1.4;
+}
+
+.siv-issues-box svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SUGGESTED QUESTIONS  (TradingAssistant.jsx — SuggestedQuestions)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.suggested-questions {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--bg-input-border);
+}
+
+.sq-label {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.sq-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sq-chip {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 7px 10px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.4;
+}
+
+.sq-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TRADE ACTION BUTTONS  (TradingAssistant.jsx — TradeActionButtons)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.trade-action-panel {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+}
+
+.tap-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+.tap-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.tap-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: all 0.2s;
+    position: relative;
+}
+
+.tap-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.tap-buy {
+    border-color: var(--signal-buy-border);
+    color: var(--buy-green);
+}
+
+.tap-buy:hover:not(:disabled),
+.tap-buy.recommended {
+    background: var(--signal-buy-bg);
+    border-color: var(--buy-green);
+}
+
+.tap-sell {
+    border-color: var(--signal-sell-border);
+    color: var(--sell-red);
+}
+
+.tap-sell:hover:not(:disabled),
+.tap-sell.recommended {
+    background: var(--signal-sell-bg);
+    border-color: var(--sell-red);
+}
+
+.tap-hold {
+    border-color: var(--signal-hold-border);
+    color: var(--hold-yellow);
+}
+
+.tap-hold:hover:not(:disabled),
+.tap-hold.recommended {
+    background: var(--signal-hold-bg);
+    border-color: var(--hold-yellow);
+}
+
+.tap-rec-badge {
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.tap-action-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.tap-action-desc {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+.tap-footnote {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIMULATION RESULT  (TradingAssistant.jsx — SimTradeResult)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.sim-result {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+}
+
+.sim-result.win {
+    background: var(--signal-buy-bg);
+    border-color: var(--signal-buy-border);
+}
+
+.sim-result.loss {
+    background: var(--signal-sell-bg);
+    border-color: var(--signal-sell-border);
+}
+
+.sim-result.timeout {
+    background: var(--signal-hold-bg);
+    border-color: var(--signal-hold-border);
+}
+
+.sim-result.hold {
+    background: rgba(148, 163, 184, 0.07);
+    border-color: var(--border-light);
+}
+
+.sr-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.sr-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.sr-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.sr-body {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.sr-pnl {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.sr-pnl-label {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.sr-pnl-value {
+    font-size: 17px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.sr-pnl-value.positive {
+    color: var(--buy-green);
+}
+
+.sr-pnl-value.negative {
+    color: var(--sell-red);
+}
+
+.sr-prices {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.sr-price-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    padding: 7px 9px;
+}
+
+.sr-price-label {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 3px;
+}
+
+.sr-price-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   REFLECTION BOX  (TradingAssistant.jsx — ReflectionBox)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.reflection-box {
+    margin-top: 10px;
+}
+
+.reflection-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 500;
+    font-family: var(--font);
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    width: 100%;
+    text-align: left;
+}
+
+.reflection-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.reflection-body {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS LOADING STATE  (TradingAssistant.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.analysis-loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+.agent-pulse-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.agent-pulse-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 11px;
+    background: var(--accent-glow);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    animation: agentPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes agentPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHAT BUBBLE — ANALYSIS VARIANT  (TradingAssistant.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.chat-msg-bubble--analysis {
+    padding: 0;
+    background: none;
+    border: none;
+    max-width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIM LOADING / SIM ERROR  (TradingAssistant.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.sim-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.sim-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 9px 12px;
+    background: var(--danger-bg);
+    border: 1px solid var(--danger-border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: var(--danger);
+    line-height: 1.4;
+}
+
+.sim-error svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GHOST SMALL BUTTON  (used in TradingAssistant.jsx)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.btn-ghost-sm {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 500;
+    font-family: var(--font);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-ghost-sm:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE ADDITIONS — new components
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── <900px ──────────────────────────────────────────────────────────── */
+@media (max-width: 899px) {
+    .gw-rail {
+        gap: 0;
+    }
+
+    .gw-label {
+        font-size: 9px;
+    }
+
+    .gw-circle {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .gw-connector {
+        margin-top: 11px;
+    }
+
+    .ctx-help-panel {
+        width: 230px;
+    }
+
+    .sr-prices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tap-action-desc {
+        display: none;
+    }
+}
+
+/* ── 600–767px ──────────────────────────────────────────────────────── */
+@media (min-width: 600px) and (max-width: 767px) {
+    .confirm-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .tap-buttons {
+        gap: 6px;
+    }
+
+    .sr-prices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ctx-help-panel {
+        width: 220px;
+        left: auto;
+        right: 0;
+    }
+}
+
+/* ── 480–599px ──────────────────────────────────────────────────────── */
+@media (min-width: 480px) and (max-width: 599px) {
+    .gw-tip {
+        font-size: 11px;
+    }
+
+    .level-pills {
+        flex-direction: column;
+    }
+
+    .level-pill {
+        flex: none;
+        width: 100%;
+    }
+
+    .confirm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sr-prices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ctx-help-panel {
+        width: 210px;
+        left: auto;
+        right: 0;
+    }
+
+    .tap-action-desc {
+        display: none;
+    }
+}
+
+/* ── 360–479px ──────────────────────────────────────────────────────── */
+@media (min-width: 360px) and (max-width: 479px) {
+    .guided-workflow {
+        padding: 10px 14px 0;
+    }
+
+    .gw-circle {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+    }
+
+    .gw-label {
+        font-size: 8.5px;
+    }
+
+    .gw-connector {
+        margin-top: 10px;
+    }
+
+    .gw-tip {
+        font-size: 10.5px;
+        padding: 6px 8px;
+    }
+
+    .ctx-help-panel {
+        width: 200px;
+        left: auto;
+        right: 0;
+    }
+
+    .level-pills {
+        flex-direction: column;
+    }
+
+    .level-pill {
+        flex: none;
+        width: 100%;
+    }
+
+    .confirm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .confirm-actions {
+        flex-direction: column;
+    }
+
+    .confirm-actions .btn-ghost-sm,
+    .confirm-actions .btn-primary {
+        width: 100%;
+    }
+
+    .tap-buttons {
+        gap: 5px;
+    }
+
+    .tap-btn {
+        padding: 9px 6px;
+    }
+
+    .tap-action-desc {
+        display: none;
+    }
+
+    .sr-prices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sr-pnl-value {
+        font-size: 15px;
+    }
+
+    .sq-chip {
+        font-size: 11px;
+        padding: 6px 9px;
+    }
+
+    .agent-toggle-btn,
+    .reflection-toggle {
+        font-size: 11px;
+    }
+}
+
+/* ── <360px ──────────────────────────────────────────────────────────── */
+@media (max-width: 359px) {
+    .guided-workflow {
+        padding: 8px 10px 0;
+    }
+
+    .gw-circle {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .gw-label {
+        font-size: 8px;
+    }
+
+    .gw-tip {
+        font-size: 10px;
+        padding: 5px 7px;
+    }
+
+    .ctx-help-panel {
+        width: 188px;
+        left: auto;
+        right: 0;
+    }
+
+    .level-pills {
+        flex-direction: column;
+    }
+
+    .level-pill {
+        flex: none;
+        width: 100%;
+    }
+
+    .confirm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .confirm-actions {
+        flex-direction: column;
+    }
+
+    .confirm-actions .btn-ghost-sm,
+    .confirm-actions .btn-primary {
+        width: 100%;
+    }
+
+    .tap-buttons {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .tap-btn {
+        flex-direction: row;
+        padding: 9px 10px;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .tap-action-desc {
+        display: none;
+    }
+
+    .tap-rec-badge {
+        top: auto;
+        left: auto;
+        transform: none;
+        position: static;
+        order: -1;
+    }
+
+    .sr-prices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sq-chip {
+        font-size: 10.5px;
+    }
+}
+
+/* ── Landscape compact ──────────────────────────────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+    .gw-tip {
+        display: none;
+    }
+
+    .guided-workflow {
+        padding-bottom: 0;
+    }
+
+    .tap-action-desc {
+        display: none;
+    }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .agent-pulse-pill {
+        animation: none;
+        opacity: 1;
+    }
+
+    .gw-progress-fill {
+        transition: none;
+    }
+
+    .gw-step,
+    .gw-circle,
+    .gw-connector,
+    .ctx-help-btn,
+    .ctx-help-close,
+    .level-pill,
+    .sq-chip,
+    .tap-btn,
+    .btn-ghost-sm,
+    .agent-toggle-btn,
+    .reflection-toggle {
+        transition: none;
     }
 }

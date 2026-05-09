@@ -90,8 +90,8 @@ sympy==1.14.0
 tenacity==9.1.4
 tokenizers==0.22.2
 torch==2.11.0
-torchaudio==2.11.0+cpu
-torchvision==0.26.0+cpu
+torchaudio==2.11.0
+torchvision==0.26.0
 tqdm==4.67.3
 transformers==5.5.4
 typer==0.24.1

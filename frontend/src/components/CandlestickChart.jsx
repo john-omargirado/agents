@@ -358,10 +358,11 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             chartRef.current = null;
             candleSeriesRef.current = null;
         }
-
-        const chart = createChart(chartContainerRef.current, {
-            width: chartContainerRef.current.clientWidth,
-            height: chartContainerRef.current.clientHeight,
+        const el = chartContainerRef.current;
+        const chart = createChart(el, {
+            width: el.clientWidth,
+            height: Math.max(el.clientHeight, 160),
+            autoSize: true,
             layout: {
                 background: { color: 'transparent' },
                 textColor: chartPalette.textColor,
@@ -398,14 +399,14 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
         candleSeriesRef.current = candleSeries;
 
         const handleResize = () => {
-            if (chartRef.current && chartContainerRef.current) {
-                chartRef.current.applyOptions({
-                    width: chartContainerRef.current.clientWidth,
-                    height: chartContainerRef.current.clientHeight,
-                });
-            }
+            if (!chartRef.current || !chartContainerRef.current) return;
+            const { clientWidth, clientHeight } = chartContainerRef.current;
+            chartRef.current.applyOptions({
+                width: clientWidth,
+                height: Math.max(clientHeight, 160), // floor prevents collapse to 0
+            });
+            chartRef.current.timeScale().fitContent();  // re-fit after resize
         };
-
         const resizeObserver = new ResizeObserver(handleResize);
         resizeObserver.observe(chartContainerRef.current);
 
@@ -493,7 +494,14 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                             onClick={toggleAccessiblePalette}
                             aria-pressed={useAccessiblePalette}
                         >
-                            {useAccessiblePalette ? 'Use Standard Candles' : 'Use Color-Safe Candles'}
+                            {/* Full label — hidden below 600 px via CSS */}
+                            <span className="chart-a11y-full">
+                                {useAccessiblePalette ? 'Use Standard Candles' : 'Use Color-Safe Candles'}
+                            </span>
+                            {/* Short label — shown below 600 px via CSS */}
+                            <span className="chart-a11y-short">
+                                {useAccessiblePalette ? 'Standard' : 'Color-Safe'}
+                            </span>
                         </button>
                         <div className="chart-price">
                             {currentPrice === null ? '--' : currentPrice.toFixed(pairDecimals)}
@@ -512,7 +520,12 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             </div>
 
             {/* ── Candlestick chart ── */}
-            <div className="chart-container" ref={chartContainerRef} />
+            <div
+                className="chart-container"
+                ref={chartContainerRef}
+                role="img"
+                aria-label={`${pair} candlestick chart`}
+            />
 
             {/* ── Date picker section ── */}
             <div className="date-picker-section">

@@ -999,8 +999,7 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
                                 Hi, I'm Shelly!
                             </p>
                             <p style={{ margin: 0, fontSize: 12, lineHeight: 1.6, color: 'var(--text-muted, #64748b)' }}>
-                                Select a forex pair and click <strong style={{ color: '#2EA84A' }}>Get Analysis</strong>
-                                <br />to get your first signal.
+                                Set up your parameters, pick a date on the chart, then click <strong style={{ color: '#2EA84A' }}>Review & Analyse.</strong>
                             </p>
                         </div>
                     </div>

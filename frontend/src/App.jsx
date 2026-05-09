@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Activity, BookOpen, Sun, Moon, ShieldAlert, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import TradingParameters from './components/TradingParameters';
 import CandlestickChart from './components/CandlestickChart';
@@ -15,6 +16,7 @@ import './styles/backtesting.css';
 const ENABLE_LLM_ANALYSIS = true;
 const THEME_STORAGE_KEY = 'trading_assistant_theme';
 const DEFAULT_NARRATION_DURATION_MS = 3500;
+
 
 const TRADING_TUTORIAL_SLIDES = [
     {
@@ -65,6 +67,9 @@ const BACKTESTING_TUTORIAL_SLIDES = [
 ];
 
 export default function App() {
+    const [activeHelp, setActiveHelp] = useState(null);
+    const [pos, setPos] = useState(null);
+    const btnRef = useRef(null);
     const [targetDate, setTargetDate] = useState(null);
     const [currentView, setCurrentView] = useState(() => {
         const hash = window.location.hash.slice(1).replace('/', '') || '';
@@ -95,6 +100,25 @@ export default function App() {
     const chatRef = useRef({ messages: [], pair: null, result: null });
     const tutorialSlides = currentView === 'backtesting' ? BACKTESTING_TUTORIAL_SLIDES : TRADING_TUTORIAL_SLIDES;
     const activeTutorialSlide = tutorialSlides[tutorialSlideIndex] || tutorialSlides[0];
+
+    useEffect(() => {
+        if (experienceLevel === 'beginner') {
+            setPair('EUR/USD');
+            setLeverage('1:1');
+            setRiskThreshold('1');
+            setAmount('1000');
+        }
+
+        if (experienceLevel === 'basic') {
+            setLeverage('1:5');
+            setRiskThreshold('2');
+        }
+
+        if (experienceLevel === 'intermediate') {
+            setLeverage('1:10');
+            setRiskThreshold('3');
+        }
+    }, [experienceLevel]);
 
     useEffect(() => {
         const handleHashChange = () => {
@@ -170,6 +194,7 @@ export default function App() {
     }, [showTutorial, tutorialSlideIndex, activeTutorialSlide, speakingDurationMs]);
 
     const handleGetSentiment = async () => {
+        // 🔧 FIXED TRUNCATION: Close the array bracket and complete the logic
         if (chatRef.current.messages.length > 0 || chatRef.current.result) {
             setChatHistory((prev) => [
                 ...prev,
@@ -178,26 +203,31 @@ export default function App() {
                     pair: chatRef.current.pair || pair,
                     messages: [...chatRef.current.messages],
                     result: chatRef.current.result,
-                    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                },
+                }
             ]);
         }
 
+        // Reset state for new analysis
+        chatRef.current = { messages: [], pair, result: null };
         setLoading(true);
         setError(null);
+        setAnalysisResult(null);
 
         try {
-            const result = await runOrchestrator(pair, !ENABLE_LLM_ANALYSIS, targetDate, {
-                accountCapital: amount,
+            // Trigger your orchestrator/API here
+            const result = await runOrchestrator({
+                pair,
+                amount,
                 leverage,
                 riskThreshold,
-                experienceLevel,
+                targetDate: currentView === 'backtesting' ? targetDate : null
             });
+
             setAnalysisResult(result);
+            chatRef.current.result = result;
         } catch (err) {
-            console.error('Orchestrator error:', err);
-            setError(err.response?.data?.error || err.message || 'Analysis failed');
-            setAnalysisResult(null);
+            console.error(err);
+            setError(err.message || 'Failed to complete analysis. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -264,18 +294,34 @@ export default function App() {
             {/* ─── Body ───────────────────────────────────────────────────── */}
             <main className={`app-body app-body-${currentView}`}>
                 {currentView === 'backtesting' ? (
-                    <Backtesting />
+                    <Backtesting
+                        experienceLevel={experienceLevel}
+                    />
                 ) : (
                     <>
                         <TradingParameters
-                            pair={pair} setPair={setPair}
-                            amount={amount} setAmount={setAmount}
-                            leverage={leverage} setLeverage={setLeverage}
-                            riskThreshold={riskThreshold} setRiskThreshold={setRiskThreshold}
+                            pair={pair}
+                            setPair={setPair}
+                            amount={amount}
+                            setAmount={setAmount}
+                            leverage={leverage}
+                            setLeverage={setLeverage}
+                            riskThreshold={riskThreshold}
+                            setRiskThreshold={setRiskThreshold}
                             onSubmit={handleGetSentiment}
                             loading={loading}
+                            experienceLevel={experienceLevel}
+                            setExperienceLevel={setExperienceLevel}
                         />
-                        <CandlestickChart pair={pair} ohlcvData={null} theme={theme} onDateChange={setTargetDate} />
+
+                        <CandlestickChart
+                            pair={pair}
+                            ohlcvData={null}
+                            theme={theme}
+                            onDateChange={setTargetDate}
+                            experienceLevel={experienceLevel}
+                        />
+
                         <TradingAssistant
                             analysisResult={analysisResult}
                             loading={loading}
@@ -351,6 +397,8 @@ export default function App() {
                                         <div style={{
                                             display: 'flex', flexDirection: 'column', alignItems: 'center',
                                             padding: '8px 32px 24px', gap: 16, textAlign: 'center',
+                                            overflowY: 'auto',
+                                            maxHeight: '70dvh',
                                         }}>
                                             <TradingTurtleMascot speaking={true} size={120} />
 
@@ -433,6 +481,8 @@ export default function App() {
                                         <div style={{
                                             display: 'flex', flexDirection: 'column', alignItems: 'center',
                                             padding: '16px 28px 24px', gap: 20, textAlign: 'center',
+                                            overflowY: 'auto',
+                                            maxHeight: '70dvh',
                                         }}>
                                             <TradingTurtleMascot speaking={false} size={80} />
 
@@ -583,91 +633,92 @@ export default function App() {
                                         aria-label="Close tutorial"
                                     >×</button>
                                 </div>
+                                <div style={{ overflowY: 'auto', flex: 1, minHeight: 0 }}>
+                                    {/* Slide image */}
+                                    <div style={{ position: 'relative', background: 'rgba(0,0,0,0.25)' }}>
+                                        <img
+                                            src={activeTutorialSlide.image}
+                                            alt={activeTutorialSlide.alt}
+                                            style={{ width: '100%', display: 'block', maxHeight: 260, objectFit: 'contain' }}
+                                        />
+                                        <span style={{
+                                            position: 'absolute', top: 10, left: 12,
+                                            background: 'rgba(46,168,74,0.85)',
+                                            color: '#fff', fontSize: 11, fontWeight: 700,
+                                            padding: '3px 10px', borderRadius: 99, letterSpacing: '0.06em',
+                                        }}>
+                                            STEP {tutorialSlideIndex + 1} / {tutorialSlides.length}
+                                        </span>
+                                    </div>
 
-                                {/* Slide image */}
-                                <div style={{ position: 'relative', background: 'rgba(0,0,0,0.25)' }}>
-                                    <img
-                                        src={activeTutorialSlide.image}
-                                        alt={activeTutorialSlide.alt}
-                                        style={{ width: '100%', display: 'block', maxHeight: 260, objectFit: 'contain' }}
-                                    />
-                                    <span style={{
-                                        position: 'absolute', top: 10, left: 12,
-                                        background: 'rgba(46,168,74,0.85)',
-                                        color: '#fff', fontSize: 11, fontWeight: 700,
-                                        padding: '3px 10px', borderRadius: 99, letterSpacing: '0.06em',
+                                    {/* Nav + dots */}
+                                    <div style={{
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        gap: 14, padding: '12px 20px 4px',
                                     }}>
-                                        STEP {tutorialSlideIndex + 1} / {tutorialSlides.length}
-                                    </span>
-                                </div>
+                                        <button onClick={goToPreviousTutorialSlide} style={{
+                                            background: 'none', border: '1px solid rgba(46,168,74,0.35)',
+                                            borderRadius: 8, cursor: 'pointer', padding: '6px 10px',
+                                            color: 'var(--text-secondary, #8a9)', display: 'flex', alignItems: 'center',
+                                        }} aria-label="Previous step">
+                                            <ChevronLeft size={16} />
+                                        </button>
 
-                                {/* Nav + dots */}
-                                <div style={{
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    gap: 14, padding: '12px 20px 4px',
-                                }}>
-                                    <button onClick={goToPreviousTutorialSlide} style={{
-                                        background: 'none', border: '1px solid rgba(46,168,74,0.35)',
-                                        borderRadius: 8, cursor: 'pointer', padding: '6px 10px',
-                                        color: 'var(--text-secondary, #8a9)', display: 'flex', alignItems: 'center',
-                                    }} aria-label="Previous step">
-                                        <ChevronLeft size={16} />
-                                    </button>
+                                        <div style={{ display: 'flex', gap: 6 }}>
+                                            {tutorialSlides.map((slide, idx) => (
+                                                <button key={slide.id} onClick={() => setTutorialSlideIndex(idx)}
+                                                    aria-label={`Step ${idx + 1}`}
+                                                    style={{
+                                                        width: idx === tutorialSlideIndex ? 22 : 8,
+                                                        height: 8, borderRadius: 99, border: 'none', cursor: 'pointer',
+                                                        background: idx === tutorialSlideIndex ? '#2EA84A' : 'rgba(46,168,74,0.25)',
+                                                        transition: 'width 0.25s ease, background 0.2s', padding: 0,
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
 
-                                    <div style={{ display: 'flex', gap: 6 }}>
-                                        {tutorialSlides.map((slide, idx) => (
-                                            <button key={slide.id} onClick={() => setTutorialSlideIndex(idx)}
-                                                aria-label={`Step ${idx + 1}`}
-                                                style={{
-                                                    width: idx === tutorialSlideIndex ? 22 : 8,
-                                                    height: 8, borderRadius: 99, border: 'none', cursor: 'pointer',
-                                                    background: idx === tutorialSlideIndex ? '#2EA84A' : 'rgba(46,168,74,0.25)',
-                                                    transition: 'width 0.25s ease, background 0.2s', padding: 0,
-                                                }}
-                                            />
-                                        ))}
+                                        <button onClick={goToNextTutorialSlide} style={{
+                                            background: 'none', border: '1px solid rgba(46,168,74,0.35)',
+                                            borderRadius: 8, cursor: 'pointer', padding: '6px 10px',
+                                            color: 'var(--text-secondary, #8a9)', display: 'flex', alignItems: 'center',
+                                        }} aria-label="Next step">
+                                            <ChevronRight size={16} />
+                                        </button>
                                     </div>
 
-                                    <button onClick={goToNextTutorialSlide} style={{
-                                        background: 'none', border: '1px solid rgba(46,168,74,0.35)',
-                                        borderRadius: 8, cursor: 'pointer', padding: '6px 10px',
-                                        color: 'var(--text-secondary, #8a9)', display: 'flex', alignItems: 'center',
-                                    }} aria-label="Next step">
-                                        <ChevronRight size={16} />
-                                    </button>
-                                </div>
-
-                                {/* Mascot narrator */}
-                                <div style={{
-                                    display: 'flex', gap: 14, alignItems: 'flex-start',
-                                    padding: '16px 20px', margin: '0 16px 16px',
-                                    background: 'rgba(46,125,50,0.08)',
-                                    border: '1px solid rgba(46,168,74,0.2)',
-                                    borderRadius: 12,
-                                }}>
-                                    <div style={{ flexShrink: 0 }}>
-                                        <TradingTurtleMascot speaking={isNarrating} size={80} />
-                                    </div>
-                                    <div style={{ flex: 1 }}>
-                                        <p style={{
-                                            margin: '0 0 4px', fontSize: 10, fontWeight: 700,
-                                            letterSpacing: '0.1em', color: '#2EA84A', textTransform: 'uppercase',
-                                        }}>
-                                            Shelly says
-                                        </p>
-                                        <p style={{
-                                            margin: 0, fontSize: 13, lineHeight: 1.65,
-                                            color: 'var(--text-primary, #e2e8f0)',
-                                            minHeight: 60, fontFamily: 'monospace',
-                                        }}>
-                                            {typedNarration}
-                                            <span style={{
-                                                display: 'inline-block', width: 2, height: '1em',
-                                                background: isNarrating ? '#2EA84A' : 'transparent',
-                                                marginLeft: 2, verticalAlign: 'middle',
-                                                animation: isNarrating ? 'blinkCursor 0.7s step-end infinite' : 'none',
-                                            }} />
-                                        </p>
+                                    {/* Mascot narrator */}
+                                    <div style={{
+                                        display: 'flex', gap: 14, alignItems: 'flex-start',
+                                        padding: '16px 20px', margin: '0 16px 16px',
+                                        background: 'rgba(46,125,50,0.08)',
+                                        border: '1px solid rgba(46,168,74,0.2)',
+                                        borderRadius: 12,
+                                    }}>
+                                        <div style={{ flexShrink: 0 }}>
+                                            <TradingTurtleMascot speaking={isNarrating} size={80} />
+                                        </div>
+                                        <div style={{ flex: 1 }}>
+                                            <p style={{
+                                                margin: '0 0 4px', fontSize: 10, fontWeight: 700,
+                                                letterSpacing: '0.1em', color: '#2EA84A', textTransform: 'uppercase',
+                                            }}>
+                                                Shelly says
+                                            </p>
+                                            <p style={{
+                                                margin: 0, fontSize: 13, lineHeight: 1.65,
+                                                color: 'var(--text-primary, #e2e8f0)',
+                                                minHeight: 60, fontFamily: 'monospace',
+                                            }}>
+                                                {typedNarration}
+                                                <span style={{
+                                                    display: 'inline-block', width: 2, height: '1em',
+                                                    background: isNarrating ? '#2EA84A' : 'transparent',
+                                                    marginLeft: 2, verticalAlign: 'middle',
+                                                    animation: isNarrating ? 'blinkCursor 0.7s step-end infinite' : 'none',
+                                                }} />
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
 

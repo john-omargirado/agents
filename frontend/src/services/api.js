@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_BASE = '/api';
 const api = axios.create({
     baseURL: API_BASE,
-    timeout: 60000,
+    timeout: 300000,
     headers: {
         ...(import.meta.env.DEV && {
             'X-API-KEY': import.meta.env.VITE_API_KEY,

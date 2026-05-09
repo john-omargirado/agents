@@ -44,7 +44,8 @@ export async function sendChatMessage(
     currencyPair = null,
     analysisId = null,
     history = [],
-    experienceLevel = null
+    experienceLevel = null,
+    simResult = null,
 ) {
     const { data } = await api.post('/chat', {
         message,
@@ -52,6 +53,7 @@ export async function sendChatMessage(
         analysis_id: analysisId,
         history,
         experience_level: experienceLevel,
+        sim_result: simResult,
     });
     return data;
 }

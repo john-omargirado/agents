@@ -212,7 +212,9 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
                 <strong style={{ color: wColor, fontVariantNumeric: 'tabular-nums' }}>
                     {wscore >= 0 ? '+' : ''}{wscore.toFixed(4)}
                 </strong>
-                {' '}— needs to reach <strong>±0.10</strong> to trigger a trade.
+                {Math.abs(wscore) < 0.001 && (
+                    <span style={{ color: 'var(--text-muted)', fontSize: 11 }}> (no signal)</span>
+                )}
             </div>
         </div>
     );
@@ -222,8 +224,8 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
 function TradeActionButtons({ onAction, disabled }) {
     return (
         <div style={{
-            margin: '14px 0 4px',
-            padding: '14px',
+            margin: '5px 10px 10px',
+            padding: '10px 12px',
             background: 'var(--bg-input)',
             border: '1px solid var(--bg-input-border)',
             borderRadius: 'var(--radius-sm)',
@@ -384,7 +386,7 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
     if (outcome === 'HOLD') {
         return (
             <div style={{
-                margin: '10px 0', padding: '14px',
+                margin: '10px 14px', padding: '10px 12px',
                 borderRadius: 'var(--radius-sm)',
                 border: '1px solid rgba(234,179,8,0.3)',
                 background: 'rgba(234,179,8,0.06)', fontSize: 12,
@@ -436,7 +438,7 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
 
     return (
         <div style={{
-            margin: '10px 0', padding: '14px',
+            margin: '10px 14px', padding: '10px 12px',
             borderRadius: 'var(--radius-sm)',
             border: `1px solid ${borderColor}`,
             background: bgColor, fontSize: 12,
@@ -787,6 +789,7 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
             const history = [...chatMessages, newUserMsg].map((m) => ({ role: m.role, content: m.content }));
             const response = await sendChatMessage(
                 userMessage, pair, analysisResult?.analysis_id || null, history, experienceLevel,
+                simResult || null,
             );
             setChatMessages((prev) => [
                 ...prev,
@@ -1050,7 +1053,7 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
                                     <>
                                         {simResult.outcome === 'ERROR' ? (
                                             <div style={{
-                                                margin: '10px 0', padding: '12px 14px',
+                                                margin: '12px 15px', padding: '12px 14px',
                                                 borderRadius: 'var(--radius-sm)',
                                                 border: '1px solid rgba(220,53,69,0.3)',
                                                 background: 'rgba(220,53,69,0.06)',

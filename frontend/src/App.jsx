@@ -220,7 +220,7 @@ export default function App() {
                 amount,
                 leverage,
                 riskThreshold,
-                targetDate: currentView === 'backtesting' ? targetDate : null,
+                targetDate: targetDate || null,
                 experienceLevel,
             });
 
@@ -315,14 +315,6 @@ export default function App() {
                             setExperienceLevel={setExperienceLevel}
                         />
 
-                        <CandlestickChart
-                            pair={pair}
-                            ohlcvData={null}
-                            theme={theme}
-                            onDateChange={setTargetDate}
-                            experienceLevel={experienceLevel}
-                        />
-
                         <TradingAssistant
                             analysisResult={analysisResult}
                             loading={loading}
@@ -331,6 +323,15 @@ export default function App() {
                             chatRef={chatRef}
                             experienceLevel={experienceLevel}
                         />
+
+                        <CandlestickChart
+                            pair={pair}
+                            ohlcvData={null}
+                            theme={theme}
+                            onDateChange={setTargetDate}
+                            experienceLevel={experienceLevel}
+                        />
+
                     </>
                 )}
             </main>

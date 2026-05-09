@@ -780,7 +780,8 @@ class LiveChatAgent:
 
     def detect_intent(self, message: str) -> str:
         msg = (message or "").lower()
-
+        if any(k in msg for k in ["simulate", "simulation", "what happened", "outcome", "take profit", "stop loss hit", "candle", "replay","win", "loss", "pips", "result"]):
+            return "simulation"
         if any(k in msg for k in ["stop loss", "take profit", "risk", "rr", "lot", "leverage", "atr", "pip", "pips", "sl_distance", "tp_distance"]):
             return "risk"
         if any(k in msg for k in ["siv", "coherent", "incoherent", "partial", "multiplier", "mismatch", "validation", "audit", "price mismatch"]):
@@ -864,6 +865,7 @@ class LiveChatAgent:
         state: Optional[Dict[str, Any]],
         intent: str = "general",
         experience_level: Optional[str] = None,
+        sim_result:       Optional[Dict[str, Any]] = None,
 
     ) -> str:
         if not state:
@@ -987,8 +989,9 @@ class LiveChatAgent:
         intent:           str = "general",
         memory_block:     str = "",
         experience_level: Optional[str] = None,
+        sim_result:       Optional[Dict[str, Any]] = None,
     ) -> str:
-        context_block = self.build_context_block(state, intent=intent, experience_level=experience_level)
+        context_block = self.build_context_block(state, intent=intent, experience_level=experience_level,sim_result=sim_result,   )
         knowledge_block = self._knowledge_for_intent(intent)
 
         history_text = ""
@@ -1081,6 +1084,7 @@ class LiveChatAgent:
         state:            Optional[Dict[str, Any]] = None,
         history:          Optional[List[Dict[str, str]]] = None,
         experience_level: Optional[str] = None,
+        sim_result:       Optional[Dict[str, Any]] = None,
     ) -> str:
         if not self.is_on_topic(message):
             logger.info("[LiveChatAgent] Off-topic: %s", message[:60])
@@ -1098,6 +1102,7 @@ class LiveChatAgent:
             intent=intent,
             memory_block=memory_block,
             experience_level=experience_level,
+            sim_result=sim_result,  
         )
 
         logger.info("[LiveChatAgent] intent=%s  message=%.60s", intent, message)

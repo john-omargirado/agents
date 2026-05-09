@@ -7,6 +7,7 @@ import uuid
 import logging
 import traceback
 import hmac
+from dotenv import load_dotenv
 from datetime import datetime, timezone
 from typing import Dict, Any, Optional, cast
 
@@ -32,6 +33,12 @@ from utils.data_loader import (
 )
 
 # ---------------------------------------------------------------------------
+# Environment
+# ---------------------------------------------------------------------------
+load_dotenv()
+IS_DEV = os.environ.get("FLASK_ENV") == "development"
+
+# ---------------------------------------------------------------------------
 # App setup
 # ---------------------------------------------------------------------------
 
@@ -47,15 +54,29 @@ limiter = Limiter(
     app=app,
     default_limits=["200 per day", "50 per hour"]  # global fallback
 )
-CORS(app, resources={
-    r"/api/*": {
-        "origins": ["https://yourdomain.com"]
-    }
-})
+
+if IS_DEV:
+    CORS(app, resources={
+        r"/api/*": {
+            "origins": [
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "http://localhost:3000",
+            ]
+        }
+    })
+else:
+    CORS(app, resources={
+        r"/api/*": {
+            "origins": [
+                "https://forex-mas.me"
+            ]
+        }
+    })
 
 app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
 
-Talisman(app, force_https=True, content_security_policy=False)
+Talisman(app, force_https=False, content_security_policy=False)
 
 
 # ---------------------------------------------------------------------------
@@ -72,6 +93,9 @@ def basic_abuse_protection():
 @app.before_request
 def check_api_key():
     PUBLIC_ROUTES = ["/api/health", "/api/pairs", "/api/strategies"]
+
+    if IS_DEV:
+        return
 
     if request.path.startswith("/api/") and request.path not in PUBLIC_ROUTES:
         key = request.headers.get("X-API-KEY")
@@ -322,7 +346,8 @@ def chat():
         body = request.get_json(force=True) or {}
         message = body.get("message")
         pair = str(body.get("currency_pair", "")).upper()
-        experience_level = body.get("experience_level") or None 
+        experience_level = body.get("experience_level") or None
+        sim_result = body.get("sim_result") or None
 
         if not message:
             return jsonify({"error": "message required"}), 400
@@ -352,7 +377,8 @@ def chat():
             message=message,
             state=state,
             history=body.get("history", []),
-            experience_level=experience_level
+            experience_level=experience_level,
+            sim_result=sim_result, 
         )
 
         return jsonify({"response": response})

@@ -120,7 +120,9 @@ def verdict_agent(state):
     print("CALIBRATION THRESHOLD:", state.get("calibration_threshold"))
     print("BACKTEST MODE:", backtest_mode)
     print("SKIP LLM:", skip_llm)
-    
+
+
+    print(f"[VERDICT ENTRY] risk_per_trade={state.get('risk_per_trade')} | account_capital={state.get('account_capital')}")
     pair_cfg    = get_pair_config(pair)
     sl_mult     = float(pair_cfg.get("sl_mult", 1.0))
     rr_ratio    = float(pair_cfg.get("rr_ratio", 2.0))
@@ -141,7 +143,8 @@ def verdict_agent(state):
     # HARD BLOCK (SIV INCOHERENT)
     # =========================
     if siv.get("signal") == "INCOHERENT":
-        sl_distance = round(atr * sl_mult, 5)
+        risk_scale  = float(state.get("risk_per_trade", 1.0))
+        sl_distance = round(atr * sl_mult * risk_scale, 5)
         tp_distance = round(sl_distance * rr_ratio, 5)
 
         return {
@@ -201,7 +204,7 @@ def verdict_agent(state):
             "verdict_reasoning": f"SKIP: {skip_reason}",
             "risk_multiplier": 0.0,
             "atr": atr,
-            "sl_distance": round(atr * sl_mult, 5),
+            "sl_distance": round(atr * sl_mult * float(state.get("risk_per_trade", 1.0)), 5),
             "tp_distance": 0.0,
             "position_size": 0.0,
             "risk_amount": 0.0,
@@ -222,7 +225,9 @@ def verdict_agent(state):
 
     price = float(tts.get("price", 1e-9))
 
-    sl_distance = round(atr * sl_mult, 5)
+    risk_scale  = float(state.get("risk_per_trade", 1.0))
+    sl_distance = round(atr * sl_mult * risk_scale, 5)
+    print(f"[RISK_SCALE DEBUG] raw={state.get('risk_per_trade')} | type={type(state.get('risk_per_trade'))} | risk_scale={risk_scale}")
     if sl_distance <= 0:
         return {
             "verdict": "HOLD",

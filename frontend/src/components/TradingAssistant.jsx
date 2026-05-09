@@ -361,11 +361,11 @@ function CandleTimeline({ candles, action, entryPrice, tpPrice, slPrice, exitCan
                             {isExit && (
                                 <span style={{
                                     fontSize: 10, fontWeight: 700, padding: '1px 5px', borderRadius: 4,
-                                    background: tpHit ? 'rgba(46,168,74,0.2)' : slHit ? 'rgba(220,53,69,0.2)' : 'rgba(234,179,8,0.15)',
-                                    color: tpHit ? '#2EA84A' : slHit ? '#dc3545' : '#d4a017',
+                                    background: (tpPrice != null && tpHit) ? 'rgba(46,168,74,0.2)' : (slPrice != null && slHit) ? 'rgba(220,53,69,0.2)' : 'rgba(234,179,8,0.15)',
+                                    color: (tpPrice != null && tpHit) ? '#2EA84A' : (slPrice != null && slHit) ? '#dc3545' : '#d4a017',
                                     flexShrink: 0,
                                 }}>
-                                    {tpHit ? '✓ TP' : slHit ? '✗ SL' : '⏱ EXIT'}
+                                    {(tpPrice != null && tpHit) ? '✓ TP' : (slPrice != null && slHit) ? '✗ SL' : '⏱ C5'}
                                 </span>
                             )}
                         </div>
@@ -429,50 +429,59 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
             border: `1px solid ${borderColor}`,
             background: bgColor, fontSize: 12,
         }}>
-            {/* Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
-                <div>
-                    <div style={{ fontWeight: 700, color: outcomeColor, fontSize: 13 }}>{outcomeLabel}</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: 11, marginTop: 2 }}>
-                        {action} · exited on candle {exit_candle}
-                    </div>
+            {action === 'HOLD' ? (
+                /* HOLD — just a simple intro line, no price/P&L */
+                <div style={{ fontWeight: 600, color: '#d4a017', fontSize: 13, marginBottom: 10 }}>
+                    ⏸ You chose to HOLD — here's how the next 5 candles played out
                 </div>
-                <div style={{
-                    textAlign: 'right', padding: '4px 10px',
-                    background: (pnl_pips ?? 0) >= 0 ? 'rgba(46,168,74,0.15)' : 'rgba(220,53,69,0.15)',
-                    borderRadius: 6,
-                }}>
-                    <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>P&L</div>
-                    <div style={{ fontWeight: 800, fontSize: 15, color: pnlColor, fontVariantNumeric: 'tabular-nums' }}>
-                        {(pnl_pips ?? 0) >= 0 ? '+' : ''}{(pnl_pips ?? 0).toFixed(1)} pips
+            ) : (
+                <>
+                    {/* Header */}
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
+                        <div>
+                            <div style={{ fontWeight: 700, color: outcomeColor, fontSize: 13 }}>{outcomeLabel}</div>
+                            <div style={{ color: 'var(--text-muted)', fontSize: 11, marginTop: 2 }}>
+                                {action} · exited on candle {exit_candle}
+                            </div>
+                        </div>
+                        <div style={{
+                            textAlign: 'right', padding: '4px 10px',
+                            background: (pnl_pips ?? 0) >= 0 ? 'rgba(46,168,74,0.15)' : 'rgba(220,53,69,0.15)',
+                            borderRadius: 6,
+                        }}>
+                            <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>P&L</div>
+                            <div style={{ fontWeight: 800, fontSize: 15, color: pnlColor, fontVariantNumeric: 'tabular-nums' }}>
+                                {(pnl_pips ?? 0) >= 0 ? '+' : ''}{(pnl_pips ?? 0).toFixed(1)} pips
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            {/* Price grid — 2×2 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, marginBottom: 10 }}>
-                {[
-                    { label: 'Entry', value: entry_price?.toFixed(4), color: 'var(--text-secondary)' },
-                    { label: 'Exit Price', value: exit_price?.toFixed(4), color: outcomeColor },
-                    ...(tp_price != null ? [{ label: 'Take Profit', value: tp_price?.toFixed(4), color: '#2EA84A' }] : []),
-                    ...(sl_price != null ? [{ label: 'Stop Loss', value: sl_price?.toFixed(4), color: '#dc3545' }] : []),
-                ].map(({ label, value, color }) => (
-                    <div key={label} style={{ background: 'var(--bg-input)', borderRadius: 6, padding: '5px 8px' }}>
-                        <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 1 }}>{label}</div>
-                        <div style={{ fontWeight: 700, color, fontVariantNumeric: 'tabular-nums', fontSize: 12 }}>{value || '—'}</div>
+                    {/* Price grid */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, marginBottom: 10 }}>
+                        {[
+                            { label: 'Entry', value: entry_price?.toFixed(4), color: 'var(--text-secondary)' },
+                            { label: 'Exit Price', value: exit_price?.toFixed(4), color: outcomeColor },
+                            ...(tp_price != null ? [{ label: 'Take Profit', value: tp_price?.toFixed(4), color: '#2EA84A' }] : []),
+                            ...(sl_price != null ? [{ label: 'Stop Loss', value: sl_price?.toFixed(4), color: '#dc3545' }] : []),
+                        ].map(({ label, value, color }) => (
+                            <div key={label} style={{ background: 'var(--bg-input)', borderRadius: 6, padding: '5px 8px' }}>
+                                <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 1 }}>{label}</div>
+                                <div style={{ fontWeight: 700, color, fontVariantNumeric: 'tabular-nums', fontSize: 12 }}>{value || '—'}</div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
 
-            {/* Level-aware narrative */}
-            <div style={{
-                color: 'var(--text-secondary)', lineHeight: 1.7,
-                padding: '8px 10px',
-                background: 'var(--bg-input)',
-                borderRadius: 6, marginBottom: 10,
-            }}>
-                {getNarrative()}
-            </div>
+                    {/* Level-aware narrative */}
+                    <div style={{
+                        color: 'var(--text-secondary)', lineHeight: 1.7,
+                        padding: '8px 10px',
+                        background: 'var(--bg-input)',
+                        borderRadius: 6, marginBottom: 10,
+                    }}>
+                        {getNarrative()}
+                    </div>
+                </>
+            )}
 
             <CandleTimeline
                 candles={candles}
@@ -973,12 +982,15 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
                         color: 'var(--text-muted, #64748b)',
                     }}>
                         <TradingTurtleMascot speaking={false} size={88} />
-                        <div style={{ textAlign: 'center' }}>
-                            <p style={{ margin: '0 0 4px', fontSize: 14, fontWeight: 600, color: 'var(--text-secondary, #94a3b8)' }}>
-                                Hi, I'm Shelly!
+                        <div style={{ textAlign: 'center', maxWidth: 300 }}>
+                            <p style={{ margin: '0 0 6px', fontSize: 14, fontWeight: 600, color: 'var(--text-secondary, #94a3b8)' }}>
+                                Hi, I'm Shelly! 🐢
                             </p>
-                            <p style={{ margin: 0, fontSize: 12, lineHeight: 1.6, color: 'var(--text-muted, #64748b)' }}>
-                                Set up your parameters, pick a date on the chart, then click <strong style={{ color: '#2EA84A' }}>Review & Analyse.</strong>
+                            <p style={{ margin: '0 0 8px', fontSize: 12, lineHeight: 1.7, color: 'var(--text-muted, #64748b)' }}>
+                                I'm here to help you understand what's happening in the forex market — no experience needed.
+                            </p>
+                            <p style={{ margin: 0, fontSize: 12, lineHeight: 1.7, color: 'var(--text-muted, #64748b)' }}>
+                                Fill in your details on the left, pick any date from the chart, and click <strong style={{ color: '#2EA84A' }}>Review & Analyse</strong> — I'll explain everything in plain language!
                             </p>
                         </div>
                     </div>

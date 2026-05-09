@@ -280,6 +280,11 @@ export default function App() {
                         <p>{currentView === 'backtesting' ? 'Historical Strategy Performance' : 'AI-Powered Forex Analysis'}</p>
                     </div>
                 </div>
+                <div className="header-warning-banner">
+                    <span style={{ fontSize: '1.1em' }}>⚠</span>
+                    <span className="warning-text-full">Simulated forex environment — for learning only. No guaranteed win rate.</span>
+                    <span className="warning-text-short">Simulated Environment</span>
+                </div>
                 <div className="app-header-actions">
                     <button className="header-action-btn" onClick={openTutorial}>
                         <BookOpen size={15} />

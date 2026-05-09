@@ -144,6 +144,7 @@ SUPPORTED_STRATEGIES = [
 # ---------------------------------------------------------------------------
 
 def _build_initial_state(body: dict) -> TradingState:
+    print(f"[STATE_BUILDER] riskThreshold raw='{body.get('riskThreshold')}' → risk_per_trade={float(body.get('riskThreshold') or 1.0)}")
     pair = str(body.get("currency_pair", "EUR/USD")).upper().replace("-", "/")
 
     return cast(TradingState, {
@@ -186,6 +187,7 @@ def _build_initial_state(body: dict) -> TradingState:
         "sl_distance": None,
         "tp_distance": None,
     })
+
 
 
 # ---------------------------------------------------------------------------

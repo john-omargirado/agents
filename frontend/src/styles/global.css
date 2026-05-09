@@ -4917,3 +4917,23 @@ body {
 .analysis-notes li {
     margin-bottom: 2px;
 }
+
+.date-input-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.date-input-btn span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -117,6 +117,10 @@ def verdict_agent(state):
     backtest_mode = bool(state.get("backtest_mode", False))
     skip_llm      = bool(state.get("skip_llm", False))
 
+    print("CALIBRATION THRESHOLD:", state.get("calibration_threshold"))
+    print("BACKTEST MODE:", backtest_mode)
+    print("SKIP LLM:", skip_llm)
+    
     pair_cfg    = get_pair_config(pair)
     sl_mult     = float(pair_cfg.get("sl_mult", 1.0))
     rr_ratio    = float(pair_cfg.get("rr_ratio", 2.0))
@@ -171,13 +175,18 @@ def verdict_agent(state):
     # SIGNAL QUALITY GATE
     # =========================
     ce_article_count = int(ce.get("article_count", 0))
-    ce_strong  = ce_article_count >= 10 and abs(ce_score_raw) >= 0.05
-    tts_strong = abs(tts_score) >= 0.08
+    ce_strong  = ce_article_count >= 5 and abs(ce_score_raw) >= 0.03
+    tts_strong = abs(tts_score) >= 0.03
     siv_issues = siv.get("issues", [])
 
-    if siv.get("signal") == "PARTIAL" and "signal_mismatch" in siv_issues:
-        tradeable   = ce_strong
+    tradeable = True
+    skip_reason = None
+
+    if siv.get("signal") == "INCOHERENT":
+        tradeable = False
         skip_reason = "signal_mismatch — need CE strong (TTS unreliable)"
+    elif siv.get("signal") == "PARTIAL":
+        weighted_score *= 0.7
     elif not ce_strong and not tts_strong:
         tradeable   = False
         skip_reason = f"weak signals — articles={ce_article_count} |ce|={abs(ce_score_raw):.3f} |tts|={abs(tts_score):.3f}"
@@ -251,7 +260,7 @@ def verdict_agent(state):
     # =========================
     use_deterministic = backtest_mode or skip_llm
     if use_deterministic:
-        deterministic_threshold = float(state.get("calibration_threshold", 0.10))
+        deterministic_threshold = float(state.get("calibration_threshold", 0.03))
         verdict, reasoning = compute_verdict_deterministic(weighted_score, deterministic_threshold)
         print(f"\n[VERDICT] {verdict} | DETERMINISTIC | score={round(weighted_score, 4)}")
     else:
@@ -293,7 +302,7 @@ Write 2-3 concise technical sentences.
 You may reference weighted_score, ce_weight, SIV signal, regime, and indicator values directly.
 Cover what drove the decision and any relevant risk factors."""
 
-        decision_word = "BUY" if weighted_score >= 0.10 else "SELL" if weighted_score <= -0.10 else "HOLD"
+        decision_word = "BUY" if weighted_score >= 0.03 else "SELL" if weighted_score <= -0.03 else "HOLD"
         ce_direction  = ce.get("sentiment", "NEUTRAL")
         tts_direction = tts.get("decision", "HOLD")
         siv_status    = siv.get("signal", "UNKNOWN")

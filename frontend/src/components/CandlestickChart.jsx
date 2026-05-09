@@ -195,7 +195,7 @@ function formatDisplayDate(dateStr) {
     const [y, m, d] = dateStr.split('-').map(Number);
     const date = new Date(Date.UTC(y, m - 1, d));
     return date.toLocaleDateString('en-US', {
-        year: 'numeric', month: 'short', day: 'numeric',
+        year: 'numeric', month: '2-digit', day: '2-digit',
         timeZone: 'UTC',
     });
 }
@@ -262,6 +262,7 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
     }, [pair]);
 
     // ── Chart DOM refs ───────────────────────────────────────────────────────
+    const dateInputRef = useRef(null);
     const chartContainerRef = useRef(null);
     const chartRef = useRef(null);
     const candleSeriesRef = useRef(null);
@@ -545,10 +546,18 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                     </button>
 
                     <div className="date-input-wrap">
-                        <Calendar size={14} className="date-input-icon" />
+                        <button
+                            className="date-input date-input-btn"
+                            title="Open calendar"
+                            onClick={() => dateInputRef.current?.showPicker()}
+                        >
+                            <Calendar size={14} />
+                            <span>{selectedDate ? formatDisplayDate(selectedDate) : 'Pick a date'}</span>
+                        </button>
                         <input
+                            ref={dateInputRef}
                             type="date"
-                            className="date-input"
+                            style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', width: 0, height: 0 }}
                             value={selectedDate}
                             min={MIN_DATE}
                             max={MAX_DATE}
@@ -605,22 +614,6 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                             {label}
                         </button>
                     ))}
-                </div>
-
-                {/* Range bar */}
-                <div className="date-range-bar">
-                    <span className="date-range-start">Jan 1, 2022</span>
-                    <div className="date-range-track">
-                        <div
-                            className="date-range-fill"
-                            style={{
-                                width: selectedDate
-                                    ? `${Math.max(2, Math.min(100, ((new Date(selectedDate) - new Date(MIN_DATE)) / (new Date(MAX_DATE) - new Date(MIN_DATE))) * 100))}%`
-                                    : '0%',
-                            }}
-                        />
-                    </div>
-                    <span className="date-range-end">Dec 31, 2025</span>
                 </div>
             </div>
 

@@ -132,9 +132,9 @@ function SkipExplanation({ reasoning, ce, tts, verdict }) {
     } else if (r.includes('atr') || r.includes('invalid sl')) {
         title = '⚠️ Volatility too low to size a position';
         body = 'ATR was near zero. Without a measurable volatility range, the system cannot calculate a safe stop-loss distance, so no trade was placed.';
-    } else if (verdict?.decision === 'HOLD' && Math.abs(wscore) < 0.10) {
+    } else if (verdict?.decision === 'HOLD' && Math.abs(wscore) < 0.05) {
         title = '⏸ Score below action threshold';
-        body = `The combined score (${wscore >= 0 ? '+' : ''}${wscore.toFixed(4)}) didn't reach the ±0.10 threshold needed for a BUY or SELL. `
+        body = `The combined score (${wscore >= 0 ? '+' : ''}${wscore.toFixed(4)}) didn't reach the ±0.05 threshold needed for a BUY or SELL. `
             + `Signals exist but aren't strong or aligned enough yet.`;
     } else {
         title = 'ℹ️ No trade taken this run';
@@ -167,7 +167,7 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
 
     const confLabel = articles >= 25 ? 'HIGH' : articles >= 15 ? 'MODERATE' : 'LOW';
     const confColor = articles >= 25 ? 'var(--buy-green)' : articles >= 15 ? 'var(--hold-yellow)' : 'var(--text-muted)';
-    const wColor = wscore >= 0.10 ? 'var(--buy-green)' : wscore <= -0.10 ? 'var(--sell-red)' : 'var(--hold-yellow)';
+    const wColor = wscore >= 0.05 ? 'var(--buy-green)' : wscore <= -0.05 ? 'var(--sell-red)' : 'var(--hold-yellow)';
 
     return (
         <div style={{

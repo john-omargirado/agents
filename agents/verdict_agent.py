@@ -65,7 +65,7 @@ def call_qwen(prompt):
             time.sleep(backoff)
             backoff = min(backoff * 2, max_backoff)
 
-def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.10) -> tuple[str, str]:
+def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.03) -> tuple[str, str]:
     if weighted_score >= threshold:
         verdict = "BUY"
     elif weighted_score <= -threshold:
@@ -331,7 +331,7 @@ CONTEXT FOR YOUR REASONING (use to inform your words, do not copy these field na
 - Price momentum (RSI): {rsi_val} — above 60 means overbought, below 40 means oversold, middle is neutral
 - Bollinger Bands: {bb_val}
 - Signal agreement check: {siv_status}
-- Combined score: {round(weighted_score, 4)} (above 0.10 = buy, below -0.10 = sell, in between = hold)
+- Combined score: {round(weighted_score, 4)} (above 0.05 = buy, below -0.05 = sell, in between = hold)
 """
         raw = call_qwen(prompt)
         verdict, reasoning = parse_llm_output(raw)

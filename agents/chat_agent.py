@@ -181,11 +181,11 @@ Verdict Agent:
 
   Decision thresholds:
     LLM mode (live_mode=True, skip_llm=False):
-      BUY  if weighted_score >= +0.10
-      SELL if weighted_score <= -0.10
+      BUY  if weighted_score >= +0.05
+      SELL if weighted_score <= -0.05
       HOLD otherwise
     Deterministic mode (backtest_mode=True or skip_llm=True):
-      Uses calibration_threshold (default 0.10) — same logic
+      Uses calibration_threshold (default 0.05) — same logic
 
   Dynamic SL/TP:
     atr_pct = atr / price
@@ -229,9 +229,9 @@ Signal quality gate (pre-verdict filter):
   If neither strong → HOLD/SKIP
   If SIV partial+mismatch → needs ce_strong only (TTS unreliable)
 
-Verdict thresholds (both LLM and deterministic default to 0.10):
-  BUY  if weighted_score >= +0.10
-  SELL if weighted_score <= -0.10
+Verdict thresholds (both LLM and deterministic default to 0.05):
+  BUY  if weighted_score >= +0.05
+  SELL if weighted_score <= -0.05
   HOLD otherwise
 
 Risk parameters:
@@ -739,7 +739,7 @@ class LiveChatAgent:
                     )
                 else:
                     skip_plain = (
-                        f"the combined score ({self._fmt(w_score)}) didn't reach the ±0.10 "
+                        f"the combined score ({self._fmt(w_score)}) didn't reach the ±0.05 "
                         "threshold needed to commit to a direction — it's a 'wait and see' result."
                     )
 

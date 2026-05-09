@@ -520,32 +520,44 @@ def simulate_trade():
         body = request.get_json(force=True) or {}
         pair        = str(body.get("currency_pair", "EUR/USD")).upper()
         action      = str(body.get("action", "BUY")).upper()
-        entry_price = float(body.get("entry_price", 0))
-        sl_distance = float(body.get("sl_distance", 0))
-        tp_distance = float(body.get("tp_distance", 0))
+        entry_price = float(body.get("entry_price") or 0)
+        sl_distance = float(body.get("sl_distance") or 0)
+        tp_distance = float(body.get("tp_distance") or 0)
         target_date = body.get("target_date") or \
                       datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-        if action == "HOLD":
-            return jsonify({
-                "outcome": "HOLD",
-                "message": "No trade was placed. Shelly chose to sit this one out.",
-                "candles": [],
-            })
-
-        if sl_distance <= 0 or tp_distance <= 0 or entry_price <= 0:
-            return jsonify({"error": "entry_price, sl_distance and tp_distance must be positive"}), 400
+        # REPLACE WITH:
+        if entry_price <= 0:
+            return jsonify({"error": "entry_price must be positive"}), 400
 
         candles = get_next_candles(pair, target_date, n=5)
         if not candles:
             return jsonify({"error": f"No OHLCV data found after {target_date} for {pair}"}), 404
+
+        # HOLD or missing TP/SL — time-exit only, no TP/SL levels
+        if action == "HOLD" or sl_distance <= 0 or tp_distance <= 0:
+            pip = 0.001 if "JPY" in pair else 0.0001
+            exit_price = candles[-1]["close"]
+            raw_pnl = exit_price - entry_price  # always long-perspective for HOLD
+            return jsonify({
+                "outcome": "TIME_EXIT",
+                "action": action,
+                "entry_price": round(entry_price, 5),
+                "exit_price": round(exit_price, 5),
+                "exit_candle": len(candles),
+                "pnl_pips": round(raw_pnl / pip, 1),
+                "tp_price": None,
+                "sl_price": None,
+                "candles": candles,
+                "pair": pair,
+                "ambiguous": False,
+            })
 
         result = _simulate_outcome(action, entry_price, sl_distance, tp_distance, candles, pair)
         result["action"]      = action
         result["entry_price"] = round(entry_price, 5)
         result["pair"]        = pair
         return jsonify(result)
-
     except Exception as e:
         logger.error(traceback.format_exc())  # log server-side only
         return jsonify({"error": "Internal server error"}), 500

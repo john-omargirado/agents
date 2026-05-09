@@ -383,21 +383,7 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
     const { outcome, action, entry_price, exit_price, exit_candle,
         pnl_pips, tp_price, sl_price, candles, pair, message } = simResult;
 
-    if (outcome === 'HOLD') {
-        return (
-            <div style={{
-                margin: '10px 14px', padding: '10px 12px',
-                borderRadius: 'var(--radius-sm)',
-                border: '1px solid rgba(234,179,8,0.3)',
-                background: 'rgba(234,179,8,0.06)', fontSize: 12,
-            }}>
-                <div style={{ fontWeight: 700, color: '#d4a017', marginBottom: 4, fontSize: 13 }}>
-                    ⏸ You chose to HOLD
-                </div>
-                <div style={{ color: 'var(--text-secondary)' }}>{message}</div>
-            </div>
-        );
-    }
+    if (!entry_price || !exit_price) return null;
 
     const isWin = outcome === 'TAKE_PROFIT';
     const isLoss = outcome === 'STOP_LOSS';
@@ -468,8 +454,8 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
                 {[
                     { label: 'Entry', value: entry_price?.toFixed(4), color: 'var(--text-secondary)' },
                     { label: 'Exit Price', value: exit_price?.toFixed(4), color: outcomeColor },
-                    { label: 'Take Profit', value: tp_price?.toFixed(4), color: '#2EA84A' },
-                    { label: 'Stop Loss', value: sl_price?.toFixed(4), color: '#dc3545' },
+                    ...(tp_price != null ? [{ label: 'Take Profit', value: tp_price?.toFixed(4), color: '#2EA84A' }] : []),
+                    ...(sl_price != null ? [{ label: 'Stop Loss', value: sl_price?.toFixed(4), color: '#dc3545' }] : []),
                 ].map(({ label, value, color }) => (
                     <div key={label} style={{ background: 'var(--bg-input)', borderRadius: 6, padding: '5px 8px' }}>
                         <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 1 }}>{label}</div>
@@ -731,26 +717,16 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
         if (!analysisResult || simLoading) return;
         setSimAction(action);
 
-        if (action === 'HOLD') {
-            const holdMsg = {
-                beginner: "No trade placed — you chose to wait. In forex, sitting out is a completely valid call. The signals are still worth studying even when no trade is taken.",
-                basic: "You held — no position opened. Sometimes the best trade is no trade at all.",
-                intermediate: "Standing aside. No position opened.",
-            }[experienceLevel] ?? "No trade was placed. You chose to wait for a better opportunity.";
-
-            setSimResult({ outcome: 'HOLD', action: 'HOLD', message: holdMsg, candles: [] });
-            return;
-        }
 
         const trade = analysisResult.trade || {};
         const entryPrice = analysisResult.tts?.price || 0;
         const slDistance = trade.sl_distance;
         const tpDistance = trade.tp_distance;
 
-        if (!entryPrice || !slDistance || !tpDistance) {
+        if (!entryPrice) {
             setSimResult({
                 outcome: 'ERROR',
-                message: 'Cannot simulate — entry price, SL, or TP is missing from this analysis.',
+                message: 'Cannot simulate — entry price is missing from this analysis.',
             });
             return;
         }
@@ -761,8 +737,8 @@ export default function TradingAssistant({ analysisResult, loading, pair, chatHi
                 currencyPair: analysisResult.currency_pair || pair,
                 action,
                 entryPrice,
-                slDistance,
-                tpDistance,
+                slDistance: slDistance ?? null,
+                tpDistance: tpDistance ?? null,
                 targetDate: analysisResult.target_date,
             });
             setSimResult(result);

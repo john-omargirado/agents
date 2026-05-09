@@ -13,7 +13,7 @@ from typing import Dict, Any, Optional, cast
 
 
 import pandas as pd
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from langchain_core.runnables import RunnableConfig
 from flask_limiter import Limiter
@@ -37,6 +37,8 @@ from utils.data_loader import (
 # ---------------------------------------------------------------------------
 load_dotenv()
 IS_DEV = os.environ.get("FLASK_ENV") == "development"
+
+
 
 # ---------------------------------------------------------------------------
 # App setup
@@ -98,6 +100,9 @@ def check_api_key():
     if IS_DEV:
         return
 
+    if request.path.startswith("/data/"):
+        return
+    
     if request.path.startswith("/api/") and request.path not in PUBLIC_ROUTES:
         key = request.headers.get("X-API-KEY")
 
@@ -268,6 +273,7 @@ def _serialize_state(state: dict, analysis_id: str, pair: str) -> dict:
 # ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
+
 
 @app.route("/api/health")
 def health():
@@ -573,6 +579,41 @@ def simulate_trade():
     except Exception as e:
         logger.error(traceback.format_exc())  # log server-side only
         return jsonify({"error": "Internal server error"}), 500
+    
+# ---------------------------------------------------------------------------
+# SERVE FOREX PAIR JSON DATA (for chart)
+# ---------------------------------------------------------------------------
+
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'data', 'backtesting', 'forex_pairs'))
+
+@app.route("/data/backtesting/forex_pairs/<string:filename>")
+def serve_forex_pair(filename):
+    if not filename.endswith('.json'):
+        return jsonify({"error": "Not found"}), 404
+    filepath = os.path.join(DATA_DIR, filename)
+    if not os.path.isfile(filepath):
+        logger.warning(f"[DATA] File not found: {filepath}")
+        return jsonify({"error": f"{filename} not found"}), 404
+    logger.info(f"[DATA] Serving: {filename}")
+    return send_from_directory(DATA_DIR, filename)
+
+
+# ---------------------------------------------------------------------------
+# SERVE REACT BUILD (production) — MUST BE LAST
+# ---------------------------------------------------------------------------
+
+FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'frontend', 'dist'))
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_frontend(path):
+    if path.startswith('api/') or path.startswith('data/'):
+        return jsonify({"error": "Not found"}), 404
+    full_path = os.path.join(FRONTEND_DIR, path)
+    if path and os.path.isfile(full_path):
+        return send_from_directory(FRONTEND_DIR, path)
+    return send_from_directory(FRONTEND_DIR, 'index.html')
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

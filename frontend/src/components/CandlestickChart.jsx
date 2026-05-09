@@ -394,7 +394,7 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
         });
 
         const candleSeries = chart.addCandlestickSeries(candlePalette);
-        candleSeries.setData(allCandleData);
+        candleSeries.setData([]);
 
         chartRef.current = chart;
         candleSeriesRef.current = candleSeries;
@@ -420,29 +420,21 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             candleSeriesRef.current = null;
         };
     }, [allCandleData, chartPalette, candlePalette]);
-
     // ── Effect 2: Pan to selected date ───────────────────────────────────────
     useEffect(() => {
-        if (!chartRef.current || !allCandleData.length) return;
+        if (!chartRef.current || !candleSeriesRef.current || !visibleCandleData.length) return;
 
-        const cutoff = selectedDate
-            ? dateStrToEndOfDayTs(selectedDate)
-            : allCandleData[allCandleData.length - 1].time;
+        // Update series to only show candles up to selected date
+        candleSeriesRef.current.setData(visibleCandleData);
 
-        const filtered = allCandleData.filter((c) => c.time <= cutoff);
-
-        if (!filtered.length) {
-            chartRef.current.timeScale().fitContent();
-            return;
-        }
-
+        // Pan to show last 60 candles of the visible window
         const WINDOW = 60;
-        const startIdx = Math.max(0, filtered.length - WINDOW);
-        const from = filtered[startIdx].time;
-        const to = filtered[filtered.length - 1].time;
+        const startIdx = Math.max(0, visibleCandleData.length - WINDOW);
+        const from = visibleCandleData[startIdx].time;
+        const to = visibleCandleData[visibleCandleData.length - 1].time;
 
         chartRef.current.timeScale().setVisibleRange({ from, to: to + 43200 });
-    }, [selectedDate, allCandleData]);
+    }, [visibleCandleData]);
 
     // ── Data source label ────────────────────────────────────────────────────
     const dataSourceLabel = useMemo(() => {

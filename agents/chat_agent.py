@@ -684,6 +684,19 @@ class LiveChatAgent:
 
             rp = vf.get("risk_parameters", {}) or {}
             sl_pips_raw = rp.get("sl_pips")
+
+            lot_size = self._to_float(rp.get("lot_size"))
+            if lot_size is not None and lot_size < 0.01:
+                return (
+                    f"The system calculated a position size of {lot_size:.4f} lots for this run, "
+                    f"but the minimum tradeable lot size is 0.01 — so this trade can't be placed "
+                    f"as-is. To fix this, you can either increase your capital (more funds means "
+                    f"a larger position can be sized) or increase your leverage (which amplifies "
+                    f"your buying power, though it also increases risk). Think of leverage like a "
+                    f"loan from your broker — it lets you control a bigger position with less "
+                    f"capital, but losses are amplified the same way gains are, so use it carefully."
+                )
+
             tp_pips_raw = rp.get("tp_pips")
 
             sl_pips = (
@@ -926,7 +939,11 @@ class LiveChatAgent:
         if state.get("risk_multiplier") is not None:
             lines.append(f"Risk Multiplier: {state.get('risk_multiplier')}")
         if rp.get("lot_size") is not None:
-            lines.append(f"Lot Size: {rp['lot_size']}")
+            lot_size = self._to_float(rp.get("lot_size"))
+            lot_line = f"Lot Size: {rp['lot_size']}"
+            if lot_size is not None and lot_size < 0.01:
+                lot_line += " [BELOW MINIMUM — 0.01 lot required; advise user to increase capital or leverage]"
+            lines.append(lot_line)
 
         if tts:
             tts_line = (

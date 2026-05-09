@@ -103,17 +103,15 @@ export default function App() {
 
     useEffect(() => {
         const loadDefaultDate = async () => {
-            if (pair) {
-                try {
-                    const response = await fetch(`${API_BASE_URL}/backtest/dates?currency_pair=${pair}`);
-                    const data = await response.json();
-                    if (data.dates && data.dates.length > 0) {
-                        // Set the state to the latest available date from the backend
-                        setTargetDate(data.dates[data.dates.length - 1]);
-                    }
-                } catch (err) {
-                    console.error("Failed to load default date", err);
+            if (!pair) return;
+            try {
+                const response = await fetch(`/api/backtest/dates?currency_pair=${pair}`);
+                const data = await response.json();
+                if (data.dates && data.dates.length > 0) {
+                    setTargetDate(data.dates[data.dates.length - 1]);
                 }
+            } catch (err) {
+                console.error("Failed to load default date", err);
             }
         };
 
@@ -125,7 +123,7 @@ export default function App() {
             setPair('EUR/USD');
             setLeverage('1:1');
             setRiskThreshold('1');
-            setAmount('1000');
+            setAmount('100000');
         }
 
         if (experienceLevel === 'basic') {

@@ -290,7 +290,7 @@ export default function TradingParameters({
                     value={amount}
                     onChange={e => setAmount(e.target.value)}
                     min="1"
-                    placeholder="1000"
+                    placeholder="100000"
                 />
                 <p className="form-hint">
                     {experienceLevel === 'beginner'

@@ -72,20 +72,11 @@ function SIVAuditRow({ issues }) {
     return (
         <div className="agent-detail-row agent-detail-issues">
             <span className="agent-detail-label">SIV Audit</span>
-            <span
-                className="agent-detail-value siv-audit-value"
-                onClick={() => setExpanded(!expanded)}
-                title="Click to expand"
-                style={{ cursor: 'pointer' }}
-            >
-                {expanded
-                    ? labeled.map((issue, i) => <span key={i} className="siv-audit-issue">{issue}</span>)
-                    : <span className="siv-audit-issue">
-                        {preview}{' '}
-                        {labeled.length > 1 && <span className="siv-audit-count">+{labeled.length - 1} more</span>}
-                    </span>
-                }
-            </span>
+            <div className="siv-audit-tags">
+                {labeled.map((issue, i) => (
+                    <span key={i} className="siv-audit-issue">{issue}</span>
+                ))}
+            </div>
         </div>
     );
 }
@@ -592,18 +583,31 @@ function AnalysisCard({ result, pairLabel }) {
             <EnsembleBreakdown ce={result.ce} tts={result.tts} siv={result.siv} verdict={result.verdict} />
 
             {!isSkipped && (
-                <div className="stats-row">
-                    <div className="stat-item">
-                        <div className="stat-label"><BarChart3 size={12} /> Lot Size</div>
-                        <div className="stat-value">
-                            {typeof backendLotSize === 'number' ? backendLotSize.toFixed(3) : '—'}
+                <>
+                    <div className="stats-row">
+                        <div className={`stat-item${typeof backendLotSize === 'number' && backendLotSize < 0.01 ? ' stat-item--warn' : ''}`}>
+                            <div className="stat-label"><BarChart3 size={12} /> Lot Size</div>
+                            <div className={`stat-value${typeof backendLotSize === 'number' && backendLotSize < 0.01 ? ' negative' : ''}`}>
+                                {typeof backendLotSize === 'number' ? backendLotSize.toFixed(3) : '—'}
+                            </div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-label"><Target size={12} /> Entry Price</div>
+                            <div className="stat-value">{entryPrice ? entryPrice.toFixed(4) : '—'}</div>
                         </div>
                     </div>
-                    <div className="stat-item">
-                        <div className="stat-label"><Target size={12} /> Entry Price</div>
-                        <div className="stat-value">{entryPrice ? entryPrice.toFixed(4) : '—'}</div>
-                    </div>
-                </div>
+
+                    {typeof backendLotSize === 'number' && backendLotSize < 0.01 && (
+                        <div className="orchestrator-info orchestrator-info-warn" style={{ marginTop: 8 }}>
+                            <AlertTriangle size={14} />
+                            <span>
+                                Lot size of <strong>{backendLotSize.toFixed(4)}</strong> is below the 0.01 minimum —
+                                this signal cannot be traded at current settings.
+                                Increase your <strong>capital</strong> or <strong>leverage</strong> to reach a tradeable position size.
+                            </span>
+                        </div>
+                    )}
+                </>
             )}
 
             <div className="quick-params">

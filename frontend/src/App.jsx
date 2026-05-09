@@ -103,13 +103,13 @@ export default function App() {
 
     useEffect(() => {
         const loadDefaultDate = async () => {
-            if (selectedPair) {
+            if (pair) {
                 try {
-                    const response = await fetch(`${API_BASE_URL}/backtest/dates?currency_pair=${selectedPair}`);
+                    const response = await fetch(`${API_BASE_URL}/backtest/dates?currency_pair=${pair}`);
                     const data = await response.json();
                     if (data.dates && data.dates.length > 0) {
-                        // Set the state to the latest available date
-                        setSelectedDate(data.dates[data.dates.length - 1]);
+                        // Set the state to the latest available date from the backend
+                        setTargetDate(data.dates[data.dates.length - 1]);
                     }
                 } catch (err) {
                     console.error("Failed to load default date", err);
@@ -118,7 +118,7 @@ export default function App() {
         };
 
         loadDefaultDate();
-    }, [selectedPair]);
+    }, [pair]);
 
     useEffect(() => {
         if (experienceLevel === 'beginner') {
@@ -158,6 +158,8 @@ export default function App() {
         window.localStorage.setItem(THEME_STORAGE_KEY, theme);
     }, [theme]);
 
+
+
     const closeTutorial = () => setShowTutorial(false);
     const openTutorial = () => {
         setTutorialSlideIndex(0);
@@ -188,6 +190,7 @@ export default function App() {
             return;
         }
 
+
         const fullText = activeTutorialSlide.narration;
         const duration = Math.max(300, speakingDurationMs);
         let animationFrameId = 0;
@@ -213,7 +216,6 @@ export default function App() {
     }, [showTutorial, tutorialSlideIndex, activeTutorialSlide, speakingDurationMs]);
 
     const handleGetSentiment = async () => {
-        // 🔧 FIXED TRUNCATION: Close the array bracket and complete the logic
         if (chatRef.current.messages.length > 0 || chatRef.current.result) {
             setChatHistory((prev) => [
                 ...prev,
@@ -226,20 +228,18 @@ export default function App() {
             ]);
         }
 
-        // Reset state for new analysis
         chatRef.current = { messages: [], pair, result: null };
         setLoading(true);
         setError(null);
         setAnalysisResult(null);
 
         try {
-            // Trigger your orchestrator/API here
             const result = await runOrchestrator({
                 pair,
                 amount,
                 leverage,
                 riskThreshold,
-                targetDate: targetDate || null,
+                targetDate: targetDate || null, // Now correctly uses the fetched default
                 experienceLevel,
             });
 
@@ -252,6 +252,8 @@ export default function App() {
             setLoading(false);
         }
     };
+
+
 
     return (
         <div className="app">

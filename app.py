@@ -69,7 +69,8 @@ else:
     CORS(app, resources={
         r"/api/*": {
             "origins": [
-                "https://forex-mas.me"
+                "https://forex-mas.me",
+                "https://www.forex-mas.me"
             ]
         }
     })

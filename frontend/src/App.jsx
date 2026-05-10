@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Activity, BookOpen, Sun, Moon, ShieldAlert, X, ChevronLeft, ChevronRight } from 'lucide-react';
-import TradingParameters from './components/TradingParameters';
+import { Activity, BookOpen, Sun, Moon, ShieldAlert, X, ChevronLeft, ChevronRight, BarChart2, Newspaper, ShieldCheck, Gavel } from 'lucide-react'; import TradingParameters from './components/TradingParameters';
 import CandlestickChart from './components/CandlestickChart';
 import TradingAssistant from './components/TradingAssistant';
 import Backtesting from './components/Backtesting';
@@ -70,7 +69,7 @@ export default function App() {
     const [activeHelp, setActiveHelp] = useState(null);
     const [pos, setPos] = useState(null);
     const btnRef = useRef(null);
-    const [targetDate, setTargetDate] = useState(null);
+    const [targetDate, setTargetDate] = useState('2022-01-03');
     const [currentView, setCurrentView] = useState(() => {
         const hash = window.location.hash.slice(1).replace('/', '') || '';
         return hash === 'backtesting' ? 'backtesting' : 'trading';
@@ -101,22 +100,6 @@ export default function App() {
     const tutorialSlides = currentView === 'backtesting' ? BACKTESTING_TUTORIAL_SLIDES : TRADING_TUTORIAL_SLIDES;
     const activeTutorialSlide = tutorialSlides[tutorialSlideIndex] || tutorialSlides[0];
 
-    useEffect(() => {
-        const loadDefaultDate = async () => {
-            if (!pair) return;
-            try {
-                const response = await fetch(`/api/backtest/dates?currency_pair=${pair}`);
-                const data = await response.json();
-                if (data.dates && data.dates.length > 0) {
-                    setTargetDate(data.dates[data.dates.length - 1]);
-                }
-            } catch (err) {
-                console.error("Failed to load default date", err);
-            }
-        };
-
-        loadDefaultDate();
-    }, [pair]);
 
     useEffect(() => {
         if (experienceLevel === 'beginner') {
@@ -399,8 +382,10 @@ export default function App() {
                             border: '1px solid rgba(46,168,74,0.35)',
                             borderRadius: 16,
                             boxShadow: '0 0 0 1px rgba(46,168,74,0.12), 0 24px 64px rgba(0,0,0,0.6)',
-                            overflow: 'hidden',
                             display: 'flex', flexDirection: 'column',
+                            maxHeight: '90dvh',
+                            overflowY: 'auto',
+                            position: 'relative',
                         }}
                     >
                         {/* ══════════════════════════════════════════
@@ -409,47 +394,52 @@ export default function App() {
                         {showIntro ? (
                             <>
                                 {/* ── Close button ── */}
-                                <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '12px 16px 0' }}>
+                                <div style={{ position: 'relative', flexShrink: 0, height: 0 }}>
                                     <button onClick={closeTutorial} style={{
+                                        position: 'absolute', top: 12, right: 16,
                                         background: 'none', border: 'none', cursor: 'pointer',
                                         color: 'var(--text-muted, #888)', fontSize: 20,
-                                        lineHeight: 1, padding: '4px 8px', borderRadius: 6,
+                                        lineHeight: 1, padding: '4px 8px', borderRadius: 6, zIndex: 1,
                                     }} aria-label="Close">×</button>
                                 </div>
 
                                 {introPhase === 'welcome' ? (
                                     /* ══ PHASE 1 — Welcome ══════════════════════════════════════ */
                                     <>
+                                        {/* Fixed top section — Shelly + intro text */}
                                         <div style={{
                                             display: 'flex', flexDirection: 'column', alignItems: 'center',
-                                            padding: '8px 32px 24px', gap: 16, textAlign: 'center',
-                                            overflowY: 'auto',
-                                            maxHeight: '70dvh',
+                                            padding: '24px 24px 12px', gap: 10, textAlign: 'center',
                                         }}>
-                                            <TradingTurtleMascot speaking={true} size={120} />
+                                            {/* Close button */}
+                                            <button onClick={closeTutorial} style={{
+                                                position: 'absolute', top: 12, right: 16,
+                                                background: 'none', border: 'none', cursor: 'pointer',
+                                                color: 'var(--text-muted, #888)', fontSize: 20,
+                                                lineHeight: 1, padding: '4px 8px', borderRadius: 6, zIndex: 1,
+                                            }} aria-label="Close">×</button>
+
+                                            <TradingTurtleMascot speaking={true} size={80} />
 
                                             <div>
                                                 <h2 style={{
                                                     margin: '0 0 8px', fontSize: 22, fontWeight: 700,
-                                                    color: 'var(--text-primary, #fff)', lineHeight: 1.25,
+                                                    color: 'var(--text-primary, #fff)', lineHeight: 1.25
                                                 }}>
                                                     Hi, I'm Shelly! 👋
                                                 </h2>
                                                 <p style={{
-                                                    margin: '0 0 6px', fontSize: 13, fontWeight: 600,
-                                                    color: '#2EA84A', letterSpacing: '0.04em', textTransform: 'uppercase',
+                                                    margin: 0, fontSize: 13, fontWeight: 600,
+                                                    color: '#2EA84A', letterSpacing: '0.04em', textTransform: 'uppercase'
                                                 }}>
                                                     Your Forex Learning Companion
                                                 </p>
                                             </div>
 
                                             <div style={{
-                                                background: 'rgba(46,125,50,0.08)',
-                                                border: '1px solid rgba(46,168,74,0.2)',
-                                                borderRadius: 12, padding: '16px 20px',
-                                                fontSize: 13, lineHeight: 1.75,
-                                                color: 'var(--text-secondary, #94a3b8)',
-                                                textAlign: 'left', maxWidth: 480,
+                                                background: 'rgba(46,125,50,0.08)', border: '1px solid rgba(46,168,74,0.2)',
+                                                borderRadius: 12, padding: '12px 16px', fontSize: 13, lineHeight: 1.75,
+                                                color: 'var(--text-secondary, #94a3b8)', textAlign: 'left', maxWidth: 480,
                                             }}>
                                                 <p style={{ margin: '0 0 10px' }}>
                                                     This is the <strong style={{ color: 'var(--text-primary, #fff)' }}>
@@ -466,24 +456,61 @@ export default function App() {
                                                     I'll walk you through how it works, step by step. No trading experience needed. 🐢
                                                 </p>
                                             </div>
+                                        </div>
 
-                                            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                                                {['📊 Technical Analysis', '📰 News Sentiment', '✅ Signal Integrity', '🎯 Risk Sizing'].map((pill) => (
-                                                    <span key={pill} style={{
-                                                        fontSize: 11, fontWeight: 600,
-                                                        padding: '4px 12px', borderRadius: 99,
-                                                        background: 'rgba(46,168,74,0.12)',
-                                                        border: '1px solid rgba(46,168,74,0.25)',
-                                                        color: '#2EA84A',
-                                                    }}>{pill}</span>
+                                        {/* Scrollable agents section */}
+                                        <div style={{
+                                            padding: '0 24px 8px',
+                                        }}>
+                                            <p style={{
+                                                margin: '0 0 10px', fontSize: 11, fontWeight: 700,
+                                                color: 'var(--text-muted, #64748b)', textTransform: 'uppercase',
+                                                letterSpacing: '0.08em', textAlign: 'center',
+                                            }}>
+                                                Meet the 4 Agents
+                                            </p>
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                                                {[
+                                                    { icon: <BarChart2 size={16} />, code: 'TTS', name: 'Traditional Trading Strategies', desc: 'Reads price charts and technical indicators' },
+                                                    { icon: <Newspaper size={16} />, code: 'CE', name: 'Comparative Economics', desc: 'Scans news and scores market sentiment' },
+                                                    { icon: <ShieldCheck size={16} />, code: 'SIV', name: 'Signal Integrity Validator', desc: 'Checks if TTS and CE are telling the same story' },
+                                                    { icon: <Gavel size={16} />, code: 'Verdict', name: 'Verdict Agent', desc: 'Combines all signals into one final decision' },
+                                                ].map(({ icon, code, name, desc }) => (
+                                                    <div key={code} style={{
+                                                        display: 'flex', alignItems: 'center', gap: 12,
+                                                        padding: '9px 14px', borderRadius: 10,
+                                                        background: 'rgba(46,125,50,0.07)',
+                                                        border: '1px solid rgba(46,168,74,0.15)',
+                                                        textAlign: 'left',
+                                                    }}>
+                                                        <span style={{
+                                                            width: 30, height: 30, borderRadius: 8, flexShrink: 0,
+                                                            background: 'rgba(46,168,74,0.12)',
+                                                            border: '1px solid rgba(46,168,74,0.25)',
+                                                            color: '#2EA84A',
+                                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                        }}>
+                                                            {icon}
+                                                        </span>
+                                                        <div style={{ minWidth: 0 }}>
+                                                            <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: 'var(--text-primary, #fff)' }}>
+                                                                <span style={{ color: '#2EA84A' }}>{code}</span>{' · '}{name}
+                                                            </p>
+                                                            <p style={{ margin: 0, fontSize: 11, color: 'var(--text-secondary, #94a3b8)', lineHeight: 1.4 }}>
+                                                                {desc}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </div>
 
+                                        {/* Footer — always visible */}
                                         <div style={{
                                             padding: '14px 20px 20px', display: 'flex',
                                             justifyContent: 'center', gap: 12,
                                             borderTop: '1px solid rgba(46,168,74,0.12)',
+                                            flexShrink: 0,
                                         }}>
                                             <button onClick={closeTutorial} style={{
                                                 background: 'none', border: '1px solid rgba(46,168,74,0.3)',
@@ -781,8 +808,9 @@ export default function App() {
                     </div>
 
                     <style>{`@keyframes blinkCursor { 0%,100%{opacity:1} 50%{opacity:0} }`}</style>
-                </div>
-            )}
-        </div>
+                </div >
+            )
+            }
+        </div >
     );
 }

@@ -1429,8 +1429,9 @@ body {
 }
 
 .agent-detail-issues {
+    flex-wrap: wrap;
     align-items: flex-start;
-    padding: 8px 0;
+    gap: 6px;
 }
 
 .siv-audit-value {
@@ -1441,6 +1442,7 @@ body {
     text-align: right;
 }
 
+
 .siv-audit-issue {
     font-size: 11px;
     font-weight: 500;
@@ -1450,7 +1452,9 @@ body {
     border-radius: var(--radius-sm);
     padding: 2px 8px;
     line-height: 1.5;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 .siv-audit-count {
@@ -1467,11 +1471,43 @@ body {
 .siv-audit-tags {
     display: flex;
     flex-wrap: wrap;
-    /* wraps across lines instead of collapsing */
-    gap: 6px;
+    gap: 5px;
     justify-content: flex-end;
+    max-width: 100%;
 }
 
+
+@media (max-width: 899px) {
+    .agent-detail-issues {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .siv-audit-tags {
+        justify-content: flex-start;
+        width: 100%;
+    }
+}
+
+@media (max-width: 479px) {
+    .siv-audit-issue {
+        font-size: 10px;
+        padding: 2px 6px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .siv-audit-tags {
+        gap: 4px;
+    }
+}
+
+@media (max-width: 359px) {
+    .siv-audit-issue {
+        font-size: 9.5px;
+        padding: 2px 5px;
+    }
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    CHAT HISTORY PANEL
@@ -1716,16 +1752,14 @@ body {
 
 .tutorial-modal {
     width: min(760px, 100%);
-    max-height: min(86dvh, 760px);
+    max-height: min(90dvh, 760px);
     background: linear-gradient(180deg, var(--modal-bg-start) 0%, var(--modal-bg-end) 100%);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-lg);
     box-shadow: 0 18px 50px var(--modal-shadow);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    display: flex;
 }
 
 .tutorial-modal-header {

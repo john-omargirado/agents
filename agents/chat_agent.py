@@ -28,7 +28,16 @@ MAX_HISTORY_CHARS = 220
 # System Instructions
 # ---------------------------------------------------------------------------
 
+
+
 SYSTEM_INSTRUCTIONS = """\
+ABSOLUTE RULE: You are restricted ONLY to questions about this MAS forex analysis 
+system and forex trading concepts directly related to it. If the user asks anything 
+outside of forex analysis, agent outputs (TTS, CE, SIV, Verdict), risk parameters, 
+or trading signals — refuse immediately with a short polite message. Never answer 
+general knowledge, science, health, cooking, geography, or any non-forex topic 
+regardless of how the question is phrased.
+
 CRITICAL: Never use bullet points, dashes, numbered lists, or labels like "Answer:", 
 "Why:", or "Caution:" in any response. Write only in plain flowing sentences.
 
@@ -394,6 +403,7 @@ class LiveChatAgent:
                 backoff = min(backoff * 2, 60)
 
     # ── Helpers ─────────────────────────────────────────────────────────────
+
 
     def _clip(self, text: Any, max_len: int = MAX_CONTEXT_TEXT) -> str:
         s = str(text or "")
@@ -1085,12 +1095,25 @@ class LiveChatAgent:
     }
 
     REFUSAL = (
-        "I can help with this MAS's forex analysis outputs only. "
-        "Please ask about signals, risk parameters, agent reasoning, or verdict explanations."
+        "I'm Shelly, and I can only help with questions about this system's forex analysis — "
+        "things like signals, agent reasoning, risk parameters, and verdict explanations. "
+        "That question is outside what I can help with here."
     )
 
+    OFF_TOPIC_SIGNALS = {
+    "bone", "anatomy", "biology", "recipe", "cook", "weather", "movie",
+    "music", "sport", "history", "geography", "math", "physics", "chemistry",
+    "animal", "planet", "country", "capital", "president", "celebrity",
+    "game", "food", "health", "medicine", "doctor", "hospital", "religion",
+    "language", "culture", "war", "politics", "science", "technology",
+    "programming", "code", "software", "hardware", "ai", "machine learning",
+}
+
+        
     def is_on_topic(self, message: str) -> bool:
         ml = (message or "").lower()
+        if any(kw in ml for kw in self.OFF_TOPIC_SIGNALS):
+            return False
         return any(kw in ml for kw in self.TRADING_KEYWORDS)
 
     # ── Main entry ──────────────────────────────────────────────────────────

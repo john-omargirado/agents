@@ -326,39 +326,100 @@ function CandleTimeline({ candles, action, entryPrice, tpPrice, slPrice, exitCan
 
                     return (
                         <div key={i} style={{
-                            display: 'flex', alignItems: 'center', gap: 8,
-                            padding: '5px 8px',
-                            borderRadius: 6,
+                            borderRadius: 8,
                             background: isExit
                                 ? tpHit ? 'rgba(46,168,74,0.1)' : slHit ? 'rgba(220,53,69,0.1)' : 'rgba(234,179,8,0.08)'
                                 : 'var(--bg-input)',
                             border: isExit
                                 ? tpHit ? '1px solid rgba(46,168,74,0.3)' : slHit ? '1px solid rgba(220,53,69,0.3)' : '1px solid rgba(234,179,8,0.2)'
                                 : '1px solid transparent',
-                            fontSize: 11,
+                            overflow: 'hidden',
                         }}>
-                            <span style={{ color: 'var(--text-muted)', width: 48, flexShrink: 0 }}>
-                                C{i + 1} {c.date ? `(${c.date.slice(5)})` : ''}
-                            </span>
-                            <span style={{ color: isUp ? '#2EA84A' : '#dc3545', width: 16, textAlign: 'center' }}>
-                                {isUp ? '▲' : '▼'}
-                            </span>
-                            <span style={{ color: 'var(--text-secondary)', fontVariantNumeric: 'tabular-nums', flex: 1 }}>
-                                O:{c.open?.toFixed(4)} H:{c.high?.toFixed(4)} L:{c.low?.toFixed(4)} C:{c.close?.toFixed(4)}
-                            </span>
-                            <span style={{ color: isUp ? '#2EA84A' : '#dc3545', fontSize: 10, fontVariantNumeric: 'tabular-nums' }}>
-                                {isUp ? '+' : ''}{change}p
-                            </span>
-                            {isExit && (
+                            {/* ── Top row: candle number, direction, pip change, exit badge ── */}
+                            <div style={{
+                                display: 'flex', alignItems: 'center', gap: 8,
+                                padding: '6px 10px',
+                            }}>
+                                {/* Candle number + date */}
+                                <div style={{ flexShrink: 0, minWidth: 56 }}>
+                                    <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-primary)' }}>
+                                        Candle {i + 1}
+                                    </div>
+                                    {c.date && (
+                                        <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+                                            {c.date.slice(5)}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Direction arrow */}
                                 <span style={{
-                                    fontSize: 10, fontWeight: 700, padding: '1px 5px', borderRadius: 4,
-                                    background: (tpPrice != null && tpHit) ? 'rgba(46,168,74,0.2)' : (slPrice != null && slHit) ? 'rgba(220,53,69,0.2)' : 'rgba(234,179,8,0.15)',
-                                    color: (tpPrice != null && tpHit) ? '#2EA84A' : (slPrice != null && slHit) ? '#dc3545' : '#d4a017',
-                                    flexShrink: 0,
+                                    fontSize: 16, flexShrink: 0,
+                                    color: isUp ? '#2EA84A' : '#dc3545',
                                 }}>
-                                    {(tpPrice != null && tpHit) ? '✓ TP' : (slPrice != null && slHit) ? '✗ SL' : '⏱ C5'}
+                                    {isUp ? '▲' : '▼'}
                                 </span>
-                            )}
+
+                                {/* Pip change */}
+                                <div style={{ flex: 1 }}>
+                                    <div style={{
+                                        fontSize: 12, fontWeight: 700,
+                                        color: isUp ? '#2EA84A' : '#dc3545',
+                                        fontVariantNumeric: 'tabular-nums',
+                                    }}>
+                                        {isUp ? '+' : ''}{change} pips
+                                    </div>
+                                    <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+                                        {isUp ? 'Price moved up' : 'Price moved down'}
+                                    </div>
+                                </div>
+
+                                {/* Exit badge */}
+                                {isExit && (
+                                    <span style={{
+                                        fontSize: 11, fontWeight: 700,
+                                        padding: '3px 8px', borderRadius: 6, flexShrink: 0,
+                                        background: tpHit ? 'rgba(46,168,74,0.2)' : slHit ? 'rgba(220,53,69,0.2)' : 'rgba(234,179,8,0.15)',
+                                        color: tpHit ? '#2EA84A' : slHit ? '#dc3545' : '#d4a017',
+                                    }}>
+                                        {tpHit ? '✓ Take Profit' : slHit ? '✗ Stop Loss' : '⏱ Time Up'}
+                                    </span>
+                                )}
+                            </div>
+
+                            {/* ── Bottom row: OHLC prices with labels ── */}
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(4, 1fr)',
+                                gap: 1,
+                                borderTop: '1px solid var(--bg-input-border)',
+                                background: 'var(--bg-input-border)',
+                            }}>
+                                {[
+                                    { label: 'Open', value: c.open, hint: 'Start price' },
+                                    { label: 'High', value: c.high, hint: 'Highest' },
+                                    { label: 'Low', value: c.low, hint: 'Lowest' },
+                                    { label: 'Close', value: c.close, hint: 'End price' },
+                                ].map(({ label, value, hint }) => (
+                                    <div key={label} style={{
+                                        background: isExit
+                                            ? tpHit ? 'rgba(46,168,74,0.06)' : slHit ? 'rgba(220,53,69,0.06)' : 'rgba(234,179,8,0.04)'
+                                            : 'var(--bg-input)',
+                                        padding: '5px 8px',
+                                        textAlign: 'center',
+                                    }}>
+                                        <div style={{ fontSize: 9, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                                            {label}
+                                        </div>
+                                        <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)', fontVariantNumeric: 'tabular-nums' }}>
+                                            {value?.toFixed(4) ?? '—'}
+                                        </div>
+                                        <div style={{ fontSize: 9, color: 'var(--text-muted)' }}>
+                                            {hint}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     );
                 })}
@@ -379,10 +440,12 @@ function SimTradeResult({ simResult, analysisResult, experienceLevel = 'beginner
     const isWin = outcome === 'TAKE_PROFIT';
     const isLoss = outcome === 'STOP_LOSS';
     const pnlColor = pnl_pips > 0 ? '#2EA84A' : pnl_pips < 0 ? '#dc3545' : 'var(--text-muted)';
-    const borderColor = isWin ? 'rgba(46,168,74,0.4)' : isLoss ? 'rgba(220,53,69,0.4)' : 'rgba(234,179,8,0.3)';
-    const bgColor = isWin ? 'rgba(46,168,74,0.06)' : isLoss ? 'rgba(220,53,69,0.06)' : 'rgba(234,179,8,0.05)';
+    const isTimeExitProfit = !isWin && !isLoss && (pnl_pips ?? 0) > 0;
+    const isTimeExitLoss = !isWin && !isLoss && (pnl_pips ?? 0) < 0;
+    const borderColor = isWin || isTimeExitProfit ? 'rgba(46,168,74,0.4)' : isLoss || isTimeExitLoss ? 'rgba(220,53,69,0.4)' : 'rgba(234,179,8,0.4)';
+    const bgColor = isWin || isTimeExitProfit ? 'rgba(46,168,74,0.06)' : isLoss || isTimeExitLoss ? 'rgba(220,53,69,0.06)' : 'rgba(234,179,8,0.05)';
     const outcomeLabel = isWin ? '✅ Take Profit Hit' : isLoss ? '❌ Stop Loss Hit' : '⏱ Time Exit (5 candles)';
-    const outcomeColor = isWin ? '#2EA84A' : isLoss ? '#dc3545' : '#d4a017';
+    const outcomeColor = isWin || isTimeExitProfit ? '#2EA84A' : isLoss || isTimeExitLoss ? '#dc3545' : '#d4a017';
 
     const getNarrative = () => {
         const lvl = experienceLevel || 'beginner';
@@ -528,20 +591,61 @@ function AnalysisCard({ result, pairLabel }) {
 
     return (
         <div className="assistant-message">
-            <div className="message-header">
-                <span>Analysis for {result.currency_pair || pairLabel}</span>
+            <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                marginBottom: 14, paddingBottom: 12,
+                borderBottom: '1px solid var(--bg-input-border)',
+            }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <div style={{
+                        width: 8, height: 8, borderRadius: '50%',
+                        background: decision === 'BUY' ? 'var(--buy-green)'
+                            : decision === 'SELL' ? 'var(--sell-red)' : 'var(--hold-yellow)',
+                        boxShadow: `0 0 8px ${decision === 'BUY' ? 'rgba(34,197,94,0.5)'
+                            : decision === 'SELL' ? 'rgba(239,68,68,0.5)' : 'rgba(234,179,8,0.5)'}`,
+                    }} />
+                    <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)' }}>
+                        {result.currency_pair || pairLabel}
+                    </span>
+                </div>
                 {result.target_date && (
                     <span className="message-date-tag">{result.target_date}</span>
                 )}
             </div>
 
-            <div className="signal-row">
-                <SignalBadge signal={decision} />
-                {isSkipped && (
-                    <span style={{ fontSize: 12, color: 'var(--text-muted)', marginLeft: 6 }}>
-                        No trade taken
-                    </span>
-                )}
+            <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                padding: '14px 16px', borderRadius: 10, marginBottom: 14,
+                background: decision === 'BUY' ? 'rgba(34,197,94,0.08)'
+                    : decision === 'SELL' ? 'rgba(239,68,68,0.08)' : 'rgba(234,179,8,0.08)',
+                border: `1px solid ${decision === 'BUY' ? 'rgba(34,197,94,0.25)'
+                    : decision === 'SELL' ? 'rgba(239,68,68,0.25)' : 'rgba(234,179,8,0.25)'}`,
+            }}>
+                <div style={{
+                    width: 44, height: 44, borderRadius: 10, flexShrink: 0,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    background: decision === 'BUY' ? 'rgba(34,197,94,0.15)'
+                        : decision === 'SELL' ? 'rgba(239,68,68,0.15)' : 'rgba(234,179,8,0.15)',
+                }}>
+                    {decision === 'BUY' ? <TrendingUp size={22} color="var(--buy-green)" />
+                        : decision === 'SELL' ? <TrendingDown size={22} color="var(--sell-red)" />
+                            : <Minus size={22} color="var(--hold-yellow)" />}
+                </div>
+                <div>
+                    <div style={{
+                        fontSize: 18, fontWeight: 800, letterSpacing: '0.5px',
+                        color: decision === 'BUY' ? 'var(--buy-green)'
+                            : decision === 'SELL' ? 'var(--sell-red)' : 'var(--hold-yellow)',
+                    }}>
+                        {decision}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 1 }}>
+                        {isSkipped ? 'No trade taken this run'
+                            : decision === 'BUY' ? 'Bullish signal detected'
+                                : decision === 'SELL' ? 'Bearish signal detected'
+                                    : 'Waiting for clearer conditions'}
+                    </div>
+                </div>
             </div>
 
             {retryCount > 0 && (
@@ -610,36 +714,56 @@ function AnalysisCard({ result, pairLabel }) {
                 </>
             )}
 
-            <div className="quick-params">
-                <div className="quick-item">
-                    <strong>TTS</strong>: {result.tts?.decision || 'N/A'}
-                    <span style={{ color: 'var(--text-muted)', fontSize: 11, marginLeft: 4 }}>
-                        (technical analysis — score {Number(result.tts?.total_score || 0) >= 0 ? '+' : ''}{Number(result.tts?.total_score || 0).toFixed(3)})
-                    </span>
-                </div>
-                <div className="quick-item">
-                    <strong>CE</strong>: {result.ce?.sentiment || 'N/A'}
-                    {ceNoNews
-                        ? <em style={{ color: 'var(--text-muted)', fontSize: 11 }}> (no news data)</em>
-                        : <span style={{ color: 'var(--text-muted)', fontSize: 11, marginLeft: 4 }}>
-                            (news sentiment — {result.ce?.article_count || 0} article{result.ce?.article_count !== 1 ? 's' : ''})
-                        </span>
-                    }
-                </div>
-                <div className="quick-item">
-                    <strong>SIV</strong>: {result.siv?.signal || 'N/A'}
-                    <span style={{ color: 'var(--text-muted)', fontSize: 11, marginLeft: 4 }}>
-                        (integrity check — ×{Number(result.siv?.score_multiplier ?? 1).toFixed(2)} multiplier)
-                    </span>
-                </div>
-                <div className="quick-item">
-                    <strong>Regime</strong>: {result.tts?.regime || 'N/A'}
-                    <span style={{ color: 'var(--text-muted)', fontSize: 11, marginLeft: 4 }}>
-                        {result.tts?.regime === 'TRENDING' ? '(trend signals weighted higher)'
-                            : result.tts?.regime === 'RANGING' ? '(mean-reversion signals weighted higher)'
-                                : result.tts?.regime === 'TRANSITIONAL' ? '(blended signal weights)' : ''}
-                    </span>
-                </div>
+            <div style={{
+                display: 'grid', gridTemplateColumns: '1fr 1fr',
+                gap: 6, marginBottom: 10,
+            }}>
+                {[
+                    {
+                        label: 'TTS', sublabel: 'Technical',
+                        value: result.tts?.decision || 'N/A',
+                        sub: `score ${Number(result.tts?.total_score || 0) >= 0 ? '+' : ''}${Number(result.tts?.total_score || 0).toFixed(3)}`,
+                        color: result.tts?.decision === 'BUY' ? 'var(--buy-green)'
+                            : result.tts?.decision === 'SELL' ? 'var(--sell-red)' : 'var(--hold-yellow)',
+                    },
+                    {
+                        label: 'CE', sublabel: 'News Sentiment',
+                        value: result.ce?.sentiment || 'N/A',
+                        sub: ceNoNews ? 'no news data' : `${result.ce?.article_count || 0} articles`,
+                        color: result.ce?.sentiment === 'BULLISH' ? 'var(--buy-green)'
+                            : result.ce?.sentiment === 'BEARISH' ? 'var(--sell-red)' : 'var(--hold-yellow)',
+                    },
+                    {
+                        label: 'SIV', sublabel: 'Integrity Check',
+                        value: result.siv?.signal || 'N/A',
+                        sub: `×${Number(result.siv?.score_multiplier ?? 1).toFixed(2)} multiplier`,
+                        color: result.siv?.signal === 'COHERENT' ? 'var(--buy-green)'
+                            : result.siv?.signal === 'INCOHERENT' ? 'var(--sell-red)' : 'var(--hold-yellow)',
+                    },
+                    {
+                        label: 'Regime', sublabel: 'Market Condition',
+                        value: result.tts?.regime || 'N/A',
+                        sub: result.tts?.regime === 'TRENDING' ? 'trend signals weighted'
+                            : result.tts?.regime === 'RANGING' ? 'mean-reversion weighted' : 'blended weights',
+                        color: 'var(--accent)',
+                    },
+                ].map(({ label, sublabel, value, sub, color }) => (
+                    <div key={label} style={{
+                        background: 'var(--bg-input)',
+                        border: '1px solid var(--bg-input-border)',
+                        borderRadius: 8, padding: '10px 12px',
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                            <span style={{
+                                fontSize: 10, fontWeight: 700, color: 'var(--text-muted)',
+                                textTransform: 'uppercase', letterSpacing: '0.5px'
+                            }}>{label}</span>
+                            <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{sublabel}</span>
+                        </div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color, marginBottom: 2 }}>{value}</div>
+                        <div style={{ fontSize: 10, color: 'var(--text-muted)' }}>{sub}</div>
+                    </div>
+                ))}
             </div>
 
             {notes.length > 0 && (

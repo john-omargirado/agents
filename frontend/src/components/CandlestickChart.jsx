@@ -404,9 +404,9 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             const { clientWidth, clientHeight } = chartContainerRef.current;
             chartRef.current.applyOptions({
                 width: clientWidth,
-                height: Math.max(clientHeight, 160), // floor prevents collapse to 0
+                height: Math.max(clientHeight, 160),
             });
-            chartRef.current.timeScale().fitContent();  // re-fit after resize
+            chartRef.current.timeScale().fitContent();
         };
         const resizeObserver = new ResizeObserver(handleResize);
         resizeObserver.observe(chartContainerRef.current);
@@ -419,7 +419,32 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             }
             candleSeriesRef.current = null;
         };
-    }, [allCandleData, chartPalette, candlePalette]);
+    }, [allCandleData]);
+
+    // ── Effect 1b: Apply theme changes WITHOUT rebuilding the chart ──────────────
+    useEffect(() => {
+        if (!chartRef.current || !candleSeriesRef.current) return;
+
+        chartRef.current.applyOptions({
+            layout: {
+                background: { color: 'transparent' },
+                textColor: chartPalette.textColor,
+            },
+            grid: {
+                vertLines: { color: chartPalette.gridColor },
+                horzLines: { color: chartPalette.gridColor },
+            },
+            crosshair: {
+                vertLine: { color: chartPalette.crosshairColor, labelBackgroundColor: chartPalette.crosshairLabelBg },
+                horzLine: { color: chartPalette.crosshairColor, labelBackgroundColor: chartPalette.crosshairLabelBg },
+            },
+            rightPriceScale: { borderColor: chartPalette.borderColor },
+            timeScale: { borderColor: chartPalette.borderColor },
+        });
+
+        candleSeriesRef.current.applyOptions(candlePalette);
+    }, [chartPalette, candlePalette]);
+
     // ── Effect 2: Pan to selected date ───────────────────────────────────────
     useEffect(() => {
         if (!chartRef.current || !candleSeriesRef.current || !visibleCandleData.length) return;

@@ -1092,6 +1092,9 @@ class LiveChatAgent:
         "profit", "loss", "system", "pipeline", "workflow", "breakout_signal",
         "bb_signal", "ema_trend", "total_score", "tts_score", "action",
         "sl_distance", "tp_distance", "sl", "tp",
+         "simpler", "simple", "explain", "clarify", "understand", "meaning",
+        "output", "result", "decision", "your", "the", "it", "this",
+        "sentiment", "verdict", "sell", "buy", "hold", "signal",
     }
 
     REFUSAL = (
@@ -1104,16 +1107,29 @@ class LiveChatAgent:
     "bone", "anatomy", "biology", "recipe", "cook", "weather", "movie",
     "music", "sport", "history", "geography", "math", "physics", "chemistry",
     "animal", "planet", "country", "capital", "president", "celebrity",
-    "game", "food", "health", "medicine", "doctor", "hospital", "religion",
-    "language", "culture", "war", "politics", "science", "technology",
-    "programming", "code", "software", "hardware", "ai", "machine learning",
+    "game", "food", "medicine", "doctor", "hospital", "religion",
 }
 
         
     def is_on_topic(self, message: str) -> bool:
-        ml = (message or "").lower()
+        ml = (message or "").lower().strip()
+        
+        # Short follow-up messages (under 8 words) are almost always
+        # continuations of the forex conversation — let them through
+        word_count = len(ml.split())
+        if word_count <= 8:
+            # Only hard-block if it's clearly off-topic
+            hard_off = {"recipe", "cook", "weather", "movie", "sport", "anatomy",
+                        "biology", "animal", "planet", "president", "celebrity"}
+            if not any(kw in ml for kw in hard_off):
+                return True
+
         if any(kw in ml for kw in self.OFF_TOPIC_SIGNALS):
+            # Don't block if it also contains trading keywords
+            if any(kw in ml for kw in self.TRADING_KEYWORDS):
+                return True
             return False
+
         return any(kw in ml for kw in self.TRADING_KEYWORDS)
 
     # ── Main entry ──────────────────────────────────────────────────────────

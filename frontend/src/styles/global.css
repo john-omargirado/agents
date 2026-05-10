@@ -869,7 +869,10 @@ body {
 
 .assistant-message {
     margin-bottom: 16px;
-    padding: 15px;
+    padding: 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-md);
 }
 
 .message-header {

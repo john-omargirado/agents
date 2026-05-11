@@ -4987,52 +4987,43 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
-    border-radius: 99px;
-    background: rgba(234, 179, 8, 0.1);
-    border: 2px solid rgba(234, 179, 8, 0.35);
-    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    font-size: 12px;
     font-weight: 600;
-    color: #d4a017;
+    font-family: var(--font);
+    color: var(--warn);
     letter-spacing: 0.02em;
     white-space: nowrap;
-
-    /* Prevent forcing the header to expand */
     min-width: 0;
     flex-shrink: 1;
     overflow: hidden;
 }
 
-/* Light Theme Override */
 [data-theme='light'] .header-warning-banner {
-    background: rgba(180, 130, 0, 0.08);
-    border-color: rgba(160, 110, 0, 0.4);
-    color: #92650a;
+    color: var(--warn-soft);
 }
 
-/* Default state: Hide the short text */
 .warning-text-short {
     display: none;
 }
 
-/* Keep the warning icon a fixed size */
 .header-warning-banner span:first-child {
     flex-shrink: 0;
+    font-size: 13px;
 }
 
-/* Add ellipsis (...) if it gets squished */
 .warning-text-full,
 .warning-text-short {
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* ── Responsive Breakpoints ── */
-
-/* 1. Laptops and Landscape Tablets (Like Surface Pro 7) */
 @media (max-width: 1150px) {
     .header-warning-banner {
-        font-size: 12px;
+        font-size: 11px;
         padding: 4px 10px;
     }
 
@@ -5045,7 +5036,6 @@ body {
     }
 }
 
-/* 2. Mobile Phones & Small Portrait Tablets (Hide entirely) */
 @media (max-width: 768px) {
     .header-warning-banner {
         display: none;

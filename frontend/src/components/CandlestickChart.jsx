@@ -60,7 +60,7 @@ function getPairMeta(pair) {
     return PAIR_META[toPairSymbol(pair)] ?? { category: 'Major' };
 }
 
-const MIN_DATE = '2022-01-01';
+const MIN_DATE = '2023-01-01';
 const MAX_DATE = '2025-12-31';
 
 function createSeedFromText(text) {
@@ -205,7 +205,7 @@ function formatDisplayDate(dateStr) {
 export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDateChange, date }) {
 
     // ── Date picker — starts at Jan 1 2022 ──────────────────────────────────
-    const [selectedDate, setSelectedDate] = useState(date || '2022-01-03');
+    const [selectedDate, setSelectedDate] = useState(date || '2023-01-02');
 
     // Sync internal selectedDate when date prop changes
     useEffect(() => {
@@ -549,7 +549,7 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
             <div className="date-picker-section">
                 <div className="date-picker-label">
                     Analysis Date
-                    <span className="date-picker-range-hint">Jan 2022 – Dec 2025</span>
+                    <span className="date-picker-range-hint">Jan 2023 – Dec 2025</span>
                 </div>
 
                 <div className="date-picker-controls">
@@ -615,7 +615,6 @@ export default function CandlestickChart({ pair, ohlcvData, theme = 'dark', onDa
                 <div className="date-shortcuts">
                     <span className="date-shortcuts-label">Quick select:</span>
                     {[
-                        { label: '2022', date: '2022-01-03' },
                         { label: '2023', date: '2023-01-02' },
                         { label: '2024', date: '2024-01-02' },
                         { label: '2025', date: '2025-01-02' },

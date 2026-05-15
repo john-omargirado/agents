@@ -65,7 +65,7 @@ def call_qwen(prompt):
             time.sleep(backoff)
             backoff = min(backoff * 2, max_backoff)
 
-def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.03) -> tuple[str, str]:
+def compute_verdict_deterministic(weighted_score: float, threshold: float = 0.05) -> tuple[str, str]:
     if weighted_score >= threshold:
         verdict = "BUY"
     elif weighted_score <= -threshold:
@@ -178,8 +178,8 @@ def verdict_agent(state):
     # SIGNAL QUALITY GATE
     # =========================
     ce_article_count = int(ce.get("article_count", 0))
-    ce_strong  = ce_article_count >= 5 and abs(ce_score_raw) >= 0.03
-    tts_strong = abs(tts_score) >= 0.03
+    ce_strong  = ce_article_count >= 5 and abs(ce_score_raw) >= 0.05
+    tts_strong = abs(tts_score) >= 0.05
     siv_issues = siv.get("issues", [])
 
     tradeable = True
@@ -265,7 +265,7 @@ def verdict_agent(state):
     # =========================
     use_deterministic = backtest_mode or skip_llm
     if use_deterministic:
-        deterministic_threshold = float(state.get("calibration_threshold", 0.03))
+        deterministic_threshold = float(state.get("calibration_threshold", 0.05))
         verdict, reasoning = compute_verdict_deterministic(weighted_score, deterministic_threshold)
         print(f"\n[VERDICT] {verdict} | DETERMINISTIC | score={round(weighted_score, 4)}")
     else:
@@ -307,7 +307,7 @@ Write 2-3 concise technical sentences.
 You may reference weighted_score, ce_weight, SIV signal, regime, and indicator values directly.
 Cover what drove the decision and any relevant risk factors."""
 
-        decision_word = "BUY" if weighted_score >= 0.03 else "SELL" if weighted_score <= -0.03 else "HOLD"
+        decision_word = "BUY" if weighted_score >= 0.05 else "SELL" if weighted_score <= -0.05 else "HOLD"
         ce_direction  = ce.get("sentiment", "NEUTRAL")
         tts_direction = tts.get("decision", "HOLD")
         siv_status    = siv.get("signal", "UNKNOWN")

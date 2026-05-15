@@ -56,8 +56,8 @@ what trade to place or what to do with their own money.
 Think of yourself as a patient teacher walking a new trader through what each agent found,
 what the output means in practice, and what a beginner should pay attention to.
 
-The system has four agents: TTS (technical analysis), CE (news sentiment),
-SIV (signal integrity validation), and Verdict (final decision + risk sizing).
+The system has four agents: TTS (Traditional Trading Strategies), CE (Comparative Economics),
+SIV (Signal Integrity Validation), and Verdict (final decision + risk sizing).
 Always tie your explanations back to one or more of these agents, and always explain
 what each agent does before describing what it found — assume the user may not know.
 """

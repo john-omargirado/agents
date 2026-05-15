@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Activity, BookOpen, Sun, Moon, ShieldAlert, X, ChevronLeft, ChevronRight, BarChart2, Newspaper, ShieldCheck, Gavel } from 'lucide-react'; import TradingParameters from './components/TradingParameters';
+import { Activity, BookOpen, Sun, Moon, ShieldAlert, X, ChevronLeft, ChevronRight, BarChart2, Newspaper, ShieldCheck, Gavel, HelpCircle } from 'lucide-react';
+import TradingParameters from './components/TradingParameters';
 import CandlestickChart from './components/CandlestickChart';
 import TradingAssistant from './components/TradingAssistant';
 import Backtesting from './components/Backtesting';
@@ -100,6 +101,10 @@ export default function App() {
     const tutorialSlides = currentView === 'backtesting' ? BACKTESTING_TUTORIAL_SLIDES : TRADING_TUTORIAL_SLIDES;
     const activeTutorialSlide = tutorialSlides[tutorialSlideIndex] || tutorialSlides[0];
 
+    const [showFAQ, setShowFAQ] = useState(false);
+    const closeFAQ = () => setShowFAQ(false);
+    const openFAQ = () => setShowFAQ(true);
+
 
     useEffect(() => {
         if (experienceLevel === 'beginner') {
@@ -156,11 +161,16 @@ export default function App() {
         setTutorialSlideIndex((prev) => (prev + 1) % tutorialSlides.length);
 
     useEffect(() => {
-        if (!showTutorial) return;
-        const handleEsc = (e) => e.key === 'Escape' && closeTutorial();
+        if (!showTutorial && !showFAQ) return;
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') {
+                closeTutorial();
+                closeFAQ();
+            }
+        };
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
-    }, [showTutorial]);
+    }, [showTutorial, showFAQ]);
 
     useEffect(() => { setTutorialSlideIndex(0); }, [currentView]);
 
@@ -288,6 +298,11 @@ export default function App() {
                     <span className="warning-text-short">Simulated Environment</span>
                 </div>
                 <div className="app-header-actions">
+                    {/* ADD THIS BUTTON */}
+                    <button className="header-action-btn" onClick={openFAQ}>
+                        <HelpCircle size={15} />
+                        <span>FAQ</span>
+                    </button>
                     <button className="header-action-btn" onClick={openTutorial}>
                         <BookOpen size={15} />
                         <span>Inside the System</span>
@@ -811,6 +826,58 @@ export default function App() {
                 </div >
             )
             }
+            {/* ─── FAQ Modal ─────────────────────────────────────────── */}
+            {showFAQ && (
+                <div
+                    className="tutorial-overlay"
+                    onClick={closeFAQ}
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 200,
+                        background: 'rgba(0,0,0,0.65)',
+                        backdropFilter: 'blur(6px)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: '16px',
+                    }}
+                >
+                    <div
+                        className="faq-modal"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="faq-modal-header">
+                            <h2>Frequently Asked Questions</h2>
+                            <button onClick={closeFAQ} className="faq-close-btn" aria-label="Close FAQ">
+                                <X size={20} />
+                            </button>
+                        </div>
+                        <div className="faq-modal-body">
+                            <div className="faq-item">
+                                <h3>Is this real money?</h3>
+                                <p>No. This is a fully simulated environment. No real funds are used at any point.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>Does the system guarantee accurate trading signals?</h3>
+                                <p>No. The system is for educational purposes only. Past historical signals do not guarantee future results.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>Why does CE weight sometimes change?</h3>
+                                <p>The CE agent's weight adjusts based on how many news articles were found for the selected date. Fewer articles mean lower confidence, so the system reduces CE's influence on the final verdict.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>What does a ×0.95 SIV multiplier mean?</h3>
+                                <p>It means the TTS and CE agents did not fully agree. The SIV applied a small penalty to the final score to reflect the uncertainty.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>Can I change my experience level after onboarding?</h3>
+                                <p>Yes. Your experience level can be changed at any time using the selector in the left panel.</p>
+                            </div>
+                            <div className="faq-item">
+                                <h3>What does the Risk/Reward ratio mean?</h3>
+                                <p>A ratio of 2.30 means that for every $1 you risk (via your stop loss), the system is targeting $2.30 in potential profit (via your take profit).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div >
     );
 }

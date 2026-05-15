@@ -5041,3 +5041,116 @@ body {
         display: none;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FAQ MODAL
+   ═══════════════════════════════════════════════════════════════════════ */
+.faq-modal {
+    width: 100%;
+    max-width: 620px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 50px var(--modal-shadow);
+    display: flex;
+    flex-direction: column;
+    max-height: 85dvh;
+    overflow: hidden;
+    position: relative;
+    font-family: var(--font);
+}
+
+.faq-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--bg-input-border);
+    flex-shrink: 0;
+}
+
+.faq-modal-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.faq-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.faq-close-btn:hover {
+    color: var(--text-primary);
+}
+
+.faq-modal-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--bg-input);
+    border: 1px solid var(--bg-input-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.faq-item h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.faq-item p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ── Mobile Adjustments for FAQ ── */
+@media (max-width: 479px) {
+    .faq-modal {
+        max-height: 95dvh;
+        border-radius: var(--radius-md);
+    }
+
+    .faq-modal-header {
+        padding: 16px 20px;
+    }
+
+    .faq-modal-header h2 {
+        font-size: 16px;
+    }
+
+    .faq-modal-body {
+        padding: 16px 20px;
+        gap: 12px;
+    }
+
+    .faq-item {
+        padding: 14px;
+    }
+
+    .faq-item h3 {
+        font-size: 13px;
+    }
+
+    .faq-item p {
+        font-size: 12px;
+    }
+}

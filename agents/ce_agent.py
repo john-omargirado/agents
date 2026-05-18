@@ -109,7 +109,7 @@ def ce_agent(state: TradingState):
 
     confidence = (
         "HIGH" if article_count >= 25 else
-        "MODERATE" if article_count >= 15 else
+        "MODERATE" if article_count >= 20 else
         "LOW"
     )
 

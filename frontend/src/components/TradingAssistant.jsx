@@ -156,8 +156,8 @@ function EnsembleBreakdown({ ce, tts, siv, verdict }) {
     const wscore = Number(verdict?.weighted_score || 0);
     const articles = Number(ce?.article_count || 0);
 
-    const confLabel = articles >= 25 ? 'HIGH' : articles >= 15 ? 'MODERATE' : 'LOW';
-    const confColor = articles >= 25 ? 'var(--buy-green)' : articles >= 15 ? 'var(--hold-yellow)' : 'var(--text-muted)';
+    const confLabel = articles >= 25 ? 'HIGH' : articles >= 20 ? 'MODERATE' : 'LOW';
+    const confColor = articles >= 25 ? 'var(--buy-green)' : articles >= 20 ? 'var(--hold-yellow)' : 'var(--text-muted)';
     const wColor = wscore >= 0.05 ? 'var(--buy-green)' : wscore <= -0.05 ? 'var(--sell-red)' : 'var(--hold-yellow)';
 
     return (

@@ -143,7 +143,7 @@ CE (Comparative Economic Agent):
 
   Confidence tiers:
     HIGH     when article_count >= 25
-    MODERATE when article_count >= 15
+    MODERATE when article_count >= 20
     LOW      otherwise
 
   If article_count == 0, CE returns NEUTRAL with ce_score=0.0, ce_confidence=0.0,

@@ -1,6 +1,8 @@
 # Forex Multi-Agent System (MAS)
 
-A comprehensive automated forex trading system powered by multi-agent architecture, combining machine learning inference, technical analysis, and intelligent decision-making for real-time currency pair trading.
+An educational forex trading recommendation platform powered by multi-agent architecture, designed to help retail and beginner traders grasp forex market dynamics through a gamified learning environment. Combines machine learning inference, technical analysis, and intelligent decision-making to provide trading recommendations and insights.
+
+**Note**: This is an educational and gamified learning platform designed to help traders understand market dynamics, technical analysis, and trading strategies. It provides recommendations based on historical analysis and is not intended as financial advice or for actual trading without proper risk management and trader expertise.
 
 ## Table of Contents
 
@@ -21,21 +23,23 @@ A comprehensive automated forex trading system powered by multi-agent architectu
 
 ## Overview
 
-The Forex Multi-Agent System is an intelligent trading platform that:
+The Forex Multi-Agent System is an intelligent learning platform that:
 
-- **Analyzes** real-time forex data and news feeds using multiple specialized agents
-- **Processes** market data through machine learning models (FinBERT sentiment analysis, technical indicators)
-- **Makes informed trading decisions** using a consensus-based agent framework
-- **Backtests** strategies against historical data to validate performance
-- **Provides a user-friendly dashboard** for monitoring trades and viewing performance metrics
+- **Analyzes** forex market data and news feeds using multiple specialized agents to generate trading recommendations
+- **Educates** retail and beginner traders through explanations of market analysis and trading signals
+- **Demonstrates** market dynamics through machine learning models (FinBERT sentiment analysis, technical indicators)
+- **Provides trading recommendations** using a consensus-based agent framework
+- **Backtests** strategies against historical data to help traders understand performance patterns
+- **Offers a gamified dashboard** for practicing trading in a safe, educational environment with performance tracking
 
 ### Key Features
 
 - **Multi-Agent Architecture**: Specialized agents for different trading signals (Sentiment, SIV, TTS, Verdict)
-- **Live Market Data Integration**: Real-time OHLCV data and news processing
-- **AI-Powered Analysis**: FinBERT sentiment analysis, technical indicators, and intelligent verdict generation
-- **Comprehensive Backtesting**: Historical validation and performance analysis
-- **Interactive Dashboard**: React-based frontend with real-time charting and metrics
+- **Market Data Processing**: OHLCV data and news analysis for educational purposes
+- **AI-Powered Insights**: FinBERT sentiment analysis, technical indicators, and educational signal generation
+- **Comprehensive Backtesting**: Historical analysis to help traders understand strategy performance
+- **Gamified Dashboard**: React-based frontend with charting, metrics, and progress tracking
+- **Educational Explanations**: AI-generated explanations of market movements and trading rationales
 - **Secure Backend**: Flask API with rate limiting and CORS protection
 
 ---
@@ -70,11 +74,11 @@ The Forex Multi-Agent System is an intelligent trading platform that:
     └─────────┘  └─────────┘  └─────────┘
 ```
 
-### Agent Network
-
-- **CE Agent**: News sentiment analysis and contextual evaluation
-- **Chat Agent**: Conversational interface and explanations
-- **SIV Agent**: Strategic Investment Validation
+### Agent Networkmarket context explanation
+- **Chat Agent**: Conversational learning interface and trade explanations
+- **SIV Agent**: Strategic Investment Validation for position sizing education
+- **TTS Agent**: Technical Trading Signals generation and education
+- **Verdict Agent**: Consensus recommendation aggregatotion
 - **TTS Agent**: Technical Trading Signals
 - **Verdict Agent**: Consensus decision maker
 
@@ -95,12 +99,12 @@ Overhaul/
 │   ├── tts_agent.py                # Technical Trading Signals
 │   └── verdict_agent.py            # Consensus Verdict Agent
 │
-├── calibration/                     # Strategy calibration & backtesting
+├── calibration/                     # Strategy calibration & educational backtesting
 │   ├── explanation_pipeline.py     # Explanation generation pipeline
 │   ├── run_backtesting.py          # Backtesting runner
 │   └── run_calibration.py          # Parameter calibration
 │
-├── data/                            # Data storage and management
+├── data/                            # Data storage for learning and backtesting
 │   ├── backtesting/                # Historical backtesting data
 │   │   ├── forex_pairs/            # OHLCV data for currency pairs
 │   │   ├── news/                   # Historical news data
@@ -171,7 +175,6 @@ Overhaul/
 ### External Services (Optional)
 
 - GDELT Project API (for news data)
-- OANDA/Your preferred forex data provider
 
 ---
 
@@ -241,28 +244,22 @@ LLM_MODEL=mistral
 DATA_PATH=./data
 BACKTESTING_DATA_PATH=./data/backtesting
 
-# Credentials (if using external APIs)
-# OANDA_API_KEY=your_api_key
-# GDELT_API_KEY=your_api_key
-
 # Frontend
 VITE_API_URL=http://localhost:5000
 ```
 
 ### Trading Configuration
 
-Edit `utils/trade_config.py` to customize:
+Edit `utils/trade_config.py` to customize learning parameters:
 
-- Risk management parameters (stop loss, take profit)
-- Agent weightings for consensus
+- Risk management parameters (stop loss, take profit percentages)
+- Agent weightings for consensus recommendations
 - Technical indicator settings
-- News sentiment thresholds
-
----
+- News sentiment thresholds for signal generation
 
 ## Running the Application
 
-### Option 1: Development Mode (Recommended)
+### Option 1: Development Mode (Recommended for Learning)
 
 #### Terminal 1 - Backend
 
@@ -283,14 +280,12 @@ cd frontend
 npm run dev
 ```
 
-Frontend will be available at `http://localhost:5173`
-
-### Option 2: Production Build
+Frontend will be available at `http://localhost:5173` - Start exploring trading recommendations and backtest strategies!
 
 #### Backend
 
 ```bash
-# Set environment
+# Set environment for deployment
 $env:FLASK_ENV = 'production'
 python app.py
 ```
@@ -304,6 +299,8 @@ npm run preview
 ```
 
 ### Option 3: Run Backtesting
+
+Educational backtesting to analyze strategy performance:
 
 ```bash
 python calibration/run_backtesting.py
@@ -320,11 +317,10 @@ http://localhost:5000/api
 ```
 
 ### Key Endpoints
-
-#### Get Trading Decision
+Recommendation
 
 ```http
-POST /api/trading-decision
+POST /api/trading-recommendation
 Content-Type: application/json
 
 {
@@ -338,13 +334,18 @@ Content-Type: application/json
 
 Response:
 {
-  "signal": "BUY|SELL|HOLD",
+  "recommendation": "BUY|SELL|HOLD",
   "confidence": 0.85,
-  "agents_decision": {
+  "agent_signals": {
     "ce_agent": "BUY",
     "siv_agent": "BUY",
     "tts_agent": "HOLD"
   },
+  "explanation": "Based on market sentiment (positive news analysis) and technical indicators showing bullish pressure, we recommend considering a BUY position...",
+  "educational_insights": {
+    "sentiment_analysis": "...",
+    "technical_rationale": "..."
+  }
   "explanation": "..."
 }
 ```
@@ -366,7 +367,8 @@ Response:
       "close": 1.1075,
       "volume": 1000000
     }
-  ]
+  ],
+  "educational_note": "This historical data is used to demonstrate market movements and help traders understand price action"
 }
 ```
 
@@ -376,7 +378,8 @@ Response:
 GET /api/backtest-results?pair=EURUSD&strategy=consensus
 
 Response:
-{
+{,
+  "key_learnings": "This strategy demonstrates the importance of risk management with a max drawdown of 12%..."
   "total_trades": 45,
   "win_rate": 0.64,
   "profit_factor": 1.85,
@@ -391,22 +394,22 @@ Response:
 
 ### Backend Agents
 
-| Agent | Purpose | Key Functions |
-|-------|---------|---|
-| **CE Agent** | Contextual Evaluation | News sentiment analysis, event impact assessment |
-| **Chat Agent** | User Interface | Query answering, explanation generation |
-| **SIV Agent** | Strategic Investment | Portfolio balance, position sizing |
+| Agent | Purpose | Key Functions |market event explanation |
+| **Chat Agent** | Educational Interface | Answering trader questions, explaining market dynamics |
+| **SIV Agent** | Investment Education | Teaching portfolio concepts, position sizing principles |
+| **TTS Agent** | Technical Signal Generation | Indicator analysis, signal generation for learning |
+| **Verdict Agent** | Recommendation Aggregator | Combining signals, providing consensus recommendations with confidence scores
 | **TTS Agent** | Technical Signals | Indicator analysis, entry/exit points |
 | **Verdict Agent** | Consensus Maker | Decision aggregation, confidence scoring |
 
 ### Frontend Components
 
-- **TradingAssistant**: Main chat interface
-- **TradingParameters**: Configuration panel
-- **Backtesting**: Historical analysis tools
-- **CandlestickChart**: Price action visualization
-- **MetricsSection**: Performance metrics display
-- **ContextualHelp**: User guidance
+- **TradingAssistant**: Main learning and recommendation interface
+- **TradingParameters**: Configuration panel for learning scenarios
+- **Backtesting**: Historical analysis tools for understanding strategy performance
+- **CandlestickChart**: Price action visualization for learning technical analysis
+- **MetricsSection**: Performance metrics display for educational insights
+- **ContextualHelp**: User guidance and learning resources
 
 ---
 
@@ -414,9 +417,9 @@ Response:
 
 ### Data Sources
 
-- **OHLCV Data**: Historical candlestick data for currency pairs
-- **News Data**: From GDELT, preprocessed and cached
-- **Sentiment Data**: FinBERT sentiment scores (cached in `finbert_cache.json`)
+- **OHLCV Data**: Historical candlestick data for currency pairs used in backtesting
+- **News Data**: From GDELT, preprocessed and cached for sentiment analysis
+- **Sentiment Data**: FinBERT sentiment scores (cached in `finbert_cache.json`) for educational analysis
 
 ### Data Pipeline
 
@@ -462,9 +465,9 @@ class MyAgent:
     
     @tool
     def analyze_data(self, data: dict) -> dict:
-        """Analyze trading data"""
+        """Analyze market data and generate educational insights"""
         # Implementation
-        return {"signal": "BUY"}
+        return {"recommendation": "BUY", "confidence": 0.85}
 ```
 
 ### Adding a New API Endpoint
@@ -473,9 +476,9 @@ class MyAgent:
 # In app.py
 @app.route('/api/my-endpoint', methods=['POST'])
 def my_endpoint():
-    """Handle custom trading request"""
+    """Handle trading recommendation request"""
     data = request.json
-    result = process_trading_request(data)
+    result = generate_recommendation(data)
     return jsonify(result)
 ```
 
@@ -528,7 +531,7 @@ We welcome contributions from the development team! Please follow these guidelin
 
 3. **Commit with clear messages**
    ```bash
-   git commit -m "feat: add new trading signal analysis"
+   git commit -m "feat: add new educational trading signal analysis"
    ```
 
 4. **Push to remote**
@@ -556,14 +559,14 @@ For questions or issues, reach out to the development team or check the issues s
 - All tests must pass
 - Code coverage should not decrease
 - Follow the existing code style and patterns
+These metrics help educate traders on strategy performance:
 
----
-
-## Performance Metrics
-
-Monitor these metrics in production:
-
-- **Win Rate**: Percentage of profitable trades
+- **Win Rate**: Percentage of profitable recommendations in historical analysis
+- **Profit Factor**: Gross Profit / Gross Loss ratio for learning risk-reward
+- **Sharpe Ratio**: Risk-adjusted returns to understand volatility impact
+- **Max Drawdown**: Largest peak-to-trough decline to demonstrate risk exposure
+- **API Response Time**: Target < 500ms for smooth user experience
+- **Agent Consensus**: % agreement among agents showing recommendation strength
 - **Profit Factor**: Gross Profit / Gross Loss
 - **Sharpe Ratio**: Risk-adjusted returns
 - **Max Drawdown**: Largest peak-to-trough decline
@@ -614,4 +617,4 @@ Monitor these metrics in production:
 
 **Last Updated**: May 28, 2026
 
-For the latest documentation and updates, refer to the project repository.
+This platform is designed as an educational tool for retail and beginner forex traders to learn market dynamics through practical examples, interactive recommendations, and backtested strategies. It is not intended for live trading without proper risk management and trader expertise.

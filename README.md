@@ -2,7 +2,7 @@
 
 A comprehensive automated forex trading system powered by multi-agent architecture, combining machine learning inference, technical analysis, and intelligent decision-making for real-time currency pair trading.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [System Architecture](#system-architecture)
@@ -19,7 +19,7 @@ A comprehensive automated forex trading system powered by multi-agent architectu
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The Forex Multi-Agent System is an intelligent trading platform that:
 
@@ -31,16 +31,16 @@ The Forex Multi-Agent System is an intelligent trading platform that:
 
 ### Key Features
 
-- 🤖 **Multi-Agent Architecture**: Specialized agents for different trading signals (Sentiment, SIV, TTS, Verdict)
-- 📊 **Live Market Data Integration**: Real-time OHLCV data and news processing
-- 🧠 **AI-Powered Analysis**: FinBERT sentiment analysis, technical indicators, and intelligent verdict generation
-- 💾 **Comprehensive Backtesting**: Historical validation and performance analysis
-- 🎨 **Interactive Dashboard**: React-based frontend with real-time charting and metrics
-- 🔐 **Secure Backend**: Flask API with rate limiting and CORS protection
+- **Multi-Agent Architecture**: Specialized agents for different trading signals (Sentiment, SIV, TTS, Verdict)
+- **Live Market Data Integration**: Real-time OHLCV data and news processing
+- **AI-Powered Analysis**: FinBERT sentiment analysis, technical indicators, and intelligent verdict generation
+- **Comprehensive Backtesting**: Historical validation and performance analysis
+- **Interactive Dashboard**: React-based frontend with real-time charting and metrics
+- **Secure Backend**: Flask API with rate limiting and CORS protection
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -80,7 +80,7 @@ The Forex Multi-Agent System is an intelligent trading platform that:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Overhaul/
@@ -161,7 +161,7 @@ Overhaul/
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 - **Python**: 3.10+
 - **Node.js**: 16+ (for frontend)
@@ -175,7 +175,7 @@ Overhaul/
 
 ---
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the Repository
 
@@ -218,7 +218,7 @@ ollama serve  # Run Ollama server
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -260,7 +260,7 @@ Edit `utils/trade_config.py` to customize:
 
 ---
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Option 1: Development Mode (Recommended)
 
@@ -311,7 +311,7 @@ python calibration/run_backtesting.py
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 ### Base URL
 
@@ -387,7 +387,7 @@ Response:
 
 ---
 
-## 🧩 Components Overview
+## Components Overview
 
 ### Backend Agents
 
@@ -410,7 +410,7 @@ Response:
 
 ---
 
-## 💾 Data Management
+## Data Management
 
 ### Data Sources
 
@@ -440,7 +440,7 @@ news = load_news_for_pair('EURUSD', date='2024-01-15')
 
 ---
 
-## 👨‍💻 Development Guide
+## Development Guide
 
 ### Adding a New Agent
 
@@ -507,7 +507,7 @@ npm run format
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions from the development team! Please follow these guidelines:
 
@@ -540,14 +540,11 @@ We welcome contributions from the development team! Please follow these guidelin
 
 ### Development Team
 
-<!-- TODO: Add your team members here -->
-
 | Name | Role | Focus Area |
 |------|------|-----------|
-| | Backend Lead | Agent Architecture |
-| | Frontend Lead | UI/UX & Dashboard |
-| | Data Engineer | Data Pipeline & Backtesting |
-| | ML Engineer | Model Integration & Inference |
+| John Omar Girado | Lead Developer & Backend Lead | Agent Architecture & System Design |
+| Isaiah Daniel Lising | Data Engineer | Trading Terms, Backtesting & QA |
+| Azer John Valdemoro | QA & Evaluator | QA & Evaluation |
 
 ### Contact
 
@@ -562,7 +559,7 @@ For questions or issues, reach out to the development team or check the issues s
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 Monitor these metrics in production:
 
@@ -575,7 +572,7 @@ Monitor these metrics in production:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -600,7 +597,7 @@ Monitor these metrics in production:
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - LangChain for agent framework
 - Ollama for local LLM inference

@@ -597,12 +597,6 @@ Monitor these metrics in production:
 
 ---
 
-## License
-
-[Add your license information here]
-
----
-
 ## Acknowledgments
 
 - LangChain for agent framework

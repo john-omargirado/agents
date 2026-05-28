@@ -1,0 +1,476 @@
+/* ─── Backtesting View Layout ────────────────────────────────────────── */
+
+.backtesting-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 16px;
+    width: 100%;
+}
+
+.backtesting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-left h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.header-left p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.date-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.day-counter {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 80px;
+    text-align: center;
+}
+
+/* ─── Backtesting Content ─── */
+
+.backtesting-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+}
+
+.backtesting-chart-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    min-height: 0;
+}
+
+.chart-overlay-loading,
+.chart-overlay-error {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 14, 23, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-radius: var(--radius-lg);
+}
+
+.chart-overlay-error {
+    color: var(--danger);
+}
+
+.btn-retry {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.btn-retry:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ─── Backtesting Metrics ─── */
+
+.backtest-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.metrics-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+}
+
+.metrics-section.cumulative {
+    background: var(--bg-input);
+    border-color: var(--bg-input-border);
+}
+
+.metrics-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.metrics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.metrics-row:last-child {
+    margin-bottom: 0;
+}
+
+.metrics-value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.pips-positive, .pnl-positive, .win { color: var(--buy-green); }
+.pips-negative, .pnl-negative, .loss { color: var(--sell-red); }
+.hold { color: var(--hold-yellow); }
+
+
+/* ─── Date Picker Section (inside chart card) ────────────────────────── */
+
+.date-picker-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0 4px 0;
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.date-picker-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.date-picker-range-hint {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    opacity: 0.65;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ── Input row ── */
+.date-picker-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-step-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.date-step-btn:hover:not(:disabled) {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.date-step-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.date-input-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+/* Override the existing readonly .date-input rule for the interactive picker */
+.date-input-wrap .date-input {
+    width: 100%;
+    padding: 7px 32px 7px 30px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: border-color 0.15s;
+    min-width: unset;
+}
+
+.date-input-wrap .date-input:hover,
+.date-input-wrap .date-input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.date-clear-btn {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    padding: 0;
+}
+
+.date-clear-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+}
+
+/* ── Status line ── */
+.date-picker-display {
+    min-height: 20px;
+}
+
+.date-selected-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+.date-selected-label.muted {
+    color: var(--text-secondary);
+    opacity: 0.75;
+}
+
+.date-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.date-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* ── Quick shortcuts ── */
+.date-shortcuts {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.date-shortcuts-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-right: 2px;
+    white-space: nowrap;
+}
+
+.date-shortcut-btn {
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.date-shortcut-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.date-shortcut-btn.active {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── Range bar ── */
+.date-range-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.date-range-start,
+.date-range-end {
+    font-size: 10px;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.date-range-track {
+    flex: 1;
+    height: 4px;
+    background: var(--bg-input);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.date-range-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+    min-width: 0;
+}
+
+/* ─── Responsive Backtesting ─── */
+
+@media (max-width: 1100px) {
+    .backtesting-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 950px) {
+    .backtesting-content {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .backtest-metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        overflow-y: visible;
+    }
+    .metrics-section.cumulative {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .backtest-metrics {
+        grid-template-columns: 1fr;
+    }
+    .metrics-section.cumulative {
+        grid-column: span 1;
+    }
+}

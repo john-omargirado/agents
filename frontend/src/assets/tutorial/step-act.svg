@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Signal Interpretation Guide</title>
+  <desc id="desc">How beginners can read Buy, Sell, Hold signals and risk notes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#071423"/>
+      <stop offset="100%" stop-color="#0f2e44"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+
+  <rect x="52" y="52" width="856" height="436" rx="24" fill="#0f172a" stroke="#2dd4bf" stroke-opacity="0.45"/>
+  <text x="480" y="98" text-anchor="middle" fill="#99f6e4" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700">Inside the System</text>
+  <text x="480" y="124" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="17">How to read the final signal</text>
+
+  <rect x="86" y="152" width="248" height="246" rx="14" fill="#12302f" stroke="#22c55e"/>
+  <text x="210" y="186" text-anchor="middle" fill="#bbf7d0" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">BUY</text>
+  <text x="106" y="220" fill="#d1fae5" font-family="Segoe UI, Arial, sans-serif" font-size="15">Bullish setup detected.</text>
+  <text x="106" y="244" fill="#d1fae5" font-family="Segoe UI, Arial, sans-serif" font-size="15">Check confidence notes and</text>
+  <text x="106" y="266" fill="#d1fae5" font-family="Segoe UI, Arial, sans-serif" font-size="15">risk limits before entry.</text>
+
+  <rect x="356" y="152" width="248" height="246" rx="14" fill="#37221f" stroke="#f97316"/>
+  <text x="480" y="186" text-anchor="middle" fill="#fed7aa" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">HOLD</text>
+  <text x="376" y="220" fill="#ffedd5" font-family="Segoe UI, Arial, sans-serif" font-size="15">No strong edge right now.</text>
+  <text x="376" y="244" fill="#ffedd5" font-family="Segoe UI, Arial, sans-serif" font-size="15">This helps beginners avoid</text>
+  <text x="376" y="266" fill="#ffedd5" font-family="Segoe UI, Arial, sans-serif" font-size="15">forcing weak setups.</text>
+
+  <rect x="626" y="152" width="248" height="246" rx="14" fill="#3a1f26" stroke="#ef4444"/>
+  <text x="750" y="186" text-anchor="middle" fill="#fecdd3" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">SELL</text>
+  <text x="646" y="220" fill="#ffe4e6" font-family="Segoe UI, Arial, sans-serif" font-size="15">Bearish setup detected.</text>
+  <text x="646" y="244" fill="#ffe4e6" font-family="Segoe UI, Arial, sans-serif" font-size="15">Validate downside risk and</text>
+  <text x="646" y="266" fill="#ffe4e6" font-family="Segoe UI, Arial, sans-serif" font-size="15">volatility before acting.</text>
+
+  <rect x="86" y="414" width="788" height="56" rx="10" fill="#0b2235" stroke="#38bdf8"/>
+  <text x="480" y="438" text-anchor="middle" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Golden rule: Treat signals as guidance.</text>
+  <text x="480" y="458" text-anchor="middle" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="15">Always confirm with your own risk plan and position size.</text>
+</svg>

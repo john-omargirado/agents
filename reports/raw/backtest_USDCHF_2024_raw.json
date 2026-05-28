@@ -1,0 +1,921 @@
+[
+  {
+    "date": "01/01/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0073457142857142966,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "mean_score": 0.8941,
+      "sentiment_score": 0.0,
+      "article_count": 1,
+      "raw_article_count": 1,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.4811,
+      "price": 0.8396,
+      "ema_trend": "BEARISH",
+      "rsi": 19.821958344852973,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "NEUTRAL",
+      "tts_signal": "SELL",
+      "actual_price": 0.8396,
+      "tts_price": 0.8396,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.1924,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/02/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007566428571428585,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8863,
+      "sentiment_score": -0.179,
+      "article_count": 9,
+      "raw_article_count": 10,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.381,
+      "price": 0.85008,
+      "ema_trend": "BEARISH",
+      "rsi": 36.501383163315296,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.85008,
+      "tts_price": 0.85008,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7524,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/03/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007324285714285728,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7814,
+      "sentiment_score": -0.1535,
+      "article_count": 22,
+      "raw_article_count": 22,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.386,
+      "price": 0.84899,
+      "ema_trend": "BEARISH",
+      "rsi": 35.67022854010412,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.84899,
+      "tts_price": 0.84899,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7544,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/04/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007267857142857151,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.87,
+      "sentiment_score": -0.1004,
+      "article_count": 15,
+      "raw_article_count": 16,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3758,
+      "price": 0.8502,
+      "ema_trend": "BEARISH",
+      "rsi": 37.37498860906063,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.8502,
+      "tts_price": 0.8502,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7503,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/05/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007817857142857154,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.8128,
+      "sentiment_score": 0.0899,
+      "article_count": 33,
+      "raw_article_count": 36,
+      "confidence": "HIGH",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3796,
+      "price": 0.84945,
+      "ema_trend": "BEARISH",
+      "rsi": 36.725340113990626,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.84945,
+      "tts_price": 0.84945,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.4482,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/08/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007630000000000002,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7739,
+      "sentiment_score": -0.0825,
+      "article_count": 32,
+      "raw_article_count": 38,
+      "confidence": "HIGH",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3877,
+      "price": 0.84793,
+      "ema_trend": "BEARISH",
+      "rsi": 35.38301141683013,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.84793,
+      "tts_price": 0.84793,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7551,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/09/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.00769928571428571,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "mean_score": 0.8673,
+      "sentiment_score": -0.0027,
+      "article_count": 36,
+      "raw_article_count": 40,
+      "confidence": "HIGH",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3486,
+      "price": 0.85226,
+      "ema_trend": "BEARISH",
+      "rsi": 41.89798793009736,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "NEUTRAL",
+      "tts_signal": "SELL",
+      "actual_price": 0.85226,
+      "tts_price": 0.85226,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.1394,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/10/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007370714285714286,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.8568,
+      "sentiment_score": 0.2541,
+      "article_count": 9,
+      "raw_article_count": 9,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3575,
+      "price": 0.8508,
+      "ema_trend": "BEARISH",
+      "rsi": 40.418220960242,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.8508,
+      "tts_price": 0.8508,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.457,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/11/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007521428571428576,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8517,
+      "sentiment_score": -0.1882,
+      "article_count": 18,
+      "raw_article_count": 19,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3484,
+      "price": 0.8518,
+      "ema_trend": "BEARISH",
+      "rsi": 41.93100077052702,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.8518,
+      "tts_price": 0.8518,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7394,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/12/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007755714285714287,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7839,
+      "sentiment_score": -0.1182,
+      "article_count": 8,
+      "raw_article_count": 11,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.349,
+      "price": 0.85171,
+      "ema_trend": "BEARISH",
+      "rsi": 41.82806594089674,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.85171,
+      "tts_price": 0.85171,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7396,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/15/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.007774285714285718,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.9011,
+      "sentiment_score": -0.1261,
+      "article_count": 7,
+      "raw_article_count": 7,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3145,
+      "price": 0.85545,
+      "ema_trend": "BEARISH",
+      "rsi": 47.58619812251168,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.85545,
+      "tts_price": 0.85545,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7258,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/16/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0072957142857142864,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8296,
+      "sentiment_score": -0.2431,
+      "article_count": 9,
+      "raw_article_count": 9,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.1876,
+      "price": 0.86154,
+      "ema_trend": "BEARISH",
+      "rsi": 55.33851711412873,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86154,
+      "tts_price": 0.86154,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.675,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/17/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0070442857142857095,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7798,
+      "sentiment_score": -0.5401,
+      "article_count": 11,
+      "raw_article_count": 11,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.1801,
+      "price": 0.86435,
+      "ema_trend": "BEARISH",
+      "rsi": 58.396200576473916,
+      "bb_signal": "OVERBOUGHT",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86435,
+      "tts_price": 0.86435,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.672,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/18/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0067992857142857065,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.8141,
+      "sentiment_score": 0.1899,
+      "article_count": 12,
+      "raw_article_count": 12,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "total_score": -0.0432,
+      "price": 0.86802,
+      "ema_trend": "BEARISH",
+      "rsi": 62.050544057561375,
+      "bb_signal": "OVERBOUGHT",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "HOLD",
+      "actual_price": 0.86802,
+      "tts_price": 0.86802,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.5827,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/19/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.00692071428571428,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8537,
+      "sentiment_score": -0.4163,
+      "article_count": 9,
+      "raw_article_count": 13,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "total_score": -0.0359,
+      "price": 0.86764,
+      "ema_trend": "BEARISH",
+      "rsi": 61.44868817177521,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "BEARISH",
+      "tts_signal": "HOLD",
+      "actual_price": 0.86764,
+      "tts_price": 0.86764,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.6144,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/22/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006306428571428562,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8553,
+      "sentiment_score": -0.0712,
+      "article_count": 16,
+      "raw_article_count": 16,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "total_score": -0.0303,
+      "price": 0.86894,
+      "ema_trend": "BEARISH",
+      "rsi": 62.77877594788828,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "BEARISH",
+      "tts_signal": "HOLD",
+      "actual_price": 0.86894,
+      "tts_price": 0.86894,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.6121,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/23/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0063807142857142795,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.8293,
+      "sentiment_score": 0.1586,
+      "article_count": 9,
+      "raw_article_count": 9,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "HOLD",
+      "total_score": -0.0253,
+      "price": 0.8701,
+      "ema_trend": "BEARISH",
+      "rsi": 63.97321990588007,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "HOLD",
+      "actual_price": 0.8701,
+      "tts_price": 0.8701,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.5899,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/24/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.0067085714285714205,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.87,
+      "sentiment_score": 0.3256,
+      "article_count": 11,
+      "raw_article_count": 16,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.199,
+      "price": 0.86285,
+      "ema_trend": "BEARISH",
+      "rsi": 52.60984057271558,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86285,
+      "tts_price": 0.86285,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.5204,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/25/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006297857142857133,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7547,
+      "sentiment_score": -0.0673,
+      "article_count": 12,
+      "raw_article_count": 19,
+      "confidence": "LOW",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.1793,
+      "price": 0.86703,
+      "ema_trend": "BEARISH",
+      "rsi": 57.317274147677054,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86703,
+      "tts_price": 0.86703,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.6717,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/26/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006357142857142855,
+    "ce_output": {
+      "sentiment": "BULLISH",
+      "raw_vibe": "POSITIVE",
+      "mean_score": 0.7726,
+      "sentiment_score": 0.1138,
+      "article_count": 23,
+      "raw_article_count": 29,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.1985,
+      "price": 0.86364,
+      "ema_trend": "BEARISH",
+      "rsi": 52.74157493189939,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "signal_mismatch"
+      ],
+      "ce_signal": "BULLISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86364,
+      "tts_price": 0.86364,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "BUY",
+    "weighted_score": 0.5206,
+    "market_reality": "BEARISH"
+  },
+  {
+    "date": "01/29/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006198571428571434,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.8375,
+      "sentiment_score": -0.1615,
+      "article_count": 29,
+      "raw_article_count": 29,
+      "confidence": "HIGH",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3021,
+      "price": 0.86119,
+      "ema_trend": "BEARISH",
+      "rsi": 49.65627629360077,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86119,
+      "tts_price": 0.86119,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7208,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/30/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006265714285714287,
+    "ce_output": {
+      "sentiment": "NEUTRAL",
+      "raw_vibe": "NEUTRAL",
+      "mean_score": 0.7909,
+      "sentiment_score": -0.0056,
+      "article_count": 26,
+      "raw_article_count": 26,
+      "confidence": "HIGH",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.2087,
+      "price": 0.8617,
+      "ema_trend": "BEARISH",
+      "rsi": 50.30793306221587,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "PARTIAL",
+      "issues": [
+        "one_signal_neutral"
+      ],
+      "ce_signal": "NEUTRAL",
+      "tts_signal": "SELL",
+      "actual_price": 0.8617,
+      "tts_price": 0.8617,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "HOLD",
+    "weighted_score": -0.0835,
+    "market_reality": "BULLISH"
+  },
+  {
+    "date": "01/31/2024",
+    "currency_pair": "USDCHF",
+    "atr": 0.006350714285714281,
+    "ce_output": {
+      "sentiment": "BEARISH",
+      "raw_vibe": "NEGATIVE",
+      "mean_score": 0.7999,
+      "sentiment_score": -0.1039,
+      "article_count": 19,
+      "raw_article_count": 20,
+      "confidence": "MODERATE",
+      "explanation": "skipped_backtest"
+    },
+    "tts_output": {
+      "decision": "SELL",
+      "total_score": -0.3011,
+      "price": 0.86134,
+      "ema_trend": "BEARISH",
+      "rsi": 49.8177293916603,
+      "bb_signal": "STABLE",
+      "ema_200_confidence": 1.0,
+      "ema_200_reliable": true,
+      "data_stale": false,
+      "explanation": "skipped_backtest"
+    },
+    "siv_output": {
+      "signal": "COHERENT",
+      "issues": [],
+      "ce_signal": "BEARISH",
+      "tts_signal": "SELL",
+      "actual_price": 0.86134,
+      "tts_price": 0.86134,
+      "explanation": "skipped_backtest"
+    },
+    "verdict": "SELL",
+    "weighted_score": -0.7204,
+    "market_reality": "BULLISH"
+  }
+]

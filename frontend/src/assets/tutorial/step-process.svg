@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">System Modules Explained</title>
+  <desc id="desc">Simple flow of data, specialist modules, and final signal generation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0e1729"/>
+      <stop offset="100%" stop-color="#0d2940"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <rect x="52" y="52" width="856" height="436" rx="24" fill="#0f172a" stroke="#2d6d86"/>
+  <text x="480" y="98" text-anchor="middle" fill="#99f6e4" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700">Inside the System</text>
+  <text x="480" y="124" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="17">What happens after you click Analyze</text>
+
+  <rect x="94" y="152" width="236" height="258" rx="16" fill="#102338" stroke="#2f7b9c"/>
+  <text x="212" y="186" text-anchor="middle" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Input Layer</text>
+  <text x="116" y="220" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Price candles</text>
+  <text x="116" y="246" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">News headlines</text>
+  <text x="116" y="272" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Trading parameters</text>
+  <text x="116" y="314" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">Collects context before</text>
+  <text x="116" y="334" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">scoring begins.</text>
+
+  <rect x="362" y="152" width="236" height="258" rx="16" fill="#102338" stroke="#2f7b9c"/>
+  <text x="480" y="186" text-anchor="middle" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Core Modules</text>
+  <text x="384" y="220" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Sentiment module</text>
+  <text x="384" y="246" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Signal validator</text>
+  <text x="384" y="272" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Risk evaluator</text>
+  <text x="384" y="314" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">Each module answers one</text>
+  <text x="384" y="334" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">specialized question.</text>
+
+  <rect x="630" y="152" width="236" height="258" rx="16" fill="#102338" stroke="#2f7b9c"/>
+  <text x="748" y="186" text-anchor="middle" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700">Final Output</text>
+  <text x="652" y="220" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Buy / Sell / Hold</text>
+  <text x="652" y="246" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Confidence notes</text>
+  <text x="652" y="272" fill="#93c5fd" font-family="Segoe UI, Arial, sans-serif" font-size="16">Risk warnings</text>
+  <text x="652" y="314" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">Use it as guidance,</text>
+  <text x="652" y="334" fill="#94a3b8" font-family="Segoe UI, Arial, sans-serif" font-size="14">not absolute certainty.</text>
+
+  <path d="M334 282h20" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+  <path d="M602 282h20" stroke="#22d3ee" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="94" y="426" width="772" height="44" rx="10" fill="#0b2235" stroke="#38bdf8"/>
+  <text x="480" y="454" text-anchor="middle" fill="#e0f2fe" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Think of this as a team of analysts, not one black-box guess.</text>
+</svg>

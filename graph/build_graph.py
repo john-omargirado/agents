@@ -7,55 +7,63 @@ from agents.siv_agent import siv_agent
 from agents.verdict_agent import verdict_agent
 
 
-USE_PARALLEL = False
-
-
+# =========================
+# RETRY LOGIC
+# =========================
 def retry_fanout(state):
     state["retry_count"] = state.get("retry_count", 0) + 1
-    state["debug_log"].append(f"Retry fanout triggered ({state['retry_count']})")
+    state.setdefault("debug_log", []).append(
+        f"Retry fanout triggered ({state['retry_count']})"
+    )
 
-    # HARD STOP after max retries
+    # hard stop after 2 retries
     if state["retry_count"] >= 2:
         state["action"] = "NONE"
+
+    state["backtest_mode"] = True
+
+    # IMPORTANT FIX:
+    # reset only decision-related outputs, not full state
+    state["verdict"] = ""
+    state["verdict_reasoning"] = ""
+    state["siv_output"] = {}
 
     return state
 
 
 def route_after_verdict(state):
-    action = state.get("action", "NONE")
-    if action == "RETRY_TTS_CE":
-        return "retry"
-    return "end"
+    return "retry" if state.get("action", "NONE") == "RETRY_TTS_CE" else "end"
 
 
+# =========================
+# GRAPH BUILD
+# =========================
 def build_graph():
     graph = StateGraph(TradingState)
 
-    graph.add_node("ce", ce_agent)
     graph.add_node("tts", tts_agent)
+    graph.add_node("ce", ce_agent)
     graph.add_node("siv", siv_agent)
     graph.add_node("verdict", verdict_agent)
     graph.add_node("retry_fanout", retry_fanout)
 
     # =========================
-    # MAIN FLOW
+    # MAIN FLOW (FIXED ORDER)
     # =========================
-    if USE_PARALLEL:
-        graph.add_edge(START, "ce")
-        graph.add_edge(START, "tts")
+    # TTS first (technical base)
+    graph.add_edge(START, "tts")
 
-        graph.add_edge("ce", "siv")
-        graph.add_edge("tts", "siv")
+    # CE runs AFTER TTS (uses price/regime alignment)
+    graph.add_edge("tts", "ce")
 
-    else:
-        graph.add_edge(START, "tts")
-        graph.add_edge("tts", "ce")
-        graph.add_edge("ce", "siv")
+    # SIV validates BOTH outputs
+    graph.add_edge("ce", "siv")
 
+    # final decision
     graph.add_edge("siv", "verdict")
 
     # =========================
-    # RETRY LOGIC
+    # RETRY FLOW
     # =========================
     graph.add_conditional_edges(
         "verdict",
@@ -66,7 +74,7 @@ def build_graph():
         }
     )
 
-    # 🔥 FIX: ONLY RETRY TTS (not CE)
+    # retry only re-runs TTS → CE → SIV → verdict
     graph.add_edge("retry_fanout", "tts")
 
     return graph.compile()

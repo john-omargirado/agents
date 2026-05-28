@@ -540,14 +540,11 @@ We welcome contributions from the development team! Please follow these guidelin
 
 ### Development Team
 
-<!-- TODO: Add your team members here -->
-
 | Name | Role | Focus Area |
 |------|------|-----------|
-| | Backend Lead | Agent Architecture |
-| | Frontend Lead | UI/UX & Dashboard |
-| | Data Engineer | Data Pipeline & Backtesting |
-| | ML Engineer | Model Integration & Inference |
+| John Omar Girado | Lead Developer & Backend Lead | Agent Architecture & System Design |
+| Isaiah Daniel Lising | Data Engineer | Trading Terms, Backtesting & QA |
+| Azer John Valdemoro | QA & Evaluator | QA & Evaluation |
 
 ### Contact
 
